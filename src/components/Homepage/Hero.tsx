@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative w-full bg-neutral-100 flex flex-col overflow-hidden">
+    <section className="relative w-full bg-neutral-100 flex flex-col items-center justify-center overflow-hidden">
       {/* Background Circuit Pattern */}
       <div className="absolute inset-0 flex justify-center items-center overflow-hidden opacity-50">
         <div className="relative w-full h-full max-w-[1800px]">
