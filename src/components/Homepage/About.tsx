@@ -9,19 +9,24 @@ const About = () => {
     <section className="w-full flex flex-col">
       <div
         className="relative w-full py-8 sm:py-10 lg:py-12 bg-neutral-900 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(80, 80, 80, 0.15) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(80, 80, 80, 0.15) 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px'
-        }}
       >
-        {/* Grid fade overlay */}
+        {/* Fixed Grid Background */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+          }}
+        />
+
+        {/* Edge fade overlay */}
         <div className="absolute inset-0 pointer-events-none"
           style={{
             background: `
-              radial-gradient(circle at center, transparent 40%, rgba(23, 23, 23, 0.8) 70%, rgba(23, 23, 23, 1) 100%)
+              radial-gradient(circle at center, transparent 30%, rgba(23, 23, 23, 0.6) 70%, rgba(23, 23, 23, 0.95) 100%)
             `
           }}
         />

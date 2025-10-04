@@ -44,7 +44,9 @@ const Navbar = () => {
         </div>
         <div className="hidden sm:block w-px h-4 bg-white/20" />
         <Link
-          href="/anniversary"
+          href="https://silver-jubilee.eng.ruh.ac.lk/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="py-1 flex justify-center items-center gap-1.5 hover:opacity-80 transition-opacity"
         >
           <span className="text-white text-xs font-medium font-[var(--font-instrument)] leading-none">
