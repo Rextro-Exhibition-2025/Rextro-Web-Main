@@ -15,18 +15,19 @@ const About = () => {
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage: `
-              linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+              linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
             `,
             backgroundSize: '40px 40px',
           }}
         />
 
-        {/* Edge fade overlay */}
+        {/* Edge fade overlay - all sides */}
         <div className="absolute inset-0 pointer-events-none"
           style={{
             background: `
-              radial-gradient(circle at center, transparent 30%, rgba(23, 23, 23, 0.6) 70%, rgba(23, 23, 23, 0.95) 100%)
+              radial-gradient(ellipse at center, transparent 20%, rgba(23, 23, 23, 0.5) 60%, rgba(23, 23, 23, 0.9) 100%),
+              linear-gradient(to bottom, rgba(23, 23, 23, 0.8) 0%, transparent 15%, transparent 85%, rgba(23, 23, 23, 0.8) 100%)
             `
           }}
         />

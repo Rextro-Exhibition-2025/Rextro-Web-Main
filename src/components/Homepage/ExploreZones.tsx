@@ -101,7 +101,7 @@ const ExploreZones = () => {
         }}
       >
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/90 via-neutral-900/80 to-neutral-900/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/50 via-neutral-900/40 to-neutral-900/50 pointer-events-none" />
 
         {/* Content */}
         <div className="relative w-full px-4 sm:px-8 lg:px-20 flex flex-col gap-8 lg:gap-10">
