@@ -4,12 +4,9 @@ import Image from "next/image";
 import Countdown from "@/components/common/Countdown";
 
 const About = () => {
-
   return (
     <section className="w-full flex flex-col">
-      <div
-        className="relative w-full py-8 sm:py-10 lg:py-12 bg-neutral-900 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden"
-      >
+      <div className="relative w-full py-8 sm:py-10 lg:py-12 bg-neutral-900 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden">
         {/* Fixed Grid Background */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -18,17 +15,18 @@ const About = () => {
               linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
               linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
             `,
-            backgroundSize: '40px 40px',
+            backgroundSize: "40px 40px",
           }}
         />
 
         {/* Edge fade overlay - all sides */}
-        <div className="absolute inset-0 pointer-events-none"
+        <div
+          className="absolute inset-0 pointer-events-none"
           style={{
             background: `
               radial-gradient(ellipse at center, transparent 20%, rgba(23, 23, 23, 0.5) 60%, rgba(23, 23, 23, 0.9) 100%),
               linear-gradient(to bottom, rgba(23, 23, 23, 0.8) 0%, transparent 15%, transparent 85%, rgba(23, 23, 23, 0.8) 100%)
-            `
+            `,
           }}
         />
 
@@ -125,7 +123,7 @@ const About = () => {
       {/* Bottom Decorative Elements */}
 
       <div className="w-full bg-neutral-100 border-t border-neutral-900 flex justify-between items-start">
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-y-[-1]">
+        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-y-[-1] bottom-2  ">
           <Image
             src="/Hero/Union.svg"
             alt=""
@@ -133,7 +131,7 @@ const About = () => {
             className="object-contain object-left-top"
           />
         </div>
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] scale-y-[-1]">
+        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] scale-y-[-1] bottom-2">
           <Image
             src="/Hero/Union.svg"
             alt=""

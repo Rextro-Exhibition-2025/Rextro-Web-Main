@@ -64,7 +64,7 @@ const ExploreZones = () => {
     <section className="w-full flex flex-col">
       {/* Top Decorative Border */}
       <div className="w-full bg-neutral-100 border-b border-neutral-900 flex justify-between items-end leading-[0]">
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] leading-[0]">
+        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] leading-[0] top-2">
           <Image
             src="/Hero/Union.svg"
             alt=""
@@ -72,7 +72,7 @@ const ExploreZones = () => {
             className="object-contain object-left-bottom"
           />
         </div>
-        <div className="relative w-48 sm:w-64 md:w-72 lg:w-80 h-8 sm:h-10 md:h-11 lg:h-[45px] leading-[0] -bottom-1">
+        <div className="relative w-48 sm:w-64 md:w-72 lg:w-80 h-8 sm:h-10 md:h-11 lg:h-[45px] leading-[0] top-2">
           <Image
             src="/Hero/Union2.svg"
             alt=""
@@ -80,7 +80,7 @@ const ExploreZones = () => {
             className="object-contain object-center-bottom"
           />
         </div>
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] leading-[0]">
+        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] leading-[0] top-2">
           <Image
             src="/Hero/Union.svg"
             alt=""
@@ -372,7 +372,7 @@ const ExploreZones = () => {
 
       {/* Bottom Decorative Border */}
       <div className="w-full bg-white border-t border-neutral-900 flex justify-between items-start leading-[0]">
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[160px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-y-[-1] leading-[0] -top-1">
+        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[160px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-y-[-1] leading-[0] bottom-2">
           <Image
             src="/Hero/Union.svg"
             alt=""
@@ -380,7 +380,7 @@ const ExploreZones = () => {
             className="object-contain object-left-top"
           />
         </div>
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[160px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] scale-y-[-1] leading-[0] -top-1">
+        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[160px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] scale-y-[-1] leading-[0] bottom-2">
           <Image
             src="/Hero/Union.svg"
             alt=""

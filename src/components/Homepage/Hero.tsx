@@ -127,7 +127,7 @@ const Hero = () => {
 
       {/* Bottom Decorative Elements */}
       <div className="w-full border-b border-neutral-900 flex justify-between items-end">
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px]">
+        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] top-2">
           <Image
             src="/Hero/Union.svg"
             alt=""
@@ -135,7 +135,7 @@ const Hero = () => {
             className="object-contain object-left-bottom "
           />
         </div>
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1]">
+        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] top-2">
           <Image
             src="/Hero/Union.svg"
             alt=""
