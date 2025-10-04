@@ -64,8 +64,9 @@
   background-color: #ff8800;
   position: absolute;
   box-shadow:
-    0 0 8px rgba(255, 136, 0, 0.8),
-    0 0 16px rgba(255, 136, 0, 0.4);
+    0 0 12px rgba(255, 136, 0, 0.9),
+    0 0 25px rgba(255, 136, 0, 0.6),
+    0 0 40px rgba(255, 136, 0, 0.3);
 }
 
 .Colon--blink:before,
@@ -99,9 +100,10 @@
   animation: fadeIn 0.4s ease-in;
   background-color: #ff8800;
   box-shadow:
-    0 0 10px rgba(255, 136, 0, 0.8),
-    0 0 20px rgba(255, 136, 0, 0.4),
-    0 0 30px rgba(255, 136, 0, 0.2);
+    0 0 15px rgba(255, 136, 0, 0.9),
+    0 0 30px rgba(255, 136, 0, 0.6),
+    0 0 50px rgba(255, 136, 0, 0.4),
+    0 0 70px rgba(255, 136, 0, 0.2);
 }
 
 .Segment-A,
