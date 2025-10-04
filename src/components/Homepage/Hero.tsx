@@ -48,7 +48,7 @@ const Hero = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative h-[80vh] w-full px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-24 flex flex-col justify-start items-center gap-4 sm:gap-6 lg:gap-8">
+      <div className="relative h-[80vh] w-full px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-24 flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8">
         <div className="w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-8 sm:gap-10 lg:gap-12">
           {/* Logo and Tagline Container */}
           <div className="w-full max-w-[900px] flex flex-col justify-start items-center gap-12 sm:gap-16 lg:gap-20">

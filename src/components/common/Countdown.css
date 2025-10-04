@@ -30,7 +30,7 @@
 
 .countdown-label {
   font-family: var(--font-instrument), sans-serif;
-  font-size: 2rem;
+  font-size: 1.25rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.3);
   text-align: center;
@@ -39,34 +39,34 @@
 
 .countdown-digits {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .Colon {
   display: inline-block;
-  width: 16px;
-  height: 80px;
+  width: 12px;
+  height: 60px;
   position: relative;
   margin-bottom: 0;
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 .Colon:before,
 .Colon:after {
   content: "";
   display: block;
-  border-radius: 5px;
+  border-radius: 4px;
   left: 50%;
   transform: translateX(-50%);
-  height: 5px;
-  width: 5px;
+  height: 4px;
+  width: 4px;
   background-color: #ff8800;
   position: absolute;
   box-shadow:
-    0 0 12px rgba(255, 136, 0, 0.9),
-    0 0 25px rgba(255, 136, 0, 0.6),
-    0 0 40px rgba(255, 136, 0, 0.3);
+    0 0 10px rgba(255, 136, 0, 0.9),
+    0 0 20px rgba(255, 136, 0, 0.6),
+    0 0 35px rgba(255, 136, 0, 0.3);
 }
 
 .Colon--blink:before,
@@ -75,19 +75,19 @@
 }
 
 .Colon:before {
-  top: 20px;
+  top: 15px;
 }
 
 .Colon:after {
-  bottom: 20px;
+  bottom: 15px;
 }
 
 .Display {
   position: relative;
   display: inline-block;
   margin-right: 0;
-  width: 40px;
-  height: 80px;
+  width: 30px;
+  height: 60px;
 }
 
 .Segment {
@@ -109,32 +109,32 @@
 .Segment-A,
 .Segment-D,
 .Segment-G {
-  width: 30px;
-  height: 5px;
-  left: 5px;
+  width: 22px;
+  height: 4px;
+  left: 4px;
 }
 
 .Segment-B,
 .Segment-C,
 .Segment-E,
 .Segment-F {
-  width: 5px;
-  height: 32px;
+  width: 4px;
+  height: 24px;
 }
 
 .Segment-B,
 .Segment-F {
-  top: 5px;
+  top: 4px;
 }
 
 .Segment-C,
 .Segment-E {
-  top: 43px;
+  top: 32px;
 }
 
 .Segment-B,
 .Segment-C {
-  left: 35px;
+  left: 26px;
 }
 
 .Segment-A {
@@ -142,11 +142,11 @@
 }
 
 .Segment-D {
-  top: 75px;
+  top: 56px;
 }
 
 .Segment-G {
-  top: 38px;
+  top: 28px;
 }
 
 /* Responsive adjustments */
