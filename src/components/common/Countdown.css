@@ -1,0 +1,287 @@
+@keyframes fadeIn {
+  from {
+    background-color: #000;
+  }
+  to {
+    background-color: #ff8800;
+  }
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.countdown-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.countdown-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.countdown-label {
+  font-family: var(--font-instrument), sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.countdown-digits {
+  display: flex;
+  gap: 8px;
+}
+
+.Colon {
+  display: inline-block;
+  width: 16px;
+  height: 80px;
+  position: relative;
+  margin-bottom: 0;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.Colon:before,
+.Colon:after {
+  content: "";
+  display: block;
+  border-radius: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 5px;
+  width: 5px;
+  background-color: #ff8800;
+  position: absolute;
+}
+
+.Colon--blink:before,
+.Colon--blink:after {
+  animation: fadeIn 1s ease-in-out infinite;
+}
+
+.Colon:before {
+  top: 20px;
+}
+
+.Colon:after {
+  bottom: 20px;
+}
+
+.Display {
+  position: relative;
+  display: inline-block;
+  margin-right: 0;
+  width: 40px;
+  height: 80px;
+}
+
+.Segment {
+  position: absolute;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.Segment--on {
+  animation: fadeIn 0.4s ease-in;
+  background-color: #ff8800;
+}
+
+.Segment-A,
+.Segment-D,
+.Segment-G {
+  width: 30px;
+  height: 5px;
+  left: 5px;
+}
+
+.Segment-B,
+.Segment-C,
+.Segment-E,
+.Segment-F {
+  width: 5px;
+  height: 32px;
+}
+
+.Segment-B,
+.Segment-F {
+  top: 5px;
+}
+
+.Segment-C,
+.Segment-E {
+  top: 43px;
+}
+
+.Segment-B,
+.Segment-C {
+  left: 35px;
+}
+
+.Segment-A {
+  top: 0px;
+}
+
+.Segment-D {
+  top: 75px;
+}
+
+.Segment-G {
+  top: 38px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .countdown-label {
+    font-size: 1.25rem;
+  }
+
+  .Display {
+    width: 40px;
+    height: 80px;
+    margin-right: 6px;
+  }
+
+  .Segment-A,
+  .Segment-D,
+  .Segment-G {
+    width: 30px;
+    height: 5px;
+    left: 5px;
+  }
+
+  .Segment-B,
+  .Segment-C,
+  .Segment-E,
+  .Segment-F {
+    width: 5px;
+    height: 32px;
+  }
+
+  .Segment-B,
+  .Segment-F {
+    top: 5px;
+  }
+
+  .Segment-C,
+  .Segment-E {
+    top: 43px;
+  }
+
+  .Segment-B,
+  .Segment-C {
+    left: 35px;
+  }
+
+  .Segment-D {
+    top: 75px;
+  }
+
+  .Segment-G {
+    top: 38px;
+  }
+
+  .Colon {
+    width: 10px;
+    height: 80px;
+  }
+
+  .Colon:before,
+  .Colon:after {
+    height: 5px;
+    width: 5px;
+  }
+
+  .Colon:before {
+    top: 20px;
+  }
+
+  .Colon:after {
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .countdown-label {
+    font-size: 1rem;
+  }
+
+  .countdown-group {
+    gap: 4px;
+  }
+
+  .Display {
+    width: 28px;
+    height: 56px;
+    margin-right: 4px;
+  }
+
+  .Segment-A,
+  .Segment-D,
+  .Segment-G {
+    width: 21px;
+    height: 4px;
+    left: 3.5px;
+  }
+
+  .Segment-B,
+  .Segment-C,
+  .Segment-E,
+  .Segment-F {
+    width: 4px;
+    height: 22px;
+  }
+
+  .Segment-B,
+  .Segment-F {
+    top: 3.5px;
+  }
+
+  .Segment-C,
+  .Segment-E {
+    top: 30px;
+  }
+
+  .Segment-B,
+  .Segment-C {
+    left: 24.5px;
+  }
+
+  .Segment-D {
+    top: 52px;
+  }
+
+  .Segment-G {
+    top: 26px;
+  }
+
+  .Colon {
+    width: 8px;
+    height: 56px;
+  }
+
+  .Colon:before,
+  .Colon:after {
+    height: 4px;
+    width: 4px;
+    border-radius: 4px;
+  }
+
+  .Colon:before {
+    top: 14px;
+  }
+
+  .Colon:after {
+    bottom: 14px;
+  }
+}

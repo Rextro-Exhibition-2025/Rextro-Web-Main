@@ -1,120 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
+import Countdown from "@/components/common/Countdown";
 
 const About = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    // Set target date: December 5, 2025
-    const targetDate = new Date("2025-12-05T00:00:00").getTime();
-
-    const calculateTimeLeft = () => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor(
-            (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          ),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000),
-        });
-      }
-    };
-
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatNumber = (num: number) => String(num).padStart(2, "0");
-
-  const DigitalDisplay = ({
-    label,
-    value,
-  }: {
-    label: string;
-    value: number;
-  }) => {
-    const displayValue = formatNumber(value);
-    const digit1 = displayValue[0];
-    const digit2 = displayValue[1];
-
-    const digitStyle = {
-      fontFamily: 'var(--font-orbitron), Orbitron, monospace',
-      fontFeatureSettings: '"tnum"',
-      width: '1ch',
-      display: 'inline-block',
-      textAlign: 'center' as const,
-    };
-
-    return (
-      <div className="flex flex-col justify-start items-center gap-2">
-        <div className="text-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[var(--font-instrument)]">
-          {label}
-        </div>
-        <div className="relative flex items-center justify-center gap-0">
-          {/* First Digit */}
-          <div className="relative inline-block">
-            <span
-              className="text-neutral-700/50 text-5xl sm:text-6xl lg:text-7xl font-black leading-none"
-              style={digitStyle}
-            >
-              8
-            </span>
-            <span
-              className="text-orange-500 text-5xl sm:text-6xl lg:text-7xl font-black leading-none absolute inset-0"
-              style={digitStyle}
-            >
-              {digit1}
-            </span>
-          </div>
-          {/* Second Digit */}
-          <div className="relative inline-block">
-            <span
-              className="text-neutral-700/50 text-5xl sm:text-6xl lg:text-7xl font-black leading-none"
-              style={digitStyle}
-            >
-              8
-            </span>
-            <span
-              className="text-orange-500 text-5xl sm:text-6xl lg:text-7xl font-black leading-none absolute inset-0"
-              style={digitStyle}
-            >
-              {digit2}
-            </span>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const Separator = () => (
-    <div className="w-2 h-20 sm:h-28 py-3 flex flex-col justify-end items-center gap-3 sm:gap-4">
-      <div className="w-2 h-2 opacity-50 bg-white rounded-full" />
-      <div className="w-2 h-2 opacity-50 bg-white rounded-full" />
-    </div>
-  );
 
   return (
     <section className="w-full flex flex-col">
-      <div className="relative w-full py-8 sm:py-10 lg:py-12 bg-neutral-900 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden">
-        {/* Background Grid Pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full flex justify-center items-center">
-            <div className="w-full max-w-[1208px] h-full border border-neutral-400/30" />
-          </div>
-        </div>
+      <div
+        className="relative w-full py-8 sm:py-10 lg:py-12 bg-neutral-900 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(80, 80, 80, 0.15) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(80, 80, 80, 0.15) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px'
+        }}
+      >
+        {/* Grid fade overlay */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(circle at center, transparent 40%, rgba(23, 23, 23, 0.8) 70%, rgba(23, 23, 23, 1) 100%)
+            `
+          }}
+        />
 
         {/* Content Section */}
         <div className="relative w-full px-4 sm:px-8 lg:px-16 flex flex-col lg:flex-row justify-start items-start lg:items-center gap-8 lg:gap-16">
@@ -139,15 +49,7 @@ const About = () => {
 
           {/* Countdown Timer */}
           <div className="flex-1 w-full lg:w-auto px-4 sm:px-6 pb-6 flex justify-center lg:justify-end items-center">
-            <div className="flex justify-center items-center gap-2 sm:gap-4 lg:gap-6">
-              <DigitalDisplay label="DD" value={timeLeft.days} />
-              <Separator />
-              <DigitalDisplay label="HH" value={timeLeft.hours} />
-              <Separator />
-              <DigitalDisplay label="MM" value={timeLeft.minutes} />
-              <Separator />
-              <DigitalDisplay label="SS" value={timeLeft.seconds} />
-            </div>
+            <Countdown targetDate="2025-12-05T00:00:00" />
           </div>
         </div>
 
