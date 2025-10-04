@@ -132,7 +132,7 @@ const Hero = () => {
             src="/Hero/Union.svg"
             alt=""
             fill
-            className="object-contain object-left-bottom brightness-0"
+            className="object-contain object-left-bottom "
           />
         </div>
         <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1]">
@@ -140,7 +140,7 @@ const Hero = () => {
             src="/Hero/Union.svg"
             alt=""
             fill
-            className="object-contain object-right-bottom brightness-0"
+            className="object-contain object-right-bottom "
           />
         </div>
       </div>
