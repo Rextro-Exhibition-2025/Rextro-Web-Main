@@ -1,12 +1,47 @@
 "use client";
 
 import Image from "next/image";
-import Countdown from "@/components/common/Countdown";
+import Timer from "@/components/Homepage/Timer";
+import { useEffect, useRef, useState } from "react";
 
 const About = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [lineProgress, setLineProgress] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+          // Animate line progress
+          let progress = 0;
+          const interval = setInterval(() => {
+            progress += 2;
+            setLineProgress(progress);
+            if (progress >= 100) {
+              clearInterval(interval);
+            }
+          }, 20);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [isVisible]);
+
   return (
     <section className="w-full flex flex-col">
-      <div className="relative w-full py-8 sm:py-10 lg:py-12 bg-neutral-900 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden">
+      <div className="relative w-full py-8 sm:py-10 lg:py-12 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden" style={{ backgroundColor: '#131316' }}>
         {/* Fixed Grid Background */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -15,7 +50,7 @@ const About = () => {
               linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
               linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
             `,
-            backgroundSize: "40px 40px",
+            backgroundSize: "64px 64px",
           }}
         />
 
@@ -52,27 +87,48 @@ const About = () => {
           </div>
 
           {/* Countdown Timer */}
-          <div className="flex-1 w-full lg:w-auto px-4 sm:px-6 pb-6 flex justify-center lg:justify-end items-center">
-            <Countdown targetDate="2025-12-05T00:00:00" />
+          <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end items-center">
+            <Timer />
           </div>
         </div>
 
         {/* Event Details Section */}
-        <div className="relative w-full px-4 sm:px-8 lg:px-20 py-6 sm:py-8 lg:py-10 flex flex-col lg:flex-row justify-start items-start gap-8 lg:gap-20">
+        <div ref={sectionRef} className="relative w-full px-4 sm:px-8 lg:px-20 py-6 sm:py-8 lg:py-10 flex flex-col lg:flex-row justify-start items-start gap-8 lg:gap-20">
           {/* Event Date Card */}
           <div className="flex-1 min-w-0 lg:min-w-[460px] p-4 sm:p-6 bg-neutral-800 rounded-2xl border border-white/5 flex flex-col gap-4 overflow-hidden">
             <div className="w-full flex flex-col sm:flex-row justify-start items-start sm:items-center gap-4 sm:gap-6">
               <h3 className="text-white text-xl sm:text-2xl font-bold font-[var(--font-instrument)] uppercase tracking-tight">
                 December
               </h3>
-              <div className="flex-1 h-px border-t border-white/20" />
+              <div className="flex-1 h-px border-t border-white/20 relative overflow-hidden">
+                <div 
+                  className="absolute left-0 top-0 h-full bg-gradient-to-r from-transparent via-white to-transparent transition-all duration-1000"
+                  style={{ width: `${lineProgress}%` }}
+                />
+              </div>
               <div className="flex justify-start items-center gap-3 sm:gap-6">
-                {["05", "06", "07"].map((day) => (
+                {["05", "06", "07"].map((day, index) => (
                   <div
                     key={day}
-                    className="p-2 bg-neutral-900 rounded-md shadow-lg border border-white/5 flex items-center justify-center"
+                    className={`p-2 bg-neutral-900 rounded-md shadow-lg border border-white/5 flex items-center justify-center relative overflow-hidden transition-all duration-700 ${
+                      isVisible ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
+                    }`}
+                    style={{ 
+                      transitionDelay: `${800 + index * 200}ms`,
+                    }}
                   >
-                    <span className="text-white text-2xl sm:text-3xl font-bold font-[var(--font-instrument)] uppercase tracking-tight">
+                    {/* Border shine effect */}
+                    <div 
+                      className={`absolute inset-0 rounded-md border-2 border-transparent ${
+                        isVisible ? 'animate-border-shine' : ''
+                      }`}
+                      style={{ 
+                        animationDelay: `${1500 + index * 200}ms`,
+                        animationDuration: '1.5s',
+                        animationIterationCount: '1',
+                      }}
+                    />
+                    <span className="text-white text-2xl sm:text-3xl font-bold font-[var(--font-instrument)] uppercase tracking-tight relative z-10">
                       {day}
                     </span>
                   </div>

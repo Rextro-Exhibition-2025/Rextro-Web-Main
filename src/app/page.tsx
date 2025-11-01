@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
+    <div className="font-[family-name:var(--font-instrument-sans)]">
       <Hero />
       <About />
       <WhatToExpect />
