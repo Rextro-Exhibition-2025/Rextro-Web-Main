@@ -72,7 +72,7 @@ const Hero = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="w-full sm:w-auto p-3 sm:p-4 bg-white/0 rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.10)] border border-neutral-400 backdrop-blur-sm flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+          <div className="w-full sm:w-auto p-3 sm:p-4  rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.10)] border border-black/5 backdrop-blur-sm flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
             {/* Explore Button */}
             <Link
               href="/explore"

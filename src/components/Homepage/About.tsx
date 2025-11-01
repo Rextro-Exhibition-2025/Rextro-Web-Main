@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Countdown from "@/components/common/Countdown";
+import Timer from "@/components/Homepage/Timer";
 
 const About = () => {
   return (
@@ -52,8 +52,8 @@ const About = () => {
           </div>
 
           {/* Countdown Timer */}
-          <div className="flex-1 w-full lg:w-auto px-4 sm:px-6 pb-6 flex justify-center lg:justify-end items-center">
-            <Countdown targetDate="2025-12-05T00:00:00" />
+          <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end items-center">
+            <Timer />
           </div>
         </div>
 
