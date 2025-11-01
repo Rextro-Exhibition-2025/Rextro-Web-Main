@@ -4,7 +4,6 @@ import Hero from "@/components/Homepage/Hero";
 import Sponsors from "@/components/Homepage/Sponsors";
 import WhatToExpect from "@/components/Homepage/WhatToExpect";
 import Footer from "@/components/Homepage/Footer";
-import Timer from "@/components/Homepage/Timer";
 import Image from "next/image";
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
     <div className="font-[family-name:var(--font-instrument-sans)]">
       <Hero />
       <About />
-      <Timer />
       <WhatToExpect />
       <ExploreZones />
       <Sponsors />
