@@ -2,8 +2,41 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 
 const WhatToExpect = () => {
+  const [highlightProgress, setHighlightProgress] = useState(0);
+  const quoteRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && highlightProgress === 0) {
+          // Animate highlight progress
+          let progress = 0;
+          const highlightInterval = setInterval(() => {
+            progress += 1;
+            setHighlightProgress(progress);
+            if (progress >= 100) {
+              clearInterval(highlightInterval);
+            }
+          }, 15);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (quoteRef.current) {
+      observer.observe(quoteRef.current);
+    }
+
+    return () => {
+      if (quoteRef.current) {
+        observer.unobserve(quoteRef.current);
+      }
+    };
+  }, [highlightProgress]);
+
   return (
     <section className="w-full p-6 sm:p-8 lg:p-12 bg-neutral-100">
       <div className="w-full p-4 sm:p-6 lg:p-8 rounded-xl border border-black/10 flex flex-col gap-10 lg:gap-16">
@@ -29,13 +62,21 @@ const WhatToExpect = () => {
             </div>
 
             {/* Right Quote */}
-            <div className="flex-1 max-w-full lg:max-w-[624px] lg:pl-8 relative lg:border-l border-black/20">
+            <div ref={quoteRef} className="flex-1 max-w-full lg:max-w-[624px] lg:pl-8 relative lg:border-l border-black/20">
               <div className="relative">
-                {/* Yellow highlight */}
-                <div className="absolute left-0 sm:left-8 lg:left-24 top-6 sm:top-8 w-48 sm:w-64 lg:w-96 h-6 sm:h-7 bg-yellow-400 -z-10" />
                 <p className="text-gray-600 text-lg sm:text-xl lg:text-2xl font-normal font-[var(--font-instrument)] leading-relaxed relative z-10">
                   "Whether you are a student, an industry professional, or simply{' '}
-                  <span className="text-black">curious about the future of technology,</span>{' '}
+                  <span className="text-black relative inline-block">
+                    <span className="relative z-10">curious about the future of technology,</span>
+                    <span
+                      className="absolute left-0 bottom-1 h-[28px] transition-all duration-1500 ease-out"
+                      style={{
+                        width: `${highlightProgress}%`,
+                        backgroundColor: '#FFF700',
+                        zIndex: -1
+                      }}
+                    />
+                  </span>{' '}
                   ReXtro offers a unique opportunity for learning, networking, and inspiration."
                 </p>
               </div>

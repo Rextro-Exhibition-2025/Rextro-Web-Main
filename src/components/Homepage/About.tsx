@@ -7,7 +7,9 @@ import { useEffect, useRef, useState } from "react";
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [lineProgress, setLineProgress] = useState(0);
+  const [highlightProgress, setHighlightProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -39,6 +41,35 @@ const About = () => {
     };
   }, [isVisible]);
 
+  useEffect(() => {
+    const contentObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && highlightProgress === 0) {
+          // Animate highlight progress
+          let progress = 0;
+          const highlightInterval = setInterval(() => {
+            progress += 1;
+            setHighlightProgress(progress);
+            if (progress >= 100) {
+              clearInterval(highlightInterval);
+            }
+          }, 15);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (contentRef.current) {
+      contentObserver.observe(contentRef.current);
+    }
+
+    return () => {
+      if (contentRef.current) {
+        contentObserver.unobserve(contentRef.current);
+      }
+    };
+  }, [highlightProgress]);
+
   return (
     <section className="w-full flex flex-col">
       <div className="relative w-full py-8 sm:py-10 lg:py-12 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden" style={{ backgroundColor: '#131316' }}>
@@ -66,13 +97,17 @@ const About = () => {
         />
 
         {/* Content Section */}
-        <div className="relative w-full px-4 sm:px-8 lg:px-16 flex flex-col lg:flex-row justify-start items-start lg:items-center gap-8 lg:gap-16">
+        <div ref={contentRef} className="relative w-full px-4 sm:px-8 lg:px-16 flex flex-col lg:flex-row justify-start items-start lg:items-center gap-8 lg:gap-16">
           {/* About Text */}
           <div className="flex-1 min-w-0 px-4 sm:px-6 py-6 sm:py-8 flex flex-col justify-center items-start gap-6 sm:gap-8">
-            <h2 className="text-white text-2xl sm:text-3xl font-semibold font-[var(--font-instrument)] leading-tight">
+            <h2 className={`text-white text-2xl sm:text-3xl font-semibold font-[var(--font-instrument)] leading-tight transition-all duration-700 ${
+              highlightProgress > 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
               About ReXtro: The Silver Jubilee Celebration
             </h2>
-            <div className="w-full max-w-[570px] text-white text-sm sm:text-base font-normal font-[var(--font-instrument)] leading-relaxed">
+            <div className={`w-full max-w-[570px] text-white text-sm sm:text-base font-normal font-[var(--font-instrument)] leading-relaxed transition-all duration-700 delay-200 ${
+              highlightProgress > 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
               The{" "}
               <span className="font-bold">
                 Faculty of Engineering, University of Ruhuna
@@ -81,8 +116,7 @@ const About = () => {
               <span className="font-bold">Silver Jubilee Exhibition</span>. Step
               into the Engineering Village, a three-day showcase featuring over
               a hundred pioneering student projects, interactive zones, and
-              industry collaborations. This is where innovation, inspiration,
-              and impact converge.
+              industry collaborations. This is where innovation, inspiration, and impact converge.
             </div>
           </div>
 
@@ -137,26 +171,10 @@ const About = () => {
             </div>
 
             <div className="flex justify-start items-center gap-2">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                className="flex-shrink-0"
-              >
-                <path
-                  d="M10 10C11.3807 10 12.5 8.88071 12.5 7.5C12.5 6.11929 11.3807 5 10 5C8.61929 5 7.5 6.11929 7.5 7.5C7.5 8.88071 8.61929 10 10 10Z"
-                  stroke="white"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="M10 17.5C10 17.5 15 13 15 8.75C15 6.125 12.7614 4 10 4C7.23858 4 5 6.125 5 8.75C5 13 10 17.5 10 17.5Z"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 1.25049C8.17727 1.25256 6.42979 1.97755 5.14092 3.26641C3.85206 4.55528 3.12707 6.30276 3.125 8.12549C3.125 14.0083 9.375 18.4513 9.64141 18.6372C9.74649 18.7108 9.87169 18.7503 10 18.7503C10.1283 18.7503 10.2535 18.7108 10.3586 18.6372C10.625 18.4513 16.875 14.0083 16.875 8.12549C16.8729 6.30276 16.1479 4.55528 14.8591 3.26641C13.5702 1.97755 11.8227 1.25256 10 1.25049ZM10 5.62549C10.4945 5.62549 10.9778 5.77211 11.3889 6.04681C11.8 6.32152 12.1205 6.71196 12.3097 7.16878C12.4989 7.6256 12.5484 8.12826 12.452 8.61321C12.3555 9.09817 12.1174 9.54362 11.7678 9.89326C11.4181 10.2429 10.9727 10.481 10.4877 10.5775C10.0028 10.6739 9.50011 10.6244 9.04329 10.4352C8.58648 10.246 8.19603 9.92554 7.92133 9.51441C7.64662 9.10329 7.5 8.61994 7.5 8.12549C7.5 7.46245 7.76339 6.82656 8.23223 6.35772C8.70107 5.88888 9.33696 5.62549 10 5.62549Z" fill="white"/>
+</svg>
+
               <p className="text-neutral-400 text-sm sm:text-base font-semibold font-[var(--font-instrument)]">
                 at Faculty of Engineering, University of Ruhuna
               </p>
@@ -168,8 +186,10 @@ const About = () => {
           </div>
 
           {/* Right Text */}
-          <div className="flex-1 lg:pl-12 xl:pl-24 py-4 flex flex-col justify-start items-start lg:items-end">
-            <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-left lg:text-right">
+          <div className="flex-1 lg:pl-12 xl:pl-24 py-12 flex flex-col justify-start items-start lg:items-end">
+            <h3 className={`max-w-[490px] text-white text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-left lg:text-left transition-all duration-700 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
               Mark Your Calendar for the Silver Jubilee Exhibition.
             </h3>
           </div>
