@@ -7,6 +7,24 @@ import { useEffect, useRef, useState } from 'react';
 const WhatToExpect = () => {
   const [highlightProgress, setHighlightProgress] = useState(0);
   const quoteRef = useRef<HTMLDivElement>(null);
+  
+  // Interactive zones state
+  const [activeZone, setActiveZone] = useState(0);
+  const zones = [
+    { name: 'Robotics', image: '/Robotics.png' },
+    { name: 'AI and Computer Vision', image: '/AI and Computer Vision.png' },
+    { name: 'AR and VR', image: '/AR and VR.png' },
+    { name: 'Renewable Energy', image: '/Renewable Energy.png' }
+  ];
+  
+  // Auto-cycle through zones
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveZone((prev) => (prev + 1) % zones.length);
+    }, 3000); // Change every 3 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,7 +82,7 @@ const WhatToExpect = () => {
             {/* Right Quote */}
             <div ref={quoteRef} className="flex-1 max-w-full lg:max-w-[624px] lg:pl-8 relative lg:border-l border-black/20">
               <div className="relative">
-                <p className="text-gray-600 text-lg sm:text-xl lg:text-2xl font-normal font-[var(--font-instrument)] leading-relaxed relative z-10">
+                <p className="text-gray-600 text-lg sm:text-xl lg:text-2xl font-normal font-[var(--font-instrument)] leading-normal relative z-10">
                   "Whether you are a student, an industry professional, or simply{' '}
                   <span className="text-black relative inline-block">
                     <span className="relative z-10">curious about the future of technology,</span>
@@ -93,12 +111,12 @@ const WhatToExpect = () => {
           {/* Cards Grid */}
           <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-2">
             {/* Card 1: 25+ Interactive Zones */}
-            <div className="p-6 bg-white rounded-2xl shadow-lg flex flex-col gap-6 lg:gap-10">
+            <div className="p-6 bg-white rounded-2xl shadow-lg flex flex-col justify-between gap-6">
               <div className="flex flex-col gap-3">
                 <h4 className="text-neutral-900 text-base font-semibold font-[var(--font-instrument)] leading-normal">
                   25+ Interactive Zones
                 </h4>
-                <p className="text-gray-600 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                <p className="text-gray-600 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                   Explore more than 25 distinct zones, each showcasing a unique facet of engineering and technology. Immerse yourself in the world of{' '}
                   <span className="font-bold">AR/VR</span>, see the latest in{' '}
                   <span className="font-bold">drone technology</span>, or explore advancements in{' '}
@@ -106,23 +124,113 @@ const WhatToExpect = () => {
                 </p>
               </div>
 
-              {/* Image Grid Placeholder */}
-              <div className="w-full aspect-[4/3] bg-neutral-100 rounded-lg border border-neutral-200" />
+              {/* Interactive Image Grid - 3x3 Layout with 4:5 ratio cells */}
+              <div className="w-full grid grid-cols-3 gap-2">
+                {/* Row 1 */}
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-100 border border-neutral-200" />
+                
+                {/* Row 1, Col 2 - AI and Computer Vision */}
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-neutral-100 border border-neutral-200 transition-all duration-700 ease-in-out">
+                  <Image
+                    src="/AI and Computer Vision.png"
+                    alt="AI and Computer Vision"
+                    fill
+                    className={`object-cover transition-all duration-700 ${
+                      activeZone === 1 ? 'mix-blend-normal' : 'mix-blend-luminosity'
+                    }`}
+                    sizes="(max-width: 768px) 33vw, 11vw"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br from-purple-500/20 via-yellow-200/15 to-cyan-400/10 transition-opacity duration-700 ${
+                      activeZone === 1 ? 'opacity-0' : 'opacity-70'
+                    }`}
+                  />
+                  <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/5" />
+                </div>
+                
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-100 border border-neutral-200" />
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-2 rounded-full border border-neutral-300 text-gray-400 text-xs font-medium font-[var(--font-instrument)]">
-                  Robotics
-                </span>
-                <span className="px-3 py-2 bg-gray-200 rounded-full border border-neutral-300 text-black text-xs font-medium font-[var(--font-instrument)]">
-                  AI and Computer Vision
-                </span>
-                <span className="px-3 py-2 rounded-full border border-neutral-300 text-gray-400 text-xs font-medium font-[var(--font-instrument)]">
-                  AR and VR
-                </span>
-                <span className="px-3 py-2 rounded-full border border-neutral-300 text-gray-400 text-xs font-medium font-[var(--font-instrument)]">
-                  Renewable Energy
-                </span>
+                {/* Row 2, Col 1 - Robotics */}
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-neutral-100 border border-neutral-200 transition-all duration-700 ease-in-out">
+                  <Image
+                    src="/Robotics.png"
+                    alt="Robotics"
+                    fill
+                    className={`object-cover transition-all duration-700 ${
+                      activeZone === 0 ? 'mix-blend-normal' : 'mix-blend-luminosity'
+                    }`}
+                    sizes="(max-width: 768px) 33vw, 11vw"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br from-purple-500/20 via-yellow-200/15 to-cyan-400/10 transition-opacity duration-700 ${
+                      activeZone === 0 ? 'opacity-0' : 'opacity-70'
+                    }`}
+                  />
+                  <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/5" />
+                </div>
+                
+                {/* Row 2 */}
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-100 border border-neutral-200" />
+                
+                {/* Row 2, Col 3 - AR and VR */}
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-neutral-100 border border-neutral-200 transition-all duration-700 ease-in-out">
+                  <Image
+                    src="/AR and VR.png"
+                    alt="AR and VR"
+                    fill
+                    className={`object-cover transition-all duration-700 ${
+                      activeZone === 2 ? 'mix-blend-normal' : 'mix-blend-luminosity'
+                    }`}
+                    sizes="(max-width: 768px) 33vw, 11vw"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br from-purple-500/20 via-yellow-200/15 to-cyan-400/10 transition-opacity duration-700 ${
+                      activeZone === 2 ? 'opacity-0' : 'opacity-70'
+                    }`}
+                  />
+                  <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/5" />
+                </div>
+
+                {/* Row 3 */}
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-100 border border-neutral-200" />
+                
+                {/* Row 3, Col 2 - Renewable Energy */}
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-neutral-100 border border-neutral-200 transition-all duration-700 ease-in-out">
+                  <Image
+                    src="/Renewable Energy.png"
+                    alt="Renewable Energy"
+                    fill
+                    className={`object-cover transition-all duration-700 ${
+                      activeZone === 3 ? 'mix-blend-normal' : 'mix-blend-luminosity'
+                    }`}
+                    sizes="(max-width: 768px) 33vw, 11vw"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br from-purple-500/20 via-yellow-200/15 to-cyan-400/10 transition-opacity duration-700 ${
+                      activeZone === 3 ? 'opacity-0' : 'opacity-70'
+                    }`}
+                  />
+                  <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/5" />
+                </div>
+                
+                <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-100 border border-neutral-200" />
+              </div>
+
+              {/* Interactive Tags - Single Line */}
+              <div className="flex justify-start items-center gap-2 overflow-x-auto">
+                {zones.map((zone, index) => (
+                  <button
+                    key={zone.name}
+                    onClick={() => setActiveZone(index)}
+                    className={`px-3 py-2 rounded-full border border-neutral-300 text-xs sm:text-sm font-medium font-[var(--font-instrument)] whitespace-nowrap transition-all duration-300 ${
+                      index === activeZone
+                        ? 'bg-gray-200 text-black'
+                        : 'text-gray-400 hover:text-gray-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {zone.name}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -140,7 +248,7 @@ const WhatToExpect = () => {
                   <h4 className="text-neutral-900 text-base font-semibold font-[var(--font-instrument)] leading-normal">
                     Engaging Competitions & Workshops
                   </h4>
-                  <p className="text-gray-600 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-gray-600 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     Feel the thrill of our island-wide robotics challenge,{' '}
                     <span className="font-bold">Xbotix</span>, test your skills in the{' '}
                     <span className="font-bold">MathQuest</span> mathematical challenge, or watch innovators pitch their startups at the{' '}
@@ -172,7 +280,7 @@ const WhatToExpect = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <span className="text-white text-xs font-medium font-[var(--font-instrument)]">
+                    <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
                       Register here
                     </span>
                   </Link>
@@ -181,7 +289,7 @@ const WhatToExpect = () => {
                   <h4 className="text-neutral-900 text-base font-semibold font-[var(--font-instrument)] leading-normal">
                     Inspiring Talks & Lectures
                   </h4>
-                  <p className="text-gray-600 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-gray-600 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     Engage with industry leaders, pioneering engineers, and successful alumni through our Guest Lecture and Webinar Series. Hear insights on cutting-edge topics from global experts shaping the future of technology.
                   </p>
                 </div>
@@ -194,7 +302,7 @@ const WhatToExpect = () => {
                 <h4 className="text-neutral-900 text-base font-semibold font-[var(--font-instrument)] leading-normal">
                   Groundbreaking Projects
                 </h4>
-                <p className="text-gray-600 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                <p className="text-gray-600 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                   Discover over <span className="font-bold">100 innovative projects</span> from our final year students, undergraduates, and university clubs. From{' '}
                   <span className="font-bold">AI</span> and{' '}
                   <span className="font-bold">robotics</span> to{' '}

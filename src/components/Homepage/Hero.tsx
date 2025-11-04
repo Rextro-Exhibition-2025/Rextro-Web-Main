@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -72,20 +71,37 @@ const Hero = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="w-full sm:w-auto p-3 sm:p-4  rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.10)] border border-black/5 backdrop-blur-sm flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
-            {/* Explore Button */}
-            <Link
-              href="/explore"
+          <div className="w-full sm:w-auto p-3 sm:p-4  rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.10)] border border-black/5 backdrop-blur-[1.5px] flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+            {/* Explore Button - scroll to About section */}
+            <button
+              type="button"
+              onClick={() => {
+                  const target = document.getElementById('about');
+                  if (target) {
+                    // Try to detect a nav/header height so we stop a bit before the section
+                    const nav = document.querySelector('nav') || document.querySelector('header');
+                    const navHeight = nav ? (nav as HTMLElement).getBoundingClientRect().height : 0;
+                    const extraOffset = 24; // extra breathing room so content isn't hidden
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - extraOffset;
+                    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+                  } else {
+                    // fallback: navigate to /#about if not present
+                    window.location.href = '/#about';
+                  }
+                }}
+              aria-label="Explore more (scroll to About)"
               className="w-full sm:w-auto h-10 sm:h-8 px-6 sm:px-4 pt-2 sm:pt-1.5 pb-2.5 sm:pb-2 bg-gradient-to-b from-blue-900 to-sky-950 rounded-md shadow-[0px_1px_3px_0px_rgba(33,33,38,0.20),0px_0px_0px_1px_rgba(73,120,190,1.00),0px_4px_12px_0px_rgba(0,0,0,0.35)] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.07)] hover:from-blue-800 hover:to-sky-900 transition-all flex justify-center items-center"
             >
               <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
                 Explore more
               </span>
-            </Link>
+            </button>
 
-            {/* Watch Video Button */}
-            <Link
-              href="/video"
+            {/* Watch Video Button - opens YouTube in new tab */}
+            <a
+              href="https://youtu.be/pMPGkfB3cXc?si=kPPvAQot0qEsqMrN"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto p-1 sm:p-0.5 rounded-3xl flex justify-center sm:justify-start items-center gap-3 hover:bg-black/5 transition-colors"
             >
               <div className="relative w-6 h-6 flex-shrink-0">
@@ -120,7 +136,7 @@ const Hero = () => {
                   3 min
                 </span>
               </div>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

@@ -71,7 +71,7 @@ const About = () => {
   }, [highlightProgress]);
 
   return (
-    <section className="w-full flex flex-col">
+    <section id="about" className="w-full flex flex-col">
       <div className="relative w-full py-8 sm:py-10 lg:py-12 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden" style={{ backgroundColor: '#131316' }}>
         {/* Fixed Grid Background */}
         <div
@@ -81,7 +81,7 @@ const About = () => {
               linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
               linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
             `,
-            backgroundSize: "64px 64px",
+            backgroundSize: "80px 80px",
           }}
         />
 
