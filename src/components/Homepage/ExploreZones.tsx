@@ -123,16 +123,16 @@ const ExploreZones = () => {
             <div className="flex flex-col gap-2">
               {/* AI and Computer Vision */}
               <div
-                className={`${zones[0].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
+                className={`${zones[0].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
                 <div className="flex-1 flex items-center justify-center">
                   <div className="w-20 h-24 bg-gradient-to-br from-white/10 to-white/0 rounded-lg border border-white/10" />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[0].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[0].description}
                   </p>
                 </div>
@@ -140,13 +140,13 @@ const ExploreZones = () => {
 
               {/* Robotics */}
               <div
-                className={`${zones[1].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
+                className={`${zones[1].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
               >
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[1].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[1].description}
                   </p>
                 </div>
@@ -155,7 +155,7 @@ const ExploreZones = () => {
 
               {/* Space Exploration */}
               <div
-                className={`${zones[2].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
+                className={`${zones[2].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
                 <div className="flex-1 relative rounded-lg overflow-hidden">
                   {/* Space radar visual */}
@@ -167,10 +167,10 @@ const ExploreZones = () => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[2].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[2].description}
                   </p>
                 </div>
@@ -181,13 +181,13 @@ const ExploreZones = () => {
             <div className="flex flex-col gap-2">
               {/* Sustainable Energy */}
               <div
-                className={`${zones[3].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
+                className={`${zones[3].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
               >
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[3].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[3].description}
                   </p>
                 </div>
@@ -196,7 +196,7 @@ const ExploreZones = () => {
 
               {/* AR and VR */}
               <div
-                className={`${zones[4].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
+                className={`${zones[4].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
                 <div className="flex-1 flex items-center justify-center gap-3">
                   {[...Array(6)].map((_, i) => (
@@ -207,10 +207,10 @@ const ExploreZones = () => {
                   ))}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[4].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[4].description}
                   </p>
                 </div>
@@ -218,7 +218,7 @@ const ExploreZones = () => {
 
               {/* Game Zone */}
               <div
-                className={`${zones[5].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
+                className={`${zones[5].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
                 <div className="flex-1 relative rounded-lg overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -229,10 +229,10 @@ const ExploreZones = () => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[5].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[5].description}
                   </p>
                 </div>
@@ -243,7 +243,7 @@ const ExploreZones = () => {
             <div className="flex flex-col gap-2">
               {/* Automotive */}
               <div
-                className={`${zones[6].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
+                className={`${zones[6].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
                 <div className="flex-1 flex items-center justify-center gap-3">
                   {[...Array(6)].map((_, i) => (
@@ -254,10 +254,10 @@ const ExploreZones = () => {
                   ))}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[6].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[6].description}
                   </p>
                 </div>
@@ -265,13 +265,13 @@ const ExploreZones = () => {
 
               {/* Marine Engineering */}
               <div
-                className={`${zones[7].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
+                className={`${zones[7].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
               >
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[7].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[7].description}
                   </p>
                 </div>
@@ -280,7 +280,7 @@ const ExploreZones = () => {
 
               {/* Drone */}
               <div
-                className={`${zones[8].height} p-6 bg-neutral-800/80 backdrop-blur-sm rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
+                className={`${zones[8].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
                 <div className="flex-1 flex items-center justify-center gap-3">
                   {[...Array(6)].map((_, i) => (
@@ -291,10 +291,10 @@ const ExploreZones = () => {
                   ))}
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight">
+                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[8].title}
                   </h3>
-                  <p className="text-zinc-400 text-xs font-normal font-[var(--font-instrument)] leading-relaxed">
+                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[8].description}
                   </p>
                 </div>
