@@ -9,7 +9,7 @@ const MobileApp = () => {
       <div className="w-full max-w-screen-2xl p-8 sm:p-10 lg:p-14 relative bg-[radial-gradient(ellipse_88.00%_100.00%_at_50.00%_0.00%,_white_0%,_rgba(255,_255,_255,_0)_100%)] rounded-2xl shadow-[0px_24px_108px_0px_rgba(47,48,55,0.10)] shadow-[0px_4px_6px_0px_rgba(34,42,53,0.08)] shadow-[0px_0px_0px_1px_rgba(34,42,53,0.05)] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.05)] shadow-[0px_10px_32px_0px_rgba(34,42,53,0.12)] flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-12 overflow-hidden">
         
         {/* Circuit Background Images */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 opacity-50 pointer-events-none">
           {/* Circuit Lines */}
           <Image
             src="/circuit-lines@2xl.ee1ad3dd.webp"
@@ -27,12 +27,12 @@ const MobileApp = () => {
         </div>
 
         {/* Mobile Phone Mockup - Left Side */}
-        <div className="relative w-full max-w-[300px] lg:max-w-[380px] h-[600px] lg:h-[740px] shrink-0 z-10">
+        <div className="relative w-full max-w-[300px] lg:max-w-[380px] h-[600px] lg:h-[300px] self-stretch relative shrink-0 shadow-[0px_4px_40px_0px_rgba(0,0,0,0.5) z-10">
           <Image
             src="/mobile app.png"
             alt="ReXtro 2025 Mobile App"
             fill
-            className="object-contain"
+            className="shadow-lg object-contain"
             priority
           />
         </div>

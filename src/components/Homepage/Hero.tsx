@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section className="relative w-full bg-neutral-100 flex flex-col items-center justify-center overflow-hidden">
       {/* Background Circuit Pattern */}
-      <div className="absolute inset-0 flex justify-center items-center overflow-hidden opacity-50">
+      <div className="absolute inset-0 flex justify-center items-center overflow-hidden">
         <div className="relative w-full h-full max-w-[1800px]">
           {/* Left circuit pattern */}
           <div className="absolute left-0 top-0 w-1/2 h-full">
