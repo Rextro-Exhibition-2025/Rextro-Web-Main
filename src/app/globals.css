@@ -56,3 +56,68 @@ body {
 .animate-border-shine {
   animation: border-shine 1.5s ease-in-out;
 }
+
+
+/* Light beam pulse animation for Vector.svg */
+@keyframes pulse-beam {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Beam animations - upward and downward from center */
+@keyframes beam-up {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes beam-down {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.animate-beam-up {
+  animation: beam-up 2s ease-in-out infinite;
+}
+
+.animate-beam-down {
+  animation: beam-down 2s ease-in-out infinite;
+}
+
+/* Ripple animation for Card 3 */
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}

@@ -81,6 +81,17 @@ const About = () => {
               linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
               linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
             `,
+            backgroundSize: "40px 40px",
+          }}
+        />
+        {/* Larger grid for desktop */}
+        <div
+          className="absolute inset-0 pointer-events-none hidden lg:block"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+            `,
             backgroundSize: "80px 80px",
           }}
         />
@@ -121,7 +132,7 @@ const About = () => {
           </div>
 
           {/* Countdown Timer */}
-          <div className="flex-1 w-full lg:w-auto flex justify-center lg:justify-end items-center">
+          <div className="flex-1 w-full lg:w-auto flex justify-center items-center">
             <Timer />
           </div>
         </div>
@@ -176,7 +187,7 @@ const About = () => {
 </svg>
 
               <p className="text-neutral-400 text-sm sm:text-base font-semibold font-[var(--font-instrument)]">
-                at Faculty of Engineering, University of Ruhuna
+                Faculty of Engineering, University of Ruhuna
               </p>
             </div>
 

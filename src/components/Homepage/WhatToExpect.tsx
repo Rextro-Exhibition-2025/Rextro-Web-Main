@@ -125,7 +125,7 @@ const WhatToExpect = () => {
               </div>
 
               {/* Interactive Image Grid - 3x3 Layout with 4:5 ratio cells */}
-              <div className="w-full grid grid-cols-3 gap-2">
+              <div className="w-full p-12 grid grid-cols-3 gap-2">
                 {/* Row 1 */}
                 <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-300 border border-neutral-200" />
                 
@@ -237,7 +237,7 @@ const WhatToExpect = () => {
             {/* Card 2 & 3 Column */}
             <div className="flex flex-col gap-4 lg:gap-2">
               {/* Card 2: Engaging Competitions */}
-              <div className="group isolate flex flex-col rounded-2xl bg-white shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+              <div className="group isolate flex flex-col flex-1 rounded-2xl bg-white shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] overflow-hidden">
                 
                 {/* Text Content - Positioned at bottom */}
                 <div className="relative z-10 flex-none px-6 order-last pb-6">
@@ -327,40 +327,51 @@ const WhatToExpect = () => {
               </div>
 
               {/* Card 3: Inspiring Talks */}
-              <div className="flex-1 p-6 bg-white rounded-2xl shadow-lg flex flex-col justify-end gap-3">
-                <div className="w-full h-full aspect-video bg-neutral-100 rounded-lg border border-neutral-200 relative overflow-hidden">
-                  {/* Register button */}
-                  <Link
-                    href="/register"
-                    className="absolute bottom-4 right-4 px-4 py-2 bg-gray-800 hover:bg-gray-900 rounded-full shadow-lg flex items-center gap-2 transition-colors"
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      className="text-white"
-                    >
-                      <path
-                        d="M3 8h10M8 3l5 5-5 5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
-                      Register here
-                    </span>
-                  </Link>
-                </div>
-                <div className="flex flex-col gap-2.5">
-                  <h4 className="text-neutral-900 text-base font-semibold font-[var(--font-instrument)] leading-normal">
+              <div className="group isolate flex flex-col flex-1 rounded-2xl bg-white shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+                {/* Text Content - Order last */}
+                <div className="relative z-10 flex-none px-6 order-last pb-6">
+                  <h4 className="text-sm font-medium text-gray-950 font-[var(--font-instrument)]">
                     Inspiring Talks & Lectures
                   </h4>
-                  <p className="text-gray-600 text-sm font-normal font-[var(--font-instrument)] leading-normal">
+                  <p className="mt-2 text-pretty text-sm/5 text-gray-600 font-[var(--font-instrument)]">
                     Engage with industry leaders, pioneering engineers, and successful alumni through our Guest Lecture and Webinar Series. Hear insights on cutting-edge topics from global experts shaping the future of technology.
                   </p>
+                </div>
+
+                {/* Visual Content - Interactive Area */}
+                <div className="pointer-events-none relative flex-auto select-none" style={{ minHeight: '10.25rem' }} aria-hidden="true">
+                  <div className="flex h-full items-center justify-center [mask:linear-gradient(black_66%,transparent)]">
+                    {/* Register Button */}
+                    <Link
+                      href="https://silver-jubilee.eng.ruh.ac.lk/events"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pointer-events-auto relative flex items-center gap-1.5 rounded-full bg-gray-800 px-2 py-1 text-2xs font-medium text-white shadow-[0_2px_13px_rgba(0,0,0,0.2),0_2px_4px_rgba(47,48,55,0.3)] ring-1 ring-gray-800 font-[var(--font-instrument)] hover:bg-gray-900 transition-colors"
+                    >
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="size-4">
+                        <g stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2">
+                          <rect width="12.5" height="10.5" x="1.75" y="2.75" rx="2" />
+                          <path d="M4.75 5.75 8 8.25l3.25-2.5" />
+                        </g>
+                      </svg>
+                      Register here
+                      
+                      {/* Ripple effects */}
+                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out]" />
+                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out_0.5s]" />
+                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out_1s]" />
+                      
+                      {/* Vector.svg path */}
+                      <div className="absolute left-1/2 top-1/2 -z-10 -ml-36 -mt-32 aspect-[288/256] w-72">
+                        <Image
+                          src="/Vector.svg"
+                          alt="Connection paths"
+                          fill
+                          className="object-contain opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+                        />
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
