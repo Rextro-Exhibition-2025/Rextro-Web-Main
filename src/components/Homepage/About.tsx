@@ -176,7 +176,7 @@ const About = () => {
 </svg>
 
               <p className="text-neutral-400 text-sm sm:text-base font-semibold font-[var(--font-instrument)]">
-                at Faculty of Engineering, University of Ruhuna
+                Faculty of Engineering, University of Ruhuna
               </p>
             </div>
 
