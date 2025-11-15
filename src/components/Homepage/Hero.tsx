@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { FlipWords } from "@/components/Homepage/FlipWords";
 
 const Hero = () => {
+  const words = ["INNOVATION", "BREAKTHROUGH", "NEXT GENERATION", "VISION", "IMPOSSIBLE", "SUSTAINABILITY"];
+  
   return (
     <section className="relative w-full bg-neutral-100 flex flex-col items-center justify-center overflow-hidden">
       {/* Background Circuit Pattern */}
@@ -65,7 +68,13 @@ const Hero = () => {
             {/* Tagline */}
             <div className="w-full flex justify-center items-center">
               <h1 className="text-center text-black text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold font-[var(--font-instrument)] tracking-tight leading-tight px-4">
-                THE FUTURE IS ENGINEERED HERE.
+                THE{" "}
+                <FlipWords 
+                  words={words} 
+                  duration={3000}
+                  className="inline-block  font-bold"
+                />
+                {" "}IS ENGINEERED HERE.
               </h1>
             </div>
           </div>
