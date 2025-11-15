@@ -32,7 +32,6 @@ const MobileApp = () => {
             src="/mobile app.png"
             alt="ReXtro 2025 Mobile App"
             fill
-            className="shadow-lg object-contain"
             priority
           />
         </div>
