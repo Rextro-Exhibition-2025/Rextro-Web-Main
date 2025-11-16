@@ -56,7 +56,7 @@ const WhatToExpect = () => {
   }, [highlightProgress]);
 
   return (
-    <section className="w-full p-6 sm:p-8 lg:p-12 bg-neutral-100">
+    <section className="w-full p-6 sm:p-8 lg:p-12 bg-[#F7F7F8]">
       <div className="w-full p-4 sm:p-6 lg:p-12 rounded-xl border border-black/10 flex flex-col gap-10 lg:gap-16">
         {/* Header Section */}
         <div className="w-full flex flex-col gap-8 lg:gap-10">

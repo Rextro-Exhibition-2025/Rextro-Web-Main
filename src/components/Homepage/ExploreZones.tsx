@@ -371,22 +371,16 @@ const ExploreZones = () => {
       </div>
 
       {/* Bottom Decorative Border */}
-      <div className="w-full bg-white border-t border-neutral-900 flex justify-between items-start leading-[0]">
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[160px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-y-[-1] leading-[0] bottom-2">
-          <Image
-            src="/Hero/Union.svg"
-            alt=""
-            fill
-            className="object-contain object-left-top"
-          />
-        </div>
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[160px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] scale-y-[-1] leading-[0] bottom-2">
-          <Image
-            src="/Hero/Union.svg"
-            alt=""
-            fill
-            className="object-contain object-right-top brightness-0"
-          />
+      <div className="relative">
+        <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+          <div className="relative -mx-2.5 flex -bottom-1 -mt-12">
+            <svg viewBox="0 0 64 48" className="w-16 flex-none fill-white" aria-hidden="true">
+              <path d="M51.657 2.343 12.343 41.657A8 8 0 0 1 6.686 44H0v4h64V0h-6.686a8 8 0 0 0-5.657 2.343Z"></path>
+              </svg><div className="-mx-px flex-auto bg-white"></div>
+              <svg viewBox="0 0 64 48" className="w-16 flex-none fill-white" aria-hidden="true">
+                <path d="m12.343 2.343 39.314 39.314A8 8 0 0 0 57.314 44H64v4H0V0h6.686a8 8 0 0 1 5.657 2.343Z"></path>
+                </svg>
+              </div>
         </div>
       </div>
     </section>

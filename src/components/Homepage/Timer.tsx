@@ -52,7 +52,7 @@ const Timer = () => {
         <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">DD</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
           <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
-          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_7px_rgb(255_136_0_/_1.00),_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
+          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
             {formatNumber(timeLeft.days)}
           </div>
         </div>
@@ -69,7 +69,7 @@ const Timer = () => {
         <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">HH</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
           <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
-            <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_7px_rgb(255_136_0_/_1.00),_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
+            <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
              {formatNumber(timeLeft.hours)}
           </div>
         </div>
@@ -86,7 +86,7 @@ const Timer = () => {
         <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">MM</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
           <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
-          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_7px_rgb(255_136_0_/_1.00),_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
+          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
             {formatNumber(timeLeft.minutes)}
           </div>
         </div>
@@ -103,7 +103,7 @@ const Timer = () => {
         <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">SS</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
           <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
-          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_7px_rgb(255_136_0_/_1.00),_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
+          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
             {formatNumber(timeLeft.seconds)}
           </div>
         </div>

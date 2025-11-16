@@ -50,7 +50,7 @@ const Hero = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative h-[80vh] w-full px-4 sm:px-8 lg:px-20 py-12 sm:py-16 lg:py-24 flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8">
+      <div className="relative h-[80vh] w-full px-4 sm:px-8 lg:px-20 pt-12 sm:py-16 lg:pt-24 flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8">
         <div className="w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-8 sm:gap-10 lg:gap-12">
           {/* Logo and Tagline Container */}
           <div className="w-full max-w-[900px] flex flex-col justify-start items-center gap-12 sm:gap-16 lg:gap-20">
@@ -151,24 +151,7 @@ const Hero = () => {
       </div>
 
       {/* Bottom Decorative Elements */}
-      <div className="w-full border-b border-neutral-900 flex justify-between items-end">
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] top-2">
-          <Image
-            src="/Hero/Union.svg"
-            alt=""
-            fill
-            className="object-contain object-left-bottom "
-          />
-        </div>
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] top-2">
-          <Image
-            src="/Hero/Union.svg"
-            alt=""
-            fill
-            className="object-contain object-right-bottom "
-          />
-        </div>
-      </div>
+      
     </section>
   );
 };
