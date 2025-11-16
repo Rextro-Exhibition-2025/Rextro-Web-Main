@@ -125,7 +125,7 @@ const WhatToExpect = () => {
               </div>
 
               {/* Interactive Image Grid - 3x3 Layout with 4:5 ratio cells */}
-              <div className="w-full p-12 grid grid-cols-3 gap-2">
+              <div className="w-full sm:p-4 lg:p-12 grid grid-cols-3 gap-2">
                 {/* Row 1 */}
                 <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden bg-gray-300 border border-neutral-200" />
                 
