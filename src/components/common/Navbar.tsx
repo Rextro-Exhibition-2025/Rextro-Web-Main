@@ -236,7 +236,7 @@ const Navbar = () => {
             ))}
 
             <Link
-              href="/tickets"
+              href="https://tickets.rextro.lk" target="_blank" rel="noopener noreferrer"
               className="mt-2 px-4 py-2.5 bg-gradient-to-b from-neutral-700 to-black rounded-md shadow-lg hover:from-neutral-600 hover:to-neutral-900 transition-all text-center"
               onClick={() => setIsMenuOpen(false)}
             >
