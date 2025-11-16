@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Timer from "@/components/Homepage/Timer";
 import { useEffect, useRef, useState } from "react";
 
@@ -72,7 +71,21 @@ const About = () => {
 
   return (
     <section id="about" className="w-full flex flex-col">
-      <div className="relative w-full py-8 sm:py-10 lg:py-12 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden" style={{ backgroundColor: '#131316' }}>
+      <div className="relative">
+        <div className="absolute inset-x-0 -top-11 mt-[calc(-3/16*1rem)] flex items-end">
+          <div className="mr-[calc(-1*(2rem-0.375rem))] h-11 flex-auto bg-black"></div>
+          <div className="flex justify-between mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+            <svg viewBox="0 0 56 48" aria-hidden="true" className="-ml-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible fill-black">
+              <path d="M 2.686 3 H -4 V 48 H 56 V 47 H 53.314 A 8 8 0 0 1 47.657 44.657 L 8.343 5.343 A 8 8 0 0 0 2.686 3 Z"></path>
+            </svg>
+            <svg viewBox="0 0 56 48" aria-hidden="true" className="-mr-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible fill-black">
+              <path d="M 53.314 3 H 60 V 48 H 0 V 47 H 2.686 A 8 8 0 0 0 8.343 44.657 L 47.657 5.343 A 8 8 0 0 1 53.314 3 Z"></path>
+            </svg>
+          </div>
+          <div className="ml-[calc(-1*(2rem-0.375rem))] h-11 flex-auto bg-black"></div>
+        </div>
+      </div>
+      <div className="relative w-full py-8 sm:py-10 lg:py-12 lg:pb-24 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden" style={{ backgroundColor: '#131316' }}>
         {/* Fixed Grid Background */}
         <div
           className="absolute inset-0 pointer-events-none hidden lg:block"
@@ -90,7 +103,7 @@ const About = () => {
           className="absolute inset-0 pointer-events-none"
           style={{
             background: `
-              radial-gradient(ellipse at center, transparent 20%, rgba(23, 23, 23, 0.5) 60%, rgba(23, 23, 23, 0.9) 100%),
+              radial-gradient(ellipse at center, transparent 20%, rgba(23, 23, 23, 0.5) 60%, rgba(0, 0, 0, 0.9) 100%),
               linear-gradient(to bottom, rgba(23, 23, 23, 0.8) 0%, transparent 15%, transparent 85%, rgba(23, 23, 23, 0.8) 100%)
             `,
           }}
@@ -172,8 +185,8 @@ const About = () => {
 
             <div className="flex justify-start items-center gap-2">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 1.25049C8.17727 1.25256 6.42979 1.97755 5.14092 3.26641C3.85206 4.55528 3.12707 6.30276 3.125 8.12549C3.125 14.0083 9.375 18.4513 9.64141 18.6372C9.74649 18.7108 9.87169 18.7503 10 18.7503C10.1283 18.7503 10.2535 18.7108 10.3586 18.6372C10.625 18.4513 16.875 14.0083 16.875 8.12549C16.8729 6.30276 16.1479 4.55528 14.8591 3.26641C13.5702 1.97755 11.8227 1.25256 10 1.25049ZM10 5.62549C10.4945 5.62549 10.9778 5.77211 11.3889 6.04681C11.8 6.32152 12.1205 6.71196 12.3097 7.16878C12.4989 7.6256 12.5484 8.12826 12.452 8.61321C12.3555 9.09817 12.1174 9.54362 11.7678 9.89326C11.4181 10.2429 10.9727 10.481 10.4877 10.5775C10.0028 10.6739 9.50011 10.6244 9.04329 10.4352C8.58648 10.246 8.19603 9.92554 7.92133 9.51441C7.64662 9.10329 7.5 8.61994 7.5 8.12549C7.5 7.46245 7.76339 6.82656 8.23223 6.35772C8.70107 5.88888 9.33696 5.62549 10 5.62549Z" fill="white"/>
-</svg>
+              <path d="M10 1.25049C8.17727 1.25256 6.42979 1.97755 5.14092 3.26641C3.85206 4.55528 3.12707 6.30276 3.125 8.12549C3.125 14.0083 9.375 18.4513 9.64141 18.6372C9.74649 18.7108 9.87169 18.7503 10 18.7503C10.1283 18.7503 10.2535 18.7108 10.3586 18.6372C10.625 18.4513 16.875 14.0083 16.875 8.12549C16.8729 6.30276 16.1479 4.55528 14.8591 3.26641C13.5702 1.97755 11.8227 1.25256 10 1.25049ZM10 5.62549C10.4945 5.62549 10.9778 5.77211 11.3889 6.04681C11.8 6.32152 12.1205 6.71196 12.3097 7.16878C12.4989 7.6256 12.5484 8.12826 12.452 8.61321C12.3555 9.09817 12.1174 9.54362 11.7678 9.89326C11.4181 10.2429 10.9727 10.481 10.4877 10.5775C10.0028 10.6739 9.50011 10.6244 9.04329 10.4352C8.58648 10.246 8.19603 9.92554 7.92133 9.51441C7.64662 9.10329 7.5 8.61994 7.5 8.12549C7.5 7.46245 7.76339 6.82656 8.23223 6.35772C8.70107 5.88888 9.33696 5.62549 10 5.62549Z" fill="white"/>
+              </svg>
 
               <p className="text-neutral-400 text-sm sm:text-base font-semibold font-[var(--font-instrument)]">
                 Faculty of Engineering, University of Ruhuna
@@ -198,22 +211,16 @@ const About = () => {
 
       {/* Bottom Decorative Elements */}
 
-      <div className="w-full bg-neutral-100 border-t border-neutral-900 flex justify-between items-start">
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-y-[-1] bottom-2  ">
-          <Image
-            src="/Hero/Union.svg"
-            alt=""
-            fill
-            className="object-contain object-left-top"
-          />
-        </div>
-        <div className="relative w-24 sm:w-32 md:w-40 lg:w-[166px] h-8 sm:h-10 md:h-11 lg:h-[45px] scale-x-[-1] scale-y-[-1] bottom-2">
-          <Image
-            src="/Hero/Union.svg"
-            alt=""
-            fill
-            className="object-contain object-right-top brightness-0"
-          />
+      <div className="relative">
+        <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+          <div className="relative -mx-2.5 flex -bottom-1 -mt-12">
+            <svg viewBox="0 0 64 48" className="w-16 flex-none fill-[#F7F7F8]" aria-hidden="true">
+              <path d="M51.657 2.343 12.343 41.657A8 8 0 0 1 6.686 44H0v4h64V0h-6.686a8 8 0 0 0-5.657 2.343Z"></path>
+              </svg><div className="-mx-px flex-auto bg-[#F7F7F8]"></div>
+              <svg viewBox="0 0 64 48" className="w-16 flex-none fill-[#F7F7F8]" aria-hidden="true">
+                <path d="m12.343 2.343 39.314 39.314A8 8 0 0 0 57.314 44H64v4H0V0h6.686a8 8 0 0 1 5.657 2.343Z"></path>
+                </svg>
+              </div>
         </div>
       </div>
     </section>
