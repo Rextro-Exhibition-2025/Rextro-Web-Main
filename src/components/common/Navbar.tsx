@@ -134,8 +134,7 @@ const Navbar = () => {
               </div>
             ))}
 
-              <Link
-                href="/tickets"
+              <Link href="https://tickets.rextro.lk" target="_blank" rel="noopener noreferrer"
                 className="h-8 px-4 pt-1.5 pb-2 ml-2 bg-gradient-to-b from-neutral-700 to-black rounded-md shadow-lg hover:from-neutral-600 hover:to-neutral-900 transition-all flex justify-center items-center"
               >
                 <span className="text-white text-sm font-medium font-[var(--font-instrument)]">

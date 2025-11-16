@@ -75,17 +75,6 @@ const About = () => {
       <div className="relative w-full py-8 sm:py-10 lg:py-12 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden" style={{ backgroundColor: '#131316' }}>
         {/* Fixed Grid Background */}
         <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: "40px 40px",
-          }}
-        />
-        {/* Larger grid for desktop */}
-        <div
           className="absolute inset-0 pointer-events-none hidden lg:block"
           style={{
             backgroundImage: `
@@ -198,7 +187,7 @@ const About = () => {
 
           {/* Right Text */}
           <div className="flex-1 lg:pl-12 xl:pl-24 py-12 flex flex-col justify-start items-start lg:items-end">
-            <h3 className={`max-w-[490px] text-white text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-left lg:text-left transition-all duration-700 delay-500 ${
+            <h3 className={`max-w-[530px] text-white text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-left lg:text-left transition-all duration-700 delay-500 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               Mark Your Calendar for the Silver Jubilee Exhibition.

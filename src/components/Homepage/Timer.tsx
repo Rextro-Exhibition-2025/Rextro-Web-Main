@@ -46,7 +46,7 @@ const Timer = () => {
   };
 
   return (
-    <div className="self-stretch px-2 sm:px-6 pb-6 inline-flex justify-end items-center gap-2 sm:gap-4 lg:gap-6 scale-75 sm:scale-90 lg:scale-100 origin-right">
+    <div className="self-stretch px-2 sm:px-1 pb-6 inline-flex justify-center sm:justify-end items-center gap-2 sm:gap-4 lg:gap-6 scale-90 sm:scale-100 lg:scale-100 origin-center sm:origin-right">
       {/* Days */}
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
         <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">DD</div>
