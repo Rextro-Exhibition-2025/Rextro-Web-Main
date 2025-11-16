@@ -14,7 +14,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
   const words = ["INNOVATION", "BREAKTHROUGH", "NEXT GENERATION", "VISION", "IMPOSSIBLE", "SUSTAINABILITY"];
 
   return (
-    <div className={`relative isolate overflow-hidden bg-gray-50 h-screen -mt-16 ${className}`}>
+    <div className={`relative isolate overflow-hidden bg-gray-50 h-[90vh] -mt-16 ${className}`}>
       {/* Background Layer */}
       <div className="absolute inset-0 -z-10">
         {/* Left Circuit Board */}
