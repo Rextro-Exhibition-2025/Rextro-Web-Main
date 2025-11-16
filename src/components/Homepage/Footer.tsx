@@ -15,6 +15,20 @@ const Footer = () => {
           alt="logo"
           className="object-contain"
         />
+        <Image
+          src={"/Logo Image.png"}
+          height={200}
+          width={32}
+          alt="logo"
+          className="object-contain"
+        />
+        <Image
+          src={"/ruhuna_eng_logo 1.png"}
+          height={200}
+          width={32}
+          alt="logo"
+          className="object-contain"
+        />
       </div>
 
       {/* Right Section - Logo/Banner */}
