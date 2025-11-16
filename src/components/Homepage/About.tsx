@@ -126,7 +126,7 @@ const About = () => {
                 Faculty of Engineering, University of Ruhuna
               </span>
               , proudly presents its{" "}
-              <span className="font-bold">Silver Jubilee Exhibition</span>. Step
+              <span className="font-bold">Silver Jubilee Exhibition: ReXtro 2025</span>. Step
               into the Engineering Village, a three-day showcase featuring over
               a hundred pioneering student projects, interactive zones, and
               industry collaborations. This is where innovation, inspiration, and impact converge.
