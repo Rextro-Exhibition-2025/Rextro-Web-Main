@@ -21,7 +21,6 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
         <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
-            <source srcSet="/circuit-lines@2xr.png" type="image/png" />
             <img
               alt=""
               width={1938}
@@ -52,7 +51,6 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
           {/* Circuit Components Overlay */}
           <picture>
             <source srcSet="/circuit-components@2xl.webp" type="image/webp" />
-            <source srcSet="/circuit-components@2xr.png" type="image/png" />
             <img
               alt=""
               width={1938}
@@ -70,7 +68,6 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
         <div className="absolute -top-8 right-1/2 origin-right -scale-x-100 sm:top-5 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
-            <source srcSet="/circuit-lines@2xr.png" type="image/png" />
             <img
               alt=""
               width={1938}
@@ -101,7 +98,6 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
           {/* Circuit Components Overlay */}
           <picture>
             <source srcSet="/circuit-components@2xl.webp" type="image/webp" />
-            <source srcSet="/circuit-components@2xr.png" type="image/png" />
             <img
               alt=""
               width={1938}
