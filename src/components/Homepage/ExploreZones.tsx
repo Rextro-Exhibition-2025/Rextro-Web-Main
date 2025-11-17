@@ -1,19 +1,29 @@
 "use client";
 
 import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 
-const zones = [
+interface Zone {
+  title: string;
+  description: string;
+  height: string;
+  video?: string;
+}
+
+const zones: Zone[] = [
   {
     title: "AI and Computer Vision Zone",
     description:
       "Discover applications of Artificial Intelligence, Machine Learning, and Computer Vision that are transforming industries and societies.",
     height: "h-64",
+    video: "/zones/videos/Ai.mp4",
   },
   {
     title: "Robotics and Intelligent Automation Zone",
     description:
       "See robots designed for industrial automation, healthcare, and service sectors in live demonstrations.",
     height: "h-[528px]",
+    video: "/zones/videos/robotics.mp4",
   },
   {
     title: "Space Exploration Zone",
@@ -26,6 +36,7 @@ const zones = [
     description:
       "Explore next-generation clean energy solutions, focusing on solar, wind, and hydro technologies that promote sustainability.",
     height: "h-[528px]",
+    video: "/zones/videos/Sustainable.mp4",
   },
   {
     title: "AR and VR Zone",
@@ -38,6 +49,7 @@ const zones = [
     description:
       "An interactive space featuring both entertainment and educational games. Dive into demonstrations of game design, simulation, and software development.",
     height: "h-64",
+    video: "/zones/videos/game.mp4",
   },
   {
     title: "AI and Automotive Engineering & Mobility Solutions Zone",
@@ -56,8 +68,106 @@ const zones = [
     description:
       "Discover applications of Artificial Intelligence, Machine Learning, and Computer Vision that are transforming industries and societies.",
     height: "h-64",
+    video: "/zones/videos/drone.mp4",
   },
 ];
+
+// Zone Video Component with Lazy Loading and Hover/Intersection Observer
+interface ZoneVideoProps {
+  video?: string;
+  title: string;
+}
+
+const ZoneVideo = ({ video, title }: ZoneVideoProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Intersection Observer for mobile auto-play
+  useEffect(() => {
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasLoaded) {
+          setIsVisible(true);
+          setHasLoaded(true);
+        }
+        
+        // Auto-play on mobile when visible
+        if (isMobile && videoRef.current) {
+          if (entry.isIntersecting) {
+            videoRef.current.play().catch(() => {});
+          } else {
+            videoRef.current.pause();
+          }
+        }
+      },
+      { 
+        rootMargin: '100px',
+        threshold: 0.3
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [video, hasLoaded, isMobile]);
+
+  // Handle hover for desktop
+  useEffect(() => {
+    if (!isMobile && videoRef.current && isHovered) {
+      videoRef.current.play().catch(() => {});
+    } else if (!isMobile && videoRef.current && !isHovered) {
+      videoRef.current.pause();
+    }
+  }, [isHovered, isMobile]);
+
+  if (!video) {
+    return (
+      <div className="flex-1 bg-gradient-to-br from-white/5 to-white/0 rounded-lg border border-white/10" />
+    );
+  }
+
+  return (
+    <div 
+      ref={containerRef}
+      className="flex-1 relative rounded-lg overflow-hidden"
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
+    >
+      {isVisible ? (
+        <video
+          ref={videoRef}
+          loop
+          muted
+          playsInline
+          preload="none"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={video} type="video/mp4" />
+        </video>
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0" />
+      )}
+    </div>
+  );
+};
 
 const ExploreZones = () => {
   return (
@@ -125,9 +235,7 @@ const ExploreZones = () => {
               <div
                 className={`${zones[0].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
-                <div className="flex-1 flex items-center justify-center">
-                  <div className="w-20 h-24 bg-gradient-to-br from-white/10 to-white/0 rounded-lg border border-white/10" />
-                </div>
+                <ZoneVideo video={zones[0].video} title={zones[0].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[0].title}
@@ -150,22 +258,14 @@ const ExploreZones = () => {
                     {zones[1].description}
                   </p>
                 </div>
-                <div className="flex-1 bg-gradient-to-br from-white/5 to-white/0 rounded-lg border border-white/10" />
+                <ZoneVideo video={zones[1].video} title={zones[1].title} />
               </div>
 
               {/* Space Exploration */}
               <div
                 className={`${zones[2].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
-                <div className="flex-1 relative rounded-lg overflow-hidden">
-                  {/* Space radar visual */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full border border-white/10" />
-                    <div className="absolute w-24 h-24 rounded-full border border-white/20" />
-                    <div className="absolute w-16 h-16 rounded-full border border-white/30" />
-                    <div className="absolute w-8 h-8 rounded-full bg-cyan-500/30" />
-                  </div>
-                </div>
+                <ZoneVideo video={zones[2].video} title={zones[2].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[2].title}
@@ -191,21 +291,14 @@ const ExploreZones = () => {
                     {zones[3].description}
                   </p>
                 </div>
-                <div className="flex-1 bg-gradient-to-br from-white/5 to-white/0 rounded-lg border border-white/10" />
+                <ZoneVideo video={zones[3].video} title={zones[3].title} />
               </div>
 
               {/* AR and VR */}
               <div
                 className={`${zones[4].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
-                <div className="flex-1 flex items-center justify-center gap-3">
-                  {[...Array(6)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-10 bg-neutral-900 rounded-md shadow-lg"
-                    />
-                  ))}
-                </div>
+                <ZoneVideo video={zones[4].video} title={zones[4].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[4].title}
@@ -220,14 +313,7 @@ const ExploreZones = () => {
               <div
                 className={`${zones[5].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
-                <div className="flex-1 relative rounded-lg overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full border border-white/10" />
-                    <div className="absolute w-24 h-24 rounded-full border border-white/20" />
-                    <div className="absolute w-16 h-16 rounded-full border border-white/30" />
-                    <div className="absolute w-8 h-8 rounded-full bg-cyan-500/30" />
-                  </div>
-                </div>
+                <ZoneVideo video={zones[5].video} title={zones[5].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[5].title}
@@ -245,14 +331,7 @@ const ExploreZones = () => {
               <div
                 className={`${zones[6].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
-                <div className="flex-1 flex items-center justify-center gap-3">
-                  {[...Array(6)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-10 bg-neutral-900 rounded-md shadow-lg"
-                    />
-                  ))}
-                </div>
+                <ZoneVideo video={zones[6].video} title={zones[6].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[6].title}
@@ -275,21 +354,14 @@ const ExploreZones = () => {
                     {zones[7].description}
                   </p>
                 </div>
-                <div className="flex-1 bg-gradient-to-br from-white/5 to-white/0 rounded-lg border border-white/10" />
+                <ZoneVideo video={zones[7].video} title={zones[7].title} />
               </div>
 
               {/* Drone */}
               <div
                 className={`${zones[8].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
-                <div className="flex-1 flex items-center justify-center gap-3">
-                  {[...Array(6)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-10 bg-neutral-900 rounded-md shadow-lg"
-                    />
-                  ))}
-                </div>
+                <ZoneVideo video={zones[8].video} title={zones[8].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[8].title}
