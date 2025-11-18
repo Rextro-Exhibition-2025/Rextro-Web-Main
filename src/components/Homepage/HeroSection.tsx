@@ -122,7 +122,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                   {/* Logo and Tagline Container */}
                   <div className="w-full max-w-[900px] flex flex-col justify-start items-center gap-12 sm:gap-16 lg:gap-20">
                     {/* Logo */}
-                    <div className="relative w-full max-w-[280px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[696px] h-32 sm:h-40 md:h-48 lg:h-60">
+                    <div className="relative w-full max-w-[85vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[696px] aspect-[696/240]">
                       <Image
                         src="/Hero/logo.svg"
                         alt="Faculty of Engineering Logo"

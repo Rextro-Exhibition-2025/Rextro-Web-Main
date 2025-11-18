@@ -27,12 +27,14 @@ const Navbar = () => {
 
   const navItems = [
     { label: "Home", href: "/" },
+    /*
     { label: "Map", href: "/map" },
     {
       label: "Departments",
       href: "/departments",
       hasDropdown: true,
-    },
+    }, 
+    */
     {
       label: "Events",
       href: "/events",
@@ -41,7 +43,6 @@ const Navbar = () => {
     {
       label: "Contact",
       href: "/contact",
-      hasDropdown: true,
     },
   ];
 
@@ -119,17 +120,6 @@ const Navbar = () => {
                   <span className="text-neutral-900 text-sm font-medium font-[var(--font-instrument)] leading-normal">
                     {item.label}
                   </span>
-                  {item.hasDropdown && (
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                      <path
-                        d="M1.75 3.75L5 7L8.25 3.75"
-                        stroke="#71717a"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  )}
                 </Link>
               </div>
             ))}
@@ -194,44 +184,9 @@ const Navbar = () => {
                       className="p-2 hover:bg-black/5 rounded transition-colors"
                       aria-label={`Toggle ${item.label} menu`}
                     >
-                      <svg
-                        width="10"
-                        height="10"
-                        viewBox="0 0 10 10"
-                        fill="none"
-                        className={`transform transition-transform ${
-                          openDropdown === item.label ? "rotate-180" : ""
-                        }`}
-                      >
-                        <path
-                          d="M1.75 3.75L5 7L8.25 3.75"
-                          stroke="#71717a"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
                     </button>
                   )}
                 </div>
-                {item.hasDropdown && openDropdown === item.label && (
-                  <div className="ml-4 mt-1 pl-3 border-l border-black/10 flex flex-col gap-1">
-                    <Link
-                      href={`${item.href}/submenu1`}
-                      className="px-3 py-2 text-neutral-700 text-sm font-[var(--font-instrument)] hover:bg-black/5 rounded transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Submenu Item 1
-                    </Link>
-                    <Link
-                      href={`${item.href}/submenu2`}
-                      className="px-3 py-2 text-neutral-700 text-sm font-[var(--font-instrument)] hover:bg-black/5 rounded transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Submenu Item 2
-                    </Link>
-                  </div>
-                )}
               </div>
             ))}
 
