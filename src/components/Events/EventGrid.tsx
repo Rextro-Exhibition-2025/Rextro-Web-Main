@@ -70,9 +70,9 @@ interface EventCardProps {
 const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
   return (
     <div className="event-grid-card group">
-      <button
+      <div
         onClick={onClick}
-        className="w-full h-full text-left p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300 flex flex-col"
+        className="w-full h-full text-left p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300 flex flex-col cursor-pointer relative"
       >
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
@@ -152,6 +152,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
             </Link>
           )}
           <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onClick();
+            }}
             className="px-4 py-2 rounded-lg border border-white/10 text-sm font-semibold hover:bg-white/5 transition-all"
           >
             Details
@@ -164,7 +168,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
             <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
-      </button>
+      </div>
     </div>
   );
 };
