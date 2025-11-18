@@ -130,10 +130,10 @@ export default function Contact() {
                     <p className="mb-auto mt-2 text-sm/5 text-gray-600">Reach out to us via phone</p>
                     <div className="mt-4">
                       <a 
-                        href="tel:+94112650301" 
+                        href="tel:+94912245765" 
                         className="group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] before:duration-300 before:ease-[cubic-bezier(0.4,0.36,0,1)] before:transition-opacity text-gray-950 text-sm"
                       >
-                        +94 11 265 0301
+                        +(94) 912245765, +(94) 912245766, +(94) 912245767
                         <svg viewBox="0 0 10 10" aria-hidden="true" className="ml-2 h-2.5 w-2.5 flex-none opacity-60 group-hover:translate-x-6 group-hover:opacity-0 transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)]">
                           <path fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m7.25 5-3.5-2.25v4.5L7.25 5Z" />
                         </svg>
