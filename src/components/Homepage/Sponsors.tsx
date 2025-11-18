@@ -45,7 +45,7 @@ const Sponsors = () => {
   }, []);
 
   return (
-    <section className="w-full py-6 sm:py-10 bg-white flex flex-col justify-start items-start gap-2 overflow-hidden">
+    <section className="w-full py-20 sm:py-10 bg-white flex flex-col justify-start items-start gap-2 overflow-hidden">
       <div className="w-full px-4 sm:px-8 lg:px-20 bg-white border-t border-b border-neutral-900/5 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 lg:gap-0 py-6 lg:py-0">
         {/* Title Section */}
         <div className="w-full lg:w-auto lg:flex-1 lg:max-w-xs flex justify-start items-center">
