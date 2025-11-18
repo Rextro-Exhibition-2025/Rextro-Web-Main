@@ -4,10 +4,10 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="w-full px-4 sm:px-8 lg:px-16 py-6 sm:py-8 bg-white backdrop-blur-[6px] flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-0">
+    <footer className="w-full px-4 sm:px-8 lg:px-16 py-6  sm:py-8 bg-white backdrop-blur-[6px] flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-0">
       {/* Left Section - Logo and Social Icons */}
-      <div className="flex flex-col sm:flex-row justify-start items-center gap-4 sm:gap-5">
-        {/* Main ReXtro Logo with decorative elements */}
+      <div className="inline-flex justify-start items-center gap-5">
+        {/* Main ReXtro Logo with decorative elements <div className="inline-flex justify-start items-center gap-5"> */}
         <Image
           src={"/navbar/nav-icon.png"}
           height={200}
