@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = (menu: string) => {
@@ -115,18 +117,23 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex justify-start items-center gap-1">
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
               <div key={item.label} className="relative">
                 <Link
                   href={item.href}
                   className="h-8 px-3 py-1.5 flex justify-start items-center gap-2 hover:bg-black/5 rounded transition-colors"
                 >
-                  <span className="text-neutral-900 text-sm font-medium font-[var(--font-instrument)] leading-normal">
+                  <span className={`text-sm font-medium font-[var(--font-instrument)] leading-normal ${
+                    isActive ? 'text-[#00388C] font-bold' : 'text-neutral-900'
+                  }`}>
                     {item.label}
                   </span>
                 </Link>
               </div>
-            ))}
+            );
+            })}
 
               <Link
                 href="https://tickets.rextro.lk"
@@ -175,12 +182,16 @@ const Navbar = () => {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="lg:hidden mt-4 pt-4 border-t border-black/10 flex flex-col gap-2">
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
               <div key={item.label}>
                 <div className="flex items-center justify-between">
                   <Link
                     href={item.href}
-                    className="flex-1 px-3 py-2 text-neutral-900 text-sm font-medium font-[var(--font-instrument)] hover:bg-black/5 rounded transition-colors"
+                    className={`flex-1 px-3 py-2 text-sm font-medium font-[var(--font-instrument)] hover:bg-black/5 rounded transition-colors ${
+                      isActive ? 'text-[#00388C] font-bold' : 'text-neutral-900'
+                    }`}
                     onClick={() => !item.hasDropdown && setIsMenuOpen(false)}
                   >
                     {item.label}
@@ -195,7 +206,8 @@ const Navbar = () => {
                   )}
                 </div>
               </div>
-            ))}
+            );
+            })}
 
               <Link
                 href="https://tickets.rextro.lk"
@@ -212,9 +224,6 @@ const Navbar = () => {
           )}
         </div>
       </div>
-
-      {/* Spacer to prevent content from being hidden under fixed navbar */}
-      <div className="h-[88px] sm:h-[92px]" />
     </nav>
   );
 };
