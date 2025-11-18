@@ -30,8 +30,8 @@ const Navbar = () => {
     /*
     { label: "Map", href: "/map" },
     {
-      label: "Departments",
-      href: "/departments",
+      label: "Zones",
+      href: "/zones",
       hasDropdown: true,
     }, 
     */
@@ -84,16 +84,20 @@ const Navbar = () => {
       </div>
 
       {/* Main navbar */}
-      <div className={`w-full transition-all duration-500 ease-in-out ${
-        isScrolled 
-          ? 'px-4 sm:px-8 lg:px-20 py-4 flex justify-center bg-transparent' 
-          : 'px-4 sm:px-8 lg:px-20 py-3 sm:py-4 bg-white border-b border-black/10'
-      }`}>
-        <div className={`transition-all duration-500 ease-in-out ${
+      <div
+        className={`w-full transition-all duration-500 ease-in-out ${
           isScrolled
-            ? 'p-4 bg-white/90 rounded-2xl shadow-[0px_4px_12px_0px_rgba(0,0,0,0.10)] border border-black/10 backdrop-blur-[6px] max-w-7xl w-full'
-            : 'w-full bg-transparent'
-        }`}>
+            ? "px-4 sm:px-8 lg:px-20 py-4 flex justify-center bg-transparent"
+            : "px-4 sm:px-8 lg:px-20 py-3 sm:py-4 bg-white border-b border-black/10"
+        }`}
+      >
+        <div
+          className={`transition-all duration-500 ease-in-out ${
+            isScrolled
+              ? "p-4 bg-white/90 rounded-2xl shadow-[0px_4px_12px_0px_rgba(0,0,0,0.10)] border border-black/10 backdrop-blur-[6px] max-w-7xl w-full"
+              : "w-full bg-transparent"
+          }`}
+        >
           <div className="w-full flex justify-between items-center">
             {/* Logo */}
             <Link
@@ -124,7 +128,10 @@ const Navbar = () => {
               </div>
             ))}
 
-              <Link href="https://tickets.rextro.lk" target="_blank" rel="noopener noreferrer"
+              <Link
+                href="https://tickets.rextro.lk"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="h-8 px-4 pt-1.5 pb-2 ml-2 bg-gradient-to-b from-neutral-700 to-black rounded-md shadow-lg hover:from-neutral-600 hover:to-neutral-900 transition-all flex justify-center items-center"
               >
                 <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
@@ -139,28 +146,28 @@ const Navbar = () => {
               className="lg:hidden p-1 hover:bg-black/5 rounded transition-colors"
               aria-label="Toggle menu"
             >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              {isMenuOpen ? (
-                <>
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </>
-              ) : (
-                <>
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
-                </>
-              )}
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                {isMenuOpen ? (
+                  <>
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </>
+                ) : (
+                  <>
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                  </>
+                )}
               </svg>
             </button>
           </div>
@@ -190,20 +197,22 @@ const Navbar = () => {
               </div>
             ))}
 
-            <Link
-              href="https://tickets.rextro.lk" target="_blank" rel="noopener noreferrer"
-              className="mt-2 px-4 py-2.5 bg-gradient-to-b from-neutral-700 to-black rounded-md shadow-lg hover:from-neutral-600 hover:to-neutral-900 transition-all text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
-                Buy Tickets
-              </span>
+              <Link
+                href="https://tickets.rextro.lk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 px-4 py-2.5 bg-gradient-to-b from-neutral-700 to-black rounded-md shadow-lg hover:from-neutral-600 hover:to-neutral-900 transition-all text-center"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
+                  Buy Tickets
+                </span>
               </Link>
             </div>
           )}
         </div>
       </div>
-      
+
       {/* Spacer to prevent content from being hidden under fixed navbar */}
       <div className="h-[88px] sm:h-[92px]" />
     </nav>
