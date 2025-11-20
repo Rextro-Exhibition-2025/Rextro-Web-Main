@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { MapPin, User, Users, Calendar } from 'lucide-react';
 import { getEventsByDay, getCategoryLabel, type EventData } from '@/lib/eventData';
 
 interface EventTimelineProps {
@@ -126,12 +127,12 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ activeDay, onDayChange, o
                 </h3>
 
                 <div className="flex items-center gap-4 text-sm text-zinc-500">
-                  <span>📍 {event.venue}</span>
+                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {event.venue}</span>
                   {event.speaker && (
-                    <span>👤 {event.speaker.name}</span>
+                    <span className="flex items-center gap-1"><User className="w-4 h-4" /> {event.speaker.name}</span>
                   )}
                   {event.capacity && (
-                    <span>👥 {event.capacity}</span>
+                    <span className="flex items-center gap-1"><Users className="w-4 h-4" /> {event.capacity}</span>
                   )}
                 </div>
               </div>
@@ -150,7 +151,9 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ activeDay, onDayChange, o
       {/* Empty State */}
       {dayEvents.length === 0 && (
         <div className="text-center py-16">
-          <div className="text-5xl mb-4">📅</div>
+          <div className="flex justify-center mb-4">
+            <Calendar className="w-12 h-12 text-zinc-600" />
+          </div>
           <p className="text-zinc-500">No events scheduled for this day</p>
         </div>
       )}

@@ -3,7 +3,8 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
+import Image from 'next/image';
+import { MapPin, Clock, Users } from 'lucide-react';
 import { getCategoryLabel, type EventData } from '@/lib/eventData';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -74,6 +75,20 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
         onClick={onClick}
         className="w-full h-full text-left p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300 flex flex-col cursor-pointer relative"
       >
+        {/* Event Logo if available */}
+        {event.image && (
+          <div className="mb-4 flex justify-center">
+            <div className="relative w-24 h-24 rounded-lg overflow-hidden bg-white/5 border border-white/10 p-3">
+              <Image
+                src={event.image}
+                alt={event.title}
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
@@ -123,16 +138,16 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
         {/* Details */}
         <div className="space-y-2 mb-6 text-sm text-zinc-500">
           <div className="flex items-center gap-2">
-            <span>📍</span>
+            <MapPin className="w-4 h-4" />
             <span>{event.venue}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span>⏰</span>
+            <Clock className="w-4 h-4" />
             <span>{event.startTime} - {event.endTime}</span>
           </div>
           {event.capacity && (
             <div className="flex items-center gap-2">
-              <span>👥</span>
+              <Users className="w-4 h-4" />
               <span>{event.capacity} seats</span>
             </div>
           )}
@@ -140,25 +155,14 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
 
         {/* Actions */}
         <div className="flex gap-2 mt-auto">
-          {event.registrationStatus === 'open' && event.registrationLink && (
-            <Link
-              href={event.registrationLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="flex-1 px-4 py-2 rounded-lg bg-white text-black text-center text-sm font-semibold hover:bg-zinc-200 transition-all"
-            >
-              Register
-            </Link>
-          )}
           <button
             onClick={(e) => {
               e.stopPropagation();
               onClick();
             }}
-            className="px-4 py-2 rounded-lg border border-white/10 text-sm font-semibold hover:bg-white/5 transition-all"
+            className="w-full px-4 py-2 rounded-lg border border-white/10 text-sm font-semibold hover:bg-white/5 transition-all"
           >
-            Details
+            View Details
           </button>
         </div>
 
