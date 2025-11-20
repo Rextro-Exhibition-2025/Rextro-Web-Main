@@ -84,16 +84,18 @@ const WhatToExpect = () => {
               <div className="relative">
                 <p className="text-gray-600 text-lg sm:text-xl lg:text-2xl font-normal font-[var(--font-instrument)] leading-normal relative z-10">
                   "Whether you are a student, an industry professional, or simply{' '}
-                  <span className="text-black relative inline-block">
-                    <span className="relative z-10">curious about the future of technology,</span>
-                    <span
-                      className="absolute left-0 bottom-1 h-[28px] transition-all duration-1500 ease-out"
+                  <span className="text-black relative inline">
+                    <span className="relative z-10 bg-gradient-to-r from-transparent via-transparent to-transparent"
                       style={{
-                        width: `${highlightProgress}%`,
-                        backgroundColor: '#FFF700',
-                        zIndex: -1
+                        backgroundImage: `linear-gradient(to right, #FFF700 ${highlightProgress}%, transparent ${highlightProgress}%)`,
+                        backgroundSize: '100% 65%',
+                        backgroundPosition: '0 85%',
+                        backgroundRepeat: 'no-repeat',
+                        transition: 'background-image 1.5s ease-out'
                       }}
-                    />
+                    >
+                      curious about the future of technology,
+                    </span>
                   </span>{' '}
                   ReXtro offers a unique opportunity for learning, networking, and inspiration."
                 </p>
@@ -217,7 +219,7 @@ const WhatToExpect = () => {
               </div>
 
               {/* Interactive Tags - Single Line */}
-              <div className="flex justify-start items-center gap-2 overflow-x-auto">
+              <div className="flex flex-wrap justify-start items-center gap-2">
                 {zones.map((zone, index) => (
                   <button
                     key={zone.name}
