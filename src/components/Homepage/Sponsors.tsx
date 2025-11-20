@@ -1,102 +1,254 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import React from "react";
+import { motion } from "framer-motion";
 
-const sponsors = [
-  { id: 1, name: 'Sponsor 1', logo: '/sponsors/sponsor1.png' },
-  { id: 2, name: 'Sponsor 2', logo: '/sponsors/sponsor2.png' },
-  { id: 3, name: 'Sponsor 3', logo: '/sponsors/sponsor3.png' },
-  { id: 4, name: 'Sponsor 4', logo: '/sponsors/sponsor4.png' },
-  { id: 5, name: 'Sponsor 5', logo: '/sponsors/sponsor5.png' },
-  { id: 6, name: 'Sponsor 6', logo: '/sponsors/sponsor6.png' },
-  { id: 7, name: 'Sponsor 7', logo: '/sponsors/sponsor7.png' },
-  { id: 8, name: 'Sponsor 8', logo: '/sponsors/sponsor8.png' },
-];
+interface Company {
+  name: string;
+  logo: {
+    src: string;
+    height: number;
+    width: number;
+  };
+}
 
-const Sponsors = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+interface AnimatedCompanyColumnProps {
+  companies: Company[];
+  delay: number;
+}
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    let scrollInterval: NodeJS.Timeout;
-    let animationFrame: number;
-
-    const scroll = () => {
-      if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
-        scrollContainer.scrollLeft = 0;
+const AnimatedCompanyColumn: React.FC<AnimatedCompanyColumnProps> = ({
+  companies,
+  delay,
+}) => {
+  // Create duplicated array for seamless loop
+  const duplicatedCompanies = [...companies, ...companies];
+  
+  // Calculate keyframes for smooth animation with pauses
+  const createKeyframes = () => {
+    const keyframes: number[] = [];
+    const totalLogos = companies.length;
+    
+    for (let i = 0; i <= totalLogos; i++) {
+      keyframes.push(-(i * 100));
+    }
+    
+    return keyframes;
+  };
+  
+  // Calculate times for each keyframe (includes 3s pause per logo)
+  const createTimes = () => {
+    const times: number[] = [];
+    const totalLogos = companies.length;
+    const pauseTime = 3; // 3 seconds pause
+    const transitionTime = 0.8; // 0.8 seconds for transition
+    const segmentDuration = pauseTime + transitionTime;
+    const totalDuration = totalLogos * segmentDuration;
+    
+    for (let i = 0; i <= totalLogos; i++) {
+      if (i === 0) {
+        times.push(0);
       } else {
-        scrollContainer.scrollLeft += 1;
+        const time = (i * segmentDuration) / totalDuration;
+        times.push(time);
       }
-      animationFrame = requestAnimationFrame(scroll);
-    };
-
-    // Start scrolling after a short delay
-    scrollInterval = setTimeout(() => {
-      animationFrame = requestAnimationFrame(scroll);
-    }, 100);
-
-    return () => {
-      clearTimeout(scrollInterval);
-      cancelAnimationFrame(animationFrame);
-    };
-  }, []);
-
+    }
+    
+    return times;
+  };
+  
   return (
-    <section className="w-full py-20 sm:py-10 bg-white flex flex-col justify-start items-start gap-2 overflow-hidden">
-      <div className="w-full px-4 sm:px-8 lg:px-20 bg-white border-t border-b border-neutral-900/5 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 lg:gap-0 py-6 lg:py-0">
-        {/* Title Section */}
-        <div className="w-full lg:w-auto lg:flex-1 lg:max-w-xs flex justify-start items-center">
-          <h2 className="text-neutral-900 text-sm sm:text-base font-semibold font-[var(--font-instrument)] leading-normal">
-            The official sponsors and collaborators of ReXtro 2025.
-          </h2>
-        </div>
-
-        {/* Scrolling Logos Section */}
-        <div className="w-full lg:flex-1 border-t lg:border-t-0 lg:border-l border-neutral-900/5 flex justify-start items-center overflow-hidden pt-6 lg:pt-0">
-          <div
-            ref={scrollRef}
-            className="flex justify-start items-center gap-0 overflow-x-hidden"
-            style={{ scrollBehavior: 'auto' }}
+    <div className="relative h-full overflow-hidden">
+      <motion.ul
+        role="list"
+        className="flex flex-col"
+        animate={{
+          y: createKeyframes().map(k => `${k}%`),
+        }}
+        transition={{
+          duration: companies.length * 3.8, // Total cycle duration
+          delay: delay,
+          repeat: Infinity,
+          ease: "easeInOut",
+          times: createTimes(),
+          repeatType: "loop",
+        }}
+      >
+        {duplicatedCompanies.map((company, index) => (
+          <motion.li
+            key={`${company.name}-${index}`}
+            className="px-7 py-3 md:px-12 lg:px-6 xl:px-10 flex items-center justify-center"
           >
-            {/* Duplicate sponsors array for infinite scroll effect */}
-            {[...sponsors, ...sponsors, ...sponsors].map((sponsor, index) => (
-              <div
-                key={`${sponsor.id}-${index}`}
-                className="min-w-[180px] sm:min-w-[224px] h-24 sm:h-32 relative border-r border-neutral-900/5 flex items-center justify-center p-4 sm:p-6"
-              >
-                {/* Gradient overlay for visual effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/0 via-black/5 to-black/0 pointer-events-none" />
-
-                {/* Logo placeholder - replace with actual logos */}
-                <div className="relative w-28 sm:w-36 h-12 sm:h-16 flex items-center justify-center">
-                  <Image
-                    src={sponsor.logo}
-                    alt={sponsor.name}
-                    fill
-                    className="object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                    onError={(e) => {
-                      // Fallback to a placeholder if image doesn't exist
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent) {
-                        parent.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-neutral-100 rounded-lg">
-                          <span class="text-neutral-400 text-xs font-medium">${sponsor.name}</span>
-                        </div>`;
-                      }
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+            <img
+              alt={company.name}
+              loading="lazy"
+              width={144}
+              height={32}
+              decoding="async"
+              className="w-32 xl:w-36"
+              src={company.logo.src}
+            />
+          </motion.li>
+        ))}
+      </motion.ul>
+    </div>
   );
 };
 
-export default Sponsors;
+export default function Sponsors() {
+  // Diamond Tier Sponsors
+  const diamond: Company[] = [];
+
+  // Emerald Tier Sponsors
+  const emerald: Company[] = [
+    {
+      name: "A Letter Tech",
+      logo: {
+        src: "/Sponsor logo/Emerald/A letter tech logo (1).png",
+        height: 32,
+        width: 144,
+      },
+    },
+    {
+      name: "Emerald Sponsor",
+      logo: {
+        src: "/Sponsor logo/Emerald/Logo.jpg",
+        height: 32,
+        width: 144,
+      },
+    },
+  ];
+
+  // Gold Tier Sponsors
+  const gold: Company[] = [];
+
+  // Platinum Tier Sponsors
+  const platinum: Company[] = [];
+
+  // Ruby Tier Sponsors
+  const ruby: Company[] = [
+    {
+      name: "Ruby Sponsor",
+      logo: {
+        src: "/Sponsor logo/Ruby/LOGO FINAL.png",
+        height: 32,
+        width: 144,
+      },
+    },
+  ];
+
+  // Sapphire Tier Sponsors
+  const sapphire: Company[] = [
+    {
+      name: "Sapphire Sponsor",
+      logo: {
+        src: "/Sponsor logo/Sapphire/IMG-20251111-WA0032.jpg",
+        height: 32,
+        width: 144,
+      },
+    },
+  ];
+
+  // Silver Tier Sponsors
+  const silver: Company[] = [
+    {
+      name: "S-lon",
+      logo: {
+        src: "/Sponsor logo/Silver/S-lon.png",
+        height: 32,
+        width: 144,
+      },
+    },
+    {
+      name: "Kevilton",
+      logo: {
+        src: "/Sponsor logo/Silver/kevilton.png",
+        height: 32,
+        width: 144,
+      },
+    },
+    {
+      name: "Peplus",
+      logo: {
+        src: "/Sponsor logo/Silver/peplus.png",
+        height: 32,
+        width: 144,
+      },
+    },
+  ];
+
+  return (
+    <div className="relative overflow-hidden bg-white border-gray-950/5 outline outline-1 outline-offset-[-1px] outline-gray-950/5 mt-20">
+      <div className="border-b border-gray-950/5">
+        <div className="sm:flex mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+          {/* Header Text */}
+          <p className="flex-auto self-center text-bold text-balance py-8 text-center text-base/6 font-book text-gray-950 sm:pr-10 sm:text-left xl:py-10">
+            The official sponsors and collaborators of ReXtro 2025.
+          </p>
+
+          {/* Logo Grid */}
+          <ul
+            role="list"
+            className="-mx-6 grid flex-none grid-cols-2 sm:mx-0 sm:border-l sm:border-gray-950/5 lg:flex"
+          >
+            {/* Emerald Tier */}
+            {emerald.length > 0 && (
+              <li className="relative isolate flex flex-none justify-center overflow-hidden border-t border-gray-950/5 sm:border-t-0 border-r">
+                <div
+                  className="flex items-center justify-center py-3 h-[200px]"
+                  style={{
+                    mask: "linear-gradient(transparent calc(50% - 2.5rem), black calc(50% - 1rem), black calc(50% + 1rem), transparent calc(50% + 2.5rem))",
+                  }}
+                >
+                  <AnimatedCompanyColumn companies={emerald} delay={0} />
+                </div>
+              </li>
+            )}
+
+            {/* Ruby Tier */}
+            {ruby.length > 0 && (
+              <li className="relative isolate flex flex-none justify-center overflow-hidden border-t border-gray-950/5 sm:border-t-0 sm:border-r">
+                <div
+                  className="flex items-center justify-center py-3 h-[200px]"
+                  style={{
+                    mask: "linear-gradient(transparent calc(50% - 2.5rem), black calc(50% - 1rem), black calc(50% + 1rem), transparent calc(50% + 2.5rem))",
+                  }}
+                >
+                  <AnimatedCompanyColumn companies={ruby} delay={0.7} />
+                </div>
+              </li>
+            )}
+
+            {/* Sapphire Tier */}
+            {sapphire.length > 0 && (
+              <li className="relative isolate flex flex-none justify-center overflow-hidden border-t border-gray-950/5 lg:border-t-0 border-r">
+                <div
+                  className="flex items-center justify-center py-3 h-[200px]"
+                  style={{
+                    mask: "linear-gradient(transparent calc(50% - 2.5rem), black calc(50% - 1rem), black calc(50% + 1rem), transparent calc(50% + 2.5rem))",
+                  }}
+                >
+                  <AnimatedCompanyColumn companies={sapphire} delay={1.4} />
+                </div>
+              </li>
+            )}
+
+            {/* Silver Tier */}
+            {silver.length > 0 && (
+              <li className="relative isolate flex flex-none justify-center overflow-hidden border-t border-gray-950/5 lg:border-t-0 sm:border-r">
+                <div
+                  className="flex items-center justify-center py-3 h-[200px]"
+                  style={{
+                    mask: "linear-gradient(transparent calc(50% - 2.5rem), black calc(50% - 1rem), black calc(50% + 1rem), transparent calc(50% + 2.5rem))",
+                  }}
+                >
+                  <AnimatedCompanyColumn companies={silver} delay={2.1} />
+                </div>
+              </li>
+            )}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
