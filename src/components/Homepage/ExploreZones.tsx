@@ -30,6 +30,7 @@ const zones: Zone[] = [
     description:
       "Dedicated to astronomy and aerospace technology, this zone highlights the latest developments in space research, satellites, and mission planning.",
     height: "h-64",
+    video: "/zones/videos/1 1 Space Zone_reduced.mp4",
   },
   {
     title: "Sustainable & Renewable Energy Technologies Zone",
@@ -43,6 +44,7 @@ const zones: Zone[] = [
     description:
       "Step into the immersive world of Augmented and Virtual Reality applications for gaming, education, and industrial design.",
     height: "h-64",
+    video: "/zones/videos/game.mp4",
   },
   {
     title: "Game Zone",
@@ -54,19 +56,21 @@ const zones: Zone[] = [
   {
     title: "AI and Automotive Engineering & Mobility Solutions Zone",
     description:
-      "Discover applications of Artificial Intelligence, Machine Learning, and Computer Vision that are transforming industries and societies.",
+      "Explore the future of transportation with AI-powered autonomous vehicles, electric mobility solutions, and smart automotive technologies.",
     height: "h-64",
+    video: "/zones/videos/drone.mp4",
   },
   {
     title: "Marine & Naval Engineering Zone",
     description:
-      "Explore next-generation clean energy solutions, focusing on solar, wind, and hydro technologies that promote sustainability.",
+      "Dive into marine engineering innovations, naval architecture, and sustainable ocean technologies shaping the maritime industry.",
     height: "h-[528px]",
+    video: "/zones/videos/Marine_reduced.mp4",
   },
   {
     title: "Drone & UAV Technologies Zone",
     description:
-      "Discover applications of Artificial Intelligence, Machine Learning, and Computer Vision that are transforming industries and societies.",
+      "Experience cutting-edge unmanned aerial vehicle technologies for surveillance, delivery, agriculture, and emergency response applications.",
     height: "h-64",
     video: "/zones/videos/drone.mp4",
   },
@@ -83,20 +87,8 @@ const ZoneVideo = ({ video, title }: ZoneVideoProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
-  // Detect mobile device
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024); // lg breakpoint
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Intersection Observer for mobile auto-play
+  // Intersection Observer for lazy loading and auto-play
   useEffect(() => {
     if (!video) return;
 
@@ -107,8 +99,8 @@ const ZoneVideo = ({ video, title }: ZoneVideoProps) => {
           setHasLoaded(true);
         }
         
-        // Auto-play on mobile when visible
-        if (isMobile && videoRef.current) {
+        // Auto-play when visible, pause when not
+        if (videoRef.current) {
           if (entry.isIntersecting) {
             videoRef.current.play().catch(() => {});
           } else {
@@ -127,16 +119,7 @@ const ZoneVideo = ({ video, title }: ZoneVideoProps) => {
     }
 
     return () => observer.disconnect();
-  }, [video, hasLoaded, isMobile]);
-
-  // Handle hover for desktop
-  useEffect(() => {
-    if (!isMobile && videoRef.current && isHovered) {
-      videoRef.current.play().catch(() => {});
-    } else if (!isMobile && videoRef.current && !isHovered) {
-      videoRef.current.pause();
-    }
-  }, [isHovered, isMobile]);
+  }, [video, hasLoaded]);
 
   if (!video) {
     return (
@@ -148,8 +131,6 @@ const ZoneVideo = ({ video, title }: ZoneVideoProps) => {
     <div 
       ref={containerRef}
       className="flex-1 relative rounded-lg overflow-hidden"
-      onMouseEnter={() => !isMobile && setIsHovered(true)}
-      onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
       {isVisible ? (
         <video
@@ -157,7 +138,8 @@ const ZoneVideo = ({ video, title }: ZoneVideoProps) => {
           loop
           muted
           playsInline
-          preload="none"
+          autoPlay
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src={video} type="video/mp4" />
