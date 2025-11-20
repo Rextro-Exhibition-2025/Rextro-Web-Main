@@ -83,7 +83,7 @@ export default function EventsPage() {
         </div>
 
         {/* Content */}
-        <div className={`relative z-30 w-full px-6 sm:px-12 lg:px-20 py-32 text-center transition-all duration-1000 ${
+        <div className={`relative z-30 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-32 text-center transition-all duration-1000 ${
           isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {/* Badge with Glow */}
@@ -132,21 +132,21 @@ export default function EventsPage() {
           {/* Quick Stats - Enhanced with Glow */}
           <div className="mt-24 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
-              { label: 'Events', value: totalEvents },
-              { label: 'Days', value: '3' },
-              { label: 'Speakers', value: '15+' },
-              { label: 'Attendees', value: '500+' },
+              { label: 'Events', value: totalEvents, color: 'from-cyan-400 to-blue-500' },
+              { label: 'Days', value: '3', color: 'from-purple-400 to-pink-500' },
+              { label: 'Speakers', value: '15+', color: 'from-orange-400 to-red-500' },
+              { label: 'Attendees', value: '500+', color: 'from-green-400 to-emerald-500' },
             ].map((stat, idx) => (
               <div
-              key={idx}
-              className="group relative isolate text-center p-6 rounded-md bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] ring-1 ring-white/5"
+                key={idx}
+                className="group relative isolate text-center p-6 rounded-md bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] ring-1 ring-white/5"
               >
-              <div className="text-4xl sm:text-5xl font-bold mb-2 text-white">
-                {stat.value}
-              </div>
-              <div className="text-sm text-zinc-400 uppercase tracking-wider group-hover:text-zinc-300 transition-colors duration-300">
-                {stat.label}
-              </div>
+                <div className={`text-4xl sm:text-5xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  {stat.value}
+                </div>
+                <div className="text-sm text-zinc-400 uppercase tracking-wider group-hover:text-zinc-300 transition-colors duration-300">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -161,7 +161,7 @@ export default function EventsPage() {
 
       {/* Filter Section - Enhanced Pills */}
       <section className="sticky top-30 z-40 bg-gray-950/80 backdrop-blur-md border-b border-white/10 shadow-[0_1px_3px_rgba(0,0,0,0.2)]">
-        <div className="w-full px-6 sm:px-12 lg:px-20 py-4">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-4">
           <div className="flex items-center justify-between gap-4 overflow-x-auto">
             <div className="flex gap-2">
               {[
@@ -215,7 +215,7 @@ export default function EventsPage() {
           }}
         />
         
-        <div className="w-full relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
               Schedule
@@ -243,7 +243,7 @@ export default function EventsPage() {
           }}
         />
         
-        <div className="w-full relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
               All Events

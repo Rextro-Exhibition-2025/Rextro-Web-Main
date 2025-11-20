@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, Clock, MapPin, Users, Target, User, CheckCircle, X } from 'lucide-react';
 import { getCategoryIcon, getCategoryLabel, type EventData } from '@/lib/eventData';
@@ -18,6 +17,10 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    
+    // Stop Lenis smooth scroll when modal is open
+    const html = document.documentElement;
+    html.classList.add('lenis-stopped');
 
     const tl = gsap.timeline();
 
@@ -34,6 +37,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 
     return () => {
       document.body.style.overflow = '';
+      html.classList.remove('lenis-stopped');
     };
   }, []);
 
@@ -65,14 +69,18 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
     <div
       ref={overlayRef}
       onClick={handleOverlayClick}
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm overflow-y-auto"
-      style={{ overscrollBehavior: 'contain' }}
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 overflow-hidden"
+      data-lenis-prevent
     >
-      <div className="min-h-screen flex items-center justify-center p-4 sm:p-8">
         <div
           ref={modalRef}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-4xl rounded-2xl bg-gradient-to-br from-[#131316] to-[#0A0A0C] border border-white/10 shadow-2xl my-8"
+          className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-gradient-to-br from-[#131316] to-[#0A0A0C] border border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-cyan-500/50 hover:scrollbar-thumb-cyan-400/70"
+          data-lenis-prevent
+          style={{
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'rgba(6, 182, 212, 0.5) transparent',
+          }}
         >
         {/* Close Button */}
         <button
@@ -265,19 +273,19 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               </div>
             )}
           </div>
-        </div>
-      </div>
 
-      {/* Decorative Accents */}
-      <div
-        className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none"
-        style={{ backgroundColor: event.color }}
-      />
-      <div
-        className="absolute bottom-0 left-0 w-48 h-48 opacity-10 blur-3xl pointer-events-none"
-        style={{ backgroundColor: event.color }}
-      />
-      </div>
+          </div>
+
+          {/* Decorative Accents */}
+          <div
+            className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none"
+            style={{ backgroundColor: event.color }}
+          />
+          <div
+            className="absolute bottom-0 left-0 w-48 h-48 opacity-10 blur-3xl pointer-events-none"
+            style={{ backgroundColor: event.color }}
+          />
+        </div>
     </div>
   );
 };
