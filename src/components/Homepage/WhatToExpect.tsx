@@ -390,7 +390,19 @@ const WhatToExpect = () => {
                   <span className="font-bold">biomedical engineering</span>, witness ideas that are shaping the future.
                 </p>
               </div>
-              <div className="flex-1 bg-neutral-50 rounded-xl border border-zinc-200" />
+              <div className="flex-1 bg-neutral-50 rounded-xl border border-zinc-200 overflow-hidden">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/dCnH8OUU-UQ?si=Rc0Mz4Jb30Gi0rmO"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
             </div>
           </div>
         </div>
