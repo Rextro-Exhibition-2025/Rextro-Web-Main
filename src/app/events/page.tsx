@@ -83,7 +83,7 @@ export default function EventsPage() {
         </div>
 
         {/* Content */}
-        <div className={`relative z-30 w-full px-6 sm:px-12 lg:px-20 py-32 text-center transition-all duration-1000 ${
+        <div className={`relative z-30 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-32 text-center transition-all duration-1000 ${
           isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {/* Badge with Glow */}
@@ -161,9 +161,9 @@ export default function EventsPage() {
 
       {/* Filter Section - Enhanced Pills */}
       <section className="sticky top-30 z-40 bg-gray-950/80 backdrop-blur-md border-b border-white/10 shadow-[0_1px_3px_rgba(0,0,0,0.2)]">
-        <div className="w-full px-6 sm:px-12 lg:px-20 py-4">
-          <div className="flex items-center justify-between gap-4 overflow-x-auto">
-            <div className="flex gap-2">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex flex-wrap gap-2 w-full sm:w-auto">
               {[
                 { id: 'all', label: 'All', gradient: 'from-cyan-400 to-blue-500' },
                 { id: 'competition', label: 'Competitions', gradient: 'from-purple-400 to-pink-500' },
@@ -198,7 +198,7 @@ export default function EventsPage() {
                 </button>
               ))}
             </div>
-            <div className="text-sm text-zinc-500">
+            <div className="text-sm text-zinc-500 w-full sm:w-auto text-left sm:text-right">
               {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'}
             </div>
           </div>
@@ -215,7 +215,7 @@ export default function EventsPage() {
           }}
         />
         
-        <div className="w-full relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
               Schedule
@@ -243,7 +243,7 @@ export default function EventsPage() {
           }}
         />
         
-        <div className="w-full relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
               All Events
