@@ -122,7 +122,7 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ activeDay, onDayChange, o
                   </span>
                 </div>
 
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-zinc-300 transition-colors">
+                <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-zinc-300 transition-colors">
                   {event.title}
                 </h3>
 

@@ -16,7 +16,7 @@ const GameSelectionGrid: React.FC<GameSelectionGridProps> = ({ games }) => {
         <Link
           key={game.id}
           href={`/gamezone/${game.id}`}
-          className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden text-left block"
+          className="group relative p-6 rounded-2xl bg-neutral-800/80 backdrop-blur-md border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden text-left block"
         >
           {/* Hover Gradient Overlay */}
           <div className={`absolute inset-0 bg-gradient-to-br ${game.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
@@ -24,11 +24,11 @@ const GameSelectionGrid: React.FC<GameSelectionGridProps> = ({ games }) => {
           {/* Content */}
           <div className="relative z-10">
             {/* Thumbnail */}
-            <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-zinc-900">
+            <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-neutral-900">
               <img
                 src={game.thumbnail}
                 alt={game.name}
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
               />
               {/* Difficulty Badge */}
               <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold uppercase backdrop-blur-md border ${getDifficultyBg(game.difficulty)}`}>
@@ -60,14 +60,14 @@ const GameSelectionGrid: React.FC<GameSelectionGridProps> = ({ games }) => {
 
             {/* Play Button */}
             <div className="mt-4 flex items-center justify-between">
-              <div className={`px-4 py-2 rounded-lg bg-gradient-to-r ${game.gradient} text-white font-bold text-sm group-hover:shadow-lg transition-all duration-300`}>
+              <div className={`px-4 py-2 rounded-lg bg-gradient-to-r ${game.gradient} text-white font-bold text-sm shadow-lg group-hover:shadow-xl transition-all duration-300`}>
                 Play Now →
               </div>
             </div>
           </div>
 
           {/* Animated Border Glow */}
-          <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl bg-gradient-to-r ${game.gradient}`} style={{ zIndex: -1 }} />
+          <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl bg-gradient-to-r ${game.gradient}`} style={{ zIndex: -1, opacity: 0.1 }} />
         </Link>
       ))}
     </div>
