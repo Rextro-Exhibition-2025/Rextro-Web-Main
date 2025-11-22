@@ -8,7 +8,8 @@ const Preloader = () => {
   const { isHeroLoaded, setShouldRevealContent, setPreloaderFinished } = useLoading();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null); // Ref for direct DOM manipulation
+  const progressRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -32,7 +33,41 @@ const Preloader = () => {
         }
       });
 
-      // 1. Draw the Logo (Blueprint Phase)
+      // Animate gradient orbs
+      gsap.to(".gradient-orb-1", {
+        x: "30vw",
+        y: "40vh",
+        scale: 1.3,
+        duration: 8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
+      gsap.to(".gradient-orb-2", {
+        x: "-25vw",
+        y: "-30vh",
+        scale: 1.2,
+        duration: 10,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
+      gsap.to(".gradient-orb-3", {
+        x: "20vw",
+        y: "-35vh",
+        scale: 1.4,
+        duration: 12,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
+      // Particle animation moved to separate useEffect
+
+
+      // 1. Draw the Logo (Blueprint Phase) - at base scale
       tl.to(".logo-path", {
         strokeDashoffset: 0,
         duration: 2,
@@ -54,27 +89,13 @@ const Preloader = () => {
         ease: "none",
         onUpdate: () => {
             if (progressRef.current) {
-                progressRef.current.innerText = `SYSTEM INITIALIZING... ${Math.round(progressObj.value)}%`;
+                progressRef.current.innerText = `${Math.round(progressObj.value)}%`;
             }
         },
         onComplete: () => {
-             if (progressRef.current) {
-                progressRef.current.innerText = "READY";
-            }
             checkCompletion();
         }
       }, 0);
-
-      // Idle "Breathing" Animation (Optimized - No Filters)
-      // Using opacity and scale is much cheaper than drop-shadow
-      gsap.to(svgRef.current, {
-        opacity: 0.8,
-        scale: 1.02,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
 
     }, containerRef);
 
@@ -91,9 +112,6 @@ const Preloader = () => {
     return () => ctx.revert();
   }, []); // Empty dependency array for setup
 
-  // Effect to trigger exit when both progress is done (implied by this effect running after mount) and hero is loaded
-  // We need a way to know if progress is done. 
-  // Let's use a ref to track animation completion to avoid re-renders.
   const animationDoneRef = useRef(false);
 
   const runExitSequence = () => {
@@ -105,7 +123,14 @@ const Preloader = () => {
           onComplete: () => setPreloaderFinished(true),
         });
 
-        // 3. Exit Sequence: Reverse the drawing (Optimized)
+        // 3. Exit Sequence: Scale up while reversing the drawing
+        
+        // Scale up logo as it undraws
+        tl.to(svgRef.current, {
+          scale: 1.1,
+          duration: 1.6,
+          ease: "power1.inOut",
+        }, 0);
         
         // Remove fill
         tl.to(".logo-path", {
@@ -113,7 +138,7 @@ const Preloader = () => {
             strokeWidth: 1.5,
             duration: 0.4,
             ease: "power2.in",
-        });
+        }, 0);
 
         // "Undraw" - Reverse direction
         tl.to(".logo-path", {
@@ -126,7 +151,7 @@ const Preloader = () => {
                 from: "end" 
             },
             ease: "power2.inOut",
-        });
+        }, 0.4);
 
         // Fade out container
         tl.to(containerRef.current, {
@@ -140,11 +165,6 @@ const Preloader = () => {
 
   // Watch for hero loaded state
   useEffect(() => {
-      // We can't easily know if the GSAP timeline is finished without state.
-      // However, we can check if the progress text says "READY" or use a state just for "animationFinished".
-      // To keep it optimized, let's just use a simple timeout or assume the 3s duration.
-      // Better yet, let's use a state for 'animationComplete' but ensure it only triggers once.
-      
       const timer = setTimeout(() => {
           animationDoneRef.current = true;
           if (isHeroLoaded) {
@@ -155,22 +175,111 @@ const Preloader = () => {
       return () => clearTimeout(timer);
   }, [isHeroLoaded]);
 
+  // Generate particles - spread across entire screen
+  // Generate particles - spread across entire screen
+  const [particles, setParticles] = React.useState<{ left: string; top: string }[]>([]);
+
+  useEffect(() => {
+    const newParticles = Array.from({ length: 30 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  // Animate particles once they are rendered
+  useEffect(() => {
+    if (particles.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      const particleElements = document.querySelectorAll(".particle");
+      particleElements.forEach((particle) => {
+        gsap.to(particle, {
+          y: `${gsap.utils.random(-200, -400)}px`,
+          x: `${gsap.utils.random(-100, 100)}px`,
+          opacity: 0,
+          duration: gsap.utils.random(3, 6),
+          repeat: -1,
+          ease: "none"
+        });
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [particles]);
+
+  const particleElements = particles.map((pos, i) => (
+    <div
+      key={i}
+      className="particle absolute w-1 h-1 bg-white rounded-full opacity-60"
+      style={{
+        left: pos.left,
+        top: pos.top,
+      }}
+    />
+  ));
+
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505] overflow-hidden will-change-opacity"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden will-change-opacity"
+      style={{
+        background: 'radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%)'
+      }}
     >
-        {/* Grid Background (Static, no animation) */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none" 
-             style={{ 
-                 backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', 
-                 backgroundSize: '40px 40px' 
-             }}>
+        {/* Animated Gradient Orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div 
+            className="gradient-orb-1 absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[120px] opacity-30"
+            style={{
+              background: 'radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%)'
+            }}
+          />
+          <div 
+            className="gradient-orb-2 absolute top-1/2 right-1/4 w-[600px] h-[600px] rounded-full blur-[130px] opacity-25"
+            style={{
+              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)'
+            }}
+          />
+          <div 
+            className="gradient-orb-3 absolute bottom-1/4 left-1/2 w-[550px] h-[550px] rounded-full blur-[140px] opacity-20"
+            style={{
+              background: 'radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%)'
+            }}
+          />
         </div>
 
-      <div className="relative flex flex-col items-center justify-center w-full max-w-5xl px-4">
+        {/* Radial Grid Overlay */}
+        <div 
+          className="absolute inset-0 opacity-15 pointer-events-none" 
+          style={{ 
+            backgroundImage: `
+              radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.5) 100%),
+              linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+            `, 
+            backgroundSize: 'cover, 50px 50px, 50px 50px',
+            backgroundPosition: 'center, 0 0, 0 0'
+          }}
+        />
+
+        {/* Scanline Effect */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-5"
+          style={{
+            background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)',
+            animation: 'scanline 8s linear infinite'
+          }}
+        />
+
+        {/* Particles */}
+        <div ref={particlesRef} className="absolute inset-0 pointer-events-none">
+          {particleElements}
+        </div>
+
+      <div className="relative flex flex-col items-center justify-center w-full max-w-5xl px-4 z-10">
         
-        {/* Logo SVG - Removed the bottom text path */}
+        {/* Logo SVG */}
         <svg 
             ref={svgRef}
             width="100%" 
@@ -178,12 +287,16 @@ const Preloader = () => {
             viewBox="0 0 696 220" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full md:w-[800px] mb-8 overflow-visible will-change-transform"
+            className="w-full md:w-[800px] mb-12 overflow-visible will-change-transform"
+            style={{
+              filter: 'drop-shadow(0 0 25px rgba(255,255,255,0.3)) drop-shadow(0 0 50px rgba(139,92,246,0.2))'
+            }}
         >
             <defs>
                 <linearGradient id="mono-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#ffffff" />
-                    <stop offset="100%" stopColor="#e5e5e5" />
+                    <stop offset="50%" stopColor="#a78bfa" />
+                    <stop offset="100%" stopColor="#8b5cf6" />
                 </linearGradient>
             </defs>
             
@@ -193,12 +306,77 @@ const Preloader = () => {
 
         </svg>
 
-        {/* Loading Text */}
-        <div ref={progressRef} className="mt-8 text-sm font-[var(--font-instrument-sans)] text-white/50 tracking-[0.5em] uppercase animate-pulse">
-            SYSTEM INITIALIZING... 0%
+        {/* Creative Bottom Section - Minimal Loading Indicator */}
+        <div className="relative mt-16">
+          {/* Animated rotating dots circle */}
+          <div className="relative flex items-center justify-center h-16">
+            <div className="absolute w-16 h-16">
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1.5 h-1.5 bg-gradient-to-r from-violet-500 to-blue-500 rounded-full"
+                  style={{
+                    top: '50%',
+                    left: '50%',
+                    transform: `rotate(${i * 45}deg) translateY(-32px)`,
+                    animation: `pulse-dot ${1.5 + i * 0.1}s ease-in-out infinite`,
+                    animationDelay: `${i * 0.1}s`
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Loading label */}
+          <div 
+            className="mt-4 text-sm font-[var(--font-instrument-sans)] text-white/50 tracking-[0.4em] uppercase text-center"
+            style={{
+              marginRight: '-0.4em' // Compensate for letter-spacing
+            }}
+          >
+            LOADING
+          </div>
+          
+          {/* Hidden ref for progress updates */}
+          <div ref={progressRef} className="hidden"></div>
         </div>
 
       </div>
+
+      <style jsx>{`
+        @keyframes scanline {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(100%); }
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+        
+        @keyframes progress {
+          0% { width: 0%; }
+          100% { width: 100%; }
+        }
+        
+        @keyframes pulse-dot {
+          0%, 100% { 
+            opacity: 0.2;
+            transform: rotate(var(--rotation)) translateY(-32px) scale(0.8);
+          }
+          50% { 
+            opacity: 1;
+            transform: rotate(var(--rotation)) translateY(-32px) scale(1.2);
+          }
+        }
+      `}</style>
+      <style jsx>{`
+        ${[...Array(8)].map((_, i) => `
+          .absolute:nth-child(${i + 1}) {
+            --rotation: ${i * 45}deg;
+          }
+        `).join('')}
+      `}</style>
     </div>
   );
 };
