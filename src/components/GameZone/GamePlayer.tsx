@@ -5,6 +5,9 @@ import { Game } from '@/config/gameConfig';
 import { saveScore } from '@/utils/gameStorage';
 import PuzzleGame from './games/PuzzleGame';
 import MemoryGame from './games/MemoryGame';
+import CTFGame from './games/CTFGame';
+
+
 
 interface GamePlayerProps {
   game: Game;
@@ -45,6 +48,8 @@ const GamePlayer: React.FC<GamePlayerProps> = ({ game, onClose, onScoreSaved }) 
         return <PuzzleGame onGameEnd={handleGameEnd} />;
       case 'MemoryGame':
         return <MemoryGame onGameEnd={handleGameEnd} />;
+      case 'CTFGame':
+        return <CTFGame onGameEnd={handleGameEnd} />;
       default:
         return <div>Game not found</div>;
     }

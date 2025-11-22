@@ -3,19 +3,20 @@
 import React from 'react';
 import { Game, getDifficultyColor, getDifficultyBg } from '@/config/gameConfig';
 
+import Link from 'next/link';
+
 interface GameSelectionGridProps {
   games: Game[];
-  onSelectGame: (game: Game) => void;
 }
 
-const GameSelectionGrid: React.FC<GameSelectionGridProps> = ({ games, onSelectGame }) => {
+const GameSelectionGrid: React.FC<GameSelectionGridProps> = ({ games }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {games.map((game) => (
-        <button
+        <Link
           key={game.id}
-          onClick={() => onSelectGame(game)}
-          className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden text-left"
+          href={`/gamezone/${game.id}`}
+          className="group relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden text-left block"
         >
           {/* Hover Gradient Overlay */}
           <div className={`absolute inset-0 bg-gradient-to-br ${game.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
@@ -67,7 +68,7 @@ const GameSelectionGrid: React.FC<GameSelectionGridProps> = ({ games, onSelectGa
 
           {/* Animated Border Glow */}
           <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl bg-gradient-to-r ${game.gradient}`} style={{ zIndex: -1 }} />
-        </button>
+        </Link>
       ))}
     </div>
   );
