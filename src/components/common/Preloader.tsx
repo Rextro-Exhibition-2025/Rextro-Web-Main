@@ -64,18 +64,8 @@ const Preloader = () => {
         ease: "sine.inOut"
       });
 
-      // Animate particles - start immediately from random positions
-      const particles = document.querySelectorAll(".particle");
-      particles.forEach((particle, i) => {
-        gsap.to(particle, {
-          y: `${gsap.utils.random(-200, -400)}px`,
-          x: `${gsap.utils.random(-100, 100)}px`,
-          opacity: 0,
-          duration: gsap.utils.random(3, 6),
-          repeat: -1,
-          ease: "none"
-        });
-      });
+      // Particle animation moved to separate useEffect
+
 
       // 1. Draw the Logo (Blueprint Phase) - at base scale
       tl.to(".logo-path", {
@@ -186,13 +176,45 @@ const Preloader = () => {
   }, [isHeroLoaded]);
 
   // Generate particles - spread across entire screen
-  const particleElements = Array.from({ length: 30 }, (_, i) => (
+  // Generate particles - spread across entire screen
+  const [particles, setParticles] = React.useState<{ left: string; top: string }[]>([]);
+
+  useEffect(() => {
+    const newParticles = Array.from({ length: 30 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  // Animate particles once they are rendered
+  useEffect(() => {
+    if (particles.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      const particleElements = document.querySelectorAll(".particle");
+      particleElements.forEach((particle) => {
+        gsap.to(particle, {
+          y: `${gsap.utils.random(-200, -400)}px`,
+          x: `${gsap.utils.random(-100, 100)}px`,
+          opacity: 0,
+          duration: gsap.utils.random(3, 6),
+          repeat: -1,
+          ease: "none"
+        });
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [particles]);
+
+  const particleElements = particles.map((pos, i) => (
     <div
       key={i}
       className="particle absolute w-1 h-1 bg-white rounded-full opacity-60"
       style={{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
+        left: pos.left,
+        top: pos.top,
       }}
     />
   ));
