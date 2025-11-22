@@ -29,26 +29,26 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ selectedGameId }) => {
   const getRankColor = (rank: number): string => {
     switch (rank) {
       case 1:
-        return 'text-yellow-400'; // Gold
+        return 'text-yellow-600'; // Gold
       case 2:
-        return 'text-zinc-300'; // Silver
+        return 'text-gray-500'; // Silver
       case 3:
-        return 'text-orange-400'; // Bronze
+        return 'text-orange-600'; // Bronze
       default:
-        return 'text-zinc-500';
+        return 'text-gray-500';
     }
   };
 
   const getRankBg = (rank: number): string => {
     switch (rank) {
       case 1:
-        return 'bg-yellow-500/20 border-yellow-500/30';
+        return 'bg-yellow-100 border-yellow-200';
       case 2:
-        return 'bg-zinc-400/20 border-zinc-400/30';
+        return 'bg-gray-100 border-gray-200';
       case 3:
-        return 'bg-orange-500/20 border-orange-500/30';
+        return 'bg-orange-100 border-orange-200';
       default:
-        return 'bg-white/5 border-white/10';
+        return 'bg-gray-50 border-gray-100';
     }
   };
 
@@ -85,8 +85,8 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ selectedGameId }) => {
             onClick={() => setFilter('all')}
             className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
               filter === 'all'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
-                : 'bg-white/5 text-zinc-400 hover:bg-white/10'
+                ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md'
+                : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300'
             }`}
           >
             All Games
@@ -97,8 +97,8 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ selectedGameId }) => {
               onClick={() => setFilter(game.id)}
               className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
                 filter === game.id
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
-                  : 'bg-white/5 text-zinc-400 hover:bg-white/10'
+                  ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md'
+                  : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300'
               }`}
             >
               {game.name}
@@ -108,9 +108,9 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ selectedGameId }) => {
       )}
 
       {/* Leaderboard Table */}
-      <div className="bg-white/5 rounded-xl border border-white/10 overflow-hidden backdrop-blur-md">
+      <div className="bg-white rounded-xl border border-black/5 overflow-hidden shadow-sm">
         {scores.length === 0 ? (
-          <div className="text-center py-12 text-zinc-500">
+          <div className="text-center py-12 text-gray-500">
             <div className="text-4xl mb-4">🎮</div>
             <p>No scores yet. Be the first to play!</p>
           </div>
@@ -118,45 +118,45 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ selectedGameId }) => {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-white/10">
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-zinc-400 uppercase">Rank</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-zinc-400 uppercase">Player</th>
+                <tr className="border-b border-gray-100 bg-gray-50/50">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Rank</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Player</th>
                   {filter === 'all' && !selectedGameId && (
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-zinc-400 uppercase">Game</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Game</th>
                   )}
-                  <th className="px-4 py-3 text-right text-xs font-semibold text-zinc-400 uppercase">Score</th>
-                  <th className="px-4 py-3 text-right text-xs font-semibold text-zinc-400 uppercase">Attempts</th>
-                  <th className="px-4 py-3 text-right text-xs font-semibold text-zinc-400 uppercase">Time</th>
-                  <th className="px-4 py-3 text-right text-xs font-semibold text-zinc-400 uppercase">Date</th>
+                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Score</th>
+                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Attempts</th>
+                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Time</th>
+                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Date</th>
                 </tr>
               </thead>
               <tbody>
                 {scores.map((score, index) => (
                   <tr
                     key={`${score.playerName}-${score.playedAt}-${index}`}
-                    className={`border-b border-white/5 hover:bg-white/5 transition-colors ${
-                      index < 3 ? 'font-bold' : ''
+                    className={`border-b border-gray-50 hover:bg-gray-50 transition-colors ${
+                      index < 3 ? 'font-medium' : ''
                     }`}
                   >
                     <td className="px-4 py-4">
-                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${getRankBg(index + 1)}`}>
+                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border ${getRankBg(index + 1)}`}>
                         <span className={`text-sm ${getRankColor(index + 1)}`}>
                           {getRankIcon(index + 1)}
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-white">{score.playerName}</td>
+                    <td className="px-4 py-4 text-gray-900">{score.playerName}</td>
                     {filter === 'all' && !selectedGameId && (
-                      <td className="px-4 py-4 text-cyan-400 text-sm">{getGameName(score.gameId)}</td>
+                      <td className="px-4 py-4 text-purple-600 text-sm">{getGameName(score.gameId)}</td>
                     )}
                     <td className="px-4 py-4 text-right">
                       <span className={`text-lg font-bold ${getRankColor(index + 1)}`}>
                         {score.score}
                       </span>
                     </td>
-                    <td className="px-4 py-4 text-right text-zinc-400">{score.attempts}</td>
-                    <td className="px-4 py-4 text-right text-zinc-400">{score.duration}s</td>
-                    <td className="px-4 py-4 text-right text-zinc-500 text-xs">{formatDate(score.playedAt)}</td>
+                    <td className="px-4 py-4 text-right text-gray-500">{score.attempts}</td>
+                    <td className="px-4 py-4 text-right text-gray-500">{score.duration}s</td>
+                    <td className="px-4 py-4 text-right text-gray-400 text-xs">{formatDate(score.playedAt)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -166,7 +166,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ selectedGameId }) => {
       </div>
 
       {scores.length > 0 && (
-        <div className="mt-4 text-center text-sm text-zinc-500">
+        <div className="mt-4 text-center text-sm text-gray-500">
           Showing top {Math.min(scores.length, 50)} players
         </div>
       )}

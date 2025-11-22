@@ -73,7 +73,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
     <div className="event-grid-card group">
       <div
         onClick={onClick}
-        className="w-full h-full text-left p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300 flex flex-col cursor-pointer relative"
+        className="w-full h-full text-left p-6 rounded-2xl border border-white/5 bg-neutral-800/80 backdrop-blur-md hover:bg-neutral-800 hover:border-white/10 transition-all duration-300 flex flex-col cursor-pointer relative"
       >
         {/* Event Logo if available */}
         {event.image && (
@@ -93,7 +93,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs text-zinc-600 font-mono">
+              <span className="text-xs text-zinc-500 font-mono">
                 Day {event.day} • {event.startTime}
               </span>
             </div>
@@ -117,19 +117,19 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-semibold mb-3 group-hover:text-zinc-300 transition-colors">
+        <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-zinc-300 transition-colors">
           {event.title}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-zinc-500 mb-4 line-clamp-2 flex-grow">
+        <p className="text-sm text-zinc-400 mb-4 line-clamp-2 flex-grow">
           {event.description}
         </p>
 
         {/* Speaker */}
         {event.speaker && (
           <div className="mb-4 p-3 rounded-lg border border-white/5 bg-white/[0.02]">
-            <div className="text-xs text-zinc-600 mb-1">Speaker</div>
+            <div className="text-xs text-zinc-500 mb-1">Speaker</div>
             <div className="text-sm text-white font-medium">{event.speaker.name}</div>
             <div className="text-xs text-zinc-500">{event.speaker.organization}</div>
           </div>
@@ -160,14 +160,14 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
               e.stopPropagation();
               onClick();
             }}
-            className="w-full px-4 py-2 rounded-lg border border-white/10 text-sm font-semibold hover:bg-white/5 transition-all"
+            className="w-full px-4 py-2 rounded-lg border border-white/10 text-white text-sm font-semibold hover:bg-white/5 transition-all"
           >
             View Details
           </button>
         </div>
 
         {/* Hover Arrow */}
-        <div className="absolute top-6 right-6 text-zinc-700 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+        <div className="absolute top-6 right-6 text-zinc-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>

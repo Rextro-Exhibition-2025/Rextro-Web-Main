@@ -75,11 +75,11 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
         <div
           ref={modalRef}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-gradient-to-br from-[#131316] to-[#0A0A0C] border border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-cyan-500/50 hover:scrollbar-thumb-cyan-400/70"
+          className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-neutral-900 border border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-700 hover:scrollbar-thumb-zinc-600"
           data-lenis-prevent
           style={{
             scrollbarWidth: 'thin',
-            scrollbarColor: 'rgba(6, 182, 212, 0.5) transparent',
+            scrollbarColor: 'rgba(82, 82, 91, 0.5) transparent',
           }}
         >
         {/* Close Button */}
@@ -92,7 +92,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
         </button>          {/* Content */}
           <div className="pb-8">
           {/* Header Section */}
-          <div className="relative p-8 sm:p-10 border-b border-white/10">
+          <div className="relative p-8 sm:p-10 border-b border-white/10 bg-[#131316]">
             <div className="flex flex-col sm:flex-row items-start gap-6">
               {/* Logo or Icon */}
               {event.image ? (
@@ -168,11 +168,11 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 
                 <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-400">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-cyan-400" />
+                    <Calendar className="w-4 h-4 text-zinc-500" />
                     <span>{dayLabels[event.day]}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-cyan-400" />
+                    <Clock className="w-4 h-4 text-zinc-500" />
                     <span>{event.startTime} - {event.endTime}</span>
                   </div>
                 </div>
@@ -238,14 +238,14 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 
             {/* Speaker Info */}
             {event.speaker && (
-              <div className="p-6 rounded-xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20">
+              <div className="p-6 rounded-xl bg-white/5 border border-white/10">
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <User className="w-5 h-5" /> Speaker / Organizer
                 </h3>
                 <div className="space-y-2">
                   <div className="text-xl font-bold text-white">{event.speaker.name}</div>
-                  <div className="text-cyan-400 font-semibold">{event.speaker.title}</div>
-                  <div className="text-zinc-400">{event.speaker.organization}</div>
+                  <div className="text-zinc-300 font-semibold">{event.speaker.title}</div>
+                  <div className="text-zinc-500">{event.speaker.organization}</div>
                 </div>
               </div>
             )}
