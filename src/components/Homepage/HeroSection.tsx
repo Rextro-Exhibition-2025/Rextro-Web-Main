@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from './MeteorAnimation';
 import Image from "next/image";
 import { FlipWords } from "@/components/Homepage/FlipWords";
-
+import { useLoading } from "@/contexts/LoadingContext";
+import gsap from "gsap";
 
 interface HeroSectionProps {
   className?: string;
@@ -12,11 +13,33 @@ interface HeroSectionProps {
 
 const HeroSection = ({ className = '' }: HeroSectionProps) => {
   const words = ["INNOVATION", "BREAKTHROUGH", "NEXT GENERATION", "VISION", "IMPOSSIBLE", "SUSTAINABILITY"];
+  const { setHeroLoaded, shouldRevealContent } = useLoading();
+  const contentRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (shouldRevealContent) {
+      const tl = gsap.timeline();
+      
+      // Animate Background
+      tl.fromTo(bgRef.current, 
+        { opacity: 0, scale: 1.1 },
+        { opacity: 1, scale: 1, duration: 1.5, ease: "power3.out" }
+      );
+
+      // Animate Content
+      tl.fromTo(contentRef.current,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
+        "-=1"
+      );
+    }
+  }, [shouldRevealContent]);
 
   return (
     <div className={`relative isolate overflow-hidden bg-gray-50 h-[90vh] -mt-16 ${className}`}>
       {/* Background Layer */}
-      <div className="absolute inset-0 -z-10">
+      <div ref={bgRef} className="absolute inset-0 -z-10 opacity-0">
         {/* Left Circuit Board */}
         <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px]">
           <picture>
@@ -116,7 +139,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
       <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-gray-50 via-gray-50/5" />
 
       {/* Content Container */}
-      <div className="relative mx-auto w-full h-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+      <div ref={contentRef} className="relative mx-auto w-full h-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem] opacity-0">
         <div className="relative w-full h-full px-4 sm:px-8 lg:px-20 flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 ">
                 <div className="w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-8 sm:gap-10 lg:gap-12">
                   {/* Logo and Tagline Container */}
@@ -129,6 +152,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                         fill
                         className="object-contain"
                         priority
+                        onLoad={() => setHeroLoaded(true)}
                       />
                     </div>
         
