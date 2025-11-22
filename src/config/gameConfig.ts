@@ -36,6 +36,18 @@ export const games: Game[] = [
     color: '#8B5CF6',
     gradient: 'from-purple-500 to-pink-600',
   },
+  {
+    id: 'game-3',
+    name: 'Cyber Breach',
+    difficulty: 'expert',
+    description: 'Infiltrate the secure mainframe. Decode ciphers, bypass binary locks, and navigate the file system to capture the flag.',
+    thumbnail: '/zones/thumbnails/game.png',
+    component: 'CTFGame',
+    maxScore: 2000,
+    estimatedTime: 300, // 5 minutes
+    color: '#10B981',
+    gradient: 'from-green-500 to-emerald-600',
+  },
 ];
 
 export const getDifficultyColor = (difficulty: Game['difficulty']): string => {

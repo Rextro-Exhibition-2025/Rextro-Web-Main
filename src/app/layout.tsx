@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Sans, Orbitron } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/common/Navbar";
 import SmoothScroll from "@/components/common/SmoothScroll";
 import ClientLayout from "@/components/common/ClientLayout";
 
@@ -89,7 +88,6 @@ export default function RootLayout({
       >
         <ClientLayout>
           <SmoothScroll />
-          <Navbar />
           {children}
         </ClientLayout>
       </body>

@@ -6,16 +6,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import Footer from '@/components/Homepage/Footer';
 import GameSelectionGrid from '@/components/GameZone/GameSelectionGrid';
-import GamePlayer from '@/components/GameZone/GamePlayer';
 import Leaderboard from '@/components/GameZone/Leaderboard';
 import { games } from '@/config/gameConfig';
-import type { Game } from '@/config/gameConfig';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GameZonePage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
-  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [leaderboardKey, setLeaderboardKey] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -47,11 +44,6 @@ export default function GameZonePage() {
       );
     }
   }, []);
-
-  const handleScoreSaved = () => {
-    // Force leaderboard to re-render
-    setLeaderboardKey(prev => prev + 1);
-  };
 
   return (
     <div className="font-[family-name:var(--font-instrument-sans)] bg-[#0A0A0C] min-h-screen">
@@ -195,7 +187,7 @@ export default function GameZonePage() {
             </p>
           </div>
 
-          <GameSelectionGrid games={games} onSelectGame={setSelectedGame} />
+          <GameSelectionGrid games={games} />
         </div>
       </section>
 
@@ -214,15 +206,6 @@ export default function GameZonePage() {
           <Leaderboard key={leaderboardKey} />
         </div>
       </section>
-
-      {/* Game Player Modal */}
-      {selectedGame && (
-        <GamePlayer
-          game={selectedGame}
-          onClose={() => setSelectedGame(null)}
-          onScoreSaved={handleScoreSaved}
-        />
-      )}
 
       {/* Footer */}
       <Footer />
