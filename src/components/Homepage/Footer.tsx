@@ -61,28 +61,28 @@ const Footer = () => {
           
           {/* Left Section - Logos */}
           <div className="flex flex-col items-center lg:items-start gap-8">
-            <div className="flex items-center gap-6 p-4 rounded-2xl bg-gray-50 backdrop-blur-sm border border-black/5">
+            <div className="flex items-center gap-3 sm:gap-4 md:gap-6 p-3 sm:p-4 rounded-2xl bg-gray-50 backdrop-blur-sm border border-black/5">
               <Image
                 src={"/navbar/nav-icon.png"}
-                height={150}
-                width={150}
+                height={45}
+                width={290}
                 alt="ReXtro Logo"
-                className="object-contain"
+                className="object-contain w-32 sm:w-48 md:w-56 lg:w-72 h-auto"
               />
-              <div className="w-px h-10 bg-black/10" />
+              <div className="w-px h-8 sm:h-10 bg-black/10" />
               <Image
                 src={"/Logo Image.png"}
                 height={50}
                 width={40}
                 alt="Logo"
-                className="object-contain"
+                className="object-contain w-6 sm:w-8 md:w-10 h-auto"
               />
               <Image
                 src={"/ruhuna_eng_logo 1.png"}
                 height={50}
                 width={40}
                 alt="University of Ruhuna Engineering Faculty"
-                className="object-contain"
+                className="object-contain w-6 sm:w-8 md:w-10 h-auto"
               />
             </div>
             

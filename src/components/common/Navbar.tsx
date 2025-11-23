@@ -18,8 +18,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Trigger floating navbar after scrolling down a bit
-      setIsScrolled(window.scrollY > 100);
+      // Check if user has scrolled past hero section (adjust threshold as needed)
+      const heroHeight = window.innerHeight; // Assuming hero is full viewport height
+      setIsScrolled(window.scrollY > heroHeight * 0.8);
     };
 
     window.addEventListener("scroll", handleScroll);
