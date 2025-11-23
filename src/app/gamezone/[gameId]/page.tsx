@@ -7,6 +7,7 @@ import { saveScore } from '@/utils/gameStorage';
 import PuzzleGame from '@/components/GameZone/games/PuzzleGame';
 import MemoryGame from '@/components/GameZone/games/MemoryGame';
 import CTFGame from '@/components/GameZone/games/CTFGame';
+import CrackTheCircuitGame from '@/components/GameZone/games/CrackTheCircuitGame';
 import Link from 'next/link';
 
 export default function GamePage() {
@@ -57,6 +58,8 @@ export default function GamePage() {
         return <MemoryGame onGameEnd={handleGameEnd} />;
       case 'CTFGame':
         return <CTFGame onGameEnd={handleGameEnd} />;
+      case 'CrackTheCircuitGame':
+        return <CrackTheCircuitGame onGameEnd={handleGameEnd} />;
       default:
         return <div>Game component not found</div>;
     }

@@ -48,6 +48,18 @@ export const games: Game[] = [
     color: '#10B981',
     gradient: 'from-green-500 to-emerald-600',
   },
+  {
+    id: 'game-4',
+    name: 'Crack The Circuit',
+    difficulty: 'hard',
+    description: 'Build and complete electronic circuits by connecting components. Solve increasingly complex circuit puzzles to power up all bulbs!',
+    thumbnail: '/zones/thumbnails/game.png',
+    component: 'CrackTheCircuitGame',
+    maxScore: 1800,
+    estimatedTime: 360, // 6 minutes
+    color: '#0663ae',
+    gradient: 'from-blue-600 to-cyan-500',
+  },
 ];
 
 export const getDifficultyColor = (difficulty: Game['difficulty']): string => {
