@@ -23,7 +23,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
 
   useEffect(() => {
     if (shouldRevealContent) {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ delay: 1.5 }); // Wait for preloader exit sequence to clear
       
       // Animate Background
       tl.fromTo(bgRef.current, 
