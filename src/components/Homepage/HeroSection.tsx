@@ -234,7 +234,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                           }
                         }}
                       aria-label="Explore more (scroll to About)"
-                      className="w-full sm:w-auto h-10 sm:h-8 px-6 sm:px-4 pt-2 sm:pt-1.5 pb-2.5 sm:pb-2 bg-gradient-to-b from-blue-900 to-sky-950 rounded-md shadow-[0px_1px_3px_0px_rgba(33,33,38,0.20),0px_0px_0px_1px_rgba(73,120,190,1.00),0px_4px_12px_0px_rgba(0,0,0,0.35)] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.07)] hover:from-blue-800 hover:to-sky-900 transition-all flex justify-center items-center"
+                      className="w-full sm:w-auto h-10 sm:h-8 px-6 sm:px-4 pt-2 sm:pt-1.5 pb-2.5 sm:pb-2 bg-gradient-to-b from-blue-900 to-sky-950 rounded-md shadow-[0px_1px_3px_0px_rgba(33,33,38,0.20),0px_0px_0px_1px_rgba(73,120,190,1.00),0px_4px_12px_0px_rgba(0,0,0,0.35)] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.07)] hover:from-blue-800 hover:to-sky-900 transition-all flex justify-center items-center cursor-pointer"
                     >
                       <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
                         Explore more
@@ -246,7 +246,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                       href="https://youtu.be/pMPGkfB3cXc?si=kPPvAQot0qEsqMrN"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto p-1 sm:p-0.5 rounded-3xl flex justify-center sm:justify-start items-center gap-3 hover:bg-black/5 transition-colors"
+                      className="w-full sm:w-auto p-1 sm:p-0.5 sm:px-2 sm:py-2 rounded-3xl flex justify-center sm:justify-start items-center gap-3 hover:bg-black/5 transition-colors"
                     >
                       <div className="relative w-6 h-6 flex-shrink-0">
                         {/* Play button circle */}

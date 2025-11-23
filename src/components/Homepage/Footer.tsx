@@ -64,8 +64,8 @@ const Footer = () => {
             <div className="flex items-center gap-6 p-4 rounded-2xl bg-gray-50 backdrop-blur-sm border border-black/5">
               <Image
                 src={"/navbar/nav-icon.png"}
-                height={60}
-                width={60}
+                height={150}
+                width={150}
                 alt="ReXtro Logo"
                 className="object-contain"
               />
