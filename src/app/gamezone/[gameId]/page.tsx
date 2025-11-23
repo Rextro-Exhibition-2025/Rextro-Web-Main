@@ -8,12 +8,14 @@ import PuzzleGame from '@/components/GameZone/games/PuzzleGame';
 import MemoryGame from '@/components/GameZone/games/MemoryGame';
 import CTFGame from '@/components/GameZone/games/CTFGame';
 import CrackTheCircuitGame from '@/components/GameZone/games/CrackTheCircuitGame';
+import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 
 export default function GamePage() {
   const params = useParams();
   const router = useRouter();
   const gameId = params?.gameId as string;
+  const { isAuthenticated, loading, user } = useAuth();
   
   const game = games.find(g => g.id === gameId);
   
@@ -21,6 +23,37 @@ export default function GamePage() {
   const [playerName, setPlayerName] = useState('');
   const [gameData, setGameData] = useState<{ attempts: number; duration: number; baseScore: number } | null>(null);
   const [finalScore, setFinalScore] = useState(0);
+
+  // Authentication check - redirect to gamezone if not authenticated
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      router.push('/gamezone');
+    }
+  }, [loading, isAuthenticated, router]);
+
+  // Set player name from authenticated user
+  useEffect(() => {
+    if (user) {
+      setPlayerName(user.name);
+    }
+  }, [user]);
+
+  // Show loading state while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0A0A0C] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render anything if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return null;
+  }
 
   // If game not found
   if (!game) {
@@ -33,9 +66,8 @@ export default function GamePage() {
   }
 
   const handleStartGame = () => {
-    if (playerName.trim()) {
-      setGameState('playing');
-    }
+    // Player name is already set from authenticated user
+    setGameState('playing');
   };
 
   const handleGameEnd = (attempts: number, duration: number, baseScore: number) => {
@@ -105,23 +137,15 @@ export default function GamePage() {
             <p className="text-zinc-400 mb-8">{game.description}</p>
 
             <div className="bg-white/5 p-6 rounded-2xl border border-white/10 backdrop-blur-md">
-              <label className="block text-left text-white text-sm font-medium mb-2">Enter Your Name to Start</label>
-              <input
-                type="text"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleStartGame()}
-                placeholder="Your name..."
-                className="w-full px-4 py-3 rounded-lg bg-black/50 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500 transition-colors mb-4"
-                autoFocus
-              />
+              <div className="block text-left text-white text-sm font-medium mb-2">Playing as</div>
+              <div className="w-full px-4 py-3 rounded-lg bg-black/50 border border-white/10 text-white mb-4 flex items-center justify-between">
+                <span className="font-bold text-cyan-400">{playerName}</span>
+                <span className="text-xs text-zinc-500">✓ Authenticated</span>
+              </div>
               <button
                 onClick={handleStartGame}
-                disabled={!playerName.trim()}
-                className={`w-full px-6 py-3 rounded-lg font-bold transition-all duration-300 ${ playerName.trim()
-                    ? `bg-gradient-to-r ${game.gradient} text-white hover:shadow-lg hover:shadow-cyan-500/50`
-                    : 'bg-white/10 text-zinc-500 cursor-not-allowed'
-                }`}
+                className={`w-full px-6 py-3 rounded-lg font-bold transition-all duration-300 bg-gradient-to-r ${game.gradient} text-white hover:shadow-lg hover:shadow-cyan-500/50`}
+                autoFocus
               >
                 Start Mission
               </button>

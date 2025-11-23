@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { isAuthenticated, user, logout } = useAuth();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = (menu: string) => {
@@ -133,6 +135,40 @@ const Navbar = () => {
             );
             })}
 
+              {pathname === '/gamezone' && (
+                <>
+                  {isAuthenticated && user ? (
+                    <div className="flex items-center gap-2 ml-2 px-3 py-1.5 bg-purple-50 rounded-md border border-purple-200">
+                      <span className="text-xs text-purple-900 font-medium">
+                        {user.name}
+                      </span>
+                      <button
+                        onClick={logout}
+                        className="text-xs text-purple-600 hover:text-purple-800 font-medium underline"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        if (typeof window !== 'undefined' && (window as any).openGameZoneAuth) {
+                          (window as any).openGameZoneAuth();
+                        }
+                      }}
+                      className="flex items-center gap-2 ml-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-md shadow-lg transition-all cursor-pointer"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M3 12h12" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span className="text-white text-xs font-bold">
+                        Login to Play
+                      </span>
+                    </button>
+                  )}
+                </>
+              )}
+
               <Link
                 href="https://tickets.rextro.lk"
                 target="_blank"
@@ -206,6 +242,23 @@ const Navbar = () => {
               </div>
             );
             })}
+
+              {isAuthenticated && user && (
+                <div className="mt-2 p-3 bg-purple-50 rounded-md border border-purple-200 flex items-center justify-between">
+                  <span className="text-sm text-purple-900 font-medium">
+                    {user.name}
+                  </span>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setIsMenuOpen(false);
+                    }}
+                    className="text-sm text-purple-600 hover:text-purple-800 font-medium underline"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
 
               <Link
                 href="https://tickets.rextro.lk"
@@ -264,6 +317,40 @@ const Navbar = () => {
             );
             })}
 
+              {pathname === '/gamezone' && (
+                <>
+                  {isAuthenticated && user ? (
+                    <div className="flex items-center gap-2 ml-2 px-3 py-1.5 bg-purple-50 rounded-md border border-purple-200">
+                      <span className="text-xs text-purple-900 font-medium">
+                        {user.name}
+                      </span>
+                      <button
+                        onClick={logout}
+                        className="text-xs text-purple-600 hover:text-purple-800 font-medium underline"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        if (typeof window !== 'undefined' && (window as any).openGameZoneAuth) {
+                          (window as any).openGameZoneAuth();
+                        }
+                      }}
+                      className="flex items-center gap-2 ml-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-md shadow-lg transition-all cursor-pointer"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M3 12h12" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span className="text-white text-xs font-bold">
+                        Login to Play
+                      </span>
+                    </button>
+                  )}
+                </>
+              )}
+
               <Link
                 href="https://tickets.rextro.lk"
                 target="_blank"
@@ -337,6 +424,23 @@ const Navbar = () => {
               </div>
             );
             })}
+
+              {isAuthenticated && user && (
+                <div className="mt-2 p-3 bg-purple-50 rounded-md border border-purple-200 flex items-center justify-between">
+                  <span className="text-sm text-purple-900 font-medium">
+                    {user.name}
+                  </span>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setIsMenuOpen(false);
+                    }}
+                    className="text-sm text-purple-600 hover:text-purple-800 font-medium underline"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
 
               <Link
                 href="https://tickets.rextro.lk"
