@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from 'react';
-import MapHeroSection from '@/components/map/MapHeroSection';
-import InteractiveMap from '@/components/map/InteractiveMap';
-import MapLegend from '@/components/map/MapLegend';
-import Footer from '@/components/Homepage/Footer';
+import MapHeroSection from '../../components/map/MapHeroSection';
+import InteractiveMap from '../../components/map/InteractiveMap';
+import MapLegend from '../../components/map/MapLegend';
+import Footer from '../../components/Homepage/Footer';
 
 export default function MapPage() {
   const [selectedZone, setSelectedZone] = useState<string | null>(null);
