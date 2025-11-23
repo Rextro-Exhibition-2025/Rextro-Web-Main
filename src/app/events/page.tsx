@@ -5,9 +5,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Timer from '@/components/Homepage/Timer';
-import EventTimeline from '@/components/events/EventTimeline';
-import EventGrid from '@/components/events/EventGrid';
-import EventModal from '@/components/events/EventModal';
+import EventTimeline from '@/components/Events/EventTimeline';
+import EventGrid from '@/components/Events/EventGrid';
+import EventModal from '@/components/Events/EventModal';
 import Footer from '@/components/Homepage/Footer';
 import { events, type EventData } from '@/lib/eventData';
 
