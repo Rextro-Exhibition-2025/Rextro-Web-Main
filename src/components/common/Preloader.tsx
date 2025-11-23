@@ -87,13 +87,35 @@ const Preloader = () => {
         strokeWidth: 0,
         duration: 0.8,
         ease: "power2.out",
-      }, "-=0.4");
+      }, "-=0.4")
+      
+      // 1.5 Color Transition Phase
+      // 1.5 Color Transition Phase - Smoothly reveal colors after a brief hold
+      .to(".grad-1-stop-0", { stopColor: "#D40000", duration: 0.5 }, "+=0.01")
+      .to(".grad-1-stop-1", { stopColor: "#000080", duration: 0.5 }, "<")
+      .to(".grad-2-stop-0", { stopColor: "#002255", duration: 0.5 }, "<")
+      .to(".grad-2-stop-1", { stopColor: "#0044AA", duration: 0.5 }, "<")
+      .to(".grad-2-stop-2", { stopColor: "#213F6B", duration: 0.5 }, "<")
+      
+      // Remove glow completely to show crisp brand colors
+      .to(svgRef.current, {
+        filter: 'drop-shadow(0 0 0px rgba(0,0,0,0))',
+        duration: 0.5
+      }, "<")
+      
+      // Reveal Star Glow
+      .to(".logo-star-glow", {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "<");
 
       // 2. Progress Simulation (Direct DOM manipulation for performance)
       const progressObj = { value: 0 };
       tl.to(progressObj, {
         value: 100,
-        duration: 3,
+        duration: 4.5,
         ease: "none",
         onUpdate: () => {
             if (progressRef.current) {
@@ -137,18 +159,18 @@ const Preloader = () => {
         tl.to(".logo-path", {
             fillOpacity: 0,
             strokeWidth: 1.5,
-            duration: 0.4,
+            duration: 0.5,
             ease: "power2.in",
         }, 0);
 
-        // Scale up logo as it undraws (starts after fill is gone)
+        // Scale up logo as it undraws (starts concurrently)
         tl.to(svgRef.current, {
-          scale: 1.1,
-          duration: 1.6,
+          scale: 1.2,
+          duration: 1.3,
           ease: "power1.inOut",
-        }, 0.4);
+        }, 0);
 
-        // "Undraw" - Reverse direction
+        // "Undraw" - Reverse direction (starts concurrently)
         tl.to(".logo-path", {
             strokeDashoffset: function(i, target) {
                 return (target as SVGPathElement).getTotalLength();
@@ -159,14 +181,21 @@ const Preloader = () => {
                 from: "end" 
             },
             ease: "power2.inOut",
-        }, 0.4);
+        }, 0);
 
         // Fade out container
         tl.to(containerRef.current, {
             opacity: 0,
             duration: 0.6,
             ease: "power2.inOut"
-        }, "-=0.4");
+        }, "-=0.4")
+        
+        // Hide Star Glow
+        .to(".logo-star-glow", {
+            opacity: 0,
+            scale: 0.5,
+            duration: 0.4
+        }, 0);
 
       }, containerRef);
   };
@@ -178,7 +207,7 @@ const Preloader = () => {
           if (isHeroLoaded) {
               runExitSequence();
           }
-      }, 3000); // Matches the 3s duration of the progress animation
+      }, 4500); // Matches the 4.5s duration of the progress animation
 
       return () => clearTimeout(timer);
   }, [isHeroLoaded]);
@@ -287,32 +316,48 @@ const Preloader = () => {
 
       <div className="relative flex flex-col items-center justify-center w-full max-w-5xl px-4 z-10">
         
-        {/* Logo SVG */}
-        <svg 
-            ref={svgRef}
-            width="100%" 
-            height="auto" 
-            viewBox="0 0 696 220" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-[85%] md:w-[800px] mb-12 overflow-visible will-change-transform"
+        {/* Logo Container with Glow */}
+        <div className="relative w-[85%] md:w-[800px] mb-12">
+          {/* Star Glow Effect */}
+          <div 
+            className="logo-star-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[200%] pointer-events-none opacity-0 scale-50 z-[-1]"
             style={{
-              filter: 'drop-shadow(0 0 25px rgba(255,255,255,0.3)) drop-shadow(0 0 50px rgba(139,92,246,0.2))'
+              background: 'radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(139,92,246,0.1) 30%, transparent 70%)',
+              filter: 'blur(40px)',
+              mixBlendMode: 'screen'
             }}
-        >
-            <defs>
-                <linearGradient id="mono-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#ffffff" />
-                    <stop offset="50%" stopColor="#a78bfa" />
-                    <stop offset="100%" stopColor="#8b5cf6" />
-                </linearGradient>
-            </defs>
-            
-            {/* Only the main REXTRO text path remains */}
-            <path className="logo-path" d="M275.741 0.618001L202.209 0.618811L254.349 82.1688L197.881 161.865H257.783L295.436 108.596V161.865H369.603L316.54 78.7411L371.882 0.617798H311.985L275.741 51.9058V0.618001Z" fill="url(#mono-gradient)"/>
-            <path className="logo-path" d="M366.822 35.0534L350.924 57.4908H388.773V131.329H411.211V57.4908H446.321V35.0534H366.822ZM636.593 35.715C625.821 35.7485 614.991 36.2133 604.116 37.0108C590.393 38.017 580.605 47.3034 579.268 59.9534C578.292 75.8302 577.762 91.6388 579.268 106.349C580.605 118.999 590.393 128.286 604.116 129.292C614.991 130.089 625.821 130.554 636.593 130.588C647.365 130.621 658.08 130.223 668.721 129.292C682.426 128.093 692.029 118.979 693.569 106.349C695.122 90.4673 695.327 74.7126 693.569 59.9534C692.029 47.3231 682.426 38.2094 668.721 37.0108C658.08 36.08 647.365 35.6817 636.593 35.715ZM75.7969 36.7967C74.0988 36.7866 72.6298 36.8185 71.4867 36.8185H1.1875V131.669H23.7183L23.773 105.915V58.6766H25.0085L74.7729 58.6794C74.8515 58.6794 74.9199 58.6864 74.998 58.688H75.6103C76.4988 58.688 77.3645 58.7771 78.2018 58.946C78.2284 58.9518 78.2555 58.9572 78.282 58.9625C80.9771 59.4359 82.8794 60.4936 84.2146 61.9658C86.8728 64.3327 88.5523 67.7737 88.5523 71.6293C88.5523 76.6398 85.7297 80.958 81.5848 83.1102C81.3569 83.2335 81.1156 83.3427 80.8736 83.4506C80.7753 83.4942 80.6792 83.5415 80.5798 83.5824C80.4561 83.6334 80.3254 83.6755 80.1984 83.7223C78.7719 84.261 77.2308 84.5706 75.6111 84.5706H39.491C39.3423 84.5706 33.4809 84.5537 33.3332 84.5489H31.7492L45.3879 105.916H71.3091L85.8127 131.532L114.759 131.669L94.897 101.638C104.179 96.6394 111.162 88.8989 110.99 68.4147C110.742 38.9784 87.6838 36.865 75.7969 36.7967ZM532.814 36.7967C531.116 36.7866 529.648 36.8185 528.504 36.8185H458.205V131.669H480.736L480.791 105.915V58.6766H482.026L531.79 58.6794C531.869 58.6794 531.938 58.6864 532.016 58.688H532.628C533.516 58.688 534.382 58.7771 535.219 58.946C535.246 58.9518 535.272 58.9572 535.299 58.9625C537.995 59.4359 539.897 60.4936 541.232 61.9658C543.89 64.3327 545.57 67.7737 545.57 71.6293C545.57 76.6398 542.747 80.958 538.602 83.1102C538.374 83.2335 538.133 83.3427 537.891 83.4506C537.793 83.4942 537.697 83.5414 537.597 83.5824C537.474 83.6334 537.343 83.6755 537.216 83.7223C535.789 84.2611 534.248 84.5706 532.628 84.5706H496.508C496.359 84.5706 490.498 84.5537 490.351 84.5489H488.766L502.405 105.916H528.326L542.83 131.532L571.776 131.669L551.914 101.638C561.197 96.6394 568.179 88.8989 568.007 68.4147C567.759 38.9784 544.701 36.865 532.814 36.7967ZM122.162 37.1508V59.5882V131.669H144.6H195.512L211.41 109.232H144.6V59.5882H209.126V37.1508H144.6H122.162ZM637.114 55.1381C643.751 55.204 650.154 55.5628 656.483 56.0193C664.253 56.5799 669.489 61.8808 670.552 69.0102C671.713 78.5967 671.74 89.1331 670.552 97.2924C669.489 104.422 664.253 109.723 656.483 110.283C643.826 111.196 630.865 111.724 616.354 110.283C608.604 109.514 603.667 104.375 602.285 97.2924C601.202 87.7207 600.641 77.7075 602.285 69.0102C603.667 61.9275 608.604 56.7887 616.354 56.0193C623.61 55.299 630.478 55.0721 637.114 55.1381ZM156.073 75.2338V92.4496H199.509V75.2338H156.073Z" fill="url(#mono-gradient)"/>
+          />
 
-        </svg>
+          {/* Logo SVG */}
+          <svg 
+              ref={svgRef}
+              width="100%" 
+              height="auto" 
+              viewBox="0 0 696 220" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-auto overflow-visible will-change-transform"
+              style={{
+                filter: 'drop-shadow(0 0 25px rgba(255,255,255,0.3)) drop-shadow(0 0 50px rgba(139,92,246,0.2))'
+              }}
+          >
+              <defs>
+                  <linearGradient id="preloader-grad-1" x1="140.04" y1="89.5103" x2="756.601" y2="89.4854" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#ffffff" className="grad-1-stop-0" />
+                      <stop offset="100%" stopColor="#ffffff" className="grad-1-stop-1" />
+                  </linearGradient>
+                  <linearGradient id="preloader-grad-2" x1="1.1875" y1="83.3614" x2="694.812" y2="83.3614" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#ffffff" className="grad-2-stop-0" />
+                      <stop offset="45%" stopColor="#ffffff" className="grad-2-stop-1" />
+                      <stop offset="100%" stopColor="#ffffff" className="grad-2-stop-2" />
+                  </linearGradient>
+              </defs>
+              
+              {/* Only the main REXTRO text path remains */}
+              <path className="logo-path" d="M275.741 0.618001L202.209 0.618811L254.349 82.1688L197.881 161.865H257.783L295.436 108.596V161.865H369.603L316.54 78.7411L371.882 0.617798H311.985L275.741 51.9058V0.618001Z" fill="url(#preloader-grad-1)"/>
+              <path className="logo-path" d="M366.822 35.0534L350.924 57.4908H388.773V131.329H411.211V57.4908H446.321V35.0534H366.822ZM636.593 35.715C625.821 35.7485 614.991 36.2133 604.116 37.0108C590.393 38.017 580.605 47.3034 579.268 59.9534C578.292 75.8302 577.762 91.6388 579.268 106.349C580.605 118.999 590.393 128.286 604.116 129.292C614.991 130.089 625.821 130.554 636.593 130.588C647.365 130.621 658.08 130.223 668.721 129.292C682.426 128.093 692.029 118.979 693.569 106.349C695.122 90.4673 695.327 74.7126 693.569 59.9534C692.029 47.3231 682.426 38.2094 668.721 37.0108C658.08 36.08 647.365 35.6817 636.593 35.715ZM75.7969 36.7967C74.0988 36.7866 72.6298 36.8185 71.4867 36.8185H1.1875V131.669H23.7183L23.773 105.915V58.6766H25.0085L74.7729 58.6794C74.8515 58.6794 74.9199 58.6864 74.998 58.688H75.6103C76.4988 58.688 77.3645 58.7771 78.2018 58.946C78.2284 58.9518 78.2555 58.9572 78.282 58.9625C80.9771 59.4359 82.8794 60.4936 84.2146 61.9658C86.8728 64.3327 88.5523 67.7737 88.5523 71.6293C88.5523 76.6398 85.7297 80.958 81.5848 83.1102C81.3569 83.2335 81.1156 83.3427 80.8736 83.4506C80.7753 83.4942 80.6792 83.5415 80.5798 83.5824C80.4561 83.6334 80.3254 83.6755 80.1984 83.7223C78.7719 84.261 77.2308 84.5706 75.6111 84.5706H39.491C39.3423 84.5706 33.4809 84.5537 33.3332 84.5489H31.7492L45.3879 105.916H71.3091L85.8127 131.532L114.759 131.669L94.897 101.638C104.179 96.6394 111.162 88.8989 110.99 68.4147C110.742 38.9784 87.6838 36.865 75.7969 36.7967ZM532.814 36.7967C531.116 36.7866 529.648 36.8185 528.504 36.8185H458.205V131.669H480.736L480.791 105.915V58.6766H482.026L531.79 58.6794C531.869 58.6794 531.938 58.6864 532.016 58.688H532.628C533.516 58.688 534.382 58.7771 535.219 58.946C535.246 58.9518 535.272 58.9572 535.299 58.9625C537.995 59.4359 539.897 60.4936 541.232 61.9658C543.89 64.3327 545.57 67.7737 545.57 71.6293C545.57 76.6398 542.747 80.958 538.602 83.1102C538.374 83.2335 538.133 83.3427 537.891 83.4506C537.793 83.4942 537.697 83.5414 537.597 83.5824C537.474 83.6334 537.343 83.6755 537.216 83.7223C535.789 84.2611 534.248 84.5706 532.628 84.5706H496.508C496.359 84.5706 490.498 84.5537 490.351 84.5489H488.766L502.405 105.916H528.326L542.83 131.532L571.776 131.669L551.914 101.638C561.197 96.6394 568.179 88.8989 568.007 68.4147C567.759 38.9784 544.701 36.865 532.814 36.7967ZM122.162 37.1508V59.5882V131.669H144.6H195.512L211.41 109.232H144.6V59.5882H209.126V37.1508H144.6H122.162ZM637.114 55.1381C643.751 55.204 650.154 55.5628 656.483 56.0193C664.253 56.5799 669.489 61.8808 670.552 69.0102C671.713 78.5967 671.74 89.1331 670.552 97.2924C669.489 104.422 664.253 109.723 656.483 110.283C643.826 111.196 630.865 111.724 616.354 110.283C608.604 109.514 603.667 104.375 602.285 97.2924C601.202 87.7207 600.641 77.7075 602.285 69.0102C603.667 61.9275 608.604 56.7887 616.354 56.0193C623.61 55.299 630.478 55.0721 637.114 55.1381ZM156.073 75.2338V92.4496H199.509V75.2338H156.073Z" fill="url(#preloader-grad-2)"/>
+          </svg>
+        </div>
 
         {/* Creative Bottom Section - Minimal Loading Indicator */}
         <div className="relative mt-16">
@@ -322,7 +367,7 @@ const Preloader = () => {
               {[...Array(8)].map((_, i) => (
                 <div
                   key={i}
-                  className="absolute w-1.5 h-1.5 bg-gradient-to-r from-violet-500 to-blue-500 rounded-full"
+                  className="absolute w-1.5 h-1.5 bg-white rounded-full"
                   style={{
                     top: '50%',
                     left: '50%',
@@ -337,7 +382,7 @@ const Preloader = () => {
           
           {/* Loading label */}
           <div 
-            className="mt-4 text-sm font-[var(--font-instrument-sans)] text-white/50 tracking-[0.4em] uppercase text-center"
+            className="mt-4 text-sm font-[var(--font-instrument-sans)] text-white tracking-[0.4em] uppercase text-center"
             style={{
               marginRight: '-0.4em' // Compensate for letter-spacing
             }}
