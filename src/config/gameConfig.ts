@@ -9,6 +9,12 @@ export interface Game {
   estimatedTime: number; // in seconds
   color: string;
   gradient: string;
+  maxAttempts: number; // Maximum attempts allowed per user
+  timeLimit: number; // Time limit in seconds (0 = no limit)
+  levels?: number; // Number of levels in the game
+  levelScoring?: {
+    [key: number]: number; // Score per level
+  };
 }
 
 export const games: Game[] = [
@@ -23,6 +29,8 @@ export const games: Game[] = [
     estimatedTime: 120, // 2 minutes
     color: '#5CE3FF',
     gradient: 'from-cyan-500 to-blue-600',
+    maxAttempts: 5,
+    timeLimit: 0, // No time limit
   },
   {
     id: 'game-2',
@@ -35,6 +43,8 @@ export const games: Game[] = [
     estimatedTime: 180, // 3 minutes
     color: '#8B5CF6',
     gradient: 'from-purple-500 to-pink-600',
+    maxAttempts: 3,
+    timeLimit: 0, // No time limit
   },
   {
     id: 'game-3',
@@ -47,6 +57,8 @@ export const games: Game[] = [
     estimatedTime: 300, // 5 minutes
     color: '#10B981',
     gradient: 'from-green-500 to-emerald-600',
+    maxAttempts: 2,
+    timeLimit: 0, // No time limit
   },
   {
     id: 'game-4',
@@ -59,6 +71,16 @@ export const games: Game[] = [
     estimatedTime: 360, // 6 minutes
     color: '#0663ae',
     gradient: 'from-blue-600 to-cyan-500',
+    maxAttempts: 3, // User can play 3 times
+    timeLimit: 30, // 30 seconds time limit
+    levels: 5, // 5 levels in the game
+    levelScoring: {
+      1: 100,  // Level 1: 100 points
+      2: 200,  // Level 2: 200 points
+      3: 300,  // Level 3: 300 points
+      4: 500,  // Level 4: 500 points
+      5: 700,  // Level 5: 700 points
+    },
   },
 ];
 
