@@ -17,6 +17,7 @@ const Preloader = () => {
       
       // Set initial states for optimization
       gsap.set(containerRef.current, { autoAlpha: 1 });
+      gsap.set(svgRef.current, { scale: 1.3 }); // Start scaled up
       
       const paths = document.querySelectorAll(".logo-path");
       paths.forEach((path) => {
@@ -68,12 +69,19 @@ const Preloader = () => {
 
 
       // 1. Draw the Logo (Blueprint Phase) - at base scale
+      // Animate scale down from 1.3 to 1 concurrently with drawing
+      tl.to(svgRef.current, {
+        scale: 1,
+        duration: 2.5,
+        ease: "power2.out",
+      }, 0);
+
       tl.to(".logo-path", {
         strokeDashoffset: 0,
         duration: 2,
         stagger: 0.1,
         ease: "power2.inOut",
-      })
+      }, 0) // Sync with scale animation
       .to(".logo-path", {
         fillOpacity: 1,
         strokeWidth: 0,
@@ -125,13 +133,6 @@ const Preloader = () => {
 
         // 3. Exit Sequence: Scale up while reversing the drawing
         
-        // Scale up logo as it undraws
-        tl.to(svgRef.current, {
-          scale: 1.1,
-          duration: 1.6,
-          ease: "power1.inOut",
-        }, 0);
-        
         // Remove fill
         tl.to(".logo-path", {
             fillOpacity: 0,
@@ -139,6 +140,13 @@ const Preloader = () => {
             duration: 0.4,
             ease: "power2.in",
         }, 0);
+
+        // Scale up logo as it undraws (starts after fill is gone)
+        tl.to(svgRef.current, {
+          scale: 1.1,
+          duration: 1.6,
+          ease: "power1.inOut",
+        }, 0.4);
 
         // "Undraw" - Reverse direction
         tl.to(".logo-path", {
@@ -287,7 +295,7 @@ const Preloader = () => {
             viewBox="0 0 696 220" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full md:w-[800px] mb-12 overflow-visible will-change-transform"
+            className="w-[85%] md:w-[800px] mb-12 overflow-visible will-change-transform"
             style={{
               filter: 'drop-shadow(0 0 25px rgba(255,255,255,0.3)) drop-shadow(0 0 50px rgba(139,92,246,0.2))'
             }}
