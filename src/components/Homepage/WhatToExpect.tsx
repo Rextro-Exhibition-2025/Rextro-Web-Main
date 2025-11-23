@@ -7,6 +7,10 @@ import { useEffect, useRef, useState } from 'react';
 const WhatToExpect = () => {
   const [highlightProgress, setHighlightProgress] = useState(0);
   const quoteRef = useRef<HTMLDivElement>(null);
+  const competitionCardRef = useRef<HTMLDivElement>(null);
+  const talksCardRef = useRef<HTMLDivElement>(null);
+  const [isCompetitionHovered, setIsCompetitionHovered] = useState(false);
+  const [isTalksHovered, setIsTalksHovered] = useState(false);
   
   // Interactive zones state
   const [activeZone, setActiveZone] = useState(0);
@@ -24,6 +28,49 @@ const WhatToExpect = () => {
     }, 3000); // Change every 3 seconds
     
     return () => clearInterval(interval);
+  }, []);
+
+  // Auto-trigger hover animations on mobile when cards become visible
+  useEffect(() => {
+    const isMobile = window.innerWidth < 1024; // lg breakpoint
+    
+    if (!isMobile) return;
+
+    const competitionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsCompetitionHovered(true);
+          setTimeout(() => setIsCompetitionHovered(false), 3000);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    const talksObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsTalksHovered(true);
+          setTimeout(() => setIsTalksHovered(false), 3000);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (competitionCardRef.current) {
+      competitionObserver.observe(competitionCardRef.current);
+    }
+    if (talksCardRef.current) {
+      talksObserver.observe(talksCardRef.current);
+    }
+
+    return () => {
+      if (competitionCardRef.current) {
+        competitionObserver.unobserve(competitionCardRef.current);
+      }
+      if (talksCardRef.current) {
+        talksObserver.unobserve(talksCardRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -88,7 +135,7 @@ const WhatToExpect = () => {
                     <span className="relative z-10 bg-gradient-to-r from-transparent via-transparent to-transparent"
                       style={{
                         backgroundImage: `linear-gradient(to right, #FFF700 ${highlightProgress}%, transparent ${highlightProgress}%)`,
-                        backgroundSize: '100% 65%',
+                        backgroundSize: '100% 95%',
                         backgroundPosition: '0 85%',
                         backgroundRepeat: 'no-repeat',
                         transition: 'background-image 1.5s ease-out'
@@ -239,7 +286,10 @@ const WhatToExpect = () => {
             {/* Card 2 & 3 Column */}
             <div className="flex flex-col gap-4 lg:gap-2">
               {/* Card 2: Engaging Competitions */}
-              <div className="group isolate flex flex-col flex-1 rounded-2xl bg-white shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+              <div 
+                ref={competitionCardRef}
+                className={`group isolate flex flex-col flex-1 rounded-2xl bg-white shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] overflow-hidden ${isCompetitionHovered ? 'hovered' : ''}`}
+              >
                 
                 {/* Text Content - Positioned at bottom */}
                 <div className="relative z-10 flex-none px-6 order-last pb-6">
@@ -257,17 +307,17 @@ const WhatToExpect = () => {
                     
                     {/* Concentric Circles Background */}
                     <div className="absolute -z-10 mt-[-6.75rem] blur-[1px]">
-                      <div className="absolute left-1/2 top-1/2 ml-[-6.75rem] mt-[-6.75rem] size-[13.5rem] rounded-full border border-gray-400 opacity-15 transition-all duration-700 group-hover:border-blue-500 group-hover:opacity-40 group-hover:scale-110" />
-                      <div className="absolute left-1/2 top-1/2 ml-[-8.75rem] mt-[-8.75rem] size-[17.5rem] rounded-full border border-gray-400 opacity-[0.125] transition-all duration-700 delay-100 group-hover:border-blue-500 group-hover:opacity-30 group-hover:scale-110" />
-                      <div className="absolute left-1/2 top-1/2 ml-[-10.75rem] mt-[-10.75rem] size-[21.5rem] rounded-full border border-gray-400 opacity-10 transition-all duration-700 delay-200 group-hover:border-blue-500 group-hover:opacity-20 group-hover:scale-110" />
-                      <div className="absolute left-1/2 top-1/2 ml-[-12.75rem] mt-[-12.75rem] size-[25.5rem] rounded-full border border-gray-400 opacity-[0.075] transition-all duration-700 delay-300 group-hover:border-blue-500 group-hover:opacity-15 group-hover:scale-110" />
+                      <div className="absolute left-1/2 top-1/2 ml-[-6.75rem] mt-[-6.75rem] size-[13.5rem] rounded-full border border-gray-400 opacity-15 transition-all duration-700 group-hover:border-blue-500 group-hover:opacity-40 group-hover:scale-110 group-[.hovered]:border-blue-500 group-[.hovered]:opacity-40 group-[.hovered]:scale-110" />
+                      <div className="absolute left-1/2 top-1/2 ml-[-8.75rem] mt-[-8.75rem] size-[17.5rem] rounded-full border border-gray-400 opacity-[0.125] transition-all duration-700 delay-100 group-hover:border-blue-500 group-hover:opacity-30 group-hover:scale-110 group-[.hovered]:border-blue-500 group-[.hovered]:opacity-30 group-[.hovered]:scale-110" />
+                      <div className="absolute left-1/2 top-1/2 ml-[-10.75rem] mt-[-10.75rem] size-[21.5rem] rounded-full border border-gray-400 opacity-10 transition-all duration-700 delay-200 group-hover:border-blue-500 group-hover:opacity-20 group-hover:scale-110 group-[.hovered]:border-blue-500 group-[.hovered]:opacity-20 group-[.hovered]:scale-110" />
+                      <div className="absolute left-1/2 top-1/2 ml-[-12.75rem] mt-[-12.75rem] size-[25.5rem] rounded-full border border-gray-400 opacity-[0.075] transition-all duration-700 delay-300 group-hover:border-blue-500 group-hover:opacity-15 group-hover:scale-110 group-[.hovered]:border-blue-500 group-[.hovered]:opacity-15 group-[.hovered]:scale-110" />
                     </div>
 
                     {/* Competition Logo Badges */}
                     <div className="flex gap-4">
                       {/* Xbotix */}
-                      <div className="transition duration-1000 opacity-100 group-hover:scale-110">
-                        <div className="size-10 rounded-lg shadow-[0_2px_3px_rgba(0,0,0,0.04),0_24px_68px_rgba(47,48,55,0.05),0_4px_6px_rgba(34,42,53,0.04),0_1px_1px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 group-hover:ring-blue-500/50 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] flex items-center justify-center">
+                      <div className="transition duration-1000 opacity-100 group-hover:scale-110 group-[.hovered]:scale-110">
+                        <div className="size-10 rounded-lg shadow-[0_2px_3px_rgba(0,0,0,0.04),0_24px_68px_rgba(47,48,55,0.05),0_4px_6px_rgba(34,42,53,0.04),0_1px_1px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 group-hover:ring-blue-500/50 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] group-[.hovered]:ring-blue-500/50 group-[.hovered]:shadow-[0_0_15px_rgba(59,130,246,0.6)] flex items-center justify-center">
                           <Image
                             src="/Xbotix.svg"
                             alt="Xbotix"
@@ -279,8 +329,8 @@ const WhatToExpect = () => {
                       </div>
 
                       {/* Pitch Arena */}
-                       <div className="transition duration-1000 opacity-100 group-hover:scale-110">
-                        <div className="size-10 rounded-lg shadow-[0_2px_3px_rgba(0,0,0,0.04),0_24px_68px_rgba(47,48,55,0.05),0_4px_6px_rgba(34,42,53,0.04),0_1px_1px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 group-hover:ring-blue-500/50 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] flex items-center justify-center">
+                       <div className="transition duration-1000 opacity-100 group-hover:scale-110 group-[.hovered]:scale-110">
+                        <div className="size-10 rounded-lg shadow-[0_2px_3px_rgba(0,0,0,0.04),0_24px_68px_rgba(47,48,55,0.05),0_4px_6px_rgba(34,42,53,0.04),0_1px_1px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 group-hover:ring-blue-500/50 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] group-[.hovered]:ring-blue-500/50 group-[.hovered]:shadow-[0_0_15px_rgba(59,130,246,0.6)] flex items-center justify-center">
                            <Image
                             src="/Pitch arena.svg"
                             alt="Pitch Arena"
@@ -292,8 +342,8 @@ const WhatToExpect = () => {
                       </div>
 
                       {/* MathQuest */}
-                      <div className="transition duration-1000 opacity-100 group-hover:scale-110">
-                        <div className="size-10 rounded-lg shadow-[0_2px_3px_rgba(0,0,0,0.04),0_24px_68px_rgba(47,48,55,0.05),0_4px_6px_rgba(34,42,53,0.04),0_1px_1px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 group-hover:ring-blue-500/50 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] flex items-center justify-center">
+                      <div className="transition duration-1000 opacity-100 group-hover:scale-110 group-[.hovered]:scale-110">
+                        <div className="size-10 rounded-lg shadow-[0_2px_3px_rgba(0,0,0,0.04),0_24px_68px_rgba(47,48,55,0.05),0_4px_6px_rgba(34,42,53,0.04),0_1px_1px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-500 group-hover:ring-blue-500/50 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] group-[.hovered]:ring-blue-500/50 group-[.hovered]:shadow-[0_0_15px_rgba(59,130,246,0.6)] flex items-center justify-center">
                            <Image
                             src="/MathQuest.svg"
                             alt="MathQuest"
@@ -307,29 +357,26 @@ const WhatToExpect = () => {
 
                     {/* Connection Lines */}
                     <div className="relative aspect-[128/55] w-32">
-                      <svg viewBox="0 0 128 55" fill="none" aria-hidden="true" className="absolute inset-0 size-full stroke-gray-950/10 transition-all duration-500 group-hover:stroke-blue-500/50">
+                      <svg viewBox="0 0 128 55" fill="none" aria-hidden="true" className="absolute inset-0 size-full stroke-gray-950/10 transition-all duration-500 group-hover:stroke-blue-500/50 group-[.hovered]:stroke-blue-500/50">
                         <path d="M64 0v25M8 0v8c0 8.837 7.163 16 16 16h24c8.837 0 16 7.163 16 16v15M120 0v8c0 8.837-7.163 16-16 16H80c-5.922 0-11.093 3.218-13.86 8" />
                       </svg>
                     </div>
 
                     {/* Join Badge with Gradient Glow */}
-                    <div className="relative mt-px flex items-center gap-1.5 rounded-lg bg-white py-1 pl-1.5 pr-2 text-2xs font-medium text-gray-950 shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] ring-1 ring-gray-950/5 font-[var(--font-instrument)] transition-all duration-500 group-hover:ring-blue-500/50">
-                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="size-4 transition-colors duration-500 group-hover:stroke-blue-500">
-                        <g stroke="#9394A1" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" className="group-hover:stroke-blue-500">
-                          <circle cx="8" cy="8" r="6.25" />
-                          <path d="M8 5v6m3-3H5" />
-                        </g>
-                      </svg>
+                    <div className="relative mt-px flex items-center gap-1.5 rounded-lg bg-white py-1 pl-1.5 pr-2 text-2xs font-medium text-gray-950 shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] ring-1 ring-gray-950/5 font-[var(--font-instrument)] transition-all duration-500 group-hover:ring-blue-500/50 group-[.hovered]:ring-blue-500/50">
                       Competitions
                       {/* Gradient Glow Effect */}
-                      <div className="absolute -bottom-1.5 left-1/2 -z-10 -ml-10 h-6 w-20 transform-gpu rounded-[50%] bg-gradient-to-r from-purple-500 from-25% to-sky-300 to-75% blur-sm opacity-0 transition-opacity duration-700 group-hover:opacity-25" />
+                      <div className="absolute -bottom-1.5 left-1/2 -z-10 -ml-10 h-6 w-20 transform-gpu rounded-[50%] bg-gradient-to-r from-purple-500 from-25% to-sky-300 to-75% blur-sm opacity-0 transition-opacity duration-700 group-hover:opacity-25 group-[.hovered]:opacity-25" />
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Card 3: Inspiring Talks */}
-              <div className="group isolate flex flex-col flex-1 rounded-2xl bg-white shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+              <div 
+                ref={talksCardRef}
+                className={`group isolate flex flex-col flex-1 rounded-2xl bg-white shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.05),0_2px_3px_rgba(0,0,0,0.04)] overflow-hidden ${isTalksHovered ? 'hovered' : ''}`}
+              >
                 {/* Text Content - Order last */}
                 <div className="relative z-10 flex-none px-6 order-last pb-6">
                   <h4 className="text-sm font-medium text-gray-950 font-[var(--font-instrument)]">
@@ -359,9 +406,9 @@ const WhatToExpect = () => {
                       Register here
                       
                       {/* Ripple effects */}
-                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out]" />
-                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out_0.5s]" />
-                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out_1s]" />
+                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out] group-[.hovered]:animate-[ripple_2s_ease-out]" />
+                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out_0.5s] group-[.hovered]:animate-[ripple_2s_ease-out_0.5s]" />
+                      <div className="absolute inset-0 -z-10 rounded-full bg-gray-950/5 opacity-0 group-hover:animate-[ripple_2s_ease-out_1s] group-[.hovered]:animate-[ripple_2s_ease-out_1s]" />
                       
                       {/* Vector.svg path */}
                       <div className="absolute left-1/2 top-1/2 -z-10 -ml-36 -mt-32 aspect-[288/256] w-72">
@@ -369,7 +416,7 @@ const WhatToExpect = () => {
                           src="/Vector.svg"
                           alt="Connection paths"
                           fill
-                          className="object-contain opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+                          className="object-contain opacity-10 group-hover:opacity-20 group-[.hovered]:opacity-20 transition-opacity duration-500"
                         />
                       </div>
                     </Link>

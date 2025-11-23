@@ -128,38 +128,8 @@ export default function EventsPage() {
               <span className="relative z-10">Register Now</span>
             </Link>
           </div>
-
-          {/* Quick Stats - Enhanced with Glow */}
-          <div className="mt-24 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {[
-              { label: 'Events', value: totalEvents },
-              { label: 'Days', value: '3' },
-              { label: 'Speakers', value: '15+' },
-              { label: 'Attendees', value: '500+' },
-            ].map((stat, idx) => (
-              <div
-              key={idx}
-              className="group relative isolate text-center p-6 rounded-md bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] ring-1 ring-white/5"
-              >
-              <div className="text-4xl sm:text-5xl font-bold mb-2 text-white">
-                {stat.value}
-              </div>
-              <div className="text-sm text-zinc-400 uppercase tracking-wider group-hover:text-zinc-300 transition-colors duration-300">
-                {stat.label}
-              </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-          <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Scroll</span>
-          <div className="w-px h-16 bg-gradient-to-b from-zinc-400/30 to-transparent" />
         </div>
       </section>
-
-
 
       {/* Day Timeline Section - Enhanced */}
       <section id="schedule" className="relative py-24 px-6 sm:px-12 lg:px-20 overflow-hidden">
@@ -257,6 +227,7 @@ export default function EventsPage() {
           />
         </div>
       </section>
+      
 
       {/* Registration CTA - Enhanced with Glow */}
       <section className="relative py-32 px-6 sm:px-12 lg:px-20 overflow-hidden">
@@ -313,6 +284,19 @@ export default function EventsPage() {
           onClose={() => setSelectedEvent(null)}
         />
       )}
+      <div className="relative">
+        <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+          <div className="relative -mx-2.5 flex -bottom-1 -mt-12">
+            <svg viewBox="0 0 64 48" className="w-16 flex-none fill-white" aria-hidden="true">
+              <path d="M51.657 2.343 12.343 41.657A8 8 0 0 1 6.686 44H0v4h64V0h-6.686a8 8 0 0 0-5.657 2.343Z"></path>
+              </svg><div className="-mx-px flex-auto bg-white"></div>
+              <svg viewBox="0 0 64 48" className="w-16 flex-none fill-white" aria-hidden="true">
+                <path d="m12.343 2.343 39.314 39.314A8 8 0 0 0 57.314 44H64v4H0V0h6.686a8 8 0 0 1 5.657 2.343Z"></path>
+                </svg>
+              </div>
+        </div>
+      </div>
+
 
       {/* Footer */}
       <Footer />
