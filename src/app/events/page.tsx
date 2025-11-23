@@ -5,9 +5,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Timer from '@/components/Homepage/Timer';
-import EventTimeline from '@/components/Events/EventTimeline';
-import EventGrid from '@/components/Events/EventGrid';
-import EventModal from '@/components/Events/EventModal';
+import EventTimeline from '@/components/events/EventTimeline';
+import EventGrid from '@/components/events/EventGrid';
+import EventModal from '@/components/events/EventModal';
 import Footer from '@/components/Homepage/Footer';
 import { events, type EventData } from '@/lib/eventData';
 
@@ -159,51 +159,7 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Filter Section - Enhanced Pills */}
-      <section className="sticky top-14 md:top-20 z-40 bg-gray-950/80 backdrop-blur-md border-b border-white/10 shadow-[0_1px_3px_rgba(0,0,0,0.2)]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex flex-wrap gap-2 w-full sm:w-auto">
-              {[
-                { id: 'all', label: 'All', gradient: 'from-cyan-400 to-blue-500' },
-                { id: 'competition', label: 'Competitions', gradient: 'from-purple-400 to-pink-500' },
-                { id: 'webinar', label: 'Webinars', gradient: 'from-orange-400 to-red-500' },
-                { id: 'workshop', label: 'Workshops', gradient: 'from-green-400 to-emerald-500' },
-                { id: 'panel', label: 'Panels', gradient: 'from-yellow-400 to-orange-500' },
-                { id: 'interactive', label: 'Interactive', gradient: 'from-pink-400 to-rose-500' },
-              ].map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={`group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] before:duration-300 before:ease-[cubic-bezier(0.4,0.36,0,1)] before:transition-opacity rounded-md text-sm h-[1.875rem] px-3 whitespace-nowrap ${
-                    activeFilter === filter.id
-                      ? `shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-md before:bg-gradient-to-b before:from-white/20 before:opacity-100 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-md after:bg-white  after:from-[46%] after:to-[54%] after:mix-blend-overlay ring-1 text-gray-950`
-                      : 'bg-white/5 text-zinc-400 hover:bg-gray-950/5 hover:text-white border border-white/10 hover:border-white/20'
-                  }`}
-                  style={activeFilter === filter.id ? {
-                    background: `linear-gradient(to right, var(--tw-gradient-stops))`,
-                    '--tw-gradient-from': filter.gradient.includes('cyan') ? '#22d3ee' : 
-                                         filter.gradient.includes('purple') ? '#c084fc' :
-                                         filter.gradient.includes('orange') ? '#fb923c' :
-                                         filter.gradient.includes('green') ? '#34d399' :
-                                         filter.gradient.includes('yellow') ? '#facc15' : '#f472b6',
-                    '--tw-gradient-to': filter.gradient.includes('cyan') ? '#3b82f6' :
-                                       filter.gradient.includes('purple') ? '#ec4899' :
-                                       filter.gradient.includes('orange') ? '#ef4444' :
-                                       filter.gradient.includes('green') ? '#10b981' :
-                                       filter.gradient.includes('yellow') ? '#f97316' : '#e11d48'
-                  } as any : {}}
-                >
-                  <span className="relative z-10">{filter.label}</span>
-                </button>
-              ))}
-            </div>
-            <div className="text-sm text-zinc-500 w-full sm:w-auto text-left sm:text-right">
-              {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'}
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Day Timeline Section - Enhanced */}
       <section id="schedule" className="relative py-24 px-6 sm:px-12 lg:px-20 overflow-hidden">
@@ -233,6 +189,8 @@ export default function EventsPage() {
         </div>
       </section>
 
+
+
       {/* Events Grid - Enhanced */}
       <section className="relative py-24 px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-transparent via-gray-900/50 to-transparent overflow-hidden">
         {/* Glow Effect */}
@@ -248,9 +206,49 @@ export default function EventsPage() {
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
               All Events
             </h2>
-            <p className="text-lg text-zinc-400 max-w-2xl">
+            <p className="text-lg text-zinc-400 max-w-2xl mb-8">
               Explore our complete event catalog
             </p>
+
+            {/* Integrated Filter */}
+            <div className="flex flex-wrap gap-2">
+              {[
+                { id: 'all', label: 'All', gradient: 'from-cyan-400 to-blue-500' },
+                { id: 'competition', label: 'Competitions', gradient: 'from-purple-400 to-pink-500' },
+                { id: 'webinar', label: 'Webinars', gradient: 'from-orange-400 to-red-500' },
+                { id: 'workshop', label: 'Workshops', gradient: 'from-green-400 to-emerald-500' },
+                { id: 'panel', label: 'Panels', gradient: 'from-yellow-400 to-orange-500' },
+                { id: 'interactive', label: 'Interactive', gradient: 'from-pink-400 to-rose-500' },
+              ].map((filter) => (
+                <button
+                  key={filter.id}
+                  onClick={() => setActiveFilter(filter.id)}
+                  className={`group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] before:duration-300 before:ease-[cubic-bezier(0.4,0.36,0,1)] before:transition-opacity rounded-full text-sm h-[2rem] px-4 whitespace-nowrap ${
+                    activeFilter === filter.id
+                      ? `shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-white/20 before:opacity-100 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-full after:bg-white  after:from-[46%] after:to-[54%] after:mix-blend-overlay ring-1 text-gray-950`
+                      : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
+                  }`}
+                  style={activeFilter === filter.id ? {
+                    background: `linear-gradient(to right, var(--tw-gradient-stops))`,
+                    '--tw-gradient-from': filter.gradient.includes('cyan') ? '#22d3ee' : 
+                                         filter.gradient.includes('purple') ? '#c084fc' :
+                                         filter.gradient.includes('orange') ? '#fb923c' :
+                                         filter.gradient.includes('green') ? '#34d399' :
+                                         filter.gradient.includes('yellow') ? '#facc15' : '#f472b6',
+                    '--tw-gradient-to': filter.gradient.includes('cyan') ? '#3b82f6' :
+                                       filter.gradient.includes('purple') ? '#ec4899' :
+                                       filter.gradient.includes('orange') ? '#ef4444' :
+                                       filter.gradient.includes('green') ? '#10b981' :
+                                       filter.gradient.includes('yellow') ? '#f97316' : '#e11d48'
+                  } as any : {}}
+                >
+                  <span className="relative z-10">{filter.label}</span>
+                </button>
+              ))}
+            </div>
+            <div className="mt-4 text-sm text-zinc-500">
+              Showing {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'}
+            </div>
           </div>
 
           <EventGrid
