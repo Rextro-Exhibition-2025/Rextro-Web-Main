@@ -31,42 +31,58 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
         { opacity: 1, scale: 1, duration: 1.5, ease: "power3.out" }
       );
 
-      // Logo Animation
+      // Logo Animation with dynamic stroke colors
       const logoPaths = document.querySelectorAll(".hero-logo-path");
       logoPaths.forEach((path) => {
         if (path instanceof SVGPathElement) {
             const length = path.getTotalLength();
+            const fillColor = path.getAttribute('fill') || '#000000';
+            
             gsap.set(path, { 
                 strokeDasharray: length, 
                 strokeDashoffset: length,
                 fillOpacity: 0,
-                stroke: "#1E3A8A", // Dark Blue
-                strokeWidth: 2,
-                filter: "drop-shadow(0 0 1px rgba(30,58,138,0.5))", // Subtle glow
+                stroke: fillColor, // Use the path's fill color for stroke
+                strokeWidth: 1.2,
+                filter: "drop-shadow(0 0 1px rgba(255,255,255,0.8)) drop-shadow(0 0 3px currentColor)",
                 autoAlpha: 1
             });
         }
       });
       
+      // Draw the paths
       tl.to(".hero-logo-path", {
         strokeDashoffset: 0,
-        duration: 2,
-        stagger: 0.1,
+        duration: 1.8,
+        stagger: 0.05,
         ease: "power2.inOut",
       }, "-=1.0")
+      // Fill and remove stroke
       .to(".hero-logo-path", {
         fillOpacity: 1,
         strokeWidth: 0,
-        filter: "none", // Remove glow after drawing
-        duration: 0.8,
+        filter: "none",
+        duration: 0.6,
         ease: "power2.out",
-      }, "-=0.4");
+      }, "-=0.3")
+      // Add subtle continuous float
+      .to(".hero-logo-path", {
+        y: -5,
+        duration: 2,
+        ease: "power1.inOut",
+        repeat: -1,
+        yoyo: true,
+        stagger: {
+          each: 0.1,
+          from: "start"
+        }
+      }, "+=0.5");
 
       // Animate Content (Tagline and Buttons)
       tl.fromTo(".hero-fade-in",
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power3.out" },
-        "-=1.5"
+        "-=3.0"
       );
     }
   }, [shouldRevealContent]);
