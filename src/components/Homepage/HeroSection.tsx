@@ -40,8 +40,9 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                 strokeDasharray: length, 
                 strokeDashoffset: length,
                 fillOpacity: 0,
-                stroke: "#171717", 
-                strokeWidth: 1.5,
+                stroke: "#1E3A8A", // Dark Blue
+                strokeWidth: 2,
+                filter: "drop-shadow(0 0 1px rgba(30,58,138,0.5))", // Subtle glow
                 autoAlpha: 1
             });
         }
@@ -56,6 +57,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
       .to(".hero-logo-path", {
         fillOpacity: 1,
         strokeWidth: 0,
+        filter: "none", // Remove glow after drawing
         duration: 0.8,
         ease: "power2.out",
       }, "-=0.4");
