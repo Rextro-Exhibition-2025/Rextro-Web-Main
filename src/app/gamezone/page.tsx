@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
@@ -8,18 +9,47 @@ import Footer from '@/components/Homepage/Footer';
 import GameSelectionGrid from '@/components/GameZone/GameSelectionGrid';
 import Leaderboard from '@/components/GameZone/Leaderboard';
 import { games } from '@/config/gameConfig';
+import { useAuth } from '@/contexts/AuthContext';
+import AuthModal from '@/components/GameZone/AuthModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GameZonePage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
-  const [leaderboardKey, setLeaderboardKey] = useState(0);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const { isAuthenticated, loading } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsHeroVisible(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Check authentication when component mounts
+    if (!loading && !isAuthenticated) {
+      setShowAuthModal(true);
+    }
+  }, [loading, isAuthenticated]);
+
+  // Function to handle game access attempt
+  const handleGameAccess = (gameId: string) => {
+    if (!isAuthenticated) {
+      setShowAuthModal(true);
+      return;
+    }
+    // Navigate to the game if authenticated
+    router.push(`/gamezone/${gameId}`);
+  };
+
+  // Expose function globally for navbar access
+  useEffect(() => {
+    (window as any).openGameZoneAuth = () => setShowAuthModal(true);
+    return () => {
+      delete (window as any).openGameZoneAuth;
+    };
   }, []);
 
   useEffect(() => {
@@ -45,8 +75,28 @@ export default function GameZonePage() {
     }
   }, []);
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="font-[family-name:var(--font-instrument-sans)] bg-gray-50 min-h-screen">
+      {/* Authentication Modal */}
+      {showAuthModal && (
+        <AuthModal
+          onClose={() => setShowAuthModal(false)}
+          onSuccess={() => setShowAuthModal(false)}
+        />
+      )}
+
       {/* Hero Section - Light */}
       <section
         ref={heroRef}
@@ -223,7 +273,7 @@ export default function GameZonePage() {
               </p>
             </div>
 
-            <GameSelectionGrid games={games} />
+            <GameSelectionGrid games={games} handleGameAccess={handleGameAccess} />
           </div>
         </div>
 
@@ -255,7 +305,7 @@ export default function GameZonePage() {
             </p>
           </div>
 
-          <Leaderboard key={leaderboardKey} />
+          <Leaderboard />
         </div>
       </section>
 
