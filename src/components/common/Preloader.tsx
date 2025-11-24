@@ -84,7 +84,8 @@ const Preloader = () => {
       }, 0) // Sync with scale animation
       .to(".logo-path", {
         fillOpacity: 1,
-        strokeWidth: 0,
+        strokeWidth: 1.5, // Keep stroke visible for glow effect
+        stroke: "rgba(255,255,255,0.8)", // Ensure stroke is white/visible
         duration: 0.8,
         ease: "power2.out",
       }, "-=0.4")
@@ -97,18 +98,10 @@ const Preloader = () => {
       .to(".grad-2-stop-1", { stopColor: "#0044AA", duration: 0.5 }, "<")
       .to(".grad-2-stop-2", { stopColor: "#213F6B", duration: 0.5 }, "<")
       
-      // Remove glow completely to show crisp brand colors
+      // Glow up the outer lines (stroke)
       .to(svgRef.current, {
-        filter: 'drop-shadow(0 0 0px rgba(0,0,0,0))',
+        filter: 'drop-shadow(0 0 5px rgba(255,255,255,0.8)) drop-shadow(0 0 15px rgba(139,92,246,0.6))',
         duration: 0.5
-      }, "<")
-      
-      // Reveal Star Glow
-      .to(".logo-star-glow", {
-        opacity: 1,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out"
       }, "<");
 
       // 2. Progress Simulation (Direct DOM manipulation for performance)
@@ -188,14 +181,7 @@ const Preloader = () => {
             opacity: 0,
             duration: 0.6,
             ease: "power2.inOut"
-        }, "-=0.4")
-        
-        // Hide Star Glow
-        .to(".logo-star-glow", {
-            opacity: 0,
-            scale: 0.5,
-            duration: 0.4
-        }, 0);
+        }, "-=0.4");
 
       }, containerRef);
   };
@@ -318,16 +304,7 @@ const Preloader = () => {
         
         {/* Logo Container with Glow */}
         <div className="relative w-[85%] md:w-[800px] mb-12">
-          {/* Star Glow Effect */}
-          <div 
-            className="logo-star-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[200%] pointer-events-none opacity-0 scale-50 z-[-1]"
-            style={{
-              background: 'radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(139,92,246,0.1) 30%, transparent 70%)',
-              filter: 'blur(40px)',
-              mixBlendMode: 'screen'
-            }}
-          />
-
+          
           {/* Logo SVG */}
           <svg 
               ref={svgRef}
