@@ -7,15 +7,24 @@ import Link from 'next/link';
 
 interface GameSelectionGridProps {
   games: Game[];
+  handleGameAccess?: (gameId: string) => void;
 }
 
-const GameSelectionGrid: React.FC<GameSelectionGridProps> = ({ games }) => {
+const GameSelectionGrid: React.FC<GameSelectionGridProps> = ({ games, handleGameAccess }) => {
+  const handleClick = (e: React.MouseEvent, gameId: string) => {
+    if (handleGameAccess) {
+      e.preventDefault();
+      handleGameAccess(gameId);
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {games.map((game) => (
         <Link
           key={game.id}
           href={`/gamezone/${game.id}`}
+          onClick={(e) => handleClick(e, game.id)}
           className="group relative p-6 rounded-2xl bg-neutral-800/80 backdrop-blur-md border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden text-left block"
         >
           {/* Hover Gradient Overlay */}
