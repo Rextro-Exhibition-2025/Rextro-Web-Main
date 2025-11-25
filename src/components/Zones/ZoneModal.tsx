@@ -3,7 +3,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
-import type { ZoneData } from '@/app/zones/page';
+export interface ZoneData {
+  id: string;
+  name: string;
+  category: string;
+  tagline: string;
+  description: string;
+  image: string;
+  color: string;
+  stats: {
+    visitors: string;
+    exhibits: string;
+    rating: string;
+  };
+  highlights: string[];
+  projects: string;
+}
 
 interface ZoneModalProps {
   zone: ZoneData;
