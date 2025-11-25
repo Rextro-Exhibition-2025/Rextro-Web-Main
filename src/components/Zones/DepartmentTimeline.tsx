@@ -74,7 +74,9 @@ const DepartmentTimeline = () => {
            gsap.to(star, {
              opacity: 0.8,
              scale: 1.5,
-             duration: 1 + (i % 3),
+             y: -30, // Float up
+             x: (i % 2 === 0 ? 15 : -15), // Slight horizontal drift
+             duration: 4 + (i % 4), // Slow duration (4-7s)
              repeat: -1,
              yoyo: true,
              ease: "sine.inOut",
