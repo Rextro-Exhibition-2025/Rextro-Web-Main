@@ -58,7 +58,7 @@ export default function EventsPage() {
       {/* Hero Section - Enhanced with Glow */}
       <section
         ref={heroRef}
-        className="relative min-h-screen -mt-16 flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{ zIndex: 2 }}
       >
         {/* Radial Glow Background */}
@@ -83,11 +83,11 @@ export default function EventsPage() {
         </div>
 
         {/* Content */}
-        <div className={`relative z-30 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-32 text-center transition-all duration-1000 ${
+        <div className={`relative z-30 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-32 text-center transition-all duration-1000 ${
           isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           {/* Badge with Glow */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/10 bg-white/5 backdrop-blur-sm mb-8 shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] ring-1 ring-white/5">
+          <div className="inline-flex items-center gap-2 px-3 py-4 rounded-md border border-white/10 bg-white/5 backdrop-blur-sm mb-8 shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] ring-1 ring-white/5">
             <div className="size-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(24,204,252,0.8)]" />
             <span className="text-sm text-zinc-300 font-medium">December 5-7, 2025</span>
           </div>
@@ -110,7 +110,7 @@ export default function EventsPage() {
           </div>
 
           {/* CTA with Enhanced Hover */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-24 relative z-50">
             <button
               onClick={() => {
                 document.getElementById('schedule')?.scrollIntoView({ behavior: 'smooth' });
@@ -128,11 +128,24 @@ export default function EventsPage() {
               <span className="relative z-10">Register Now</span>
             </Link>
           </div>
+          <div className="relative">
+            <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+               <div className="relative -mx-2.5 flex -bottom-1 -mt-12">
+                <svg viewBox="0 0 64 48" className="w-16 flex-none fill-white" aria-hidden="true">
+              <path d="M51.657 2.343 12.343 41.657A8 8 0 0 1 6.686 44H0v4h64V0h-6.686a8 8 0 0 0-5.657 2.343Z"></path>
+              </svg><div className="-mx-px flex-auto bg-white"></div>
+              <svg viewBox="0 0 64 48" className="w-16 flex-none fill-white" aria-hidden="true">
+                <path d="m12.343 2.343 39.314 39.314A8 8 0 0 0 57.314 44H64v4H0V0h6.686a8 8 0 0 1 5.657 2.343Z"></path>
+                </svg>
+              </div>
+        </div>
+        </div>
         </div>
       </section>
+      
 
       {/* Day Timeline Section - Enhanced */}
-      <section id="schedule" className="relative py-24 px-6 sm:px-12 lg:px-20 overflow-hidden">
+      <section id="schedule" className="relative pt-24 px-6 sm:px-12 bg-white lg:px-20 overflow-hidden">
         {/* Glow Effect */}
         <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10"
           style={{
@@ -143,7 +156,7 @@ export default function EventsPage() {
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-black">
               Schedule
             </h2>
             <p className="text-lg text-zinc-400 max-w-2xl">
@@ -156,6 +169,21 @@ export default function EventsPage() {
             onDayChange={setActiveDay}
             onEventClick={setSelectedEvent}
           />
+        </div>
+        
+        {/* Bottom Decorative Separator */}
+        <div className="relative mt-24 transform scale-y-[-1] -mb-1">
+          <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+            <div className="relative -mx-2.5 flex">
+              <svg viewBox="0 0 64 48" className="w-16 flex-none fill-black" aria-hidden="true">
+                <path d="M51.657 45.657 12.343 6.343A8 8 0 0 0 6.686 4H0V0h64v48h-6.686a8 8 0 0 1-5.657-2.343Z"></path>
+              </svg>
+              <div className="-mx-px flex-auto bg-black"></div>
+              <svg viewBox="0 0 64 48" className="w-16 flex-none fill-black" aria-hidden="true">
+                <path d="M12.343 45.657 51.657 6.343A8 8 0 0 1 57.314 4H64V0H0v48h6.686a8 8 0 0 0 5.657-2.343Z"></path>
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -284,6 +312,7 @@ export default function EventsPage() {
           onClose={() => setSelectedEvent(null)}
         />
       )}
+      {/* Decorative Separator */}
       <div className="relative">
         <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
           <div className="relative -mx-2.5 flex -bottom-1 -mt-12">

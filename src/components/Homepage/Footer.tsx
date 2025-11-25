@@ -46,67 +46,59 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative w-full bg-white text-gray-900 overflow-hidden pt-20 pb-10 border-t border-black/10">
+    <footer className="relative w-full bg-white text-gray-900 overflow-hidden">
       {/* Background Gradient/Watermark */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-blue-100/50 blur-[120px]" />
-        <div className="absolute bottom-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-emerald-100/30 blur-[100px]" />
         <h1 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 text-[15vw] font-bold text-black/[0.03] whitespace-nowrap select-none font-[var(--font-instrument)]">
           REXTR0 2025
         </h1>
       </div>
 
-      <div className="relative z-10 mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
-          
-          {/* Left Section - Logos */}
-          <div className="flex flex-col items-center lg:items-start gap-8">
-            <div className="flex items-center gap-3 sm:gap-4 md:gap-6 p-3 sm:p-4 rounded-2xl bg-gray-50 backdrop-blur-sm border border-black/5">
-              <Image
-                src={"/navbar/nav-icon.png"}
-                height={45}
-                width={290}
-                alt="ReXtro Logo"
-                className="object-contain w-32 sm:w-48 md:w-56 lg:w-72 h-auto"
-              />
-              <div className="w-px h-8 sm:h-10 bg-black/10" />
-              <Image
-                src={"/Logo Image.png"}
-                height={50}
-                width={40}
-                alt="Logo"
-                className="object-contain w-6 sm:w-8 md:w-10 h-auto"
-              />
-              <Image
-                src={"/ruhuna_eng_logo 1.png"}
-                height={50}
-                width={40}
-                alt="University of Ruhuna Engineering Faculty"
-                className="object-contain w-6 sm:w-8 md:w-10 h-auto"
-              />
-            </div>
-            
-            <div className="text-center lg:text-left max-w-md">
-              <p className="text-gray-500 text-sm leading-relaxed">
-                The largest techno-management exhibition in Southern Sri Lanka, organized by the Faculty of Engineering, University of Ruhuna.
-              </p>
-            </div>
+      <div className="relative z-10 w-full p-16 bg-white border-t border-black/10 backdrop-blur-[6px] flex flex-col justify-start items-start gap-8">
+        {/* Top Section - Logos */}
+        <div className="w-full backdrop-blur-[6px] flex flex-col lg:flex-row justify-between items-center lg:items-center gap-8">
+          <div className="flex justify-start items-center gap-5">
+            <Image
+              src="/navbar/nav-icon.png"
+              width={290}
+              height={44}
+              alt="ReXtro Logo"
+              className="w-72 h-11 object-contain"
+            />
+            <Image
+              src="/Logo Image.png"
+              width={43}
+              height={60}
+              alt="Logo"
+              className="w-11 h-14 object-contain"
+            />
+            <Image
+              src="/ruhuna_eng_logo 1.png"
+              width={43}
+              height={57}
+              alt="University of Ruhuna Engineering Faculty"
+              className="w-11 h-14 object-contain"
+            />
           </div>
+          <Image
+            src="/Hero/logo2.png"
+            width={234}
+            height={56}
+            alt="ReXtro 2025"
+            className="w-60 h-14 object-contain"
+          />
+        </div>
 
-          {/* Right Section - ReXtro 2025 Logo & Socials */}
-          <div className="flex flex-col items-center lg:items-end gap-8">
-            <div className="relative w-64 h-16">
-              <Image
-                src="/Hero/logo2.png"
-                alt="ReXtro 2025"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {socialLinks.map((social) => {
+        {/* Middle Section - Description & Social Links */}
+        <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-8">
+          <div className="flex-1 max-w-[500px] flex justify-center items-center gap-2">
+            <p className="flex-1 text-center lg:text-left text-gray-600 text-base font-normal font-[var(--font-instrument)] leading-6">
+              The largest techno-management exhibition in Southern Sri Lanka, organized by the Faculty of Engineering, University of Ruhuna.
+            </p>
+          </div>
+          <div className="w-full lg:w-auto inline-flex flex-col justify-start items-center lg:items-end gap-4">
+            <div className="inline-flex justify-start items-center gap-4 flex-wrap">
+              {socialLinks.slice(0, 3).map((social) => {
                 const Icon = social.icon;
                 return (
                   <Link
@@ -116,12 +108,36 @@ const Footer = () => {
                     rel="noopener noreferrer"
                   >
                     <motion.div
-                      whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+                      whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-50 border border-black/5 hover:border-black/10 transition-colors cursor-pointer"
+                      className="px-4 py-1 rounded outline outline-1 outline-offset-[-1px] outline-black/10 flex justify-center items-center gap-2 cursor-pointer hover:bg-gray-50 transition-colors"
                     >
                       <Icon className="w-4 h-4 text-gray-600" />
-                      <span className="text-gray-600 text-sm font-medium">
+                      <span className="text-gray-600 text-base font-normal font-[var(--font-instrument)] leading-6">
+                        {social.label}
+                      </span>
+                    </motion.div>
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="inline-flex justify-start items-center gap-4 flex-wrap">
+              {socialLinks.slice(3, 6).map((social) => {
+                const Icon = social.icon;
+                return (
+                  <Link
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-4 py-1 rounded outline outline-1 outline-offset-[-1px] outline-black/10 flex justify-center items-center gap-2 cursor-pointer hover:bg-gray-50 transition-colors"
+                    >
+                      <Icon className="w-4 h-4 text-gray-600" />
+                      <span className="text-gray-600 text-base font-normal font-[var(--font-instrument)] leading-6">
                         {social.label}
                       </span>
                     </motion.div>
@@ -132,14 +148,20 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">
-            © 2025 ReXtro. All rights reserved.
-          </p>
-          <div className="flex gap-6 text-sm text-gray-500">
-            <Link href="#" className="hover:text-black transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-black transition-colors">Terms of Service</Link>
+        {/* Bottom Section - Copyright & Links */}
+        <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex justify-center items-center gap-2">
+            <p className="text-gray-600 text-base font-normal font-[var(--font-instrument)] leading-6">
+              © 2025 ReXtro. All rights reserved.
+            </p>
+          </div>
+          <div className="flex justify-center items-center gap-4">
+            <Link href="#" className="text-gray-600 text-base font-normal font-[var(--font-instrument)] underline leading-6 hover:text-black transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="#" className="text-gray-600 text-base font-normal font-[var(--font-instrument)] underline leading-6 hover:text-black transition-colors">
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>
