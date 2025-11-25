@@ -5,6 +5,7 @@ import Footer from '@/components/Homepage/Footer';
 import MapHeroSection from '@/components/map/MapHeroSection';
 import ZoneGallery from '@/components/map/ZoneGallery';
 import InteractiveMapCanvas from '@/components/map/InteractiveMapCanvas';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 export default function MapPage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
@@ -25,7 +26,10 @@ export default function MapPage() {
 
       {/* Map Interactive Canvas Section */}
       <section className="relative w-full px-4 sm:px-8 lg:px-20 -mt-20 z-10 pb-20">
-        <div className="max-w-7xl mx-auto">
+        {/* Animated Background for the dark section */}
+        <AnimatedBackground className="top-20" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-900 opacity-0 animate-[fadeIn_1s_ease-out_0.4s_forwards]">
             <InteractiveMapCanvas 
               imageSrc="/map.png"

@@ -13,8 +13,8 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
     <div className={`relative isolate overflow-hidden bg-gray-50 h-[60vh] sm:h-[70vh] ${className}`}>
       {/* Background Layer */}
       <div className="absolute inset-0 -z-10">
-        {/* Left Circuit Board - Subtle on Light */}
-        <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px]">
+        {/* Left Circuit Board */}
+        <div className="absolute top-1/2 -translate-y-1/2 right-1/2 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
@@ -28,13 +28,11 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
               src="/circuit-lines@2xl.webp"
             />
           </picture>
-
-          {/* Left Meteor Animation Overlay - Light Theme */}
           <div className="absolute inset-0">
-            <MeteorAnimation
-              meteors={HERO_METEORS}
-              stops="light"
-              speed={0.4}
+            <MeteorAnimation 
+              meteors={HERO_METEORS} 
+              stops="light" 
+              speed={0.4} 
               style={{
                 left: 'calc(504 / 16 * 1rem)',
                 top: 'calc(25 / 16 * 1rem)',
@@ -46,7 +44,7 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
         </div>
 
         {/* Right Circuit Board (Mirrored) */}
-        <div className="absolute -top-8 right-1/2 origin-right -scale-x-100 sm:top-5 aspect-[969/887] w-[969px]">
+        <div className="absolute top-1/2 -translate-y-1/2 right-1/2 origin-right -scale-x-100 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
@@ -60,13 +58,11 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
               src="/circuit-lines@2xl.webp"
             />
           </picture>
-
-          {/* Right Meteor Animation Overlay */}
           <div className="absolute inset-0">
-            <MeteorAnimation
-              meteors={HERO_METEORS_ALT}
-              stops="light"
-              speed={0.4}
+            <MeteorAnimation 
+              meteors={HERO_METEORS_ALT} 
+              stops="light" 
+              speed={0.4} 
               style={{
                 left: 'calc(504 / 16 * 1rem)',
                 top: 'calc(25 / 16 * 1rem)',

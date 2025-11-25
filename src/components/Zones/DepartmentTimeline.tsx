@@ -5,6 +5,7 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { departments } from '@/lib/zonesData';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -143,34 +144,7 @@ const DepartmentTimeline = () => {
   return (
     <section ref={sectionRef} className="relative w-full bg-black overflow-hidden py-20">
       {/* Animated Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
-        
-        {/* Moving Glows */}
-        <div ref={glow1Ref} className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px]" />
-        <div ref={glow2Ref} className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
-
-        {/* Star Particles */}
-        <div ref={starsRef} className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white rounded-full opacity-20"
-              style={{
-                left: `${(i * 17) % 100}%`,
-                top: `${(i * 23) % 100}%`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      <AnimatedBackground />
 
       <div ref={timelineRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Central Line */}

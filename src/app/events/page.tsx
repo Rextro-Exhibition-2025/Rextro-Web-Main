@@ -12,6 +12,7 @@ import Footer from '@/components/Homepage/Footer';
 import { events, type EventData } from '@/lib/eventData';
 import EventsTitleSvg from '@/components/events/EventsTitleSvg';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,28 +72,57 @@ export default function EventsPage() {
               <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
               <img
                 alt=""
+                width={1938}
+                height={1774}
+                decoding="async"
+                data-nimg="1"
                 className="absolute inset-0 h-full w-full"
                 style={{ color: 'transparent' }}
                 src="/circuit-lines@2xl.webp"
               />
             </picture>
             <div className="absolute inset-0">
-              <MeteorAnimation meteors={HERO_METEORS} stops="light" speed={0.4} />
+              <MeteorAnimation 
+                meteors={HERO_METEORS} 
+                stops="light" 
+                speed={0.4} 
+                style={{
+                  left: 'calc(504 / 16 * 1rem)',
+                  top: 'calc(25 / 16 * 1rem)',
+                  width: 'calc(403 / 16 * 1rem)',
+                  height: 'calc(363 / 16 * 1rem)',
+                }}
+              />
             </div>
           </div>
-          {/* Right Circuit Board */}
+
+          {/* Right Circuit Board (Mirrored) */}
           <div className="absolute top-1/2 -translate-y-1/2 right-1/2 origin-right -scale-x-100 aspect-[969/887] w-[969px]">
             <picture>
               <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
               <img
                 alt=""
+                width={1938}
+                height={1774}
+                decoding="async"
+                data-nimg="1"
                 className="absolute inset-0 h-full w-full"
                 style={{ color: 'transparent' }}
                 src="/circuit-lines@2xl.webp"
               />
             </picture>
             <div className="absolute inset-0">
-              <MeteorAnimation meteors={HERO_METEORS_ALT} stops="light" speed={0.4} />
+              <MeteorAnimation 
+                meteors={HERO_METEORS_ALT} 
+                stops="light" 
+                speed={0.4} 
+                style={{
+                  left: 'calc(504 / 16 * 1rem)',
+                  top: 'calc(25 / 16 * 1rem)',
+                  width: 'calc(403 / 16 * 1rem)',
+                  height: 'calc(363 / 16 * 1rem)',
+                }}
+              />
             </div>
           </div>
         </div>
@@ -160,13 +190,8 @@ export default function EventsPage() {
       
       {/* Day Timeline Section - Dark Theme */}
       <section id="schedule" className="relative pt-24 px-6 sm:px-12 bg-black lg:px-20 overflow-hidden">
-        {/* Glow Effect */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10"
-          style={{
-            background: 'radial-gradient(circle, rgba(24, 204, 252, 0.4) 0%, transparent 70%)',
-            filter: 'blur(100px)'
-          }}
-        />
+        {/* Animated Background */}
+        <AnimatedBackground />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-16">
@@ -203,6 +228,8 @@ export default function EventsPage() {
 
       {/* Events Grid - Light Theme */}
       <section className="relative py-24 px-6 sm:px-12 lg:px-20 bg-white overflow-hidden">
+
+        
         {/* Glow Effect */}
         <div className="absolute top-1/2 right-1/4 w-96 h-96 rounded-full opacity-5"
           style={{
@@ -285,15 +312,8 @@ export default function EventsPage() {
       
       {/* Registration CTA - Dark Theme */}
       <section className="relative py-32 px-6 sm:px-12 lg:px-20 overflow-hidden bg-black">
-        {/* Background Glow */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[600px] h-[600px] rounded-full opacity-15"
-            style={{
-              background: 'radial-gradient(circle, rgba(24, 204, 252, 0.6) 0%, transparent 70%)',
-              filter: 'blur(120px)'
-            }}
-          />
-        </div>
+        {/* Animated Background */}
+        <AnimatedBackground />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="relative rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-12 sm:p-16 overflow-hidden backdrop-blur-md shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] ring-1 ring-white/5">

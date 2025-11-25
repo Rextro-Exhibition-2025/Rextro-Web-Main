@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Footer from "@/components/Homepage/Footer";
 import emailjs from '@emailjs/browser';
+import ContactTitleSvg from '@/components/contact/ContactTitleSvg';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -66,15 +67,17 @@ export default function Contact() {
     <div className="-mt-16 flex flex-auto font-[family-name:var(--font-instrument-sans)] flex-col overflow-hidden pt-16">
       <div className="flex flex-auto flex-col mx-auto w-full px-6 py-12 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
         <main className="relative flex flex-auto flex-col pt-20" id="main">
-          <h1 className="text-sm font-medium text-purple-500 opacity-0 animate-[fadeIn_0.6s_ease-out_0.1s_forwards]">Contact</h1>
-          <p className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-4 mt-4 font-bold text-gray-950 sm:text-lg md:text-6xl opacity-0 animate-[slideUp_0.8s_ease-out_0.3s_forwards]">Anything to know?</p>
+          <div className="w-full max-w-xl transform-style-3d transition-transform duration-500 mb-8" style={{ transform: 'rotateX(5deg)' }}>
+             <ContactTitleSvg />
+          </div>
           <p className="mt-4 max-w-lg text-lg text-gray-600 opacity-0 animate-[fadeIn_0.6s_ease-out_0.6s_forwards]">
             Feel free to contact us. We value the power of communication and would be delighted to hear from you. Whether you're interested in participating, becoming a sponsor, have questions about the exhibition, or simply wish to give us feedback, we're here to help.
           </p>
 
           <div className="font-[family-name:var(--font-instrument-sans)] relative isolate mt-16 flex-auto">
             {/* Background container with decorative borders */}
-            <div className="absolute inset-x-0 top-0 -z-10 h-full rounded-xl bg-white shadow-[0_10px_32px_rgba(34,42,53,0.15),0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.08),0_24px_68px_rgba(47,48,55,0.1)] ring-1 ring-gray-950/5 lg:max-h-[calc(717/16*1rem)] opacity-0 animate-[fadeIn_1s_ease-out_0.5s_forwards]">
+            <div className="absolute inset-x-0 top-0 -z-10 h-full rounded-xl bg-white shadow-[0_10px_32px_rgba(34,42,53,0.15),0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.08),0_24px_68px_rgba(47,48,55,0.1)] ring-1 ring-gray-950/5 lg:max-h-[calc(717/16*1rem)] opacity-0 animate-[fadeIn_1s_ease-out_0.5s_forwards] overflow-hidden">
+
               <div className="absolute -inset-x-20 bottom-[calc(-93/16*1rem)] -z-10 h-[min(55%,calc(440/16*1rem))] bg-gradient-to-t from-gray-50 from-55% to-95%" />
               
               {/* Top border */}
