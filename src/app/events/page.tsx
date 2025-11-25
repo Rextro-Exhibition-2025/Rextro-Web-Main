@@ -5,12 +5,12 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Timer from '@/components/Homepage/Timer';
-import EventTimeline from '@/components/events/EventTimeline';
-import EventGrid from '@/components/events/EventGrid';
-import EventModal from '@/components/events/EventModal';
+import EventTimeline from '../../components/events/EventTimeline';
+import EventGrid from '../../components/events/EventGrid';
+import EventModal from '../../components/events/EventModal';
 import Footer from '@/components/Homepage/Footer';
 import { events, type EventData } from '@/lib/eventData';
-import EventsTitleSvg from '@/components/events/EventsTitleSvg';
+import EventsTitleSvg from '../../components/events/EventsTitleSvg';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 
