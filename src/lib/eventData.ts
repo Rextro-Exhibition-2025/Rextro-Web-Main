@@ -47,7 +47,7 @@ export const events: EventData[] = [
     category: 'competition',
     day: 1,
     date: '2025-12-05',
-    startTime: '08:30',
+    startTime: '09:30',
     endTime: '16:30',
     venue: 'NCC',
     description: 'A competitive mathematics quiz designed for top-performing A/L students across the country. Teams compete through multiple rounds of problem-solving, logic-based tasks, and timed challenges.',
