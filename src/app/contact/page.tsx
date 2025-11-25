@@ -292,7 +292,7 @@ export default function Contact() {
               </div>
 
               {/* Right Side - Contact Form */}
-              <div className="px-6 pt-20 sm:px-20 opacity-0 animate-[slideLeft_0.8s_ease-out_0.9s_forwards]">
+              <div className="px-6 pt-20 sm:px-20 opacity-0 animate-[slideLeft_0.8s_ease-out_0.9s_forwards] pb-5">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name */}
                   <div>
