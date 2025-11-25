@@ -15,9 +15,16 @@ import { events, type EventData } from '@/lib/eventData';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function EventsPage() {
+  const glowRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [activeDay, setActiveDay] = useState<1 | 2 | 3>(1);
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
+
+  useEffect(() => {
+    setIsHeroVisible(true);
+  }, []);
 
   const filteredEvents = activeFilter === 'all'
     ? events
