@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Footer from '@/components/Homepage/Footer';
-import MapHeroSection from '@/components/map/MapHeroSection'; // Reusing for consistency
+import MapHeroSection from '@/components/map/MapHero'; // Reusing for consistency
 import DepartmentTimeline from '@/components/Zones/DepartmentTimeline';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import ZonesTitleSvg from '@/components/Zones/ZonesTitleSvg';

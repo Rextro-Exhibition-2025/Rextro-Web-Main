@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const EventsTitleSvg = () => {
+const EventTitleSvg = () => {
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
@@ -185,4 +185,4 @@ const EventsTitleSvg = () => {
   );
 };
 
-export default EventsTitleSvg;
+export default EventTitleSvg;

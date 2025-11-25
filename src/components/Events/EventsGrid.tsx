@@ -14,7 +14,7 @@ interface EventGridProps {
   onEventClick: (event: EventData) => void;
 }
 
-const EventGrid: React.FC<EventGridProps> = ({ events, onEventClick }) => {
+const EventsGrid: React.FC<EventGridProps> = ({ events, onEventClick }) => {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -177,4 +177,4 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
   );
 };
 
-export default EventGrid;
+export default EventsGrid;
