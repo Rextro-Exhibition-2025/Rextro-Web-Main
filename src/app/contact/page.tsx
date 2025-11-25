@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Footer from "@/components/Homepage/Footer";
 import emailjs from '@emailjs/browser';
 import ContactTitleSvg from '@/components/contact/ContactTitleSvg';
+import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -64,17 +65,90 @@ export default function Contact() {
   };
 
   return (
-    <div className="-mt-16 flex flex-auto font-[family-name:var(--font-instrument-sans)] flex-col overflow-hidden pt-16">
-      <div className="flex flex-auto flex-col mx-auto w-full px-6 py-12 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
-        <main className="relative flex flex-auto flex-col pt-20" id="main">
-          <div className="w-full max-w-xl transform-style-3d transition-transform duration-500 mb-8" style={{ transform: 'rotateX(5deg)' }}>
-             <ContactTitleSvg />
+    <div className="-mt-16 flex flex-auto font-[family-name:var(--font-instrument-sans)] flex-col overflow-hidden pt-16 bg-gray-50">
+      
+      {/* Hero Section with Background */}
+      <section className="relative isolate w-full">
+        {/* Background Layer */}
+        <div className="absolute inset-0 -z-10">
+          {/* Left Circuit Board */}
+          <div className="absolute top-1/2 -translate-y-1/2 right-1/2 aspect-[969/887] w-[969px]">
+            <picture>
+              <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
+              <img
+                alt=""
+                width={1938}
+                height={1774}
+                decoding="async"
+                data-nimg="1"
+                className="absolute inset-0 h-full w-full"
+                style={{ color: 'transparent' }}
+                src="/circuit-lines@2xl.webp"
+              />
+            </picture>
+            <div className="absolute inset-0">
+              <MeteorAnimation 
+                meteors={HERO_METEORS} 
+                stops="light" 
+                speed={0.4} 
+                style={{
+                  left: 'calc(504 / 16 * 1rem)',
+                  top: 'calc(25 / 16 * 1rem)',
+                  width: 'calc(403 / 16 * 1rem)',
+                  height: 'calc(363 / 16 * 1rem)',
+                }}
+              />
+            </div>
           </div>
-          <p className="mt-4 max-w-lg text-lg text-gray-600 opacity-0 animate-[fadeIn_0.6s_ease-out_0.6s_forwards]">
-            Feel free to contact us. We value the power of communication and would be delighted to hear from you. Whether you're interested in participating, becoming a sponsor, have questions about the exhibition, or simply wish to give us feedback, we're here to help.
-          </p>
 
-          <div className="font-[family-name:var(--font-instrument-sans)] relative isolate mt-16 flex-auto">
+          {/* Right Circuit Board (Mirrored) */}
+          <div className="absolute top-1/2 -translate-y-1/2 right-1/2 origin-right -scale-x-100 aspect-[969/887] w-[969px]">
+            <picture>
+              <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
+              <img
+                alt=""
+                width={1938}
+                height={1774}
+                decoding="async"
+                data-nimg="1"
+                className="absolute inset-0 h-full w-full"
+                style={{ color: 'transparent' }}
+                src="/circuit-lines@2xl.webp"
+              />
+            </picture>
+            <div className="absolute inset-0">
+              <MeteorAnimation 
+                meteors={HERO_METEORS_ALT} 
+                stops="light" 
+                speed={0.4} 
+                style={{
+                  left: 'calc(504 / 16 * 1rem)',
+                  top: 'calc(25 / 16 * 1rem)',
+                  width: 'calc(403 / 16 * 1rem)',
+                  height: 'calc(363 / 16 * 1rem)',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Content */}
+        <div className="mx-auto w-full px-6 py-12 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+          <div className="relative flex flex-col pt-20">
+            <div className="w-full max-w-xl transform-style-3d transition-transform duration-500 mb-8" style={{ transform: 'rotateX(5deg)' }}>
+               <ContactTitleSvg />
+            </div>
+            <p className="mt-4 max-w-lg text-lg text-gray-600 opacity-0 animate-[fadeIn_0.6s_ease-out_0.6s_forwards]">
+              Feel free to contact us. We value the power of communication and would be delighted to hear from you. Whether you're interested in participating, becoming a sponsor, have questions about the exhibition, or simply wish to give us feedback, we're here to help.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Form Section */}
+      <div className="flex flex-auto flex-col mx-auto w-full px-6 pb-12 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+        <main className="relative flex flex-auto flex-col" id="main">
+          <div className="font-[family-name:var(--font-instrument-sans)] relative isolate mt-8 flex-auto">
             {/* Background container with decorative borders */}
             <div className="absolute inset-x-0 top-0 -z-10 h-full rounded-xl bg-white shadow-[0_10px_32px_rgba(34,42,53,0.15),0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.08),0_24px_68px_rgba(47,48,55,0.1)] ring-1 ring-gray-950/5 lg:max-h-[calc(717/16*1rem)] opacity-0 animate-[fadeIn_1s_ease-out_0.5s_forwards] overflow-hidden">
 
