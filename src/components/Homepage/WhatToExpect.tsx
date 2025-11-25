@@ -122,7 +122,7 @@ const WhatToExpect = () => {
             {/* Left Description */}
             <div className="flex-1 max-w-full lg:max-w-[570px]">
               <p className="text-gray-600 text-sm sm:text-base font-normal font-[var(--font-instrument)] leading-normal">
-                Our campus will transform into an "Engineering Village", a dynamic space designed to bridge the gap between academia, industry, and society. We are dedicated to advancing academic excellence, fostering innovation, and strengthening industry collaboration. This event is a platform for our brightest minds—graduating students, undergraduates, and faculty clubs—to present groundbreaking research, cutting-edge ideas, and impactful engineering solutions.
+                Our campus will transform into an "Engineering Village", a dynamic space designed to bridge the gap between academia, industry, and society. We are dedicated to advancing academic excellence, fostering innovation, and strengthening industry collaboration. This event is a platform for our brightest minds graduating students, undergraduates, and faculty clubs to present groundbreaking research, cutting edge ideas, and impactful engineering solutions.
               </p>
             </div>
 

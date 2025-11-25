@@ -53,7 +53,7 @@ const Navbar = () => {
   return (
     <>
       {/* Static Navbar - Fades out as one unit */}
-      <nav className={`w-full flex flex-col fixed top-0 left-0 right-0 z-50 transition-opacity duration-300 ease-in-out ${
+      <nav className={`w-full flex flex-col fixed top-0 left-0 right-0 z-40 transition-opacity duration-300 ease-in-out ${
         isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}>
         {/* Top announcement bar */}

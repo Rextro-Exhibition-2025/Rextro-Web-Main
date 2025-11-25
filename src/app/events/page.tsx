@@ -72,11 +72,6 @@ export default function EventsPage() {
         <div className={`relative z-30 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-32 text-center transition-all duration-1000 ${
           isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          {/* Badge with Glow */}
-          <div className="inline-flex items-center gap-2 px-3 py-4 rounded-md border border-white/10 bg-white/5 backdrop-blur-sm mb-8 shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] ring-1 ring-white/5">
-            <div className="size-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(24,204,252,0.8)]" />
-            <span className="text-sm text-zinc-300 font-medium">December 5-7, 2025</span>
-          </div>
 
           {/* Main Heading with Enhanced Gradient */}
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
