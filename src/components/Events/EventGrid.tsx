@@ -73,12 +73,12 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
     <div className="event-grid-card group">
       <div
         onClick={onClick}
-        className="w-full h-full text-left p-6 rounded-2xl border border-white/5 bg-neutral-800/80 backdrop-blur-md hover:bg-neutral-800 hover:border-white/10 transition-all duration-300 flex flex-col cursor-pointer relative"
+        className="w-full h-full text-left p-6 rounded-2xl border border-black/5 bg-white hover:bg-gray-50 hover:border-black/10 transition-all duration-300 flex flex-col cursor-pointer relative shadow-sm"
       >
         {/* Event Logo if available */}
         {event.image && (
           <div className="mb-4 flex justify-center">
-            <div className="relative w-24 h-24 rounded-lg overflow-hidden bg-white/5 border border-white/10 p-3">
+            <div className="relative w-24 h-24 rounded-lg overflow-hidden bg-gray-50 border border-black/5 p-3">
               <Image
                 src={event.image}
                 alt={event.title}
@@ -93,11 +93,11 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs text-zinc-500 font-mono">
+              <span className="text-xs text-gray-500 font-mono">
                 Day {event.day} • {event.startTime}
               </span>
             </div>
-            <span className="inline-block px-2 py-0.5 rounded-full text-xs border border-white/10 text-zinc-400 mb-3">
+            <span className="inline-block px-2 py-0.5 rounded-full text-xs border border-black/10 text-gray-600 mb-3 bg-gray-100">
               {getCategoryLabel(event.category)}
             </span>
           </div>
@@ -105,10 +105,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
           {/* Status Badge */}
           <div className={`px-2 py-1 rounded-full text-xs font-medium ${
             event.registrationStatus === 'open'
-              ? 'bg-green-500/10 text-green-400'
+              ? 'bg-green-50 text-green-700 border border-green-200'
               : event.registrationStatus === 'full'
-              ? 'bg-red-500/10 text-red-400'
-              : 'bg-zinc-500/10 text-zinc-400'
+              ? 'bg-red-50 text-red-700 border border-red-200'
+              : 'bg-gray-100 text-gray-600 border border-gray-200'
           }`}>
             {event.registrationStatus === 'open' ? 'Open' :
              event.registrationStatus === 'full' ? 'Full' :
@@ -117,26 +117,26 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-zinc-300 transition-colors">
+        <h3 className="text-xl font-semibold mb-3 text-gray-900 group-hover:text-black transition-colors">
           {event.title}
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-zinc-400 mb-4 line-clamp-2 flex-grow">
+        <p className="text-sm text-gray-600 mb-4 line-clamp-2 flex-grow">
           {event.description}
         </p>
 
         {/* Speaker */}
         {event.speaker && (
-          <div className="mb-4 p-3 rounded-lg border border-white/5 bg-white/[0.02]">
-            <div className="text-xs text-zinc-500 mb-1">Speaker</div>
-            <div className="text-sm text-white font-medium">{event.speaker.name}</div>
-            <div className="text-xs text-zinc-500">{event.speaker.organization}</div>
+          <div className="mb-4 p-3 rounded-lg border border-black/5 bg-gray-50">
+            <div className="text-xs text-gray-500 mb-1">Speaker</div>
+            <div className="text-sm text-gray-900 font-medium">{event.speaker.name}</div>
+            <div className="text-xs text-gray-500">{event.speaker.organization}</div>
           </div>
         )}
 
         {/* Details */}
-        <div className="space-y-2 mb-6 text-sm text-zinc-500">
+        <div className="space-y-2 mb-6 text-sm text-gray-500">
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4" />
             <span>{event.venue}</span>
@@ -160,14 +160,14 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
               e.stopPropagation();
               onClick();
             }}
-            className="w-full px-4 py-2 rounded-lg border border-white/10 text-white text-sm font-semibold hover:bg-white/5 transition-all"
+            className="w-full px-4 py-2 rounded-lg border border-black/10 text-gray-700 text-sm font-semibold hover:bg-gray-100 transition-all"
           >
             View Details
           </button>
         </div>
 
         {/* Hover Arrow */}
-        <div className="absolute top-6 right-6 text-zinc-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+        <div className="absolute top-6 right-6 text-gray-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>

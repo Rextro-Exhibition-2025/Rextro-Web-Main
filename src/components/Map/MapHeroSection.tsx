@@ -10,11 +10,11 @@ interface MapHeroSectionProps {
 
 const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
   return (
-    <div className={`relative isolate overflow-hidden bg-gray-50 h-[60vh] sm:h-[70vh] mt-20 ${className}`}>
+    <div className={`relative isolate overflow-hidden bg-gray-50 h-[60vh] sm:h-[70vh] ${className}`}>
       {/* Background Layer */}
       <div className="absolute inset-0 -z-10">
         {/* Left Circuit Board - Subtle on Light */}
-        <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px] opacity-10 mix-blend-multiply">
+        <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
@@ -46,7 +46,7 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
         </div>
 
         {/* Right Circuit Board (Mirrored) */}
-        <div className="absolute -top-8 right-1/2 origin-right -scale-x-100 sm:top-5 aspect-[969/887] w-[969px] opacity-10 mix-blend-multiply">
+        <div className="absolute -top-8 right-1/2 origin-right -scale-x-100 sm:top-5 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img

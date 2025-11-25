@@ -24,7 +24,7 @@ export default function ZonesPage() {
         {/* Background Layer */}
         <div className="absolute inset-0 -z-10">
           {/* Left Circuit Board - Subtle on Light */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-1/2 aspect-[969/887] w-[969px] opacity-40">
+          <div className="absolute top-1/2 -translate-y-1/2 right-1/2 aspect-[969/887] w-[969px]">
             <picture>
               <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
               <img
@@ -56,7 +56,7 @@ export default function ZonesPage() {
           </div>
 
           {/* Right Circuit Board (Mirrored) */}
-          <div className="absolute top-1/2 -translate-y-1/2 right-1/2 origin-right -scale-x-100 aspect-[969/887] w-[969px] opacity-40">
+          <div className="absolute top-1/2 -translate-y-1/2 right-1/2 origin-right -scale-x-100 aspect-[969/887] w-[969px]">
             <picture>
               <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
               <img
