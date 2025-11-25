@@ -28,21 +28,24 @@ const Timer = ({ theme = 'default' }: TimerProps) => {
       digitShadow: '[text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]',
       labelOpacity: 'text-white/50',
       separatorColor: 'bg-white',
-      separatorOpacity: 'opacity-50'
+      separatorOpacity: 'opacity-50',
+      backgroundOpacity: 'text-white/10'
     },
     events: {
-      digitColor: 'text-[#0080FF]',
-      digitShadow: '[text-shadow:_0px_0px_8px_rgb(0_128_255_/_0.80),_0px_0px_16px_rgb(0_128_255_/_0.60),_0px_0px_24px_rgb(0_128_255_/_0.40)]',
-      labelOpacity: 'text-white/80',
-      separatorColor: 'bg-[#0080FF]',
-      separatorOpacity: 'opacity-80'
+      digitColor: 'text-black',
+      digitShadow: '[text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.30)]',
+      labelOpacity: 'text-black/70',
+      separatorColor: 'bg-black',
+      separatorOpacity: 'opacity-70',
+      backgroundOpacity: 'text-black/15'
     },
     light: {
       digitColor: 'text-[#0080FF]',
       digitShadow: '[text-shadow:_0px_0px_8px_rgb(0_128_255_/_0.80),_0px_0px_16px_rgb(0_128_255_/_0.60),_0px_0px_24px_rgb(0_128_255_/_0.40)]',
       labelOpacity: 'text-white/80',
       separatorColor: 'bg-[#0080FF]',
-      separatorOpacity: 'opacity-80'
+      separatorOpacity: 'opacity-80',
+      backgroundOpacity: 'text-[#0080FF]/25'
     }
   };
 
@@ -82,7 +85,7 @@ const Timer = ({ theme = 'default' }: TimerProps) => {
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
         <div className={`self-stretch text-center justify-center ${currentTheme.labelOpacity} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>DD</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
-          <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
+          <div className={`left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center ${currentTheme.backgroundOpacity} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']`}>88</div>
           <div className={`text-center justify-center ${currentTheme.digitColor} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] ${currentTheme.digitShadow}`}>
             {formatNumber(timeLeft.days)}
           </div>
@@ -99,7 +102,7 @@ const Timer = ({ theme = 'default' }: TimerProps) => {
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
         <div className={`self-stretch text-center justify-center ${currentTheme.labelOpacity} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>HH</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
-          <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
+          <div className={`left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center ${currentTheme.backgroundOpacity} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']`}>88</div>
             <div className={`text-center justify-center ${currentTheme.digitColor} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] ${currentTheme.digitShadow}`}>
              {formatNumber(timeLeft.hours)}
           </div>
@@ -116,7 +119,7 @@ const Timer = ({ theme = 'default' }: TimerProps) => {
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
         <div className={`self-stretch text-center justify-center ${currentTheme.labelOpacity} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>MM</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
-          <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
+          <div className={`left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center ${currentTheme.backgroundOpacity} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']`}>88</div>
           <div className={`text-center justify-center ${currentTheme.digitColor} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] ${currentTheme.digitShadow}`}>
             {formatNumber(timeLeft.minutes)}
           </div>
@@ -133,7 +136,7 @@ const Timer = ({ theme = 'default' }: TimerProps) => {
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
         <div className={`self-stretch text-center justify-center ${currentTheme.labelOpacity} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>SS</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
-          <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
+          <div className={`left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center ${currentTheme.backgroundOpacity} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']`}>88</div>
           <div className={`text-center justify-center ${currentTheme.digitColor} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] ${currentTheme.digitShadow}`}>
             {formatNumber(timeLeft.seconds)}
           </div>
