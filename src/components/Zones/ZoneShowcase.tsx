@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import type { ZoneData } from '@/app/zones/page';
+import type { ZoneData } from '@/components/Zones/ZoneModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
