@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import MapHeroSection from '@/components/map/MapHeroSection';
-import InteractiveMap from '@/components/map/InteractiveMap';
-import MapLegend from '@/components/map/MapLegend';
+import MapHeroSection from '@/components/Map/MapHeroSection';
+import InteractiveMap from '@/components/Map/InteractiveMap';
+import MapLegend from '@/components/Map/MapLegend';
 import Footer from '@/components/Homepage/Footer';
 
 export default function MapPage() {
