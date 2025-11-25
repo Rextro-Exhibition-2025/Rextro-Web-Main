@@ -233,7 +233,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                         <FlipWords 
                           words={words} 
                           duration={3000}
-                          className="inline-block  font-bold"
+                          className="inline-block font-bold text-blue-900"
                         />
                         {" "}IS ENGINEERED HERE.
                       </h1>

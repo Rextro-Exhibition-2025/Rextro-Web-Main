@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Timer from '@/components/Homepage/Timer';
+import EventsHero from '@/components/Events/EventsHero';
 import EventTimeline from '@/components/Events/EventTimeline';
 import EventGrid from '@/components/Events/EventGrid';
 import EventModal from '@/components/Events/EventModal';
@@ -14,31 +15,9 @@ import { events, type EventData } from '@/lib/eventData';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function EventsPage() {
-  const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [activeDay, setActiveDay] = useState<1 | 2 | 3>(1);
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsHeroVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (glowRef.current) {
-        const { clientX, clientY } = e;
-        const x = (clientX / window.innerWidth) * 100;
-        const y = (clientY / window.innerHeight) * 100;
-        glowRef.current.style.background = `radial-gradient(circle 800px at ${x}% ${y}%, rgba(24, 204, 252, 0.08), transparent 60%)`;
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const filteredEvents = activeFilter === 'all'
     ? events
