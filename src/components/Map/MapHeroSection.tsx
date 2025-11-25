@@ -2,6 +2,7 @@
 
 import React from 'react';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
+import MapTitleSvg from '@/components/map/MapTitleSvg';
 
 interface MapHeroSectionProps {
   className?: string;
@@ -97,11 +98,17 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
         <div className="relative w-full h-full px-4 sm:px-8 lg:px-20 flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8">
           <div className="w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-6">
             {/* Hero Content */}
-            <div className="text-center">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 tracking-tight">
-                Faculty <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Map</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium">
+            <div className="text-center w-full flex flex-col items-center" style={{ perspective: '1000px' }}>
+              <div 
+                className="w-full max-w-xl transform-style-3d transition-transform duration-500"
+                style={{ transform: 'rotateX(5deg)' }}
+              >
+                <MapTitleSvg />
+              </div>
+              <p 
+                className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium mt-8"
+                style={{ transform: 'translateZ(30px)' }}
+              >
                 Navigate through innovation zones and discover the future of engineering
               </p>
             </div>

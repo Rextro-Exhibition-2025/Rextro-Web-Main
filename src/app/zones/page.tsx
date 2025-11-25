@@ -1,16 +1,26 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '@/components/Homepage/Footer';
-import MapHeroSection from '@/components/Map/MapHeroSection'; // Reusing for consistency
+import MapHeroSection from '@/components/map/MapHeroSection'; // Reusing for consistency
 import DepartmentTimeline from '@/components/Zones/DepartmentTimeline';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
+import ZonesTitleSvg from '@/components/Zones/ZonesTitleSvg';
 
 export default function ZonesPage() {
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsHeroVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="font-[family-name:var(--font-instrument-sans)] bg-black min-h-screen flex flex-col">
       {/* Hero Section - Reusing MapHeroSection but could be customized */}
-      <div className="relative isolate overflow-hidden bg-gray-50 min-h-[85vh] flex items-center justify-center">
+      <div className={`relative isolate overflow-hidden bg-gray-50 min-h-[85vh] flex items-center justify-center transition-all duration-1000 ${
+        isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
         {/* Background Layer */}
         <div className="absolute inset-0 -z-10">
           {/* Left Circuit Board - Subtle on Light */}
@@ -78,13 +88,20 @@ export default function ZonesPage() {
           </div>
         </div>
         
-        <div className="relative h-full flex flex-col justify-center items-center text-center px-4">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 tracking-tight">
-                Exhibition <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Zones</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium">
-                Explore 5 departments and over 20 innovation zones showcasing the future of engineering.
-            </p>
+        <div className="relative h-full flex flex-col justify-center items-center text-center px-4" style={{ perspective: '1000px' }}>
+            <div 
+              className="w-full max-w-xl transform-style-3d transition-transform duration-500"
+              style={{ transform: 'rotateX(5deg)' }}
+            >
+              <ZonesTitleSvg />
+              
+              <p 
+                className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto font-medium mt-8"
+                style={{ transform: 'translateZ(30px)' }}
+              >
+                  Explore 5 departments and over 20 innovation zones showcasing the future of engineering.
+              </p>
+            </div>
         </div>
         
         {/* Bottom Separator - Events Page Style */}

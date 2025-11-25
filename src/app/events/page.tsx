@@ -5,11 +5,12 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Timer from '@/components/Homepage/Timer';
-import EventTimeline from '@/components/Events/EventTimeline';
-import EventGrid from '@/components/Events/EventGrid';
-import EventModal from '@/components/Events/EventModal';
+import EventTimeline from '@/components/events/EventTimeline';
+import EventGrid from '@/components/events/EventGrid';
+import EventModal from '@/components/events/EventModal';
 import Footer from '@/components/Homepage/Footer';
 import { events, type EventData } from '@/lib/eventData';
+import EventsTitleSvg from '@/components/events/EventsTitleSvg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,12 +94,9 @@ export default function EventsPage() {
           </div>
 
           {/* Main Heading with Enhanced Gradient */}
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
-            <span className="block text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">Events &</span>
-            <span className="block pb-8 text-zinc-400">
-              Programs
-            </span>
-          </h1>
+          <div className="w-full max-w-xl mx-auto transform-style-3d transition-transform duration-500" style={{ transform: 'rotateX(5deg)' }}>
+             <EventsTitleSvg />
+          </div>
 
           <p className="text-xl sm:text-2xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-tight font-light">
             Three days of workshops, talks, and competitions shaping the future of engineering
