@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Sans, Orbitron } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/common/SmoothScroll";
+import ScrollToTop from "@/components/common/ScrollToTop";
 import ClientLayout from "@/components/common/ClientLayout";
 import { AuthProvider } from "@/contexts/AuthContext";
 
@@ -87,6 +88,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} ${orbitron.variable} antialiased`}
       >
+        <ScrollToTop />
         <AuthProvider>
           <ClientLayout>
             <SmoothScroll />
