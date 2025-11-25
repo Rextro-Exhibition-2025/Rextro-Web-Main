@@ -30,7 +30,7 @@ export default function EventsPage() {
       <EventsHero />
 
       {/* Day Timeline Section - Enhanced */}
-      <section id="schedule" className="relative py-24 px-6 sm:px-12 lg:px-20 overflow-hidden">
+      <section id="schedule" className="relative pt-24 px-6 sm:px-12 bg-white lg:px-20 overflow-hidden">
         {/* Glow Effect */}
         <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10"
           style={{
@@ -41,7 +41,7 @@ export default function EventsPage() {
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-black">
               Schedule
             </h2>
             <p className="text-lg text-zinc-400 max-w-2xl">
@@ -54,6 +54,21 @@ export default function EventsPage() {
             onDayChange={setActiveDay}
             onEventClick={setSelectedEvent}
           />
+        </div>
+        
+        {/* Bottom Decorative Separator */}
+        <div className="relative mt-24 transform scale-y-[-1] -mb-1">
+          <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
+            <div className="relative -mx-2.5 flex">
+              <svg viewBox="0 0 64 48" className="w-16 flex-none fill-black" aria-hidden="true">
+                <path d="M51.657 45.657 12.343 6.343A8 8 0 0 0 6.686 4H0V0h64v48h-6.686a8 8 0 0 1-5.657-2.343Z"></path>
+              </svg>
+              <div className="-mx-px flex-auto bg-black"></div>
+              <svg viewBox="0 0 64 48" className="w-16 flex-none fill-black" aria-hidden="true">
+                <path d="M12.343 45.657 51.657 6.343A8 8 0 0 1 57.314 4H64V0H0v48h6.686a8 8 0 0 0 5.657-2.343Z"></path>
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -182,6 +197,7 @@ export default function EventsPage() {
           onClose={() => setSelectedEvent(null)}
         />
       )}
+      {/* Decorative Separator */}
       <div className="relative">
         <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
           <div className="relative -mx-2.5 flex -bottom-1 -mt-12">
