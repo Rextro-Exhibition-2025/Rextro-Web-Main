@@ -151,7 +151,7 @@ const EventsHero = () => {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mb-12 w-full max-w-3xl"
         >
-            <Timer theme="light" />
+            <Timer theme="events" />
         </motion.div>
 
         {/* CTAs */}
