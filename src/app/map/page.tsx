@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Footer from '@/components/Homepage/Footer';
-import MapHeroSection from '../../components/map/MapHero';
+import MapHeroSection from '@/components/map/MapHero';
 import ZoneGallery from '../../components/map/ZoneGallery';
 import InteractiveMapCanvas from '../../components/map/InteractiveMapCanvas';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
