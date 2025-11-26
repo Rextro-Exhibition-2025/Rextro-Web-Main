@@ -194,9 +194,7 @@ export default function EventsPage() {
               {[
                 { id: 'all', label: 'All', gradient: 'from-cyan-400 to-blue-500' },
                 { id: 'competition', label: 'Competitions', gradient: 'from-purple-400 to-pink-500' },
-                { id: 'webinar', label: 'Webinars', gradient: 'from-orange-400 to-red-500' },
                 { id: 'workshop', label: 'Workshops', gradient: 'from-green-400 to-emerald-500' },
-                { id: 'panel', label: 'Panels', gradient: 'from-yellow-400 to-orange-500' },
                 { id: 'interactive', label: 'Interactive', gradient: 'from-pink-400 to-rose-500' },
               ].map((filter) => (
                 <button
@@ -265,12 +263,12 @@ export default function EventsPage() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link
-                  href="https://silver-jubilee.eng.ruh.ac.lk/events"
+                  href="https://forms.gle/aEQJi6Vujufb2DAD6"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] before:duration-300 before:ease-[cubic-bezier(0.4,0.36,0,1)] before:transition-opacity rounded-md shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-md before:bg-gradient-to-b before:from-white/20 before:opacity-50 hover:before:opacity-100 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-md after:bg-gradient-to-b after:from-white/10 after:from-[46%] after:to-[54%] after:mix-blend-overlay text-sm h-[2.5rem] px-6 ring-1 bg-white text-gray-950 ring-white"
                 >
-                  <span className="relative z-10">Register for Events</span>
+                  <span className="relative z-10">Register for Workshops</span>
                 </Link>
                 <Link
                   href="https://tickets.rextro.lk"
