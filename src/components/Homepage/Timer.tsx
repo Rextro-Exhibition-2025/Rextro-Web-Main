@@ -23,7 +23,7 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
 
   // Define color schemes based on theme
   const colors = {
-    default: {
+    dark: {
       digitColor: 'text-white',
       digitShadow: '[text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]',
       labelOpacity: 'text-white/50',
