@@ -57,27 +57,27 @@ const Footer = () => {
       <div className="relative z-10 w-full p-16 bg-white border-t border-black/10 backdrop-blur-[6px] flex flex-col justify-start items-start gap-8">
         {/* Top Section - Logos */}
         <div className="w-full backdrop-blur-[6px] flex flex-col lg:flex-row justify-between items-center lg:items-center gap-8">
-          <div className="flex justify-start items-center gap-5">
+          <div className="flex justify-start items-center gap-3 sm:gap-5">
             <Image
               src="/navbar/nav-icon.png"
               width={290}
               height={44}
               alt="ReXtro Logo"
-              className="w-72 h-11 object-contain"
+              className="w-40 sm:w-56 lg:w-72 h-auto object-contain"
             />
             <Image
               src="/Logo Image.png"
               width={43}
               height={60}
               alt="Logo"
-              className="w-11 h-14 object-contain"
+              className="w-8 sm:w-10 lg:w-11 h-auto object-contain"
             />
             <Image
               src="/ruhuna_eng_logo 1.png"
               width={43}
               height={57}
               alt="University of Ruhuna Engineering Faculty"
-              className="w-11 h-14 object-contain"
+              className="w-8 sm:w-10 lg:w-11 h-auto object-contain"
             />
           </div>
           <Image
@@ -85,7 +85,7 @@ const Footer = () => {
             width={234}
             height={56}
             alt="ReXtro 2025"
-            className="w-60 h-14 object-contain"
+            className="w-40 sm:w-52 lg:w-60 h-auto object-contain"
           />
         </div>
 
