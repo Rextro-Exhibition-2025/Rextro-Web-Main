@@ -137,7 +137,6 @@ export default function EventsPage() {
             <span className="text-sm text-gray-600 font-medium">December 5-7, 2025</span>
           </div>
 
-          {/* Main Heading */}
           <div className="w-full max-w-xl mx-auto transform-style-3d transition-transform duration-500" style={{ transform: 'rotateX(5deg)' }}>
              <EventsTitleSvg />
           </div>

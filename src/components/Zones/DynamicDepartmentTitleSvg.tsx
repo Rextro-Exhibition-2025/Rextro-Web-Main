@@ -41,13 +41,11 @@ const DynamicDepartmentTitleSvg: React.FC<DynamicDepartmentTitleSvgProps> = ({ t
             fillOpacity: 0,
             stroke: fillColor,
             strokeWidth: 1.5,
-            autoAlpha: 1
+            autoAlpha: 1,
+            filter: "drop-shadow(0 0 1px rgba(255,255,255,0.8)) drop-shadow(0 0 3px currentColor)"
           });
         });
       }
-
-      // Hide extrusion initially
-      gsap.set('.dept-title-extrusion', { autoAlpha: 0 });
 
       const tl = gsap.timeline({ delay: 0.5 });
 
@@ -62,15 +60,10 @@ const DynamicDepartmentTitleSvg: React.FC<DynamicDepartmentTitleSvgProps> = ({ t
       .to('.dept-title-text', {
         fillOpacity: 1,
         strokeWidth: 0,
-        duration: 2.5,
+        filter: "none",
+        duration: 0.6,
         ease: 'power2.out'
-      }, '<')
-      // 4. Fade in Extrusion (Concurrent)
-      .to('.dept-title-extrusion', {
-        autoAlpha: 1,
-        duration: 2.5,
-        ease: 'power2.out'
-      }, '<');
+      }, '-=0.5');
 
     }, svgRef);
 
@@ -95,61 +88,34 @@ const DynamicDepartmentTitleSvg: React.FC<DynamicDepartmentTitleSvgProps> = ({ t
         ref={svgRef}
         viewBox="0 0 900 400"
         className="w-full h-auto overflow-visible"
-        style={{ filter: 'drop-shadow(0 10px 20px rgba(185, 28, 28, 0.4))' }}
+        style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2))' }}
       >
         <defs>
-          {/* Top Text Gradient (White/Silver/Blue Tint) */}
-          <linearGradient id="deptTopFaceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="100%" stopColor="#cbd5e1" />
+          {/* Gradient 0: Red to Navy (Top Line) */}
+          <linearGradient id="deptGradient0" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#D40000" />
+            <stop offset="100%" stopColor="#000080" />
           </linearGradient>
 
-          {/* Bottom Text Gradient (Cyan/Blue) */}
-          <linearGradient id="deptBottomFaceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#22d3ee" />
-            <stop offset="50%" stopColor="#0ea5e9" />
-            <stop offset="100%" stopColor="#2563eb" />
-          </linearGradient>
-
-          {/* 3D Extrusion Gradient (Dark Navy) */}
-          <linearGradient id="deptExtrusionGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#0f172a" />
-            <stop offset="100%" stopColor="#1e3a8a" />
+          {/* Gradient 1: Dark Navy -> Mid Blue -> Light Navy (Bottom Line) */}
+          <linearGradient id="deptGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#002255" />
+            <stop offset="45%" stopColor="#0044AA" />
+            <stop offset="100%" stopColor="#213F6B" />
           </linearGradient>
         </defs>
 
         {/* --- LINE 1 --- */}
         <g transform="translate(450, 160)">
-          <g transform="translate(0, 0)">
-            {[...Array(12)].map((_, i) => (
-              <text
-                key={`top-ext-${i}`}
-                className="dept-title-extrusion"
-                textAnchor="middle"
-                fontFamily="var(--font-orbitron), sans-serif"
-                fontWeight="900"
-                fontStyle="italic"
-                fontSize={fontSize1}
-                fill="url(#deptExtrusionGradient)"
-                stroke="#1e3a8a"
-                strokeWidth="2"
-                transform={`translate(${i * -0.5}, ${i * 0.8})`}
-                style={{ letterSpacing: '0.05em' }}
-              >
-                {line1}
-              </text>
-            ))}
-          </g>
           <text
             className="dept-title-text"
             textAnchor="middle"
             fontFamily="var(--font-orbitron), sans-serif"
             fontWeight="900"
-            fontStyle="italic"
             fontSize={fontSize1}
-            fill="url(#deptTopFaceGradient)"
-            stroke="#94a3b8"
-            strokeWidth="1"
+            fill="url(#deptGradient0)"
+            stroke="url(#deptGradient0)"
+            strokeWidth="1.5"
             style={{ letterSpacing: '0.05em' }}
           >
             {line1}
@@ -159,36 +125,15 @@ const DynamicDepartmentTitleSvg: React.FC<DynamicDepartmentTitleSvgProps> = ({ t
         {/* --- LINE 2 --- */}
         {line2 && (
           <g transform="translate(450, 240)">
-            <g transform="translate(0, 0)">
-              {[...Array(16)].map((_, i) => (
-                <text
-                  key={`bot-ext-${i}`}
-                  className="dept-title-extrusion"
-                  textAnchor="middle"
-                  fontFamily="var(--font-orbitron), sans-serif"
-                  fontWeight="900"
-                  fontStyle="italic"
-                  fontSize={fontSize2}
-                  fill="url(#deptExtrusionGradient)"
-                  stroke="#1e3a8a"
-                  strokeWidth="2"
-                  transform={`translate(${i * -0.5}, ${i * 0.8})`}
-                  style={{ letterSpacing: '0.05em' }}
-                >
-                  {line2}
-                </text>
-              ))}
-            </g>
             <text
               className="dept-title-text"
               textAnchor="middle"
               fontFamily="var(--font-orbitron), sans-serif"
               fontWeight="900"
-              fontStyle="italic"
               fontSize={fontSize2}
-              fill="url(#deptBottomFaceGradient)"
-              stroke="#0284c7"
-              strokeWidth="2"
+              fill="url(#deptGradient1)"
+              stroke="url(#deptGradient1)"
+              strokeWidth="1.5"
               style={{ letterSpacing: '0.05em' }}
             >
               {line2}
