@@ -11,7 +11,7 @@ interface EventModalProps {
   onClose: () => void;
 }
 
-const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
+const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -287,4 +287,4 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   );
 };
 
-export default EventModal;
+export default EventsModal;

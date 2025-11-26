@@ -20,6 +20,8 @@ export interface EventData {
   gradient: string;
   isAvailable?: boolean; 
   zoneName?: string;
+  registrationStatus?: 'open' | 'full' | 'closed' | 'soon';
+  capacity?: string;
 }
 
 export const events: EventData[] = [

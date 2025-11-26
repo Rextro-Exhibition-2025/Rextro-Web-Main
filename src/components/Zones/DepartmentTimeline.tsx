@@ -5,6 +5,7 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { departments } from '@/lib/zonesData';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +26,7 @@ const VideoPlayer = ({ src }: { src: string }) => {
       muted
       playsInline
       preload="auto"
-      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+      className="w-full h-full object-cover"
       onEnded={() => {
         if (videoRef.current) {
           videoRef.current.currentTime = 0;
@@ -122,6 +123,19 @@ const DepartmentTimeline = () => {
           }
         );
       });
+
+      // Floating animation for video cards
+      gsap.to('.video-3d-container', {
+        y: -15,
+        duration: 3,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut',
+        stagger: {
+          each: 0.5,
+          from: "random"
+        }
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -130,34 +144,7 @@ const DepartmentTimeline = () => {
   return (
     <section ref={sectionRef} className="relative w-full bg-black overflow-hidden py-20">
       {/* Animated Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
-        
-        {/* Moving Glows */}
-        <div ref={glow1Ref} className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px]" />
-        <div ref={glow2Ref} className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]" />
-
-        {/* Star Particles */}
-        <div ref={starsRef} className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white rounded-full opacity-20"
-              style={{
-                left: `${(i * 17) % 100}%`,
-                top: `${(i * 23) % 100}%`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      <AnimatedBackground />
 
       <div ref={timelineRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Central Line */}
@@ -214,10 +201,61 @@ const DepartmentTimeline = () => {
               <div className="absolute left-4 sm:left-1/2 w-4 h-4 bg-black border-2 border-cyan-500 rounded-full -translate-x-1/2 z-10 hidden sm:block shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
 
               {/* Video Side */}
-              <div className="w-full sm:w-1/2 px-4 mt-8 sm:mt-0">
-                <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl group-hover:border-cyan-500/30 transition-all duration-500">
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                  <VideoPlayer src={dept.videoSrc} />
+              <div className="w-full sm:w-1/2 px-4 mt-8 sm:mt-0" style={{ perspective: '1200px' }}>
+                <div 
+                  className="video-3d-container relative aspect-video rounded-xl transition-all duration-700 ease-out group-hover:scale-105"
+                  style={{
+                    transform: `rotateY(${index % 2 === 0 ? '20deg' : '-20deg'}) rotateX(10deg) rotateZ(${index % 2 === 0 ? '-2deg' : '2deg'})`,
+                    transformStyle: 'preserve-3d',
+                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+                  }}
+                >
+                  {/* Front Face (Video) */}
+                  <div 
+                    className="absolute inset-0 rounded-xl overflow-hidden border border-white/10 bg-zinc-900" 
+                    style={{ transform: 'translateZ(10px)' }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none z-20 mix-blend-overlay" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                    <VideoPlayer src={dept.videoSrc} />
+                  </div>
+
+                  {/* Back Face (for thickness) */}
+                  <div 
+                    className="absolute inset-0 rounded-xl bg-zinc-900 border border-white/5"
+                    style={{ transform: 'translateZ(-10px)' }}
+                  />
+
+                  {/* Thickness/Sides - Simulating 3D Extrusion */}
+                  {/* Right Face */}
+                  <div 
+                    className="absolute top-0 right-0 bottom-0 w-[20px] bg-zinc-800 border-y border-r border-white/10 rounded-r-sm origin-right"
+                    style={{ 
+                      transform: 'rotateY(90deg) translateZ(10px)',
+                      opacity: index % 2 === 0 ? 1 : 0 // Only visible when rotated left
+                    }}
+                  />
+                  
+                  {/* Left Face */}
+                  <div 
+                    className="absolute top-0 left-0 bottom-0 w-[20px] bg-zinc-800 border-y border-l border-white/10 rounded-l-sm origin-left"
+                    style={{ 
+                      transform: 'rotateY(-90deg) translateZ(10px)',
+                      opacity: index % 2 !== 0 ? 1 : 0 // Only visible when rotated right
+                    }}
+                  />
+                  
+                  {/* Bottom Face */}
+                   <div 
+                      className="absolute bottom-0 left-0 right-0 h-[20px] bg-zinc-950 border-x border-b border-white/10 origin-bottom"
+                      style={{ transform: 'rotateX(-90deg) translateZ(10px)' }}
+                    />
+
+                  {/* Top Face */}
+                   <div 
+                      className="absolute top-0 left-0 right-0 h-[20px] bg-zinc-700 border-x border-t border-white/10 origin-top"
+                      style={{ transform: 'rotateX(90deg) translateZ(10px)' }}
+                    />
                 </div>
               </div>
             </div>
