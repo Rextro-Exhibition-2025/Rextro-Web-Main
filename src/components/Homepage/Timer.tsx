@@ -10,7 +10,7 @@ interface TimeLeft {
 }
 
 interface TimerProps {
-  theme?: 'light' | 'dark';
+  theme?: 'light' | 'dark' | 'events';
 }
 
 const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
