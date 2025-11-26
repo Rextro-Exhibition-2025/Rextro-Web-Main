@@ -66,7 +66,6 @@ export default function Contact() {
     <div className="-mt-16 flex flex-auto font-[family-name:var(--font-instrument-sans)] flex-col overflow-hidden pt-16">
       <div className="flex flex-auto flex-col mx-auto w-full px-6 py-12 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
         <main className="relative flex flex-auto flex-col pt-20" id="main">
-          <h1 className="text-sm font-medium text-purple-500 opacity-0 animate-[fadeIn_0.6s_ease-out_0.1s_forwards]">Contact</h1>
           <p className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-4 mt-4 font-bold text-gray-950 sm:text-lg md:text-6xl opacity-0 animate-[slideUp_0.8s_ease-out_0.3s_forwards]">Anything to know?</p>
           <p className="mt-4 max-w-lg text-lg text-gray-600 opacity-0 animate-[fadeIn_0.6s_ease-out_0.6s_forwards]">
             Feel free to contact us. We value the power of communication and would be delighted to hear from you. Whether you're interested in participating, becoming a sponsor, have questions about the exhibition, or simply wish to give us feedback, we're here to help.

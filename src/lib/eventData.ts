@@ -14,12 +14,12 @@ export interface EventData {
     organization: string;
   };
   highlights: string[];
-  capacity?: number;
   registrationLink?: string;
   image?: string;
   color: string;
   gradient: string;
-  isAvailable?: boolean; // Toggle to show/hide zone sessions
+  isAvailable?: boolean; 
+  zoneName?: string;
 }
 
 export const events: EventData[] = [
@@ -35,7 +35,6 @@ export const events: EventData[] = [
     venue: 'Auditorium',
     description: 'Grand opening of ReXtro 2025: Silver Jubilee Exhibition celebrating 25 years of engineering excellence and innovation.',
     highlights: ['Welcome Address', 'Keynote Speech', 'Exhibition Overview', 'Industry Partner Introductions'],
-    capacity: 500,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
     gradient: 'from-cyan-500 to-blue-600'
@@ -51,7 +50,6 @@ export const events: EventData[] = [
     venue: 'NCC',
     description: 'A competitive mathematics quiz designed for top-performing A/L students across the country. Teams compete through multiple rounds of problem-solving, logic-based tasks, and timed challenges.',
     highlights: ['Rapid-fire question rounds', 'Analytical challenges', 'Top student participation'],
-    capacity: 80,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/MathQuest.svg',
     color: '#6C47FF',
@@ -68,7 +66,6 @@ export const events: EventData[] = [
     venue: 'DO1, DO2, LT1',
     description: 'A robotics competition that brings together school and university teams to compete in mechanical design, coding, and task-based robotic challenges.',
     highlights: ['Live robot challenges', 'Multidisciplinary engineering', 'School and university participation'],
-    capacity: 950,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/Xbotix.svg',
     color: '#FF6B35',
@@ -87,7 +84,6 @@ export const events: EventData[] = [
     venue: 'LT1 & LT2 (Semi-Final), Auditorium (Final)',
     description: 'A structured debate competition where university teams engage in high-level argumentation on contemporary topics.',
     highlights: ['Intense debates', 'Critical-thinking showcase', 'Expert judging'],
-    capacity: 30,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
     gradient: 'from-cyan-500 to-blue-600'
@@ -103,7 +99,6 @@ export const events: EventData[] = [
     venue: 'Hapugala School Ground',
     description: 'A practical aeronautics competition where teams design, build and fly RC aircraft.',
     highlights: ['Aerodynamics', 'Control precision', 'Endurance performance'],
-    capacity: 100,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#10B981',
     gradient: 'from-green-500 to-emerald-600'
@@ -119,7 +114,6 @@ export const events: EventData[] = [
     venue: 'NCC',
     description: 'A programming contest where top scorers from the preliminary stage compete to solve complex algorithmic and logical problems.',
     highlights: ['Algorithms', 'Problem-solving', 'Code optimisation'],
-    capacity: 100,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#6C47FF',
     gradient: 'from-purple-500 to-pink-600'
@@ -135,7 +129,6 @@ export const events: EventData[] = [
     venue: 'Faculty Ground',
     description: 'A water rocket competition where teams design, build and launch model water rockets.',
     highlights: ['Rocket design', 'Safety procedures', 'Flight performance tracking'],
-    capacity: 100,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
     gradient: 'from-orange-500 to-red-600'
@@ -151,7 +144,6 @@ export const events: EventData[] = [
     venue: 'DO1 & DO2',
     description: 'A national exhibition presenting final-year engineering projects developed by undergraduates.',
     highlights: ['Robotics', 'Power and energy', 'Biomedical engineering', 'Software applications'],
-    capacity: 200,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#EC4899',
     gradient: 'from-pink-500 to-rose-600'
@@ -169,7 +161,6 @@ export const events: EventData[] = [
     venue: 'Auditorium',
     description: 'A high-impact startup pitch event where finalists present innovative business ideas to investors and industry professionals.',
     highlights: ['Investor feedback', 'Real-world business insight', 'Innovative project presentations'],
-    capacity: 80,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/Pitch arena.svg',
     color: '#5CE3FF',
@@ -186,7 +177,6 @@ export const events: EventData[] = [
     venue: 'DO1 & DO2',
     description: 'A CAD design competition where participants produce detailed engineering models using Autodesk Revit under time-bound conditions.',
     highlights: ['Technical accuracy', 'Creative design', 'Engineering modelling'],
-    capacity: 48,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
     gradient: 'from-orange-500 to-red-600'
@@ -202,7 +192,6 @@ export const events: EventData[] = [
     venue: 'Auditorium',
     description: 'Grand closing ceremony celebrating innovation, awarding outstanding projects, and networking with industry partners.',
     highlights: ['Award Presentations', 'Best Project Awards', 'Networking', 'Closing Address'],
-    capacity: 400,
     registrationLink: 'https://tickets.rextro.lk',
     color: '#EC4899',
     gradient: 'from-pink-500 to-rose-600'
@@ -222,11 +211,11 @@ export const events: EventData[] = [
     venue: 'ELR',
     description: 'Explore the cutting-edge research areas in biomedical engineering and their applications in healthcare and medical technology.',
     highlights: ['Research methodologies', 'Medical technology innovations', 'Healthcare applications'],
-    capacity: 50,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: true
+    isAvailable: true,
+    zoneName: 'Biomedical Engineering Zone'
   },
   {
     id: 'electrical-safety-awareness',
@@ -244,11 +233,11 @@ export const events: EventData[] = [
       organization: 'Lakvijaya Power Plant, Ceylon Electricity Board'
     },
     highlights: ['Safety protocols', 'Risk prevention', 'Emergency procedures'],
-    capacity: 50,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Power and Energy Systems Zone'
   },
   {
     id: 'iot-connecting-everything',
@@ -266,11 +255,11 @@ export const events: EventData[] = [
       organization: ''
     },
     highlights: ['IoT fundamentals', 'Smart devices', 'Connected systems'],
-    capacity: 50,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Telecommunication Zone'
   },
   {
     id: 'submarine-cables-digital-era',
@@ -288,11 +277,11 @@ export const events: EventData[] = [
       organization: ''
     },
     highlights: ['Submarine cable technology', 'Global connectivity', 'Internet infrastructure'],
-    capacity: 50,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Telecommunication Zone'
   },
   {
     id: 'diode-rectifier-amplifier-day1',
@@ -305,11 +294,11 @@ export const events: EventData[] = [
     venue: 'ELR',
     description: 'Hands-on educational session on fundamental electronic components for A/L and O/L students.',
     highlights: ['Electronic components', 'Circuit basics', 'Practical demonstrations'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Educational Development Zone'
   },
   {
     id: 'diode-rectifier-amplifier-day3',
@@ -322,11 +311,11 @@ export const events: EventData[] = [
     venue: 'ELR',
     description: 'Hands-on educational session on fundamental electronic components for A/L and O/L students.',
     highlights: ['Electronic components', 'Circuit basics', 'Practical demonstrations'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Educational Development Zone'
   },
   {
     id: 'kirchhoff-laws-demo-session1',
@@ -339,11 +328,11 @@ export const events: EventData[] = [
     venue: 'ELR',
     description: 'Interactive demonstration of Kirchhoff\'s laws with practical circuit examples for students.',
     highlights: ['Circuit analysis', 'Kirchhoff\'s laws', 'Practical applications'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Educational Development Zone'
   },
   {
     id: 'kirchhoff-laws-demo-session2',
@@ -356,11 +345,11 @@ export const events: EventData[] = [
     venue: 'ELR',
     description: 'Interactive demonstration of Kirchhoff\'s laws with practical circuit examples for students.',
     highlights: ['Circuit analysis', 'Kirchhoff\'s laws', 'Practical applications'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Educational Development Zone'
   },
   {
     id: 'intro-metaverse',
@@ -373,11 +362,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Explore the concept of the metaverse and its potential impact on future digital interactions.',
     highlights: ['Metaverse concepts', 'Virtual worlds', 'Future of digital interaction'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'AR and VR Zone'
   },
   {
     id: 'intro-xr-development',
@@ -390,11 +379,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Learn about Extended Reality (XR) development covering AR, VR, and MR technologies.',
     highlights: ['XR fundamentals', 'Development tools', 'AR/VR/MR applications'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'AR and VR Zone'
   },
   {
     id: 'intro-frontend-dev',
@@ -407,11 +396,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Get started with frontend development: HTML, CSS, JavaScript, and modern frameworks.',
     highlights: ['HTML/CSS basics', 'JavaScript fundamentals', 'Modern frameworks'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Software Engineering Zone'
   },
   {
     id: 'intro-backend-dev',
@@ -424,11 +413,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Learn backend development basics: server-side programming, databases, and APIs.',
     highlights: ['Server-side programming', 'Database management', 'API development'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Software Engineering Zone'
   },
   {
     id: 'intro-mobile-dev',
@@ -441,11 +430,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Discover mobile app development for iOS and Android platforms.',
     highlights: ['Mobile platforms', 'Cross-platform development', 'App design principles'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Software Engineering Zone'
   },
   {
     id: 'intro-ai',
@@ -458,11 +447,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Introduction to Artificial Intelligence: concepts, applications, and future possibilities.',
     highlights: ['AI fundamentals', 'Machine learning basics', 'AI applications'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Software Engineering Zone'
   },
   {
     id: 'prompt-engineering-llm',
@@ -475,11 +464,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Master the art of prompt engineering for Large Language Models to get better AI responses.',
     highlights: ['Prompt design', 'LLM optimization', 'Effective AI communication'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Software Engineering Zone'
   },
   {
     id: 'ai-easy-life',
@@ -492,11 +481,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Learn how to use AI tools effectively in daily life for productivity and problem-solving.',
     highlights: ['Practical AI tools', 'Productivity hacks', 'Daily life applications'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Software Engineering Zone'
   },
   {
     id: 'ai-everyday-life-day1',
@@ -509,11 +498,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Explore how AI is transforming our daily lives and society.',
     highlights: ['AI applications', 'Societal impact', 'Future trends'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'AI and Computer Vision Zone'
   },
   {
     id: 'ai-everyday-life-day2',
@@ -526,11 +515,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Explore how AI is transforming our daily lives and society.',
     highlights: ['AI applications', 'Societal impact', 'Future trends'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'AI and Computer Vision Zone'
   },
   {
     id: 'ai-everyday-life-day3',
@@ -543,11 +532,11 @@ export const events: EventData[] = [
     venue: 'NLH2',
     description: 'Explore how AI is transforming our daily lives and society.',
     highlights: ['AI applications', 'Societal impact', 'Future trends'],
-    capacity: 60,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'AI and Computer Vision Zone'
   },
 
   // Mechanical Department Zone Sessions
@@ -567,11 +556,11 @@ export const events: EventData[] = [
       organization: 'Hemas Consumer Brands'
     },
     highlights: ['Microcontroller basics', 'Programming fundamentals', 'Real-world applications'],
-    capacity: 50,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#10B981',
     gradient: 'from-green-500 to-emerald-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Robotics & Intelligent Automation Zone'
   },
   {
     id: 'industrial-automation-session',
@@ -584,11 +573,11 @@ export const events: EventData[] = [
     venue: 'MLR',
     description: 'Learn about industrial automation technologies and their impact on modern manufacturing.',
     highlights: ['Automation systems', 'Industry 4.0', 'Smart manufacturing'],
-    capacity: 50,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#10B981',
     gradient: 'from-green-500 to-emerald-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Robotics & Intelligent Automation Zone'
   },
   {
     id: 'motorcycle-engines-exploration',
@@ -606,11 +595,11 @@ export const events: EventData[] = [
       organization: 'David Pieris Motor Company'
     },
     highlights: ['Engine mechanics', 'Performance optimization', 'Hands-on demonstrations'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#10B981',
     gradient: 'from-green-500 to-emerald-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Automotive Engineering & Mobility Solutions Zone'
   },
 
   // Marine Department Zone Sessions
@@ -625,11 +614,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Discover the marine engineering and naval architecture programs at University of Ruhuna.',
     highlights: ['Program overview', 'Career opportunities', 'Research areas'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
   {
     id: 'ship-engine-room-secrets',
@@ -642,11 +631,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Uncover the mysteries of ship engine rooms and marine propulsion systems.',
     highlights: ['Engine room operations', 'Marine machinery', 'Ship systems'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
   {
     id: 'mega-ships',
@@ -659,11 +648,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Explore the engineering marvels of the world\'s largest ships.',
     highlights: ['Ship design', 'Propulsion systems', 'Naval architecture'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
   {
     id: 'life-at-sea',
@@ -676,11 +665,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Hear firsthand experiences from marine engineers about life aboard ships.',
     highlights: ['Career insights', 'Travel experiences', 'Marine engineering life'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
   {
     id: 'future-ship-design',
@@ -693,11 +682,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Explore emerging trends and innovations in naval architecture and ship design.',
     highlights: ['Design innovations', 'Future technologies', 'Sustainability'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
   {
     id: 'green-shipping',
@@ -710,11 +699,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Learn about sustainable shipping technologies and marine renewable energy solutions.',
     highlights: ['Sustainable design', 'Renewable energy', 'Environmental impact'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
   {
     id: 'ship-accidents-science',
@@ -727,11 +716,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Understand ship accidents and the engineering solutions to prevent them.',
     highlights: ['Safety engineering', 'Accident analysis', 'Prevention methods'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
   {
     id: 'marine-engineering-advancements',
@@ -744,11 +733,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Discover the latest advancements in marine engineering technology.',
     highlights: ['New technologies', 'Innovation trends', 'Future outlook'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
   {
     id: 'becoming-chief-engineer',
@@ -761,11 +750,11 @@ export const events: EventData[] = [
     venue: 'New Workshop Upper Floor Lecture Room',
     description: 'Career guidance and insights on becoming a Chief Marine Engineer.',
     highlights: ['Career path', 'Professional development', 'Industry insights'],
-    capacity: 40,
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#3B82F6',
     gradient: 'from-blue-500 to-indigo-600',
-    isAvailable: false
+    isAvailable: false,
+    zoneName: 'Marine & Naval Engineering Zone'
   },
 ];
 
