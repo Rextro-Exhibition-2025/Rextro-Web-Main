@@ -66,15 +66,15 @@ export default function Contact() {
     <div className="-mt-16 flex flex-auto font-[family-name:var(--font-instrument-sans)] flex-col overflow-hidden pt-16">
       <div className="flex flex-auto flex-col mx-auto w-full px-6 py-12 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
         <main className="relative flex flex-auto flex-col pt-20" id="main">
-          <h1 className="text-sm font-medium text-purple-500">Contact</h1>
-          <p className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-4 mt-4 font-bold text-gray-950 sm:text-lg md:text-6xl">Anything to know?</p>
-          <p className="mt-4 max-w-lg text-lg text-gray-600">
+          <h1 className="text-sm font-medium text-purple-500 opacity-0 animate-[fadeIn_0.6s_ease-out_0.1s_forwards]">Contact</h1>
+          <p className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-4 mt-4 font-bold text-gray-950 sm:text-lg md:text-6xl opacity-0 animate-[slideUp_0.8s_ease-out_0.3s_forwards]">Anything to know?</p>
+          <p className="mt-4 max-w-lg text-lg text-gray-600 opacity-0 animate-[fadeIn_0.6s_ease-out_0.6s_forwards]">
             Feel free to contact us. We value the power of communication and would be delighted to hear from you. Whether you're interested in participating, becoming a sponsor, have questions about the exhibition, or simply wish to give us feedback, we're here to help.
           </p>
 
           <div className="font-[family-name:var(--font-instrument-sans)] relative isolate mt-16 flex-auto">
             {/* Background container with decorative borders */}
-            <div className="absolute inset-x-0 top-0 -z-10 h-full rounded-xl bg-white shadow-[0_10px_32px_rgba(34,42,53,0.15),0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.08),0_24px_68px_rgba(47,48,55,0.1)] ring-1 ring-gray-950/5 lg:max-h-[calc(717/16*1rem)]">
+            <div className="absolute inset-x-0 top-0 -z-10 h-full rounded-xl bg-white shadow-[0_10px_32px_rgba(34,42,53,0.15),0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.08),0_24px_68px_rgba(47,48,55,0.1)] ring-1 ring-gray-950/5 lg:max-h-[calc(717/16*1rem)] opacity-0 animate-[fadeIn_1s_ease-out_0.5s_forwards]">
               <div className="absolute -inset-x-20 bottom-[calc(-93/16*1rem)] -z-10 h-[min(55%,calc(440/16*1rem))] bg-gradient-to-t from-gray-50 from-55% to-95%" />
               
               {/* Top border */}
@@ -134,7 +134,7 @@ export default function Contact() {
               <div className="px-6 pt-20 sm:px-20 space-y-12">
                 {/* Quick Contact Cards */}
                 <div className="space-y-6">
-                  <div className="flex flex-col rounded-2xl bg-gray-25 p-6">
+                  <div className="flex flex-col rounded-2xl bg-gray-25 p-6 opacity-0 animate-[slideUp_0.6s_ease-out_0.8s_forwards] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                     <h2 className="flex gap-x-2 text-sm/5 font-medium text-gray-950">
                       <svg className="h-5 w-5 flex-none" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -158,7 +158,7 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col rounded-2xl bg-gray-25 p-6">
+                  <div className="flex flex-col rounded-2xl bg-gray-25 p-6 opacity-0 animate-[slideUp_0.6s_ease-out_1.0s_forwards] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                     <h2 className="flex gap-x-2 text-sm/5 font-medium text-gray-950">
                       <svg className="h-5 w-5 flex-none" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -182,7 +182,7 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col rounded-2xl bg-gray-25 p-6">
+                  <div className="flex flex-col rounded-2xl bg-gray-25 p-6 opacity-0 animate-[slideUp_0.6s_ease-out_1.2s_forwards] hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                     <h2 className="flex gap-x-2 text-sm/5 font-medium text-gray-950">
                       <svg className="h-5 w-5 flex-none" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -215,7 +215,7 @@ export default function Contact() {
               </div>
 
               {/* Right Side - Contact Form */}
-              <div className="px-6 pt-20 sm:px-20">
+              <div className="px-6 pt-20 sm:px-20 opacity-0 animate-[slideLeft_0.8s_ease-out_0.9s_forwards]">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name */}
                   <div>
@@ -230,7 +230,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Name"
                       required
-                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 transition-all"
+                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:scale-[1.01] transition-all duration-200"
                     />
                   </div>
 
@@ -247,7 +247,7 @@ export default function Contact() {
                       onChange={handleChange}
                       placeholder="Email"
                       required
-                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 transition-all"
+                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:scale-[1.01] transition-all duration-200"
                     />
                   </div>
 
@@ -262,7 +262,7 @@ export default function Contact() {
                       value={formData.type}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 transition-all"
+                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:scale-[1.01] transition-all duration-200"
                     >
                       <option value="">Select Type</option>
                       <option value="sponsorship">Sponsorship</option>
@@ -284,7 +284,7 @@ export default function Contact() {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="Phone Number"
-                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 transition-all"
+                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:scale-[1.01] transition-all duration-200"
                     />
                   </div>
 
@@ -301,7 +301,7 @@ export default function Contact() {
                       placeholder="Message"
                       rows={6}
                       required
-                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 transition-all resize-none"
+                      className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:scale-[1.01] transition-all duration-200 resize-none"
                     />
                   </div>
 
