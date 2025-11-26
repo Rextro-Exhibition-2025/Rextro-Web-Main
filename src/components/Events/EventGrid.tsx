@@ -124,6 +124,12 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
 
         {/* Details */}
         <div className="space-y-2 mb-6 text-sm text-zinc-500">
+          {event.zoneName && (
+            <div className="mb-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10">
+              <div className="text-xs text-zinc-400 mb-1">Zone</div>
+              <div className="text-sm text-white font-medium">{event.zoneName}</div>
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4" />
             <span>{event.venue}</span>
@@ -132,12 +138,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
             <Clock className="w-4 h-4" />
             <span>{event.startTime} - {event.endTime}</span>
           </div>
-          {event.capacity && (
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4" />
-              <span>{event.capacity} seats</span>
-            </div>
-          )}
         </div>
 
         {/* Actions */}
@@ -147,10 +147,21 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
               e.stopPropagation();
               onClick();
             }}
-            className="w-full px-4 py-2 rounded-lg border border-white/10 text-white text-sm font-semibold hover:bg-white/5 transition-all"
+            className="flex-1 px-4 py-2 rounded-lg border border-white/10 text-white text-sm font-semibold hover:bg-white/5 transition-all"
           >
             View Details
           </button>
+          {event.category === 'zone-session' && event.registrationLink && (
+            <a
+              href={event.registrationLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="flex-1 px-4 py-2 rounded-lg bg-white text-gray-950 text-sm font-semibold hover:bg-white/90 transition-all text-center"
+            >
+              Register
+            </a>
+          )}
         </div>
 
         {/* Hover Arrow */}

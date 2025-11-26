@@ -93,7 +93,7 @@ const Footer = () => {
         <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-8">
           <div className="flex-1 max-w-[500px] flex justify-center items-center gap-2">
             <p className="flex-1 text-center lg:text-left text-gray-600 text-base font-normal font-[var(--font-instrument)] leading-6">
-              The largest techno-management exhibition in Southern Sri Lanka, organized by the Faculty of Engineering, University of Ruhuna.
+              The largest engineering exhibition in Sri Lanka, organized by the Faculty of Engineering, University of Ruhuna.
             </p>
           </div>
           <div className="w-full lg:w-auto inline-flex flex-col justify-start items-center lg:items-end gap-4">

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { MapPin, User, Users, Calendar } from 'lucide-react';
-import { getEventsByDay, getCategoryLabel, type EventData } from '@/lib/eventData';
+import { getAvailableEventsByDay, getCategoryLabel, type EventData } from '@/lib/eventData';
 
 interface EventTimelineProps {
   activeDay: 1 | 2 | 3;
@@ -20,7 +20,7 @@ const dayLabels = {
 const EventTimeline: React.FC<EventTimelineProps> = ({ activeDay, onDayChange, onEventClick }) => {
   const eventsRef = useRef<HTMLDivElement>(null);
 
-  const dayEvents = getEventsByDay(activeDay);
+  const dayEvents = getAvailableEventsByDay(activeDay);
 
   useEffect(() => {
     if (eventsRef.current) {

@@ -179,7 +179,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                 <div className="text-white font-semibold">{event.venue}</div>
               </div>
 
-              {event.capacity && (
+              {event.capacity && event.category !== 'zone-session' && (
                 <div className="p-5 rounded-xl bg-white/5 border border-white/10">
                   <div className="flex items-center gap-3 mb-2">
                     <Users className="w-5 h-5 text-zinc-400" />
@@ -252,6 +252,24 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               </div>
             )}
           </div>
+
+          {/* Registration Button for Zone Sessions */}
+          {event.category === 'zone-session' && event.registrationLink && (
+            <div className="px-8 sm:px-10 pb-8">
+              <a
+                href={event.registrationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-4 px-6 rounded-xl text-center font-bold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+                style={{
+                  background: `linear-gradient(135deg, ${event.color}dd, ${event.color})`,
+                  boxShadow: `0 8px 32px ${event.color}40`,
+                }}
+              >
+                Register Now
+              </a>
+            </div>
+          )}
 
           </div>
 
