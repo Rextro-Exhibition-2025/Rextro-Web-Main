@@ -21,6 +21,36 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
     seconds: 0,
   });
 
+  // Define color schemes based on theme
+  const colors = {
+    default: {
+      digitColor: 'text-white',
+      digitShadow: '[text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]',
+      labelOpacity: 'text-white/50',
+      separatorColor: 'bg-white',
+      separatorOpacity: 'opacity-50',
+      backgroundOpacity: 'text-white/10'
+    },
+    events: {
+      digitColor: 'text-black',
+      digitShadow: '[text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.30)]',
+      labelOpacity: 'text-black/70',
+      separatorColor: 'bg-black',
+      separatorOpacity: 'opacity-70',
+      backgroundOpacity: 'text-black/15'
+    },
+    light: {
+      digitColor: 'text-[#0080FF]',
+      digitShadow: '[text-shadow:_0px_0px_8px_rgb(0_128_255_/_0.80),_0px_0px_16px_rgb(0_128_255_/_0.60),_0px_0px_24px_rgb(0_128_255_/_0.40)]',
+      labelOpacity: 'text-white/80',
+      separatorColor: 'bg-[#0080FF]',
+      separatorOpacity: 'opacity-80',
+      backgroundOpacity: 'text-[#0080FF]/25'
+    }
+  };
+
+  const currentTheme = colors[theme];
+
   useEffect(() => {
     // Set your target date here (e.g., event date)
     const targetDate = new Date('2025-12-05T09:00:00').getTime();

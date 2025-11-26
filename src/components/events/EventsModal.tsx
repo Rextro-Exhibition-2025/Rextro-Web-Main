@@ -139,27 +139,6 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                   <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white">
                     Day {event.day}
                   </span>
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
-                      event.registrationStatus === 'open'
-                        ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                        : event.registrationStatus === 'full'
-                        ? 'bg-red-500/20 text-red-400 border border-red-500/30'
-                        : event.registrationStatus === 'closed'
-                        ? 'bg-zinc-500/20 text-zinc-400 border border-zinc-500/30'
-                        : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                    }`}
-                  >
-                    {event.registrationStatus === 'open' ? (
-                      <><CheckCircle className="w-3 h-3" /> Registration Open</>
-                    ) : event.registrationStatus === 'full' ? (
-                      <><X className="w-3 h-3" /> Event Full</>
-                    ) : event.registrationStatus === 'closed' ? (
-                      <><X className="w-3 h-3" /> Registration Closed</>
-                    ) : (
-                      <><Clock className="w-3 h-3" /> Coming Soon</>
-                    )}
-                  </span>
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 leading-tight">
@@ -200,7 +179,7 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                 <div className="text-white font-semibold">{event.venue}</div>
               </div>
 
-              {event.capacity && (
+              {event.capacity && event.category !== 'zone-session' && (
                 <div className="p-5 rounded-xl bg-white/5 border border-white/10">
                   <div className="flex items-center gap-3 mb-2">
                     <Users className="w-5 h-5 text-zinc-400" />
@@ -273,6 +252,24 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               </div>
             )}
           </div>
+
+          {/* Registration Button for Zone Sessions */}
+          {event.category === 'zone-session' && event.registrationLink && (
+            <div className="px-8 sm:px-10 pb-8">
+              <a
+                href={event.registrationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-4 px-6 rounded-xl text-center font-bold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+                style={{
+                  background: `linear-gradient(135deg, ${event.color}dd, ${event.color})`,
+                  boxShadow: `0 8px 32px ${event.color}40`,
+                }}
+              >
+                Register Now
+              </a>
+            </div>
+          )}
 
           </div>
 

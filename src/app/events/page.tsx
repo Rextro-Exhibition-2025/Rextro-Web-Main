@@ -17,37 +17,21 @@ import AnimatedBackground from '@/components/common/AnimatedBackground';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function EventsPage() {
+  const glowRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [activeDay, setActiveDay] = useState<1 | 2 | 3>(1);
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsHeroVisible(true), 100);
-    return () => clearTimeout(timer);
+    setIsHeroVisible(true);
   }, []);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (glowRef.current) {
-        const { clientX, clientY } = e;
-        const x = (clientX / window.innerWidth) * 100;
-        const y = (clientY / window.innerHeight) * 100;
-        glowRef.current.style.background = `radial-gradient(circle 800px at ${x}% ${y}%, rgba(24, 204, 252, 0.08), transparent 60%)`;
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
+  const availableEvents = getAvailableEvents();
   const filteredEvents = activeFilter === 'all'
-    ? events
-    : events.filter(event => event.category === activeFilter);
-
-  const totalEvents = events.length;
+    ? availableEvents
+    : availableEvents.filter(event => event.category === activeFilter);
 
   return (
     <div className="font-[family-name:var(--font-instrument-sans)] bg-white min-h-screen flex flex-col relative antialiased">
@@ -316,12 +300,12 @@ export default function EventsPage() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link
-                  href="https://silver-jubilee.eng.ruh.ac.lk/events"
+                  href="https://forms.gle/aEQJi6Vujufb2DAD6"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] before:duration-300 before:ease-[cubic-bezier(0.4,0.36,0,1)] before:transition-opacity rounded-md shadow-[0_1px_theme(colors.white/0.07)_inset,0_1px_3px_rgba(0,0,0,0.2)] before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-md before:bg-gradient-to-b before:from-white/20 before:opacity-50 hover:before:opacity-100 after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:rounded-md after:bg-gradient-to-b after:from-white/10 after:from-[46%] after:to-[54%] after:mix-blend-overlay text-sm h-[2.5rem] px-6 ring-1 bg-white text-gray-950 ring-white"
                 >
-                  <span className="relative z-10">Register for Events</span>
+                  <span className="relative z-10">Register for Workshops</span>
                 </Link>
                 <Link
                   href="https://tickets.rextro.lk"

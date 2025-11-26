@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from './MeteorAnimation';
 import { FlipWords } from "@/components/Homepage/FlipWords";
 import { useLoading } from "@/contexts/LoadingContext";
 import gsap from "gsap";
+import { X } from 'lucide-react';
 
 interface HeroSectionProps {
   className?: string;
@@ -15,6 +16,9 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
   const { setHeroLoaded, shouldRevealContent } = useLoading();
   const contentRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Signal that hero is ready (SVG is inline)
@@ -94,6 +98,53 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
       );
     }
   }, [shouldRevealContent]);
+
+  // Handle video modal animations
+  useEffect(() => {
+    if (isVideoModalOpen) {
+      document.body.style.overflow = 'hidden';
+      
+      // Stop Lenis smooth scroll when modal is open
+      const html = document.documentElement;
+      html.classList.add('lenis-stopped');
+
+      const tl = gsap.timeline();
+
+      tl.fromTo(
+        overlayRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.3 }
+      ).fromTo(
+        modalRef.current,
+        { opacity: 0, scale: 0.9, y: 30 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(1.5)' },
+        '-=0.2'
+      );
+
+      return () => {
+        document.body.style.overflow = '';
+        html.classList.remove('lenis-stopped');
+      };
+    }
+  }, [isVideoModalOpen]);
+
+  const handleCloseModal = () => {
+    const tl = gsap.timeline({ onComplete: () => setIsVideoModalOpen(false) });
+
+    tl.to(modalRef.current, {
+      opacity: 0,
+      scale: 0.9,
+      y: 30,
+      duration: 0.3,
+      ease: 'power2.in',
+    }).to(overlayRef.current, { opacity: 0, duration: 0.2 }, '-=0.1');
+  };
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleCloseModal();
+    }
+  };
 
   return (
     <div className={`relative isolate overflow-hidden bg-gray-50 h-[90vh] -mt-16 ${className}`}>
@@ -233,7 +284,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                         <FlipWords 
                           words={words} 
                           duration={3000}
-                          className="inline-block  font-bold"
+                          className="inline-block font-bold text-blue-900"
                         />
                         {" "}IS ENGINEERED HERE.
                       </h1>
@@ -241,7 +292,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                   </div>
         
                   {/* CTA Buttons */}
-                  <div className="w-full sm:w-auto p-3 sm:p-4  rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.10)] border border-black/5 backdrop-blur-[1.5px] flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 hero-fade-in">
+                  <div className="w-full sm:w-auto p-4  rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.10)] border border-black/5 backdrop-blur-[1.5px] flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 hero-fade-in">
                     {/* Explore Button - scroll to About section */}
                     <button
                       type="button"
@@ -267,12 +318,11 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                       </span>
                     </button>
         
-                    {/* Watch Video Button - opens YouTube in new tab */}
-                    <a
-                      href="https://youtu.be/pMPGkfB3cXc?si=kPPvAQot0qEsqMrN"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto p-1 sm:p-0.5 sm:px-2 sm:py-2 rounded-3xl flex justify-center sm:justify-start items-center gap-3 hover:bg-black/5 transition-colors"
+                    {/* Watch Video Button - opens modal */}
+                    <button
+                      type="button"
+                      onClick={() => setIsVideoModalOpen(true)}
+                      className="w-full sm:w-auto p-1 sm:p-0.5 sm:px-2 sm:py-2 rounded-3xl flex justify-center sm:justify-start items-center gap-3 hover:bg-black/5 transition-colors cursor-pointer"
                     >
                       <div className="relative w-6 h-6 flex-shrink-0">
                         {/* Play button circle */}
@@ -302,15 +352,60 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                         <span className="text-black text-sm font-medium font-[var(--font-instrument)]">
                           Watch
                         </span>
-                        <span className="text-gray-600 text-xs font-medium font-[var(--font-instrument)]">
-                          3 min
-                        </span>
                       </div>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
       </div>
+
+      {/* Video Modal */}
+      {isVideoModalOpen && (
+        <div
+          ref={overlayRef}
+          onClick={handleOverlayClick}
+          className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
+          data-lenis-prevent
+        >
+          <div
+            ref={modalRef}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-6xl bg-neutral-900 rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
+            style={{
+              aspectRatio: '16/9',
+              maxHeight: '90vh'
+            }}
+          >
+            {/* Close Button */}
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all duration-300 hover:scale-110"
+              aria-label="Close video"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* YouTube Embed */}
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/pMPGkfB3cXc?si=kPPvAQot0qEsqMrN&autoplay=1"
+              title="ReXtro 2025 - Silver Jubilee Engineering Exhibition"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+
+            {/* Decorative Glow Effects */}
+            <div
+              className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none"
+              style={{ backgroundColor: '#0080FF' }}
+            />
+            <div
+              className="absolute bottom-0 left-0 w-48 h-48 opacity-10 blur-3xl pointer-events-none"
+              style={{ backgroundColor: '#FF6B35' }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -41,25 +41,18 @@ const zones: Zone[] = [
     video: "/zones/videos/Sustainable.mp4",
   },
   {
-    title: "AR and VR Zone",
+    title: "Product Design Manufacturing & Material Engineering Zone",
     description:
-      "Step into the immersive world of Augmented and Virtual Reality applications for gaming, education, and industrial design.",
-    height: "h-64",
-    video: "/zones/videos/game.mp4",
-  },
-  {
-    title: "Game Zone",
-    description:
-      "An interactive space featuring both entertainment and educational games. Dive into demonstrations of game design, simulation, and software development.",
-    height: "h-64",
-    video: "/zones/videos/game.mp4",
+      "Explore innovative approaches to product design, advanced manufacturing processes, and cutting-edge material engineering solutions that shape modern industry.",
+    height: "h-[528px]",
+    video: "/zones/videos/product_design.mp4",
   },
   {
     title: "AI and Automotive Engineering & Mobility Solutions Zone",
     description:
       "Explore the future of transportation with AI-powered autonomous vehicles, electric mobility solutions, and smart automotive technologies.",
     height: "h-64",
-    video: "/zones/videos/drone.mp4",
+    video: "/zones/videos/automotive.mp4",
   },
   {
     title: "Marine & Naval Engineering Zone",
@@ -299,11 +292,10 @@ const ExploreZones = () => {
                 <ZoneVideo video={zones[3].video} title={zones[3].title} />
               </div>
 
-              {/* AR and VR */}
+              {/* Product Design Manufacturing & Material Engineering */}
               <div
-                className={`${zones[4].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
+                className={`${zones[4].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
               >
-                <ZoneVideo video={zones[4].video} title={zones[4].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[4].title}
@@ -312,9 +304,13 @@ const ExploreZones = () => {
                     {zones[4].description}
                   </p>
                 </div>
+                <ZoneVideo video={zones[4].video} title={zones[4].title} />
               </div>
+            </div>
 
-              {/* Game Zone */}
+            {/* Column 3 */}
+            <div className="flex flex-col gap-2">
+              {/* Automotive */}
               <div
                 className={`${zones[5].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
@@ -328,15 +324,11 @@ const ExploreZones = () => {
                   </p>
                 </div>
               </div>
-            </div>
 
-            {/* Column 3 */}
-            <div className="flex flex-col gap-2">
-              {/* Automotive */}
+              {/* Marine Engineering */}
               <div
-                className={`${zones[6].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
+                className={`${zones[6].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
               >
-                <ZoneVideo video={zones[6].video} title={zones[6].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[6].title}
@@ -345,34 +337,20 @@ const ExploreZones = () => {
                     {zones[6].description}
                   </p>
                 </div>
+                <ZoneVideo video={zones[6].video} title={zones[6].title} />
               </div>
 
-              {/* Marine Engineering */}
+              {/* Drone */}
               <div
-                className={`${zones[7].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col gap-6 overflow-hidden`}
+                className={`${zones[7].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
               >
+                <ZoneVideo video={zones[7].video} title={zones[7].title} />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
                     {zones[7].title}
                   </h3>
                   <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                     {zones[7].description}
-                  </p>
-                </div>
-                <ZoneVideo video={zones[7].video} title={zones[7].title} />
-              </div>
-
-              {/* Drone */}
-              <div
-                className={`${zones[8].height} p-6 bg-neutral-800/80 backdrop-blur-[1.5px] rounded-2xl border border-white/5 flex flex-col justify-end gap-6 overflow-hidden`}
-              >
-                <ZoneVideo video={zones[8].video} title={zones[8].title} />
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-white text-sm font-medium font-[var(--font-instrument)] leading-tight">
-                    {zones[8].title}
-                  </h3>
-                  <p className="text-zinc-400 text-sm font-normal font-[var(--font-instrument)] leading-normal">
-                    {zones[8].description}
                   </p>
                 </div>
               </div>

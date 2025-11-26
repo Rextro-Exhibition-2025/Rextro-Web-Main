@@ -63,11 +63,11 @@ const Navbar = () => {
   return (
     <>
       {/* Static Navbar - Fades out as one unit */}
-      <nav className={`w-full flex flex-col fixed top-0 left-0 right-0 z-50 transition-opacity duration-300 ease-in-out ${
+      <nav className={`w-full flex flex-col fixed top-0 left-0 right-0 z-40 transition-opacity duration-300 ease-in-out ${
         isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}>
-        {/* Top announcement bar - Only show on homepage */}
-        {pathname === '/' && (
+        {/* Top announcement bar */}
+        {pathname === "/" && (
           <div className="w-full h-auto min-h-10 px-4 sm:px-8 py-2 sm:py-1 bg-neutral-900 flex flex-wrap justify-center items-center gap-2 sm:gap-4">
             <div className="py-1 flex justify-center items-center gap-2 text-center">
               <p className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight sm:leading-none">
