@@ -101,19 +101,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
               {getCategoryLabel(event.category)}
             </span>
           </div>
-
-          {/* Status Badge */}
-          <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-            event.registrationStatus === 'open'
-              ? 'bg-green-500/10 text-green-400'
-              : event.registrationStatus === 'full'
-              ? 'bg-red-500/10 text-red-400'
-              : 'bg-zinc-500/10 text-zinc-400'
-          }`}>
-            {event.registrationStatus === 'open' ? 'Open' :
-             event.registrationStatus === 'full' ? 'Full' :
-             event.registrationStatus === 'closed' ? 'Closed' : 'Soon'}
-          </div>
         </div>
 
         {/* Title */}

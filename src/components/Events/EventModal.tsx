@@ -139,27 +139,6 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                   <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white">
                     Day {event.day}
                   </span>
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
-                      event.registrationStatus === 'open'
-                        ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                        : event.registrationStatus === 'full'
-                        ? 'bg-red-500/20 text-red-400 border border-red-500/30'
-                        : event.registrationStatus === 'closed'
-                        ? 'bg-zinc-500/20 text-zinc-400 border border-zinc-500/30'
-                        : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                    }`}
-                  >
-                    {event.registrationStatus === 'open' ? (
-                      <><CheckCircle className="w-3 h-3" /> Registration Open</>
-                    ) : event.registrationStatus === 'full' ? (
-                      <><X className="w-3 h-3" /> Event Full</>
-                    ) : event.registrationStatus === 'closed' ? (
-                      <><X className="w-3 h-3" /> Registration Closed</>
-                    ) : (
-                      <><Clock className="w-3 h-3" /> Coming Soon</>
-                    )}
-                  </span>
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 leading-tight">

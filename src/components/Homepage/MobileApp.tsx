@@ -76,7 +76,7 @@ const MobileApp = () => {
           {/* Coming Soon Badge */}
           <div className="inline-flex items-center px-3 py-1.5 bg-blue-50 rounded-[4px] border border-blue-200">
             <span className="text-blue-700 text-xs sm:text-sm font-semibold font-[var(--font-instrument)] uppercase tracking-wide">
-              Coming Soon
+              Available Soon
             </span>
           </div>
 
@@ -123,11 +123,6 @@ const MobileApp = () => {
                 className="object-contain"
               />
             </div>
-          </div>
-
-          {/* Coming Soon Notice */}
-          <div className="self-stretch justify-center text-gray-500 text-sm sm:text-base font-normal font-[var(--font-instrument)] leading-6">
-            *The app is currently under development and will be available soon.
           </div>
         </div>
       </div>

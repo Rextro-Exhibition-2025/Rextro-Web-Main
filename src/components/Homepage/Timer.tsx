@@ -9,13 +9,47 @@ interface TimeLeft {
   seconds: number;
 }
 
-const Timer = () => {
+interface TimerProps {
+  theme?: 'default' | 'events' | 'light';
+}
+
+const Timer = ({ theme = 'default' }: TimerProps) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
+
+  // Define color schemes based on theme
+  const colors = {
+    default: {
+      digitColor: 'text-white',
+      digitShadow: '[text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]',
+      labelOpacity: 'text-white/50',
+      separatorColor: 'bg-white',
+      separatorOpacity: 'opacity-50',
+      backgroundOpacity: 'text-white/10'
+    },
+    events: {
+      digitColor: 'text-black',
+      digitShadow: '[text-shadow:_0px_0px_2px_rgb(0_0_0_/_0.30)]',
+      labelOpacity: 'text-black/70',
+      separatorColor: 'bg-black',
+      separatorOpacity: 'opacity-70',
+      backgroundOpacity: 'text-black/15'
+    },
+    light: {
+      digitColor: 'text-[#0080FF]',
+      digitShadow: '[text-shadow:_0px_0px_8px_rgb(0_128_255_/_0.80),_0px_0px_16px_rgb(0_128_255_/_0.60),_0px_0px_24px_rgb(0_128_255_/_0.40)]',
+      labelOpacity: 'text-white/80',
+      separatorColor: 'bg-[#0080FF]',
+      separatorOpacity: 'opacity-80',
+      backgroundOpacity: 'text-[#0080FF]/25'
+    }
+  };
+
+  const currentTheme = colors[theme];
 
   useEffect(() => {
     // Set your target date here (e.g., event date)
@@ -49,10 +83,10 @@ const Timer = () => {
     <div className="self-stretch px-2 sm:px-1 pb-6 inline-flex justify-center sm:justify-end items-center gap-2 sm:gap-4 lg:gap-6 scale-90 sm:scale-100 lg:scale-100 origin-center sm:origin-right">
       {/* Days */}
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
-        <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">DD</div>
+        <div className={`self-stretch text-center justify-center ${currentTheme.labelOpacity} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>DD</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
-          <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
-          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
+          <div className={`left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center ${currentTheme.backgroundOpacity} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']`}>88</div>
+          <div className={`text-center justify-center ${currentTheme.digitColor} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] ${currentTheme.digitShadow}`}>
             {formatNumber(timeLeft.days)}
           </div>
         </div>
@@ -60,16 +94,16 @@ const Timer = () => {
 
       {/* Separator */}
       <div className="w-1.5 sm:w-2 h-20 sm:h-24 lg:h-28 py-2 sm:py-3 inline-flex flex-col justify-end items-center gap-3 sm:gap-4">
-        <div className="self-stretch h-1.5 sm:h-2 opacity-50 bg-white rounded-full" />
-        <div className="self-stretch h-1.5 sm:h-2 opacity-50 bg-white rounded-full" />
+        <div className={`self-stretch h-1.5 sm:h-2 ${currentTheme.separatorOpacity} ${currentTheme.separatorColor} rounded-full`} />
+        <div className={`self-stretch h-1.5 sm:h-2 ${currentTheme.separatorOpacity} ${currentTheme.separatorColor} rounded-full`} />
       </div>
 
       {/* Hours */}
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
-        <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">HH</div>
+        <div className={`self-stretch text-center justify-center ${currentTheme.labelOpacity} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>HH</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
-          <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
-            <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
+          <div className={`left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center ${currentTheme.backgroundOpacity} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']`}>88</div>
+            <div className={`text-center justify-center ${currentTheme.digitColor} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] ${currentTheme.digitShadow}`}>
              {formatNumber(timeLeft.hours)}
           </div>
         </div>
@@ -77,16 +111,16 @@ const Timer = () => {
 
       {/* Separator */}
       <div className="w-1.5 sm:w-2 h-20 sm:h-24 lg:h-28 py-2 sm:py-3 inline-flex flex-col justify-end items-center gap-3 sm:gap-4">
-        <div className="self-stretch h-1.5 sm:h-2 opacity-50 bg-white rounded-full" />
-        <div className="self-stretch h-1.5 sm:h-2 opacity-50 bg-white rounded-full" />
+        <div className={`self-stretch h-1.5 sm:h-2 ${currentTheme.separatorOpacity} ${currentTheme.separatorColor} rounded-full`} />
+        <div className={`self-stretch h-1.5 sm:h-2 ${currentTheme.separatorOpacity} ${currentTheme.separatorColor} rounded-full`} />
       </div>
 
       {/* Minutes */}
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
-        <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">MM</div>
+        <div className={`self-stretch text-center justify-center ${currentTheme.labelOpacity} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>MM</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
-          <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
-          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
+          <div className={`left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center ${currentTheme.backgroundOpacity} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']`}>88</div>
+          <div className={`text-center justify-center ${currentTheme.digitColor} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] ${currentTheme.digitShadow}`}>
             {formatNumber(timeLeft.minutes)}
           </div>
         </div>
@@ -94,16 +128,16 @@ const Timer = () => {
 
       {/* Separator */}
       <div className="w-1.5 sm:w-2 h-20 sm:h-24 lg:h-28 py-2 sm:py-3 inline-flex flex-col justify-end items-center gap-3 sm:gap-4">
-        <div className="self-stretch h-1.5 sm:h-2 opacity-50 bg-white rounded-full" />
-        <div className="self-stretch h-1.5 sm:h-2 opacity-50 bg-white rounded-full" />
+        <div className={`self-stretch h-1.5 sm:h-2 ${currentTheme.separatorOpacity} ${currentTheme.separatorColor} rounded-full`} />
+        <div className={`self-stretch h-1.5 sm:h-2 ${currentTheme.separatorOpacity} ${currentTheme.separatorColor} rounded-full`} />
       </div>
 
       {/* Seconds */}
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
-        <div className="self-stretch text-center justify-center text-white/50 text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]">SS</div>
+        <div className={`self-stretch text-center justify-center ${currentTheme.labelOpacity} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>SS</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
-          <div className="left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center text-white/10 text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']">88</div>
-          <div className="text-center justify-center text-white text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] [text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]">
+          <div className={`left-[2px] top-[6px] sm:top-[8px] absolute text-center justify-center ${currentTheme.backgroundOpacity} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers']`}>88</div>
+          <div className={`text-center justify-center ${currentTheme.digitColor} text-3xl sm:text-4xl lg:text-5xl font-normal font-['Digital_Numbers'] ${currentTheme.digitShadow}`}>
             {formatNumber(timeLeft.seconds)}
           </div>
         </div>
