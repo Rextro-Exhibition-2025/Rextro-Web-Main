@@ -136,17 +136,13 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
         )}
 
         {/* Details */}
-<<<<<<< HEAD:src/components/events/EventsGrid.tsx
         <div className="space-y-2 mb-6 text-sm text-gray-500">
-=======
-        <div className="space-y-2 mb-6 text-sm text-zinc-500">
           {event.zoneName && (
-            <div className="mb-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10">
-              <div className="text-xs text-zinc-400 mb-1">Zone</div>
-              <div className="text-sm text-white font-medium">{event.zoneName}</div>
+            <div className="mb-2 px-3 py-2 rounded-lg bg-gray-100 border border-gray-200">
+              <div className="text-xs text-gray-500 mb-1">Zone</div>
+              <div className="text-sm text-gray-900 font-medium">{event.zoneName}</div>
             </div>
           )}
->>>>>>> 5dfe1d587b4556ee6248b5f9280b7f0fdb6fd6c7:src/components/Events/EventGrid.tsx
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4" />
             <span>{event.venue}</span>
@@ -164,11 +160,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
               e.stopPropagation();
               onClick();
             }}
-<<<<<<< HEAD:src/components/events/EventsGrid.tsx
-            className="w-full px-4 py-2 rounded-lg border border-black/10 text-gray-700 text-sm font-semibold hover:bg-gray-100 transition-all"
-=======
-            className="flex-1 px-4 py-2 rounded-lg border border-white/10 text-white text-sm font-semibold hover:bg-white/5 transition-all"
->>>>>>> 5dfe1d587b4556ee6248b5f9280b7f0fdb6fd6c7:src/components/Events/EventGrid.tsx
+            className="flex-1 px-4 py-2 rounded-lg border border-black/10 text-gray-700 text-sm font-semibold hover:bg-gray-100 transition-all"
           >
             View Details
           </button>
