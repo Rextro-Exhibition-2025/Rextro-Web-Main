@@ -9,7 +9,7 @@ import EventTimeline from '@/components/events/EventTimeline';
 import EventGrid from '@/components/events/EventsGrid';
 import EventModal from '@/components/events/EventsModal';
 import Footer from '@/components/Homepage/Footer';
-import { events, type EventData } from '@/lib/eventData';
+import { events, type EventData, getAvailableEvents } from '@/lib/eventData';
 import EventsTitleSvg from '@/components/events/EventTitleSvg';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
