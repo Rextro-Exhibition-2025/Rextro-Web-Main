@@ -168,8 +168,8 @@ const WhatToExpect = () => {
                 <p className="text-gray-600 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                   Explore more than 25 distinct zones, each showcasing a unique facet of engineering and technology. Immerse yourself in the world of{' '}
                   <span className="font-bold">AR/VR</span>, see the latest in{' '}
-                  <span className="font-bold">drone technology</span>, or explore advancements in{' '}
-                  <span className="font-bold">marine engineering</span>.
+                  <span className="font-bold">Robotics</span>, or explore advancements in{' '}
+                  <span className="font-bold">AI and Computer Vision</span>.
                 </p>
               </div>
 
