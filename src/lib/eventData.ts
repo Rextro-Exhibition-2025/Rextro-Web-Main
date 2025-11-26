@@ -19,6 +19,7 @@ export interface EventData {
   image?: string;
   color: string;
   gradient: string;
+  form?: string;
 }
 
 export const events: EventData[] = [
@@ -37,7 +38,8 @@ export const events: EventData[] = [
     capacity: 500,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
   {
     id: 'mathquest',
@@ -54,7 +56,8 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/MathQuest.svg',
     color: '#6C47FF',
-    gradient: 'from-purple-500 to-pink-600'
+    gradient: 'from-purple-500 to-pink-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
   {
     id: 'xbotics',
@@ -71,7 +74,8 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/Xbotix.svg',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
 
   // Day 2 - December 6, 2025
@@ -89,7 +93,8 @@ export const events: EventData[] = [
     capacity: 30,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
   {
     id: 'aeroxplore',
@@ -105,7 +110,8 @@ export const events: EventData[] = [
     capacity: 100,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#10B981',
-    gradient: 'from-green-500 to-emerald-600'
+    gradient: 'from-green-500 to-emerald-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
   {
     id: 'haxtreme',
@@ -121,7 +127,8 @@ export const events: EventData[] = [
     capacity: 100,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#6C47FF',
-    gradient: 'from-purple-500 to-pink-600'
+    gradient: 'from-purple-500 to-pink-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
   {
     id: 'rocketfest',
@@ -137,7 +144,8 @@ export const events: EventData[] = [
     capacity: 100,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
   {
     id: 'ieee-fyp-arena',
@@ -153,7 +161,8 @@ export const events: EventData[] = [
     capacity: 200,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#EC4899',
-    gradient: 'from-pink-500 to-rose-600'
+    gradient: 'from-pink-500 to-rose-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
 
   // Day 3 - December 7, 2025
@@ -172,7 +181,8 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/Pitch arena.svg',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
   {
     id: 'revit',
@@ -188,7 +198,8 @@ export const events: EventData[] = [
     capacity: 48,
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
   {
     id: 'closing-ceremony',
@@ -204,7 +215,8 @@ export const events: EventData[] = [
     capacity: 400,
     registrationLink: 'https://tickets.rextro.lk',
     color: '#EC4899',
-    gradient: 'from-pink-500 to-rose-600'
+    gradient: 'from-pink-500 to-rose-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
   },
 ];
 

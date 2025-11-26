@@ -17,7 +17,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    
+
     // Stop Lenis smooth scroll when modal is open
     const html = document.documentElement;
     html.classList.add('lenis-stopped');
@@ -72,16 +72,16 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
       className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 overflow-hidden"
       data-lenis-prevent
     >
-        <div
-          ref={modalRef}
-          onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-neutral-900 border border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-700 hover:scrollbar-thumb-zinc-600"
-          data-lenis-prevent
-          style={{
-            scrollbarWidth: 'thin',
-            scrollbarColor: 'rgba(82, 82, 91, 0.5) transparent',
-          }}
-        >
+      <div
+        ref={modalRef}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-neutral-900 border border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-700 hover:scrollbar-thumb-zinc-600"
+        data-lenis-prevent
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'rgba(82, 82, 91, 0.5) transparent',
+        }}
+      >
         {/* Close Button */}
         <button
           onClick={handleClose}
@@ -90,7 +90,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
         >
           <X className="w-5 h-5" />
         </button>          {/* Content */}
-          <div className="pb-8">
+        <div className="pb-8">
           {/* Header Section */}
           <div className="relative p-8 sm:p-10 border-b border-white/10 bg-[#131316]">
             <div className="flex flex-col sm:flex-row items-start gap-6">
@@ -251,20 +251,33 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                 </div>
               </div>
             )}
+
+            {/* Embedded Form */}
+            {event.form && (
+              <div className="w-full h-[800px] rounded-xl overflow-hidden bg-white/5 border border-white/10">
+                <iframe
+                  src={event.form}
+                  className="w-full h-full"
+                  title="Event Registration Form"
+                >
+                  Loading…
+                </iframe>
+              </div>
+            )}
           </div>
 
-          </div>
-
-          {/* Decorative Accents */}
-          <div
-            className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none"
-            style={{ backgroundColor: event.color }}
-          />
-          <div
-            className="absolute bottom-0 left-0 w-48 h-48 opacity-10 blur-3xl pointer-events-none"
-            style={{ backgroundColor: event.color }}
-          />
         </div>
+
+        {/* Decorative Accents */}
+        <div
+          className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none"
+          style={{ backgroundColor: event.color }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-48 h-48 opacity-10 blur-3xl pointer-events-none"
+          style={{ backgroundColor: event.color }}
+        />
+      </div>
     </div>
   );
 };
