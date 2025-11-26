@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 
 interface Zone {
@@ -220,6 +221,15 @@ const ExploreZones = () => {
               engineering solutions across 25 thematic zones. Here's a sneak
               peek at what you can experience:
             </p>
+            <Link 
+              href="/zones"
+              className="mt-2 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/50 transition-all group"
+            >
+              <span className="text-sm font-medium text-white">Explore Zones</span>
+              <svg className="w-4 h-4 text-cyan-400 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
 
           {/* Zones Grid */}
