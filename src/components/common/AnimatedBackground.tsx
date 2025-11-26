@@ -38,16 +38,26 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ className = '' 
       const stars = starsRef.current?.children;
       if (stars) {
         Array.from(stars).forEach((star, i) => {
+           // Floating animation (Faster)
            gsap.to(star, {
-             opacity: 0.8,
-             scale: 1.5,
-             y: -30, // Float up
-             x: (i % 2 === 0 ? 15 : -15), // Slight horizontal drift
-             duration: 4 + (i % 4), // Slow duration (4-7s)
+             y: -50, // Float up more
+             x: (i % 2 === 0 ? 20 : -20), // More drift
+             duration: 2 + (i % 3), // Faster duration (2-5s)
              repeat: -1,
              yoyo: true,
              ease: "sine.inOut",
-             delay: i * 0.2
+             delay: i * 0.1
+           });
+
+           // Opacity Pulse (Light up and off)
+           gsap.to(star, {
+             opacity: 1, // Fully bright
+             scale: 1.5,
+             duration: 1 + (Math.random() * 1.5), // Random pulse speed
+             repeat: -1,
+             yoyo: true,
+             ease: "power1.inOut",
+             delay: Math.random() * 2
            });
         });
       }
