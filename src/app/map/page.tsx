@@ -6,6 +6,7 @@ import MapHeroSection from '@/components/map/MapHero';
 import ZoneGallery from '../../components/map/ZoneGallery';
 import InteractiveMapCanvas from '../../components/map/InteractiveMapCanvas';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
+import FooterTab from '@/components/common/FooterTab';
 
 export default function MapPage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
@@ -41,6 +42,9 @@ export default function MapPage() {
 
       {/* Zone Gallery */}
       <ZoneGallery />
+
+      {/* Footer Decoration */}
+      <FooterTab />
 
       {/* Footer */}
       <Footer />

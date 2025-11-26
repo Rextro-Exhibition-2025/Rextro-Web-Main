@@ -79,14 +79,15 @@ const DynamicDepartmentTitleSvg: React.FC<DynamicDepartmentTitleSvgProps> = ({ t
 
   // Dynamic font size calculation based on length
   const getFontSize = (text: string) => {
-    if (text.length > 20) return 70;
-    if (text.length > 15) return 85;
-    if (text.length > 10) return 100;
-    return 130;
+    if (text.length > 20) return 45;
+    if (text.length > 15) return 60;
+    if (text.length > 10) return 75;
+    return 90;
   };
 
-  const fontSize1 = getFontSize(line1);
-  const fontSize2 = getFontSize(line2);
+  // Use the longer line to determine font size for both lines to keep them consistent
+  const fontSize1 = getFontSize(line1.length > line2.length ? line1 : line2);
+  const fontSize2 = fontSize1;
 
   return (
     <div className="w-full relative">
@@ -118,7 +119,7 @@ const DynamicDepartmentTitleSvg: React.FC<DynamicDepartmentTitleSvgProps> = ({ t
         </defs>
 
         {/* --- LINE 1 --- */}
-        <g transform="translate(450, 140)">
+        <g transform="translate(450, 160)">
           <g transform="translate(0, 0)">
             {[...Array(12)].map((_, i) => (
               <text
@@ -157,7 +158,7 @@ const DynamicDepartmentTitleSvg: React.FC<DynamicDepartmentTitleSvgProps> = ({ t
 
         {/* --- LINE 2 --- */}
         {line2 && (
-          <g transform="translate(450, 280)">
+          <g transform="translate(450, 240)">
             <g transform="translate(0, 0)">
               {[...Array(16)].map((_, i) => (
                 <text

@@ -15,6 +15,12 @@ export default function Contact() {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsHeroVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +74,9 @@ export default function Contact() {
     <div className="-mt-16 flex flex-auto font-[family-name:var(--font-instrument-sans)] flex-col overflow-hidden pt-16 bg-gray-50">
       
       {/* Hero Section with Background */}
-      <section className="relative isolate w-full">
+      <section className={`relative isolate w-full bg-gray-50 transition-all duration-1000 ${
+        isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
         {/* Background Layer */}
         <div className="absolute inset-0 -z-10">
           {/* Left Circuit Board */}

@@ -6,6 +6,7 @@ import MapHeroSection from '@/components/map/MapHero'; // Reusing for consistenc
 import DepartmentTimeline from '@/components/Zones/DepartmentTimeline';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import ZonesTitleSvg from '@/components/Zones/ZonesTitleSvg';
+import FooterTab from '@/components/common/FooterTab';
 
 export default function ZonesPage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
@@ -122,6 +123,9 @@ export default function ZonesPage() {
 
       {/* Timeline Section */}
       <DepartmentTimeline />
+
+      {/* Footer Decoration */}
+      <FooterTab />
 
       {/* Footer */}
       <Footer />

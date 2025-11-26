@@ -61,7 +61,9 @@ export default function EventsPage() {
       {/* Hero Section - Light Theme */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50"
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 transition-all duration-1000 ${
+          isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
         style={{ zIndex: 2 }}
       >
         {/* Background Layer (Circuit + Meteors) */}
@@ -128,9 +130,7 @@ export default function EventsPage() {
         </div>
 
         {/* Content */}
-        <div className={`relative z-30 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-32 text-center transition-all duration-1000 ${
-          isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
+        <div className="relative z-30 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-32 text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-4 rounded-md border border-black/10 bg-white/50 backdrop-blur-sm mb-8 shadow-sm">
             <div className="size-2 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.6)]" />
