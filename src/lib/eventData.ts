@@ -44,7 +44,7 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
     gradient: 'from-cyan-500 to-blue-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'mathquest',
@@ -61,7 +61,7 @@ export const events: EventData[] = [
     image: '/MathQuest.svg',
     color: '#6C47FF',
     gradient: 'from-purple-500 to-pink-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'xbotics',
@@ -78,7 +78,7 @@ export const events: EventData[] = [
     image: '/Xbotix.svg',
     color: '#FF6B35',
     gradient: 'from-orange-500 to-red-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
   // Day 2 - December 6, 2025
@@ -96,7 +96,7 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
     gradient: 'from-cyan-500 to-blue-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'aeroxplore',
@@ -112,7 +112,7 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#10B981',
     gradient: 'from-green-500 to-emerald-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'haxtreme',
@@ -128,7 +128,7 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#6C47FF',
     gradient: 'from-purple-500 to-pink-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'rocketfest',
@@ -144,7 +144,7 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
     gradient: 'from-orange-500 to-red-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'ieee-fyp-arena',
@@ -160,7 +160,7 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#EC4899',
     gradient: 'from-pink-500 to-rose-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
   // Day 3 - December 7, 2025
@@ -179,7 +179,7 @@ export const events: EventData[] = [
     image: '/Pitch arena.svg',
     color: '#5CE3FF',
     gradient: 'from-cyan-500 to-blue-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'revit',
@@ -195,7 +195,7 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
     gradient: 'from-orange-500 to-red-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'closing-ceremony',
@@ -211,7 +211,7 @@ export const events: EventData[] = [
     registrationLink: 'https://tickets.rextro.lk',
     color: '#EC4899',
     gradient: 'from-pink-500 to-rose-600',
-    form: 'https://docs.google.com/forms/d/e/1FAIpQLSds3kvtOfGCN5NnYE4HTde-06gh8fNkYSz9_wbx7GqqBKyjug/viewform?usp=dialog'
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
   // Zone Sessions - Set isAvailable to true when ready to publish
