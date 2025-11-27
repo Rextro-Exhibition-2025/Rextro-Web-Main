@@ -45,6 +45,10 @@ const Navbar = () => {
       hasDropdown: true,
     },
     {
+      label: "Registrations",
+      href: "/registrations",
+    },
+    {
       label: "Zones",
       href: "/zones",
       hasDropdown: false,

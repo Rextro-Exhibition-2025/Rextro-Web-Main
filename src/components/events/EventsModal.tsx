@@ -289,35 +289,35 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               </div>
             )}
 
-            {/* Form */}
-            {event.form && (
-              <div className="w-full h-[800px] rounded-xl overflow-hidden bg-white/5 border border-white/10">
-                <iframe
-                  src={event.form}
-                  className="w-full h-full"
-                  title="Registration Form"
-                ></iframe>
+            {/* Zone Session Registration Form Embed ONLY */}
+            {event.category === "zone-session" && (event.registrationLink || event.form) && (
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4">Registration</h3>
+                <div className="w-full h-[800px] rounded-xl overflow-hidden bg-white border border-white/20 shadow-2xl">
+                  <iframe
+                    src={event.registrationLink || event.form}
+                    className="w-full h-full"
+                    title="Registration Form"
+                    frameBorder="0"
+                    marginHeight={0}
+                    marginWidth={0}
+                  >
+                    Loading…
+                  </iframe>
+                </div>
+                <p className="text-xs text-zinc-500 mt-3 text-center">
+                  Having trouble? <a 
+                    href={event.registrationLink || event.form} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-zinc-400 underline hover:text-white transition-colors"
+                  >
+                    Open form in new tab
+                  </a>
+                </p>
               </div>
             )}
           </div>
-
-          {/* Register Button */}
-          {event.category === "zone-session" && event.registrationLink && (
-            <div className="px-8 sm:px-10 pb-8">
-              <a
-                href={event.registrationLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full py-4 px-6 rounded-xl text-center font-bold text-white transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  background: `linear-gradient(135deg, ${event.color}dd, ${event.color})`,
-                  boxShadow: `0 8px 32px ${event.color}40`,
-                }}
-              >
-                Register Now
-              </a>
-            </div>
-          )}
         </div>
 
         {/* Decorative Accents */}

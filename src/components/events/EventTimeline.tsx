@@ -109,17 +109,18 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ activeDay, onDayChange, o
                   </span>
 
                   {/* Status */}
-                  <span className={`px-2 py-0.5 rounded-full text-xs ${
-                    event.registrationStatus === 'open'
-                      ? 'bg-green-500/10 text-green-400 border border-green-500/20'
-                      : event.registrationStatus === 'full'
-                      ? 'bg-red-500/10 text-red-400 border border-red-500/20'
-                      : 'bg-zinc-500/10 text-zinc-400 border border-zinc-500/20'
-                  }`}>
-                    {event.registrationStatus === 'open' ? 'Open' :
-                     event.registrationStatus === 'full' ? 'Full' :
-                     event.registrationStatus === 'closed' ? 'Closed' : 'Soon'}
-                  </span>
+                  {event.registrationStatus && event.registrationStatus !== 'soon' && (
+                    <span className={`px-2 py-0.5 rounded-full text-xs ${
+                      event.registrationStatus === 'open'
+                        ? 'bg-green-500/10 text-green-400 border border-green-500/20'
+                        : event.registrationStatus === 'full'
+                        ? 'bg-red-500/10 text-red-400 border border-red-500/20'
+                        : 'bg-zinc-500/10 text-zinc-400 border border-zinc-500/20'
+                    }`}>
+                      {event.registrationStatus === 'open' ? 'Open' :
+                       event.registrationStatus === 'full' ? 'Full' : 'Closed'}
+                    </span>
+                  )}
                 </div>
 
                 <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-zinc-200 transition-colors">
