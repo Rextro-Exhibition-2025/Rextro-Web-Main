@@ -18,10 +18,14 @@ export interface EventData {
   image?: string;
   color: string;
   gradient: string;
-  isAvailable?: boolean; 
+
+  form?: string;
+
+  isAvailable?: boolean;
   zoneName?: string;
   registrationStatus?: 'open' | 'full' | 'closed' | 'soon';
   capacity?: string;
+
 }
 
 export const events: EventData[] = [
@@ -39,7 +43,8 @@ export const events: EventData[] = [
     highlights: ['Welcome Address', 'Keynote Speech', 'Exhibition Overview', 'Industry Partner Introductions'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'mathquest',
@@ -55,7 +60,8 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/MathQuest.svg',
     color: '#6C47FF',
-    gradient: 'from-purple-500 to-pink-600'
+    gradient: 'from-purple-500 to-pink-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'xbotics',
@@ -71,7 +77,8 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/Xbotix.svg',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
   // Day 2 - December 6, 2025
@@ -88,7 +95,8 @@ export const events: EventData[] = [
     highlights: ['Intense debates', 'Critical-thinking showcase', 'Expert judging'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'aeroxplore',
@@ -103,7 +111,8 @@ export const events: EventData[] = [
     highlights: ['Aerodynamics', 'Control precision', 'Endurance performance'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#10B981',
-    gradient: 'from-green-500 to-emerald-600'
+    gradient: 'from-green-500 to-emerald-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'haxtreme',
@@ -118,7 +127,8 @@ export const events: EventData[] = [
     highlights: ['Algorithms', 'Problem-solving', 'Code optimisation'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#6C47FF',
-    gradient: 'from-purple-500 to-pink-600'
+    gradient: 'from-purple-500 to-pink-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'rocketfest',
@@ -133,7 +143,8 @@ export const events: EventData[] = [
     highlights: ['Rocket design', 'Safety procedures', 'Flight performance tracking'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'ieee-fyp-arena',
@@ -148,7 +159,8 @@ export const events: EventData[] = [
     highlights: ['Robotics', 'Power and energy', 'Biomedical engineering', 'Software applications'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#EC4899',
-    gradient: 'from-pink-500 to-rose-600'
+    gradient: 'from-pink-500 to-rose-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
   // Day 3 - December 7, 2025
@@ -166,7 +178,8 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/Pitch arena.svg',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'revit',
@@ -181,7 +194,8 @@ export const events: EventData[] = [
     highlights: ['Technical accuracy', 'Creative design', 'Engineering modelling'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'closing-ceremony',
@@ -196,11 +210,12 @@ export const events: EventData[] = [
     highlights: ['Award Presentations', 'Best Project Awards', 'Networking', 'Closing Address'],
     registrationLink: 'https://tickets.rextro.lk',
     color: '#EC4899',
-    gradient: 'from-pink-500 to-rose-600'
+    gradient: 'from-pink-500 to-rose-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
   // Zone Sessions - Set isAvailable to true when ready to publish
-  
+
   // Electrical & Computer Engineering Department Zone Sessions
   {
     id: 'biomedical-research-aspects',
