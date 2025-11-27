@@ -48,7 +48,7 @@ const RegistrationsPage = ({ initialEvents }: RegistrationsPageProps) => {
       <RegistrationsHero />
 
       {/* Zone Sessions Grid - Light Theme */}
-      <section id="registrations-list" className="relative py-24 px-6 sm:px-12 lg:px-20 bg-black overflow-hidden">
+      <section id="registrations-list" className="relative pt-24 px-6 sm:px-12 lg:px-20 bg-black overflow-hidden">
         {/* Animated Background */}
         <AnimatedBackground />
 

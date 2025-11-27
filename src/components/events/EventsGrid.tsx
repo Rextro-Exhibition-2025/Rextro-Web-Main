@@ -103,17 +103,18 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick }) => {
           </div>
 
           {/* Status Badge */}
-          <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-            event.registrationStatus === 'open'
-              ? 'bg-green-50 text-green-700 border border-green-200'
-              : event.registrationStatus === 'full'
-              ? 'bg-red-50 text-red-700 border border-red-200'
-              : 'bg-gray-100 text-gray-600 border border-gray-200'
-          }`}>
-            {event.registrationStatus === 'open' ? 'Open' :
-             event.registrationStatus === 'full' ? 'Full' :
-             event.registrationStatus === 'closed' ? 'Closed' : 'Soon'}
-          </div>
+          {event.registrationStatus && event.registrationStatus !== 'soon' && (
+            <div className={`px-2 py-1 rounded-full text-xs font-medium ${
+              event.registrationStatus === 'open'
+                ? 'bg-green-50 text-green-700 border border-green-200'
+                : event.registrationStatus === 'full'
+                ? 'bg-red-50 text-red-700 border border-red-200'
+                : 'bg-gray-100 text-gray-600 border border-gray-200'
+            }`}>
+              {event.registrationStatus === 'open' ? 'Open' :
+               event.registrationStatus === 'full' ? 'Full' : 'Closed'}
+            </div>
+          )}
         </div>
 
         {/* Title */}
