@@ -1,10 +1,23 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import Image from 'next/image';
-import { Calendar, Clock, MapPin, Users, Target, User, CheckCircle, X } from 'lucide-react';
-import { getCategoryIcon, getCategoryLabel, type EventData } from '@/lib/eventData';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import Image from "next/image";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
+  Target,
+  User,
+  CheckCircle,
+  X,
+} from "lucide-react";
+import {
+  getCategoryIcon,
+  getCategoryLabel,
+  type EventData,
+} from "@/lib/eventData";
 
 interface EventModalProps {
   event: EventData;
@@ -16,11 +29,10 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    
-    // Stop Lenis smooth scroll when modal is open
+    document.body.style.overflow = "hidden";
+
     const html = document.documentElement;
-    html.classList.add('lenis-stopped');
+    html.classList.add("lenis-stopped");
 
     const tl = gsap.timeline();
 
@@ -31,13 +43,13 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
     ).fromTo(
       modalRef.current,
       { opacity: 0, scale: 0.9, y: 30 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(1.5)' },
-      '-=0.2'
+      { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.5)" },
+      "-=0.2"
     );
 
     return () => {
-      document.body.style.overflow = '';
-      html.classList.remove('lenis-stopped');
+      document.body.style.overflow = "";
+      html.classList.remove("lenis-stopped");
     };
   }, []);
 
@@ -49,20 +61,18 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
       scale: 0.9,
       y: 30,
       duration: 0.3,
-      ease: 'power2.in',
-    }).to(overlayRef.current, { opacity: 0, duration: 0.2 }, '-=0.1');
+      ease: "power2.in",
+    }).to(overlayRef.current, { opacity: 0, duration: 0.2 }, "-=0.1");
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      handleClose();
-    }
+    if (e.target === e.currentTarget) handleClose();
   };
 
   const dayLabels = {
-    1: 'December 05, 2025',
-    2: 'December 06, 2025',
-    3: 'December 07, 2025',
+    1: "December 05, 2025",
+    2: "December 06, 2025",
+    3: "December 07, 2025",
   };
 
   return (
@@ -72,16 +82,16 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
       className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8 overflow-hidden"
       data-lenis-prevent
     >
-        <div
-          ref={modalRef}
-          onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-neutral-900 border border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-700 hover:scrollbar-thumb-zinc-600"
-          data-lenis-prevent
-          style={{
-            scrollbarWidth: 'thin',
-            scrollbarColor: 'rgba(82, 82, 91, 0.5) transparent',
-          }}
-        >
+      <div
+        ref={modalRef}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-neutral-900 border border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-700 hover:scrollbar-thumb-zinc-600"
+        style={{
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(82, 82, 91, 0.5) transparent",
+        }}
+        data-lenis-prevent
+      >
         {/* Close Button */}
         <button
           onClick={handleClose}
@@ -89,14 +99,17 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
-        </button>          {/* Content */}
-          <div className="pb-8">
-          {/* Header Section */}
+        </button>
+
+        {/* Content */}
+        <div className="pb-8">
+          {/* Header */}
           <div className="relative p-8 sm:p-10 border-b border-white/10 bg-[#131316]">
             <div className="flex flex-col sm:flex-row items-start gap-6">
-              {/* Logo or Icon */}
+              {/* Logo */}
               {event.image ? (
-                <div className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden bg-white/5 border-2 p-2"
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden bg-white/5 border-2 p-2"
                   style={{
                     borderColor: event.color,
                     boxShadow: `0 8px 24px ${event.color}40`,
@@ -123,7 +136,7 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                 </div>
               )}
 
-              {/* Title Section */}
+              {/* Title */}
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <span
@@ -136,6 +149,7 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                   >
                     {getCategoryLabel(event.category)}
                   </span>
+
                   <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white">
                     Day {event.day}
                   </span>
@@ -150,9 +164,12 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                     <Calendar className="w-4 h-4 text-zinc-500" />
                     <span>{dayLabels[event.day]}</span>
                   </div>
+
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-zinc-500" />
-                    <span>{event.startTime} - {event.endTime}</span>
+                    <span>
+                      {event.startTime} - {event.endTime}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -163,45 +180,51 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
           <div className="p-8 sm:p-10 space-y-8">
             {/* Description */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-3">About This Event</h3>
-              <p className="text-zinc-300 leading-relaxed text-base">
-                {event.description}
-              </p>
+              <h3 className="text-xl font-bold text-white mb-3">
+                About This Event
+              </h3>
+              <p className="text-zinc-300 leading-relaxed">{event.description}</p>
             </div>
 
-            {/* Event Details Grid */}
+            {/* Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-5 rounded-xl bg-white/5 border border-white/10">
                 <div className="flex items-center gap-3 mb-2">
                   <MapPin className="w-5 h-5 text-zinc-400" />
-                  <span className="text-sm text-zinc-500 uppercase tracking-wider">Venue</span>
+                  <span className="text-sm text-zinc-500 uppercase">Venue</span>
                 </div>
                 <div className="text-white font-semibold">{event.venue}</div>
               </div>
 
-              {event.capacity && event.category !== 'zone-session' && (
+              {event.capacity && event.category !== "zone-session" && (
                 <div className="p-5 rounded-xl bg-white/5 border border-white/10">
                   <div className="flex items-center gap-3 mb-2">
                     <Users className="w-5 h-5 text-zinc-400" />
-                    <span className="text-sm text-zinc-500 uppercase tracking-wider">Capacity</span>
+                    <span className="text-sm text-zinc-500 uppercase">
+                      Capacity
+                    </span>
                   </div>
-                  <div className="text-white font-semibold">{event.capacity} Attendees</div>
+                  <div className="text-white font-semibold">
+                    {event.capacity} Attendees
+                  </div>
                 </div>
               )}
 
               <div className="p-5 rounded-xl bg-white/5 border border-white/10">
                 <div className="flex items-center gap-3 mb-2">
                   <Clock className="w-5 h-5 text-zinc-400" />
-                  <span className="text-sm text-zinc-500 uppercase tracking-wider">Duration</span>
+                  <span className="text-sm text-zinc-500 uppercase">
+                    Duration
+                  </span>
                 </div>
                 <div className="text-white font-semibold">
                   {(() => {
-                    const start = event.startTime.split(':').map(Number);
-                    const end = event.endTime.split(':').map(Number);
-                    const duration = (end[0] * 60 + end[1]) - (start[0] * 60 + start[1]);
-                    const hours = Math.floor(duration / 60);
-                    const minutes = duration % 60;
-                    return hours > 0 ? `${hours}h ${minutes}min` : `${minutes} minutes`;
+                    const s = event.startTime.split(":").map(Number);
+                    const e = event.endTime.split(":").map(Number);
+                    const m = e[0] * 60 + e[1] - (s[0] * 60 + s[1]);
+                    const h = Math.floor(m / 60);
+                    const mm = m % 60;
+                    return h > 0 ? `${h}h ${mm}min` : `${mm} minutes`;
                   })()}
                 </div>
               </div>
@@ -209,22 +232,31 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               <div className="p-5 rounded-xl bg-white/5 border border-white/10">
                 <div className="flex items-center gap-3 mb-2">
                   <Target className="w-5 h-5 text-zinc-400" />
-                  <span className="text-sm text-zinc-500 uppercase tracking-wider">Type</span>
+                  <span className="text-sm text-zinc-500 uppercase">Type</span>
                 </div>
-                <div className="text-white font-semibold">{getCategoryLabel(event.category)}</div>
+                <div className="text-white font-semibold">
+                  {getCategoryLabel(event.category)}
+                </div>
               </div>
             </div>
 
-            {/* Speaker Info */}
+            {/* Speaker */}
             {event.speaker && (
               <div className="p-6 rounded-xl bg-white/5 border border-white/10">
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <User className="w-5 h-5" /> Speaker / Organizer
                 </h3>
+
                 <div className="space-y-2">
-                  <div className="text-xl font-bold text-white">{event.speaker.name}</div>
-                  <div className="text-zinc-300 font-semibold">{event.speaker.title}</div>
-                  <div className="text-zinc-500">{event.speaker.organization}</div>
+                  <div className="text-xl font-bold text-white">
+                    {event.speaker.name}
+                  </div>
+                  <div className="text-zinc-300 font-semibold">
+                    {event.speaker.title}
+                  </div>
+                  <div className="text-zinc-500">
+                    {event.speaker.organization}
+                  </div>
                 </div>
               </div>
             )}
@@ -233,34 +265,50 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             {event.highlights.length > 0 && (
               <div>
                 <h3 className="text-xl font-bold text-white mb-4">Highlights</h3>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {event.highlights.map((highlight, idx) => (
+                  {event.highlights.map((h, i) => (
                     <div
-                      key={idx}
+                      key={i}
                       className="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300"
                     >
                       <div
                         className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: `${event.color}30`, color: event.color }}
+                        style={{
+                          backgroundColor: `${event.color}30`,
+                          color: event.color,
+                        }}
                       >
                         <CheckCircle className="w-4 h-4" />
                       </div>
-                      <span className="text-zinc-300">{highlight}</span>
+
+                      <span className="text-zinc-300">{h}</span>
                     </div>
                   ))}
                 </div>
               </div>
             )}
+
+            {/* Form */}
+            {event.form && (
+              <div className="w-full h-[800px] rounded-xl overflow-hidden bg-white/5 border border-white/10">
+                <iframe
+                  src={event.form}
+                  className="w-full h-full"
+                  title="Registration Form"
+                ></iframe>
+              </div>
+            )}
           </div>
 
-          {/* Registration Button for Zone Sessions */}
-          {event.category === 'zone-session' && event.registrationLink && (
+          {/* Register Button */}
+          {event.category === "zone-session" && event.registrationLink && (
             <div className="px-8 sm:px-10 pb-8">
               <a
                 href={event.registrationLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-4 px-6 rounded-xl text-center font-bold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+                className="block w-full py-4 px-6 rounded-xl text-center font-bold text-white transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   background: `linear-gradient(135deg, ${event.color}dd, ${event.color})`,
                   boxShadow: `0 8px 32px ${event.color}40`,
@@ -270,19 +318,18 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               </a>
             </div>
           )}
-
-          </div>
-
-          {/* Decorative Accents */}
-          <div
-            className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none"
-            style={{ backgroundColor: event.color }}
-          />
-          <div
-            className="absolute bottom-0 left-0 w-48 h-48 opacity-10 blur-3xl pointer-events-none"
-            style={{ backgroundColor: event.color }}
-          />
         </div>
+
+        {/* Decorative Accents */}
+        <div
+          className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none"
+          style={{ backgroundColor: event.color }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-48 h-48 opacity-10 blur-3xl pointer-events-none"
+          style={{ backgroundColor: event.color }}
+        />
+      </div>
     </div>
   );
 };
