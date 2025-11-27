@@ -103,6 +103,7 @@ const RegistrationsPage = ({ initialEvents }: RegistrationsPageProps) => {
           <EventsGrid
             events={filtered}
             onEventClick={setSelectedEvent}
+            theme="dark"
           />
         </div>
 

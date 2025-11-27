@@ -60,10 +60,10 @@ const Footer = () => {
           <div className="flex justify-start items-center gap-5">
             <Image
               src="/navbar/nav-icon.png"
-              width={290}
-              height={44}
+              width={200}
+              height={50}
               alt="ReXtro Logo"
-              className="w-72 h-11 object-contain"
+              // className="w-72 h-11 object-contain"
             />
             <Image
               src="/Logo Image.png"

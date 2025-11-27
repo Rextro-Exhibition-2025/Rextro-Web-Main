@@ -53,10 +53,10 @@ const Navbar = () => {
       href: "/zones",
       hasDropdown: false,
     },
-    {
-      label: "Map",
-      href: "/map",
-    },
+    // {
+    //   label: "Map",
+    //   href: "/map",
+    // },
     {
       label: "Contact",
       href: "/contact",

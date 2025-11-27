@@ -1,22 +1,30 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Timer from "@/components/Homepage/Timer";
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from "@/components/Homepage/MeteorAnimation";
+import RegistrationsTitleSvg from "./RegistrationsTitleSvg";
 
 const RegistrationsHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+
+  useEffect(() => {
+    setIsHeroVisible(true);
+  }, []);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gray-50 -mt-16 pt-16"
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 transition-all duration-1000 ${
+        isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
     >
       {/* Background Effects */}
       <div className="absolute inset-0 w-full h-full bg-gray-50 isolate z-0">
          {/* Left Circuit Board */}
-         <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px] opacity-60 mix-blend-multiply">
+         <div className="absolute top-1/2 -translate-y-1/2 right-1/2 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
@@ -32,7 +40,7 @@ const RegistrationsHero = () => {
             <MeteorAnimation
               meteors={HERO_METEORS}
               stops="light"
-              speed={0.3}
+              speed={0.4}
               style={{
                 left: 'calc(504 / 16 * 1rem)',
                 top: 'calc(25 / 16 * 1rem)',
@@ -41,21 +49,10 @@ const RegistrationsHero = () => {
               }}
             />
           </div>
-
-          {/* Circuit Components Overlay */}
-          <picture>
-            <source srcSet="/circuit-components@2xl.webp" type="image/webp" />
-            <img
-              alt=""
-              className="absolute inset-0 h-full w-full"
-              style={{ color: 'transparent' }}
-              src="/circuit-components@2xl.webp"
-            />
-          </picture>
         </div>
 
         {/* Right Circuit Board (Mirrored) */}
-        <div className="absolute -top-8 right-1/2 origin-right -scale-x-100 sm:top-5 aspect-[969/887] w-[969px] opacity-60 mix-blend-multiply">
+        <div className="absolute top-1/2 -translate-y-1/2 right-1/2 origin-right -scale-x-100 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
@@ -71,7 +68,7 @@ const RegistrationsHero = () => {
             <MeteorAnimation
               meteors={HERO_METEORS_ALT}
               stops="light"
-              speed={0.3}
+              speed={0.4}
               style={{
                 left: 'calc(504 / 16 * 1rem)',
                 top: 'calc(25 / 16 * 1rem)',
@@ -80,17 +77,6 @@ const RegistrationsHero = () => {
               }}
             />
           </div>
-
-          {/* Circuit Components Overlay */}
-          <picture>
-            <source srcSet="/circuit-components@2xl.webp" type="image/webp" />
-            <img
-              alt=""
-              className="absolute inset-0 h-full w-full"
-              style={{ color: 'transparent' }}
-              src="/circuit-components@2xl.webp"
-            />
-          </picture>
         </div>
         
         {/* Bottom Fade */}
@@ -105,12 +91,9 @@ const RegistrationsHero = () => {
           <span className="text-sm text-gray-600 font-medium">Zone Sessions - Registration Open</span>
         </div>
 
-        {/* Title */}
-        <div className="mb-8">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-4">
-            Registrations
-          </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto rounded-full" />
+        {/* Title SVG */}
+        <div className="w-full max-w-xl mx-auto transform-style-3d transition-transform duration-500" style={{ transform: 'rotateX(5deg)' }}>
+           <RegistrationsTitleSvg />
         </div>
 
         <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto mb-12 leading-tight font-light">
