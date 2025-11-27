@@ -19,6 +19,22 @@ export interface Department {
 
 export const departments: Department[] = [
   {
+    id: 'civil',
+    name: 'Civil & Environmental Engineering',
+    shortName: 'Civil',
+    description: 'Building a sustainable world with structural and environmental solutions.',
+    videoSrc: '/zones/videos/Sustainable.mp4',
+    color: '#0ea5e9', // Sky Blue
+    zones: [
+      { id: 'environmental', name: 'Environmental Engineering Zone', image: '/zone-innovation.png' },
+      { id: 'structural', name: 'Structural Engineering Zone', image: '/zone-robotics.png' },
+      { id: 'transportation', name: 'Transportation & Construction Management Zone', image: '/zone-ai.png' },
+      { id: 'geotechnical', name: 'Geotechnical Engineering Zone', image: '/zone-gaming.png' },
+      { id: 'water-resources', name: 'Water Resources Engineering Zone', image: '/Renewable Energy.png' },
+      { id: 'building-materials', name: 'Building Materials Zone', image: '/zone-innovation.png' },
+    ]
+  },
+  {
     id: 'electrical',
     name: 'Electrical & Information Engineering',
     shortName: 'Electrical',
@@ -101,19 +117,16 @@ export const departments: Department[] = [
     ]
   },
   {
-    id: 'mechanical',
-    name: 'Mechanical & Manufacturing Engineering',
-    shortName: 'Mechanical',
-    description: 'Innovating with robotics, sustainable energy, and automotive tech.',
-    videoSrc: '/zones/videos/robotics.mp4',
-    color: '#eab308', // Yellow
+    id: 'is',
+    name: 'Interdisciplinary Studies',
+    shortName: 'IS',
+    description: 'Exploring the frontiers of space and defense technology.',
+    videoSrc: '/zones/videos/1 1 Space Zone_reduced.mp4',
+    color: '#d946ef', // Fuchsia
     zones: [
-      { id: 'robotics', name: 'Robotics & Intelligent Automation Zone', image: '/Robotics.png' },
-      { id: 'sustainable-energy', name: 'Sustainable & Renewable Energy Technologies Zone', image: '/Renewable Energy.png' },
-      { id: 'education-skills', name: 'Education & Skills Development Zone', image: '/zone-innovation.png' },
-      { id: 'product-design', name: 'Product Design & Rapid Prototyping Zone', image: '/zone-gaming.png' },
-      { id: 'drone-uav', name: 'Drone & UAV Technologies Zone', image: '/zone-robotics.png' },
-      { id: 'automotive', name: 'Automotive Engineering & Mobility Solutions Zone', image: '/zone-ai.png' },
+      { id: 'is-zone', name: 'IS Zone', image: '/zone-ai.png' },
+      { id: 'space', name: 'Space Zone', image: '/zone-robotics.png' },
+      { id: 'triforces', name: 'Triforces Zones', image: '/zone-gaming.png' },
     ]
   },
   {
@@ -128,32 +141,19 @@ export const departments: Department[] = [
     ]
   },
   {
-    id: 'civil',
-    name: 'Civil & Environmental Engineering',
-    shortName: 'Civil',
-    description: 'Building a sustainable world with structural and environmental solutions.',
-    videoSrc: '/zones/videos/Sustainable.mp4',
-    color: '#0ea5e9', // Sky Blue
+    id: 'mechanical',
+    name: 'Mechanical & Manufacturing Engineering',
+    shortName: 'Mechanical',
+    description: 'Innovating with robotics, sustainable energy, and automotive tech.',
+    videoSrc: '/zones/videos/robotics.mp4',
+    color: '#eab308', // Yellow
     zones: [
-      { id: 'environmental', name: 'Environmental Engineering Zone', image: '/zone-innovation.png' },
-      { id: 'structural', name: 'Structural Engineering Zone', image: '/zone-robotics.png' },
-      { id: 'transportation', name: 'Transportation & Construction Management Zone', image: '/zone-ai.png' },
-      { id: 'geotechnical', name: 'Geotechnical Engineering Zone', image: '/zone-gaming.png' },
-      { id: 'water-resources', name: 'Water Resources Engineering Zone', image: '/Renewable Energy.png' },
-      { id: 'building-materials', name: 'Building Materials Zone', image: '/zone-innovation.png' },
-    ]
-  },
-  {
-    id: 'is',
-    name: 'Interdisciplinary Studies',
-    shortName: 'IS',
-    description: 'Exploring the frontiers of space and defense technology.',
-    videoSrc: '/zones/videos/1 1 Space Zone_reduced.mp4',
-    color: '#d946ef', // Fuchsia
-    zones: [
-      { id: 'is-zone', name: 'IS Zone', image: '/zone-ai.png' },
-      { id: 'space', name: 'Space Zone', image: '/zone-robotics.png' },
-      { id: 'triforces', name: 'Triforces Zones', image: '/zone-gaming.png' },
+      { id: 'robotics', name: 'Robotics & Intelligent Automation Zone', image: '/Robotics.png' },
+      { id: 'sustainable-energy', name: 'Sustainable & Renewable Energy Technologies Zone', image: '/Renewable Energy.png' },
+      { id: 'education-skills', name: 'Education & Skills Development Zone', image: '/zone-innovation.png' },
+      { id: 'product-design', name: 'Product Design & Rapid Prototyping Zone', image: '/zone-gaming.png' },
+      { id: 'drone-uav', name: 'Drone & UAV Technologies Zone', image: '/zone-robotics.png' },
+      { id: 'automotive', name: 'Automotive Engineering & Mobility Solutions Zone', image: '/zone-ai.png' },
     ]
   },
 ];

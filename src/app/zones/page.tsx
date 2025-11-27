@@ -7,6 +7,7 @@ import DepartmentTimeline from '@/components/Zones/DepartmentTimeline';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import ZonesTitleSvg from '@/components/Zones/ZonesTitleSvg';
 import FooterTab from '@/components/common/FooterTab';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 export default function ZonesPage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
