@@ -135,8 +135,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, onClick, theme = 'light' }
         {/* Title */}
         <h3 className={`text-xl font-semibold mb-3 transition-colors ${
           isDark 
-            ? 'text-white group-hover:text-cyan-400' 
-            : 'text-gray-900 group-hover:text-black'
+            ? 'text-white' 
+            : 'text-gray-900'
         }`}>
           {event.title}
         </h3>
