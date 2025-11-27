@@ -20,7 +20,7 @@ const DepartmentHero: React.FC<DepartmentHeroProps> = ({ title, description, vid
   }, []);
 
   return (
-    <div ref={containerRef} className="relative h-[80vh] w-full overflow-hidden bg-black">
+    <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video

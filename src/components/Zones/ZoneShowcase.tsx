@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Zone } from '@/lib/zonesData';
 import { ArrowRight } from 'lucide-react';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,10 +61,11 @@ const ZoneShowcase: React.FC<ZoneShowcaseProps> = ({ zones, color }) => {
 
   return (
     <section className="overflow-hidden bg-black relative">
-      <div ref={triggerRef} className="min-h-screen py-20 md:py-0 md:h-screen flex items-center md:overflow-hidden">
+      <div ref={triggerRef} className="min-h-screen py-20 md:py-0 md:h-screen flex items-center md:overflow-hidden relative">
+        <AnimatedBackground />
         <div 
           ref={sectionRef} 
-          className="flex flex-col md:flex-row gap-8 md:gap-12 px-6 md:px-20 items-start md:items-center w-full md:w-max h-auto md:h-full"
+          className="flex flex-col md:flex-row gap-8 md:gap-12 px-6 md:px-20 items-start md:items-center w-full md:w-max h-auto md:h-full relative z-10"
         >
           {/* Intro Card */}
           <div className="w-full md:w-[30vw] shrink-0 md:pr-12 mb-8 md:mb-0">

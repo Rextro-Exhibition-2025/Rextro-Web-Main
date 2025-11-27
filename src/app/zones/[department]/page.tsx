@@ -1,5 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import FooterTab from '@/components/common/FooterTab';
 import Footer from '@/components/Homepage/Footer';
 import DepartmentHero from '@/components/Zones/DepartmentHero';
 import ZoneShowcase from '@/components/Zones/ZoneShowcase';
@@ -38,6 +39,7 @@ export default async function DepartmentPage({ params }: PageProps) {
         color={deptData.color}
       />
 
+      <FooterTab />
       <Footer />
     </div>
   );

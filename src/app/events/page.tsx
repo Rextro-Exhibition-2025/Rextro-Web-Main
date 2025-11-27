@@ -79,6 +79,7 @@ export default function EventsPage() {
                   height: 'calc(363 / 16 * 1rem)',
                 }}
               />
+              
             </div>
           </div>
 
