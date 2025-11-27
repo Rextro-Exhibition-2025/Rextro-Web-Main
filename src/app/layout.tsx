@@ -5,6 +5,8 @@ import SmoothScroll from "@/components/common/SmoothScroll";
 import ScrollToTop from "@/components/common/ScrollToTop";
 import ClientLayout from "@/components/common/ClientLayout";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { Analytics } from "@vercel/analytics/next"
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -93,6 +95,7 @@ export default function RootLayout({
           <ClientLayout>
             <SmoothScroll />
             {children}
+             <Analytics />
           </ClientLayout>
         </AuthProvider>
       </body>
