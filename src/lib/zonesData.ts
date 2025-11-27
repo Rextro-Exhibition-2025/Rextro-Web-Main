@@ -3,6 +3,8 @@ export interface Zone {
   name: string;
   description?: string;
   image?: string;
+  location?: string;
+  highLevelLocation?: string;
 }
 
 export interface Department {
@@ -24,15 +26,78 @@ export const departments: Department[] = [
     videoSrc: '/zones/videos/Ai.mp4',
     color: '#3b82f6', // Blue
     zones: [
-      { id: 'control-automation', name: 'Control and Automation Zone', image: '/zone-robotics.png' },
-      { id: 'biomedical', name: 'Biomedical Engineering Zone', image: '/zone-innovation.png' },
-      { id: 'power-energy', name: 'Power and Energy Systems Zone', image: '/Renewable Energy.png' },
-      { id: 'telecom', name: 'Telecommunication & Networking Zone', image: '/zone-ai.png' },
-      { id: 'educational-dev', name: 'Educational Development Zone', image: '/zone-gaming.png' },
-      { id: 'embedded-systems', name: 'Embedded System Zone', image: '/zone-robotics.png' },
-      { id: 'ar-vr', name: 'AR and VR Zone', image: '/AR and VR.png' },
-      { id: 'software-cyber', name: 'Software & Cybersecurity Zone', image: '/zone-ai.png' },
-      { id: 'ai-vision', name: 'AI and Computer Vision Zone', image: '/AI and Computer Vision.png' },
+      { 
+        id: 'control-automation', 
+        name: 'Control and Automation Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/zone-robotics.png',
+        location: 'Electrical machines',
+        highLevelLocation: 'DEIE'
+      },
+      { 
+        id: 'power-energy', 
+        name: 'Power and Energy Systems Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/Renewable Energy.png',
+        location: 'Power Systems',
+        highLevelLocation: 'DEIE'
+      },
+      { 
+        id: 'biomedical', 
+        name: 'Biomedical Engineering Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/zone-innovation.png',
+        location: 'HPC Lab and TO Room',
+        highLevelLocation: 'DEIE'
+      },
+      { 
+        id: 'telecom', 
+        name: 'Telecommunication Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/zone-ai.png',
+        location: 'Communication systems',
+        highLevelLocation: 'DEIE'
+      },
+      { 
+        id: 'educational-dev', 
+        name: 'Educational Development Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/zone-gaming.png',
+        location: 'Electronics and Measurements',
+        highLevelLocation: 'DEIE'
+      },
+      { 
+        id: 'embedded-systems', 
+        name: 'Embedded System Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/zone-robotics.png',
+        location: 'Project development',
+        highLevelLocation: 'DEIE'
+      },
+      { 
+        id: 'cybersecurity', 
+        name: 'Cybersecurity & Networking Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/zone-ai.png',
+        location: 'Computer Lab',
+        highLevelLocation: 'DEIE'
+      },
+      { 
+        id: 'ar-vr', 
+        name: 'AR and VR Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/AR and VR.png',
+        location: 'NLH3',
+        highLevelLocation: 'Auditorium Building'
+      },
+      { 
+        id: 'software-eng', 
+        name: 'Software Engineering Zone', 
+        description: 'Explore the cutting-edge innovations in this zone, showcasing the latest advancements in technology and engineering. Students and researchers have collaborated to bring these projects to life, demonstrating practical applications of theoretical concepts. Discover how these developments are shaping the future of the industry and solving real-world problems through creative solutions.',
+        image: '/zone-ai.png',
+        location: 'NLH1',
+        highLevelLocation: 'Auditorium Building'
+      },
     ]
   },
   {
