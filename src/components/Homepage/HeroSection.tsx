@@ -9,10 +9,13 @@ import { X } from 'lucide-react';
 
 interface HeroSectionProps {
   className?: string;
+  subtitleWords?: string[];
+  showExploreButton?: boolean;
+  showWatchButton?: boolean;
 }
 
-const HeroSection = ({ className = '' }: HeroSectionProps) => {
-  const words = ["INNOVATION", "BREAKTHROUGH", "NEXT GENERATION", "VISION", "IMPOSSIBLE", "SUSTAINABILITY"];
+const HeroSection = ({ className = '', subtitleWords, showExploreButton = true, showWatchButton = true }: HeroSectionProps) => {
+  const words = subtitleWords ?? ["INNOVATION", "BREAKTHROUGH", "NEXT GENERATION", "VISION", "IMPOSSIBLE", "SUSTAINABILITY"];
   const { setHeroLoaded, shouldRevealContent } = useLoading();
   const contentRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -293,67 +296,65 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
         
                   {/* CTA Buttons */}
                   <div className="w-full sm:w-auto p-4  rounded-2xl shadow-[0px_4px_20px_0px_rgba(0,0,0,0.10)] border border-black/5 backdrop-blur-[1.5px] flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 hero-fade-in">
-                    {/* Explore Button - scroll to About section */}
-                    <button
-                      type="button"
-                      onClick={() => {
-                          const target = document.getElementById('about');
-                          if (target) {
-                            // Try to detect a nav/header height so we stop a bit before the section
-                            const nav = document.querySelector('nav') || document.querySelector('header');
-                            const navHeight = nav ? (nav as HTMLElement).getBoundingClientRect().height : 0;
-                            const extraOffset = 24; // extra breathing room so content isn't hidden
-                            const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - extraOffset;
-                            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-                          } else {
-                            // fallback: navigate to /#about if not present
-                            window.location.href = '/#about';
-                          }
-                        }}
-                      aria-label="Explore more (scroll to About)"
-                      className="w-full sm:w-auto h-10 sm:h-8 px-6 sm:px-4 pt-2 sm:pt-1.5 pb-2.5 sm:pb-2 bg-gradient-to-b from-blue-900 to-sky-950 rounded-md shadow-[0px_1px_3px_0px_rgba(33,33,38,0.20),0px_0px_0px_1px_rgba(73,120,190,1.00),0px_4px_12px_0px_rgba(0,0,0,0.35)] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.07)] hover:from-blue-800 hover:to-sky-900 transition-all flex justify-center items-center cursor-pointer"
-                    >
-                      <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
-                        Explore more
-                      </span>
-                    </button>
-        
-                    {/* Watch Video Button - opens modal */}
-                    <button
-                      type="button"
-                      onClick={() => setIsVideoModalOpen(true)}
-                      className="w-full sm:w-auto p-1 sm:p-0.5 sm:px-2 sm:py-2 rounded-3xl flex justify-center sm:justify-start items-center gap-3 hover:bg-black/5 transition-colors cursor-pointer"
-                    >
-                      <div className="relative w-6 h-6 flex-shrink-0">
-                        {/* Play button circle */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-black to-black/0 rounded-full" />
-                        <div className="absolute inset-[2px] bg-white rounded-full" />
-                        {/* Play icon */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                          <svg
-                            width="8"
-                            height="8"
-                            viewBox="0 0 8 8"
-                            fill="none"
-                            className="ml-0.5"
-                          >
-                            <path
-                              d="M1.5 1L6.5 4L1.5 7V1Z"
-                              fill="#171717"
-                              stroke="#171717"
-                              strokeWidth="1"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex justify-start items-center gap-2">
-                        <span className="text-black text-sm font-medium font-[var(--font-instrument)]">
-                          Watch
+                    {showExploreButton && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                            const target = document.getElementById('about');
+                            if (target) {
+                              const nav = document.querySelector('nav') || document.querySelector('header');
+                              const navHeight = nav ? (nav as HTMLElement).getBoundingClientRect().height : 0;
+                              const extraOffset = 24;
+                              const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - extraOffset;
+                              window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+                            } else {
+                              window.location.href = '/#about';
+                            }
+                          }}
+                        aria-label="Explore more (scroll to About)"
+                        className="w-full sm:w-auto h-10 sm:h-8 px-6 sm:px-4 pt-2 sm:pt-1.5 pb-2.5 sm:pb-2 bg-gradient-to-b from-blue-900 to-sky-950 rounded-md shadow-[0px_1px_3px_0px_rgba(33,33,38,0.20),0px_0px_0px_1px_rgba(73,120,190,1.00),0px_4px_12px_0px_rgba(0,0,0,0.35)] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.07)] hover:from-blue-800 hover:to-sky-900 transition-all flex justify-center items-center cursor-pointer"
+                      >
+                        <span className="text-white text-sm font-medium font-[var(--font-instrument)]">
+                          Explore more
                         </span>
-                      </div>
-                    </button>
+                      </button>
+                    )}
+
+                    {showWatchButton && (
+                      <button
+                        type="button"
+                        onClick={() => setIsVideoModalOpen(true)}
+                        className="w-full sm:w-auto p-1 sm:p-0.5 sm:px-2 sm:py-2 rounded-3xl flex justify-center sm:justify-start items-center gap-3 hover:bg-black/5 transition-colors cursor-pointer"
+                      >
+                        <div className="relative w-6 h-6 flex-shrink-0">
+                          <div className="absolute inset-0 bg-gradient-to-b from-black to-black/0 rounded-full" />
+                          <div className="absolute inset-[2px] bg-white rounded-full" />
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <svg
+                              width="8"
+                              height="8"
+                              viewBox="0 0 8 8"
+                              fill="none"
+                              className="ml-0.5"
+                            >
+                              <path
+                                d="M1.5 1L6.5 4L1.5 7V1Z"
+                                fill="#171717"
+                                stroke="#171717"
+                                strokeWidth="1"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="flex justify-start items-center gap-2">
+                          <span className="text-black text-sm font-medium font-[var(--font-instrument)]">
+                            Watch
+                          </span>
+                        </div>
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
