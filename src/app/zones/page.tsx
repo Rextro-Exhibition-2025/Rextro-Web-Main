@@ -7,6 +7,7 @@ import DepartmentTimeline from '@/components/Zones/DepartmentTimeline';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import ZonesTitleSvg from '@/components/Zones/ZonesTitleSvg';
 import FooterTab from '@/components/common/FooterTab';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 export default function ZonesPage() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
@@ -123,22 +124,6 @@ export default function ZonesPage() {
 
       {/* Timeline Section */}
       <DepartmentTimeline />
-
-      {/* Additional Text Section */}
-      <section className="py-24 px-6 bg-black relative overflow-hidden border-t border-white/5">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-            Beyond the Departments
-          </h2>
-          <p className="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-2xl mx-auto font-light">
-            Our zones are more than just physical spaces—they are vibrant ecosystems where creativity meets technology. 
-            From student-led research to industry collaborations, innovation happens everywhere.
-          </p>
-        </div>
-        
-        {/* Subtle background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
-      </section>
 
       {/* Footer Decoration */}
       <FooterTab />
