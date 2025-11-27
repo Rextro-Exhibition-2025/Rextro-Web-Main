@@ -392,7 +392,7 @@ const WhatToExpect = () => {
                   <div className="flex h-full items-center justify-center [mask:linear-gradient(black_66%,transparent)]">
                     {/* Register Button */}
                     <Link
-                      href="https://silver-jubilee.eng.ruh.ac.lk/events"
+                      href="https://rextro.lk/registrations"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pointer-events-auto relative flex items-center gap-1.5 rounded-full bg-gray-800 px-2 py-1 text-2xs font-medium text-white shadow-[0_2px_13px_rgba(0,0,0,0.2),0_2px_4px_rgba(47,48,55,0.3)] ring-1 ring-gray-800 font-[var(--font-instrument)] hover:bg-gray-900 transition-colors"
