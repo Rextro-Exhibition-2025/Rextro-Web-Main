@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import DynamicDepartmentTitleSvg from '@/components/Zones/DynamicDepartmentTitleSvg';
 
 interface DepartmentHeroProps {
   title: string;
@@ -11,17 +12,11 @@ interface DepartmentHeroProps {
 
 const DepartmentHero: React.FC<DepartmentHeroProps> = ({ title, description, videoSrc }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const [isHeroVisible, setIsHeroVisible] = React.useState(false);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(textRef.current,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: 'power3.out' }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
+    const timer = setTimeout(() => setIsHeroVisible(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -42,12 +37,20 @@ const DepartmentHero: React.FC<DepartmentHeroProps> = ({ title, description, vid
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8">
-        <div ref={textRef} className="max-w-4xl">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-            {title}
-          </h1>
-          <p className="text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto font-light">
+      <div className={`relative z-10 h-full flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
+        isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <div className="w-full max-w-4xl flex flex-col items-center" style={{ perspective: '1000px' }}>
+          <div 
+            className="w-full transform-style-3d transition-transform duration-500"
+            style={{ transform: 'rotateX(5deg)' }}
+          >
+            <DynamicDepartmentTitleSvg title={title} />
+          </div>
+          <p 
+            className="text-xl sm:text-2xl text-zinc-300 max-w-2xl mx-auto font-light mt-8"
+            style={{ transform: 'translateZ(30px)' }}
+          >
             {description}
           </p>
         </div>
