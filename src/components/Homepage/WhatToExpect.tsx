@@ -168,8 +168,8 @@ const WhatToExpect = () => {
                 <p className="text-gray-600 text-sm font-normal font-[var(--font-instrument)] leading-normal">
                   Explore more than 25 distinct zones, each showcasing a unique facet of engineering and technology. Immerse yourself in the world of{' '}
                   <span className="font-bold">AR/VR</span>, see the latest in{' '}
-                  <span className="font-bold">drone technology</span>, or explore advancements in{' '}
-                  <span className="font-bold">marine engineering</span>.
+                  <span className="font-bold">Robotics</span>, or explore advancements in{' '}
+                  <span className="font-bold">AI and Computer Vision</span>.
                 </p>
               </div>
 
@@ -392,7 +392,7 @@ const WhatToExpect = () => {
                   <div className="flex h-full items-center justify-center [mask:linear-gradient(black_66%,transparent)]">
                     {/* Register Button */}
                     <Link
-                      href="https://silver-jubilee.eng.ruh.ac.lk/events"
+                      href="https://rextro.lk/registrations"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pointer-events-auto relative flex items-center gap-1.5 rounded-full bg-gray-800 px-2 py-1 text-2xs font-medium text-white shadow-[0_2px_13px_rgba(0,0,0,0.2),0_2px_4px_rgba(47,48,55,0.3)] ring-1 ring-gray-800 font-[var(--font-instrument)] hover:bg-gray-900 transition-colors"
