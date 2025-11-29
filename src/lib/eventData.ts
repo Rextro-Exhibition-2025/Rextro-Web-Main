@@ -64,8 +64,8 @@ export const events: EventData[] = [
     form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
-    id: 'xbotics',
-    title: 'Xbotics',
+    id: 'xbotix',
+    title: 'Xbotix',
     category: 'competition',
     day: 1,
     date: '2025-12-05',
