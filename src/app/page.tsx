@@ -5,11 +5,13 @@ import WhatToExpect from "@/components/Homepage/WhatToExpect";
 import MobileApp from "@/components/Homepage/MobileApp";
 import Footer from "@/components/Homepage/Footer";
 import HeroSection from "@/components/Homepage/HeroSection";
+import PostponeModal from "@/components/Homepage/PostponeModal";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="font-[family-name:var(--font-instrument-sans)] pt-28">
+      <PostponeModal />
       <HeroSection />
       <About />
       <WhatToExpect />
