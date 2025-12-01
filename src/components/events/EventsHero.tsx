@@ -18,11 +18,15 @@ const EventsHero = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 w-full h-full bg-gray-50 isolate z-0">
          {/* Left Circuit Board */}
-         <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px] opacity-60 mix-blend-multiply">
+         <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
               alt=""
+              width={1938}
+              height={1774}
+              decoding="async"
+              data-nimg="1"
               className="absolute inset-0 h-full w-full"
               style={{ color: 'transparent' }}
               src="/circuit-lines@2xl.webp"
@@ -49,19 +53,26 @@ const EventsHero = () => {
             <source srcSet="/circuit-components@2xl.webp" type="image/webp" />
             <img
               alt=""
+              width={1938}
+              height={1774}
+              decoding="async"
+              data-nimg="1"
               className="absolute inset-0 h-full w-full"
-              style={{ color: 'transparent' }}
               src="/circuit-components@2xl.webp"
             />
           </picture>
         </div>
 
         {/* Right Circuit Board (Mirrored) */}
-        <div className="absolute -top-8 right-1/2 origin-right -scale-x-100 sm:top-5 aspect-[969/887] w-[969px] opacity-60 mix-blend-multiply">
+        <div className="absolute -top-8 right-1/2 origin-right -scale-x-100 sm:top-5 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
               alt=""
+              width={1938}
+              height={1774}
+              decoding="async"
+              data-nimg="1"
               className="absolute inset-0 h-full w-full"
               style={{ color: 'transparent' }}
               src="/circuit-lines@2xl.webp"
@@ -88,6 +99,10 @@ const EventsHero = () => {
             <source srcSet="/circuit-components@2xl.webp" type="image/webp" />
             <img
               alt=""
+              width={1938}
+              height={1774}
+              decoding="async"
+              data-nimg="1"
               className="absolute inset-0 h-full w-full"
               style={{ color: 'transparent' }}
               src="/circuit-components@2xl.webp"
@@ -101,20 +116,6 @@ const EventsHero = () => {
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 text-center flex flex-col items-center">
-        
-        {/* Badge */}
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white/50 backdrop-blur-md mb-8 shadow-sm"
-        >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-            </span>
-            <span className="text-sm text-gray-700 font-medium tracking-wide">December 5-7, 2025</span>
-        </motion.div>
 
         {/* Heading */}
         <motion.h1 

@@ -116,11 +116,7 @@ export default function EventsPage() {
 
         {/* Content */}
         <div className="relative z-30 max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-32 text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-4 rounded-md border border-black/10 bg-white/50 backdrop-blur-sm mb-8 shadow-sm">
-            <div className="size-2 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.6)]" />
-            <span className="text-sm text-gray-600 font-medium">December 5-7, 2025</span>
-          </div>
+
 
           <div className="w-full max-w-xl mx-auto transform-style-3d transition-transform duration-500" style={{ transform: 'rotateX(5deg)' }}>
              <EventsTitleSvg />

@@ -53,7 +53,7 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
 
   useEffect(() => {
     // Set your target date here (e.g., event date)
-    const targetDate = new Date('2025-12-05T09:00:00').getTime();
+    const targetDate = new Date('2025-12-13T09:00:00').getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();

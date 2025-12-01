@@ -64,9 +64,9 @@ const EventsModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   };
 
   const dayLabels = {
-    1: "Dec 05",
-    2: "Dec 06",
-    3: "Dec 07",
+    1: "Dec 13",
+    2: "Dec 14",
+    3: "Dec 15",
   };
 
   return (

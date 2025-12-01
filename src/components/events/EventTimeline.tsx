@@ -12,9 +12,9 @@ interface EventTimelineProps {
 }
 
 const dayLabels = {
-  1: { date: 'Dec 05', day: 'Day 1', theme: 'Opening Day' },
-  2: { date: 'Dec 06', day: 'Day 2', theme: 'Innovation Day' },
-  3: { date: 'Dec 07', day: 'Day 3', theme: 'Finals Day' },
+  1: { date: 'Dec 13', day: 'Day 1', theme: 'Opening Day' },
+  2: { date: 'Dec 14', day: 'Day 2', theme: 'Innovation Day' },
+  3: { date: 'Dec 15', day: 'Day 3', theme: 'Finals Day' },
 };
 
 const EventTimeline: React.FC<EventTimelineProps> = ({ activeDay, onDayChange, onEventClick }) => {
