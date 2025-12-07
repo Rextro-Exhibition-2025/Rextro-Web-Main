@@ -275,7 +275,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Telecommunication Zone'
   },
   {
@@ -297,7 +297,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Telecommunication Zone'
   },
   {
@@ -314,7 +314,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Educational Development Zone'
   },
   {
@@ -331,7 +331,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Educational Development Zone'
   },
   {
@@ -348,7 +348,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Educational Development Zone'
   },
   {
@@ -365,7 +365,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Educational Development Zone'
   },
   {
@@ -382,7 +382,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'AR and VR Zone'
   },
   {
@@ -399,7 +399,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'AR and VR Zone'
   },
   {
