@@ -1,8 +1,9 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import FooterTab from '@/components/common/FooterTab';
 import Footer from '@/components/Homepage/Footer';
 import DepartmentHero from '@/components/Zones/DepartmentHero';
-import ZoneList from '@/components/Zones/ZoneList';
+import ZoneShowcase from '@/components/Zones/ZoneShowcase';
 import { departments } from '@/lib/zonesData';
 
 interface PageProps {
@@ -33,11 +34,12 @@ export default async function DepartmentPage({ params }: PageProps) {
         videoSrc={deptData.videoSrc}
       />
       
-      <ZoneList 
+      <ZoneShowcase 
         zones={deptData.zones}
         color={deptData.color}
       />
 
+      <FooterTab />
       <Footer />
     </div>
   );

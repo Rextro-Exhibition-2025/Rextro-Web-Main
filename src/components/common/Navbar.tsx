@@ -45,9 +45,23 @@ const Navbar = () => {
       hasDropdown: true,
     },
     {
+      label: "Registrations",
+      href: "/registrations",
+    },
+    {
+      label: "Zones",
+      href: "/zones",
+      hasDropdown: false,
+    },
+    // {
+    //   label: "Map",
+    //   href: "/map",
+    // },
+    {
       label: "Contact",
       href: "/contact",
     },
+    
   ];
 
   return (

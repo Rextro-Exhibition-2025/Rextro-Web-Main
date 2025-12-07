@@ -21,6 +21,10 @@ const sponsors: Company[] = [
   { name: "S-lon", logo: "/Sponsor logo/Silver/S-lon.png", tier: "Silver" },
   { name: "Kevilton", logo: "/Sponsor logo/Silver/kevilton.png", tier: "Silver" },
   { name: "Peplus", logo: "/Sponsor logo/Silver/peplus.png", tier: "Silver" },
+  // Additional Sponsors
+  { name: "LTL", logo: "/Sponsor logo/LTL.jpg", tier: "Partner" },
+  { name: "SLT", logo: "/Sponsor logo/SLT_logo.svg", tier: "Partner" },
+  { name: "CHEC", logo: "/Sponsor logo/chec vector.svg", tier: "Partner" },
 ];
 
 export default function Sponsors() {

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
+import MapTitleSvg from '@/components/map/MapTitleSvg';
 
 interface MapHeroSectionProps {
   className?: string;
@@ -9,11 +10,11 @@ interface MapHeroSectionProps {
 
 const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
   return (
-    <div className={`relative isolate overflow-hidden bg-gray-50 h-[60vh] sm:h-[70vh] mt-20 ${className}`}>
+    <div className={`relative isolate overflow-hidden bg-gray-50 h-[60vh] sm:h-[70vh] ${className}`}>
       {/* Background Layer */}
       <div className="absolute inset-0 -z-10">
-        {/* Left Circuit Board - Subtle on Light */}
-        <div className="absolute -top-8 right-1/2 sm:top-5 aspect-[969/887] w-[969px] opacity-10 mix-blend-multiply">
+        {/* Left Circuit Board */}
+        <div className="absolute top-1/2 -translate-y-1/2 right-1/2 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
@@ -27,13 +28,11 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
               src="/circuit-lines@2xl.webp"
             />
           </picture>
-
-          {/* Left Meteor Animation Overlay - Light Theme */}
           <div className="absolute inset-0">
-            <MeteorAnimation
-              meteors={HERO_METEORS}
-              stops="light"
-              speed={0.4}
+            <MeteorAnimation 
+              meteors={HERO_METEORS} 
+              stops="light" 
+              speed={0.4} 
               style={{
                 left: 'calc(504 / 16 * 1rem)',
                 top: 'calc(25 / 16 * 1rem)',
@@ -45,7 +44,7 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
         </div>
 
         {/* Right Circuit Board (Mirrored) */}
-        <div className="absolute -top-8 right-1/2 origin-right -scale-x-100 sm:top-5 aspect-[969/887] w-[969px] opacity-10 mix-blend-multiply">
+        <div className="absolute top-1/2 -translate-y-1/2 right-1/2 origin-right -scale-x-100 aspect-[969/887] w-[969px]">
           <picture>
             <source srcSet="/circuit-lines@2xl.webp" type="image/webp" />
             <img
@@ -59,13 +58,11 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
               src="/circuit-lines@2xl.webp"
             />
           </picture>
-
-          {/* Right Meteor Animation Overlay */}
           <div className="absolute inset-0">
-            <MeteorAnimation
-              meteors={HERO_METEORS_ALT}
-              stops="light"
-              speed={0.4}
+            <MeteorAnimation 
+              meteors={HERO_METEORS_ALT} 
+              stops="light" 
+              speed={0.4} 
               style={{
                 left: 'calc(504 / 16 * 1rem)',
                 top: 'calc(25 / 16 * 1rem)',
@@ -78,15 +75,15 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
       </div>
 
       {/* Bottom Separator */}
-      <div className="absolute bottom-0 left-0 right-0 translate-y-[1px] z-10">
+      <div className="absolute bottom-0 left-0 right-0 z-10">
         <div className="mx-auto w-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
-          <div className="relative -mx-2.5 flex">
+          <div className="relative -mx-2.5 flex -bottom-1">
             <svg viewBox="0 0 64 48" className="w-16 flex-none fill-black" aria-hidden="true">
-              <path d="M51.657 45.657 12.343 6.343A8 8 0 0 0 6.686 4H0V0h64v48h-6.686a8 8 0 0 1-5.657-2.343Z"></path>
+              <path d="M51.657 2.343 12.343 41.657A8 8 0 0 1 6.686 44H0v4h64V0h-6.686a8 8 0 0 0-5.657 2.343Z"></path>
             </svg>
             <div className="-mx-px flex-auto bg-black"></div>
             <svg viewBox="0 0 64 48" className="w-16 flex-none fill-black" aria-hidden="true">
-              <path d="M12.343 45.657 51.657 6.343A8 8 0 0 1 57.314 4H64V0H0v48h6.686a8 8 0 0 0 5.657-2.343Z"></path>
+              <path d="m12.343 2.343 39.314 39.314A8 8 0 0 0 57.314 44H64v4H0V0h6.686a8 8 0 0 1 5.657 2.343Z"></path>
             </svg>
           </div>
         </div>
@@ -97,11 +94,17 @@ const MapHeroSection = ({ className = '' }: MapHeroSectionProps) => {
         <div className="relative w-full h-full px-4 sm:px-8 lg:px-20 flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8">
           <div className="w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center gap-6">
             {/* Hero Content */}
-            <div className="text-center">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 tracking-tight">
-                Faculty <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Map</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium">
+            <div className="text-center w-full flex flex-col items-center" style={{ perspective: '1000px' }}>
+              <div 
+                className="w-full max-w-xl transform-style-3d transition-transform duration-500"
+                style={{ transform: 'rotateX(5deg)' }}
+              >
+                <MapTitleSvg />
+              </div>
+              <p 
+                className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium mt-8"
+                style={{ transform: 'translateZ(30px)' }}
+              >
                 Navigate through innovation zones and discover the future of engineering
               </p>
             </div>

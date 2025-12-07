@@ -20,18 +20,24 @@ export interface EventData {
   image?: string;
   color: string;
   gradient: string;
-  isAvailable?: boolean; 
+
+  form?: string;
+
+  isAvailable?: boolean;
   zoneName?: string;
+  registrationStatus?: 'open' | 'full' | 'closed' | 'soon';
+  capacity?: string;
+
 }
 
 export const events: EventData[] = [
-  // Day 1 - December 5, 2025
+  // Day 1 - December 13, 2025
   {
     id: 'opening-ceremony',
     title: 'Opening Ceremony',
     category: 'ceremony',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '09:00',
     endTime: '11:00',
     venue: 'Auditorium',
@@ -39,14 +45,15 @@ export const events: EventData[] = [
     highlights: ['Welcome Address', 'Keynote Speech', 'Exhibition Overview', 'Industry Partner Introductions'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'mathquest',
     title: 'MathQuest',
     category: 'competition',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '09:30',
     endTime: '16:30',
     venue: 'NCC',
@@ -55,14 +62,15 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/MathQuest.svg',
     color: '#6C47FF',
-    gradient: 'from-purple-500 to-pink-600'
+    gradient: 'from-purple-500 to-pink-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
-    id: 'xbotics',
-    title: 'Xbotics',
+    id: 'xbotix',
+    title: 'Xbotix',
     category: 'competition',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '11:00',
     endTime: '17:00',
     venue: 'DO1, DO2, LT1',
@@ -71,16 +79,17 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/Xbotix.svg',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
-  // Day 2 - December 6, 2025
+  // Day 2 - December 14, 2025
   {
     id: 'techtalks',
     title: 'TechTalks',
     category: 'competition',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '10:00',
     endTime: '17:30',
     venue: 'LT1 & LT2 (Semi-Final), Auditorium (Final)',
@@ -88,14 +97,15 @@ export const events: EventData[] = [
     highlights: ['Intense debates', 'Critical-thinking showcase', 'Expert judging'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'aeroxplore',
     title: 'AeroXplore',
     category: 'competition',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '09:00',
     endTime: '16:00',
     venue: 'Hapugala School Ground',
@@ -103,14 +113,15 @@ export const events: EventData[] = [
     highlights: ['Aerodynamics', 'Control precision', 'Endurance performance'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#10B981',
-    gradient: 'from-green-500 to-emerald-600'
+    gradient: 'from-green-500 to-emerald-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'haxtreme',
     title: 'Haxtreme',
     category: 'competition',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '09:00',
     endTime: '13:00',
     venue: 'NCC',
@@ -118,14 +129,15 @@ export const events: EventData[] = [
     highlights: ['Algorithms', 'Problem-solving', 'Code optimisation'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#6C47FF',
-    gradient: 'from-purple-500 to-pink-600'
+    gradient: 'from-purple-500 to-pink-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'rocketfest',
     title: 'RocketFest',
     category: 'competition',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '08:30',
     endTime: '14:30',
     venue: 'Faculty Ground',
@@ -133,14 +145,15 @@ export const events: EventData[] = [
     highlights: ['Rocket design', 'Safety procedures', 'Flight performance tracking'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'ieee-fyp-arena',
     title: 'IEEE FYP Arena | Final Year Project Exhibition',
     category: 'interactive',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '08:00',
     endTime: '17:00',
     venue: 'DO1 & DO2',
@@ -148,16 +161,17 @@ export const events: EventData[] = [
     highlights: ['Robotics', 'Power and energy', 'Biomedical engineering', 'Software applications'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#EC4899',
-    gradient: 'from-pink-500 to-rose-600'
+    gradient: 'from-pink-500 to-rose-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
-  // Day 3 - December 7, 2025
+  // Day 3 - December 15, 2025
   {
     id: 'pitch-arena',
     title: 'Pitch Arena',
     category: 'competition',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '08:00',
     endTime: '14:00',
     venue: 'Auditorium',
@@ -166,14 +180,15 @@ export const events: EventData[] = [
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     image: '/Pitch arena.svg',
     color: '#5CE3FF',
-    gradient: 'from-cyan-500 to-blue-600'
+    gradient: 'from-cyan-500 to-blue-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'revit',
     title: 'Revit',
     category: 'competition',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '08:00',
     endTime: '14:00',
     venue: 'DO1 & DO2',
@@ -181,14 +196,15 @@ export const events: EventData[] = [
     highlights: ['Technical accuracy', 'Creative design', 'Engineering modelling'],
     registrationLink: 'https://silver-jubilee.eng.ruh.ac.lk/events',
     color: '#FF6B35',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-orange-500 to-red-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
   {
     id: 'closing-ceremony',
     title: 'Closing Ceremony',
     category: 'ceremony',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '17:30',
     endTime: '19:30',
     venue: 'Auditorium',
@@ -196,18 +212,19 @@ export const events: EventData[] = [
     highlights: ['Award Presentations', 'Best Project Awards', 'Networking', 'Closing Address'],
     registrationLink: 'https://tickets.rextro.lk',
     color: '#EC4899',
-    gradient: 'from-pink-500 to-rose-600'
+    gradient: 'from-pink-500 to-rose-600',
+    form: 'https://docs.google.com/forms/d/e/1FAIpQLSdKNNSLDwDthk16jhsKLktDUcXUAKbKmwGHYaAPuKW3XAiv6g/formResponse'
   },
 
   // Zone Sessions - Set isAvailable to true when ready to publish
-  
+
   // Electrical & Computer Engineering Department Zone Sessions
   {
     id: 'biomedical-research-aspects',
     title: 'Research Aspects of Biomedical Engineering',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '12:00',
     endTime: '13:00',
     venue: 'ELR',
@@ -216,7 +233,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: true,
+    isAvailable: false,
     zoneName: 'Biomedical Engineering Zone'
   },
   {
@@ -224,7 +241,7 @@ export const events: EventData[] = [
     title: 'Electrical Safety Awareness and Best Practices',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '13:00',
     endTime: '14:00',
     venue: 'ELR',
@@ -246,7 +263,7 @@ export const events: EventData[] = [
     title: 'Internet of Things (IoT): Connecting Everything Around Us',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '11:30',
     endTime: '12:00',
     venue: 'ELR',
@@ -268,7 +285,7 @@ export const events: EventData[] = [
     title: 'The Unseen Network: How Submarine Cables Shaped the Digital Era',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '13:30',
     endTime: '14:00',
     venue: 'ELR',
@@ -287,10 +304,10 @@ export const events: EventData[] = [
   },
   {
     id: 'diode-rectifier-amplifier-day1',
-    title: 'Diode, Rectifier, Amplifier, Transistor - Session 1',
+    title: 'Hands-On Electronics: Diodes and Rectifier Circuits',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '10:00',
     endTime: '11:00',
     venue: 'ELR',
@@ -299,15 +316,15 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Educational Development Zone'
   },
   {
     id: 'diode-rectifier-amplifier-day3',
-    title: 'Diode, Rectifier, Amplifier, Transistor - Session 2',
+    title: 'Hands-On Electronics: Diodes and Rectifier Circuits',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '14:30',
     endTime: '15:30',
     venue: 'ELR',
@@ -316,15 +333,15 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Educational Development Zone'
   },
   {
     id: 'kirchhoff-laws-demo-session1',
-    title: 'Kirchhoff\'s Laws Demonstration - Session 1',
+    title: 'Hands-On Electronics: Kirchhoff\'s laws demonstration',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '10:00',
     endTime: '11:00',
     venue: 'ELR',
@@ -333,15 +350,15 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Educational Development Zone'
   },
   {
     id: 'kirchhoff-laws-demo-session2',
-    title: 'Kirchhoff\'s Laws Demonstration - Session 2',
+    title: 'Hands-On Electronics: Kirchhoff\'s laws demonstration',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '14:30',
     endTime: '15:30',
     venue: 'ELR',
@@ -350,7 +367,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Educational Development Zone'
   },
   {
@@ -358,7 +375,7 @@ export const events: EventData[] = [
     title: 'Introduction to Metaverse',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '12:30',
     endTime: '13:15',
     venue: 'NLH2',
@@ -367,7 +384,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'AR and VR Zone'
   },
   {
@@ -375,7 +392,7 @@ export const events: EventData[] = [
     title: 'Introduction to XR Development',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '12:30',
     endTime: '13:15',
     venue: 'NLH2',
@@ -384,7 +401,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'AR and VR Zone'
   },
   {
@@ -392,7 +409,7 @@ export const events: EventData[] = [
     title: 'Introduction to Frontend Development',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '11:00',
     endTime: '12:00',
     venue: 'NLH2',
@@ -401,7 +418,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Software Engineering Zone'
   },
   {
@@ -409,7 +426,7 @@ export const events: EventData[] = [
     title: 'Introduction to Backend Development',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '13:30',
     endTime: '14:30',
     venue: 'NLH2',
@@ -418,7 +435,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Software Engineering Zone'
   },
   {
@@ -426,7 +443,7 @@ export const events: EventData[] = [
     title: 'Introduction to Mobile Development',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '11:00',
     endTime: '12:00',
     venue: 'NLH2',
@@ -435,7 +452,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Software Engineering Zone'
   },
   {
@@ -443,7 +460,7 @@ export const events: EventData[] = [
     title: 'Introduction to AI',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '14:30',
     endTime: '15:30',
     venue: 'NLH2',
@@ -452,7 +469,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Software Engineering Zone'
   },
   {
@@ -460,7 +477,7 @@ export const events: EventData[] = [
     title: 'Prompt Engineering (LLM)',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '11:00',
     endTime: '12:00',
     venue: 'NLH2',
@@ -469,7 +486,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Software Engineering Zone'
   },
   {
@@ -477,7 +494,7 @@ export const events: EventData[] = [
     title: 'AI for Easy Life (AI Tool Utilisation)',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '14:30',
     endTime: '15:30',
     venue: 'NLH2',
@@ -486,7 +503,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'Software Engineering Zone'
   },
   {
@@ -494,7 +511,7 @@ export const events: EventData[] = [
     title: 'AI in Everyday Life & Society - Day 1',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '10:00',
     endTime: '10:30',
     venue: 'NLH2',
@@ -503,7 +520,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'AI and Computer Vision Zone'
   },
   {
@@ -511,7 +528,7 @@ export const events: EventData[] = [
     title: 'AI in Everyday Life & Society - Day 2',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '10:00',
     endTime: '10:30',
     venue: 'NLH2',
@@ -520,7 +537,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'AI and Computer Vision Zone'
   },
   {
@@ -528,7 +545,7 @@ export const events: EventData[] = [
     title: 'AI in Everyday Life & Society - Day 3',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '10:00',
     endTime: '10:30',
     venue: 'NLH2',
@@ -537,7 +554,7 @@ export const events: EventData[] = [
     registrationLink: 'https://forms.gle/aEQJi6Vujufb2DAD6',
     color: '#8B5CF6',
     gradient: 'from-violet-500 to-purple-600',
-    isAvailable: false,
+    isAvailable: true,
     zoneName: 'AI and Computer Vision Zone'
   },
 
@@ -547,7 +564,7 @@ export const events: EventData[] = [
     title: 'Microcontroller Awareness Session',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '15:00',
     endTime: '16:00',
     venue: 'MLR',
@@ -569,7 +586,7 @@ export const events: EventData[] = [
     title: 'Interactive Session about Industrial Automation',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '15:00',
     endTime: '16:00',
     venue: 'MLR',
@@ -586,7 +603,7 @@ export const events: EventData[] = [
     title: 'Ride to the Core: A Hands-On Exploration of High-Performance Motorcycle Engines',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '10:00',
     endTime: '13:00',
     venue: 'MLR',
@@ -610,7 +627,7 @@ export const events: EventData[] = [
     title: 'Exploring Marine Engineering and Naval Architecture at the University of Ruhuna',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '14:30',
     endTime: '15:00',
     venue: 'New Workshop Upper Floor Lecture Room',
@@ -627,7 +644,7 @@ export const events: EventData[] = [
     title: 'Secrets Inside a Ship: What Really Happens in the Engine Room',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '15:30',
     endTime: '16:00',
     venue: 'New Workshop Upper Floor Lecture Room',
@@ -644,7 +661,7 @@ export const events: EventData[] = [
     title: 'Mega Ships: The Largest and Most Powerful Machines on the Ocean',
     category: 'zone-session',
     day: 1,
-    date: '2025-12-05',
+    date: '2025-12-13',
     startTime: '16:30',
     endTime: '17:00',
     venue: 'New Workshop Upper Floor Lecture Room',
@@ -661,7 +678,7 @@ export const events: EventData[] = [
     title: 'Life at Sea: True Stories from Engineers Who Travel the World',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '10:30',
     endTime: '11:00',
     venue: 'New Workshop Upper Floor Lecture Room',
@@ -678,7 +695,7 @@ export const events: EventData[] = [
     title: 'Future of Ship Design: Trends in Naval Architecture',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '14:30',
     endTime: '15:00',
     venue: 'New Workshop Upper Floor Lecture Room',
@@ -695,7 +712,7 @@ export const events: EventData[] = [
     title: 'Green Shipping: Innovations in Sustainable Ship Design and Marine Renewable Energy',
     category: 'zone-session',
     day: 2,
-    date: '2025-12-06',
+    date: '2025-12-14',
     startTime: '15:30',
     endTime: '16:00',
     venue: 'New Workshop Upper Floor Lecture Room',
@@ -712,7 +729,7 @@ export const events: EventData[] = [
     title: 'The Science of Ship Accidents: Why Ships Sink and How Engineers Prevent It',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '10:30',
     endTime: '11:00',
     venue: 'New Workshop Upper Floor Lecture Room',
@@ -729,7 +746,7 @@ export const events: EventData[] = [
     title: 'Advancements in Marine Engineering: Navigating the Future',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '14:30',
     endTime: '15:00',
     venue: 'New Workshop Upper Floor Lecture Room',
@@ -746,7 +763,7 @@ export const events: EventData[] = [
     title: 'Pathways to Becoming a Chief Engineer: Insights and Advice',
     category: 'zone-session',
     day: 3,
-    date: '2025-12-07',
+    date: '2025-12-15',
     startTime: '15:30',
     endTime: '16:00',
     venue: 'New Workshop Upper Floor Lecture Room',

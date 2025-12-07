@@ -4,223 +4,151 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import type { ZoneData } from '@/components/Zones/ZoneModal';
+import { Zone } from '@/lib/zonesData';
+import { ArrowRight } from 'lucide-react';
+import AnimatedBackground from '@/components/common/AnimatedBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface ZoneShowcaseProps {
-  zones: ZoneData[];
-  onZoneClick: (zone: ZoneData) => void;
+  zones: Zone[];
+  color: string;
 }
 
-const ZoneShowcase: React.FC<ZoneShowcaseProps> = ({ zones, onZoneClick }) => {
-  const gridRef = useRef<HTMLDivElement>(null);
+const ZoneShowcase: React.FC<ZoneShowcaseProps> = ({ zones, color }) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (gridRef.current) {
-      const cards = gridRef.current.querySelectorAll('.zone-card');
+    const section = sectionRef.current;
+    const trigger = triggerRef.current;
 
-      // Animate cards on scroll
-      cards.forEach((card, idx) => {
-        gsap.fromTo(
-          card,
-          {
-            opacity: 0,
-            y: 60,
-            scale: 0.9,
+    if (!section || !trigger) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      // Calculate total width needed for horizontal scroll
+      // (width of all cards + gaps) - viewport width
+      const scrollWidth = section.scrollWidth - window.innerWidth;
+
+      gsap.fromTo(
+        section,
+        {
+          x: 0,
+        },
+        {
+          x: -scrollWidth,
+          ease: "none",
+          duration: 1,
+          scrollTrigger: {
+            trigger: trigger,
+            start: "top top",
+            end: `+=${scrollWidth + 2000}`, // Add extra scroll distance for smoother feel
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
           },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-            delay: (idx % 3) * 0.1,
-          }
-        );
-      });
-    }
+        }
+      );
+    });
+
+    return () => {
+      mm.revert();
+    };
   }, [zones]);
 
   return (
-    <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-      {zones.map((zone, idx) => (
-        <ZoneCard
-          key={zone.id}
-          zone={zone}
-          index={idx}
-          onClick={() => onZoneClick(zone)}
-        />
-      ))}
-    </div>
-  );
-};
-
-interface ZoneCardProps {
-  zone: ZoneData;
-  index: number;
-  onClick: () => void;
-}
-
-const ZoneCard: React.FC<ZoneCardProps> = ({ zone, index, onClick }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const card = cardRef.current;
-    const image = imageRef.current;
-
-    if (!card || !image) return;
-
-    // Hover animation
-    const handleMouseEnter = () => {
-      gsap.to(image, {
-        scale: 1.1,
-        duration: 0.6,
-        ease: 'power2.out',
-      });
-
-      gsap.to(card.querySelector('.zone-card-overlay'), {
-        opacity: 1,
-        duration: 0.4,
-      });
-
-      gsap.to(card.querySelector('.zone-card-content'), {
-        y: -10,
-        duration: 0.4,
-        ease: 'power2.out',
-      });
-    };
-
-    const handleMouseLeave = () => {
-      gsap.to(image, {
-        scale: 1,
-        duration: 0.6,
-        ease: 'power2.out',
-      });
-
-      gsap.to(card.querySelector('.zone-card-overlay'), {
-        opacity: 0.5,
-        duration: 0.4,
-      });
-
-      gsap.to(card.querySelector('.zone-card-content'), {
-        y: 0,
-        duration: 0.4,
-        ease: 'power2.out',
-      });
-    };
-
-    card.addEventListener('mouseenter', handleMouseEnter);
-    card.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      card.removeEventListener('mouseenter', handleMouseEnter);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={cardRef}
-      onClick={onClick}
-      className="zone-card group relative h-[500px] rounded-2xl overflow-hidden cursor-pointer"
-      style={{ transformStyle: 'preserve-3d' }}
-    >
-      {/* Background Image */}
-      <div ref={imageRef} className="absolute inset-0 w-full h-full">
-        <Image
-          src={zone.image}
-          alt={zone.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-      </div>
-
-      {/* Gradient Overlay */}
-      <div className="zone-card-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-50 transition-opacity duration-400" />
-
-      {/* Colored Border Glow */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          background: `linear-gradient(to bottom, ${zone.color}00, ${zone.color}40)`,
-          mixBlendMode: 'screen',
-        }}
-      />
-
-      {/* Border */}
-      <div
-        className="absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ borderColor: zone.color }}
-      />
-
-      {/* Content */}
-      <div className="zone-card-content absolute inset-0 p-6 flex flex-col justify-end">
-        {/* Category Badge */}
-        <div className="mb-4">
-          <span
-            className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"
-            style={{
-              backgroundColor: `${zone.color}30`,
-              color: zone.color,
-              border: `1px solid ${zone.color}`,
-            }}
-          >
-            {zone.category}
-          </span>
-        </div>
-
-        {/* Zone Name */}
-        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">
-          {zone.name}
-        </h3>
-
-        {/* Tagline */}
-        <p className="text-sm sm:text-base text-zinc-300 mb-4 leading-relaxed">
-          {zone.tagline}
-        </p>
-
-        {/* Stats Bar */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/10">
-          <div className="flex items-center gap-2">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-lg"
-              style={{ backgroundColor: `${zone.color}30` }}
-            >
-              🚀
-            </div>
-            <div>
-              <div className="text-white font-bold text-sm">{zone.projects}</div>
-              <div className="text-zinc-500 text-xs">Projects</div>
+    <section className="overflow-hidden bg-black relative">
+      <div ref={triggerRef} className="min-h-screen py-20 md:py-0 md:h-screen flex items-center md:overflow-hidden relative">
+        <AnimatedBackground />
+        <div 
+          ref={sectionRef} 
+          className="flex flex-col md:flex-row gap-8 md:gap-12 px-6 md:px-20 items-start md:items-center w-full md:w-max h-auto md:h-full relative z-10"
+        >
+          {/* Intro Card */}
+          <div className="w-full md:w-[30vw] shrink-0 md:pr-12 mb-8 md:mb-0">
+            <h2 className="text-4xl md:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight">
+              Explore <br />
+              <span style={{ color: color }}>Our Zones</span>
+            </h2>
+            <p className="text-lg md:text-xl text-zinc-400 max-w-md">
+              Discover the specialized areas where innovation meets application.
+              <span className="hidden md:inline"> Scroll to explore.</span>
+            </p>
+            <div className="mt-8 hidden md:flex items-center gap-2 text-white/50 animate-pulse">
+              <span>Scroll</span>
+              <ArrowRight className="w-5 h-5" />
             </div>
           </div>
 
-          {/* Explore Button */}
-          <button
-            className="px-4 py-2 rounded-lg font-semibold text-sm text-white transition-all duration-300 group-hover:scale-105"
-            style={{
-              background: `linear-gradient(135deg, ${zone.color}cc, ${zone.color}99)`,
-              boxShadow: `0 4px 12px ${zone.color}40`,
-            }}
-          >
-            Explore →
-          </button>
+          {/* Zone Cards */}
+          {zones.map((zone, index) => (
+            <div
+              key={zone.id}
+              className="relative w-full md:w-[50vw] lg:w-[40vw] h-[65vh] md:h-[75vh] shrink-0 group rounded-3xl overflow-hidden bg-zinc-900 border border-white/10"
+            >
+              {/* Image Background */}
+              {zone.image && (
+                <div className="absolute inset-0">
+                  <Image
+                    src={zone.image}
+                    alt={zone.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90" />
+                </div>
+              )}
+
+              {/* Content */}
+              <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-end overflow-y-auto no-scrollbar">
+                <div className="transform transition-transform duration-500 md:group-hover:-translate-y-2">
+                  <span 
+                    className="inline-block px-3 py-1 rounded-full text-xs font-mono mb-4 border border-white/20 bg-black/50 backdrop-blur-sm"
+                    style={{ color: color, borderColor: `${color}40` }}
+                  >
+                    ZONE {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                  </span>
+                  
+                  <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                    {zone.name}
+                  </h3>
+
+                  {/* Location Info */}
+                  {(zone.location || zone.highLevelLocation) && (
+                    <div className="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-xs md:text-sm font-mono text-zinc-400">
+                      {zone.highLevelLocation && (
+                        <span className="flex items-center gap-2 bg-black/40 px-2 py-1 rounded border border-white/10">
+                          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
+                          {zone.highLevelLocation}
+                        </span>
+                      )}
+                      {zone.location && (
+                        <span className="flex items-center gap-2 bg-black/40 px-2 py-1 rounded border border-white/10">
+                           <span className="w-1.5 h-1.5 rounded-full bg-zinc-500" />
+                          {zone.location}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  
+                  {zone.description && (
+                    <p className="text-sm md:text-lg text-zinc-300 max-w-xl transition-all duration-300 bg-black/20 md:bg-transparent p-2 md:p-0 rounded-lg backdrop-blur-sm md:backdrop-blur-none leading-relaxed">
+                      {zone.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+          
+          {/* End Spacer */}
+          <div className="hidden md:block w-[10vw] shrink-0" />
         </div>
       </div>
-
-      {/* Decorative Corner Accent */}
-      <div
-        className="absolute top-0 right-0 w-32 h-32 opacity-20 blur-3xl pointer-events-none"
-        style={{ backgroundColor: zone.color }}
-      />
-    </div>
+    </section>
   );
 };
 

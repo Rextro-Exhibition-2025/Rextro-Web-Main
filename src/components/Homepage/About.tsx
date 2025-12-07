@@ -154,10 +154,10 @@ const About = () => {
                 />
               </div>
               <div className="flex justify-start items-center gap-3 sm:gap-6">
-                {["05", "06", "07"].map((day, index) => (
+                {["13", "14", "15"].map((day, index) => (
                   <div
                     key={day}
-                    className={`p-2 bg-neutral-900 rounded-md shadow-lg border border-white/5 flex items-center justify-center relative overflow-hidden transition-all duration-700 ${
+                    className={`py-2 px-3 bg-neutral-900 rounded-md shadow-lg border border-white/5 flex items-center justify-center relative overflow-hidden transition-all duration-700 ${
                       isVisible ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
                     }`}
                     style={{ 

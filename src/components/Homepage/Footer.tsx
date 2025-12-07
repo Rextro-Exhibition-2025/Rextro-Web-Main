@@ -54,16 +54,16 @@ const Footer = () => {
         </h1>
       </div>
 
-      <div className="relative z-10 w-full p-16 bg-white border-t border-black/10 backdrop-blur-[6px] flex flex-col justify-start items-start gap-8">
+      <div className="relative z-10 w-full p-6 md:p-16 bg-white border-t border-black/10 backdrop-blur-[6px] flex flex-col justify-start items-center lg:items-start gap-8">
         {/* Top Section - Logos */}
-        <div className="w-full backdrop-blur-[6px] flex flex-col lg:flex-row justify-between items-center lg:items-center gap-8">
-          <div className="flex justify-start items-center gap-3 sm:gap-5">
+        <div className="w-full backdrop-blur-[6px] flex flex-col lg:flex-row justify-between items-center gap-8">
+          <div className="flex flex-wrap justify-center sm:justify-start items-center gap-5">
             <Image
               src="/navbar/nav-icon.png"
-              width={290}
-              height={44}
+              width={200}
+              height={50}
               alt="ReXtro Logo"
-              className="w-40 sm:w-56 lg:w-72 h-auto object-contain"
+              // className="w-72 h-11 object-contain"
             />
             <Image
               src="/Logo Image.png"
@@ -96,8 +96,8 @@ const Footer = () => {
               The largest engineering exhibition in Sri Lanka, organized by the Faculty of Engineering, University of Ruhuna.
             </p>
           </div>
-          <div className="w-full lg:w-auto inline-flex flex-col justify-start items-center lg:items-end gap-4">
-            <div className="inline-flex justify-start items-center gap-4 flex-wrap">
+          <div className="w-full lg:w-auto flex flex-col justify-start items-center lg:items-end gap-4">
+            <div className="flex justify-center sm:justify-start items-center gap-4 flex-wrap">
               {socialLinks.slice(0, 3).map((social) => {
                 const Icon = social.icon;
                 return (
@@ -121,7 +121,7 @@ const Footer = () => {
                 );
               })}
             </div>
-            <div className="inline-flex justify-start items-center gap-4 flex-wrap">
+            <div className="flex justify-center sm:justify-start items-center gap-4 flex-wrap">
               {socialLinks.slice(3, 6).map((social) => {
                 const Icon = social.icon;
                 return (
