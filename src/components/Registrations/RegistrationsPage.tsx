@@ -10,6 +10,7 @@ import EventModal from '@/components/events/EventsModal';
 import Footer from '@/components/Homepage/Footer';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 import type { EventData } from "@/lib/eventData";
+import AIExpoBanner from "../events/AIExpoBanner";
 
 gsap.registerPlugin(ScrollTrigger);
 
