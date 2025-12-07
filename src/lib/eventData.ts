@@ -302,7 +302,7 @@ export const events: EventData[] = [
   },
   {
     id: 'diode-rectifier-amplifier-day1',
-    title: 'Diode, Rectifier, Amplifier, Transistor - Session 1',
+    title: 'Hands-On Electronics: Diodes and Rectifier Circuits',
     category: 'zone-session',
     day: 1,
     date: '2025-12-13',
@@ -319,7 +319,7 @@ export const events: EventData[] = [
   },
   {
     id: 'diode-rectifier-amplifier-day3',
-    title: 'Diode, Rectifier, Amplifier, Transistor - Session 2',
+    title: 'Hands-On Electronics: Diodes and Rectifier Circuits',
     category: 'zone-session',
     day: 3,
     date: '2025-12-15',
@@ -336,7 +336,7 @@ export const events: EventData[] = [
   },
   {
     id: 'kirchhoff-laws-demo-session1',
-    title: 'Kirchhoff\'s Laws Demonstration - Session 1',
+    title: 'Hands-On Electronics: Kirchhoff\'s laws demonstration',
     category: 'zone-session',
     day: 2,
     date: '2025-12-14',
@@ -353,7 +353,7 @@ export const events: EventData[] = [
   },
   {
     id: 'kirchhoff-laws-demo-session2',
-    title: 'Kirchhoff\'s Laws Demonstration - Session 2',
+    title: 'Hands-On Electronics: Kirchhoff\'s laws demonstration',
     category: 'zone-session',
     day: 2,
     date: '2025-12-14',
