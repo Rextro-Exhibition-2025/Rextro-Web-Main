@@ -173,7 +173,7 @@ const EventsHero = () => {
             </button>
             
             <Link
-              href="https://silver-jubilee.eng.ruh.ac.lk/events"
+              href="https://rextro.lk/registrations"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-8 py-3 rounded-full bg-white border border-gray-200 text-neutral-900 font-semibold text-sm transition-all hover:bg-gray-50 hover:border-gray-300 hover:scale-105 hover:shadow-md"
