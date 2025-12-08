@@ -70,14 +70,14 @@ const Footer = () => {
               width={43}
               height={60}
               alt="Logo"
-              className="w-11 h-14 object-contain"
+              className="w-8 sm:w-10 lg:w-11 h-auto object-contain"
             />
             <Image
               src="/ruhuna_eng_logo 1.png"
               width={43}
               height={57}
               alt="University of Ruhuna Engineering Faculty"
-              className="w-11 h-14 object-contain"
+              className="w-8 sm:w-10 lg:w-11 h-auto object-contain"
             />
           </div>
           <Image
@@ -85,7 +85,7 @@ const Footer = () => {
             width={234}
             height={56}
             alt="ReXtro 2025"
-            className="w-60 h-14 object-contain"
+            className="w-40 sm:w-52 lg:w-60 h-auto object-contain"
           />
         </div>
 

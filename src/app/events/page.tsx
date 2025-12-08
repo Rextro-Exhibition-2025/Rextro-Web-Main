@@ -13,6 +13,7 @@ import { events, type EventData, getAvailableEvents } from '@/lib/eventData';
 import EventsTitleSvg from '@/components/events/EventTitleSvg';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
+import AIExpoBanner from '@/components/events/AIExpoBanner';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -168,7 +169,7 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
-      
+
       {/* Day Timeline Section - Dark Theme */}
       <section id="schedule" className="relative pt-24 px-6 sm:px-12 bg-black lg:px-20 overflow-hidden">
         {/* Animated Background */}
@@ -206,6 +207,10 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      {/* AI Expo Banner */}
+      <AIExpoBanner />
+      
 
       {/* Events Grid - Light Theme */}
       <section className="relative py-24 px-6 sm:px-12 lg:px-20 bg-white overflow-hidden">

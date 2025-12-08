@@ -21,6 +21,7 @@
   --font-mono: var(--font-geist-mono);
   --font-instrument: var(--font-instrument-sans);
   --font-orbitron: var(--font-orbitron);
+  --font-space-grotesk: var(--font-space-grotesk);
 }
 
 @media (prefers-color-scheme: dark) {

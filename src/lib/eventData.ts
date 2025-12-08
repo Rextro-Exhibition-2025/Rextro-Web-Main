@@ -1,3 +1,5 @@
+import { tr } from "framer-motion/m";
+
 export interface EventData {
   id: string;
   title: string;
