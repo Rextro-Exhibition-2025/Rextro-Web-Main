@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Footer from '@/components/Homepage/Footer';
 import MapHeroSection from '@/components/map/MapHero';
-import ZoneGallery from '../../components/map/ZoneGallery';
 import InteractiveMapCanvas from '../../components/map/InteractiveMapCanvas';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 import FooterTab from '@/components/common/FooterTab';
@@ -31,18 +30,13 @@ export default function MapPage() {
         <AnimatedBackground className="top-20" />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-900 opacity-0 animate-[fadeIn_1s_ease-out_0.4s_forwards]">
-            <InteractiveMapCanvas 
-              imageSrc="/map.png"
-              altText="Interactive Faculty Map"
-            />
+          <div className="relative w-full aspect-9/16 md:aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-900 opacity-0 animate-[fadeIn_1s_ease-out_0.4s_forwards]">
+            <InteractiveMapCanvas />
           </div>
         </div>
       </section>
 
-      {/* Zone Gallery */}
-      <ZoneGallery />
-
+     
       {/* Footer Decoration */}
       <FooterTab />
 
