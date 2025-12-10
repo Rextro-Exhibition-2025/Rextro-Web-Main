@@ -31,14 +31,6 @@ const Navbar = () => {
 
   const navItems = [
     { label: "Home", href: "/" },
-    /*
-    { label: "Map", href: "/map" },
-    {
-      label: "Zones",
-      href: "/zones",
-      hasDropdown: true,
-    }, 
-    */
     {
       label: "Events",
       href: "/events",
@@ -49,14 +41,14 @@ const Navbar = () => {
       href: "/registrations",
     },
     {
+      label: "Map",
+      href: "/map",
+    },
+    {
       label: "Zones",
       href: "/zones",
       hasDropdown: false,
     },
-    // {
-    //   label: "Map",
-    //   href: "/map",
-    // },
     {
       label: "Contact",
       href: "/contact",

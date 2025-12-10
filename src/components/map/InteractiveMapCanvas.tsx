@@ -1,161 +1,313 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect, useMemo } from 'react';
+import dynamic from 'next/dynamic';
+
+// Zone interface matching the API response
+interface Zone {
+  zone_id: string;
+  zone_name: string;
+  description: string;
+  longitude: number;
+  latitude: number;
+  tags_array: string[];
+  margin: number[][];
+  marker_color: string;
+  boundary_color: string;
+  fill_color: string;
+  createdAt: string;
+  updatedAt: string;
+  _count: {
+    sessions: number;
+    projects: number;
+  };
+}
 
 interface InteractiveMapCanvasProps {
-  imageSrc: string;
-  altText?: string;
   initialScale?: number;
   minScale?: number;
   maxScale?: number;
 }
 
-const InteractiveMapCanvas: React.FC<InteractiveMapCanvasProps> = ({
-  imageSrc,
-  altText = "Map",
-  initialScale = 1,
-  minScale = 0.5,
-  maxScale = 4,
-}) => {
-  const [scale, setScale] = useState(initialScale);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  
-  const containerRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+// Dynamically import the map component to avoid SSR issues with Leaflet
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Marker),
+  { ssr: false }
+);
+const Popup = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Popup),
+  { ssr: false }
+);
+const Polygon = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Polygon),
+  { ssr: false }
+);
+const CircleMarker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.CircleMarker),
+  { ssr: false }
+);
 
-  // Handle Zoom with Wheel - Non-passive listener to prevent scroll
+const InteractiveMapCanvas: React.FC<InteractiveMapCanvasProps> = () => {
+  const [zones, setZones] = useState<Zone[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
+  const [mapReady, setMapReady] = useState(false);
+
+  // Fetch zones data from API
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      e.stopPropagation(); // Stop event from bubbling up
-      
-      const scaleAdjustment = -e.deltaY * 0.001;
-      
-      setScale(prevScale => {
-        const newScale = Math.min(Math.max(prevScale + scaleAdjustment, minScale), maxScale);
-        return newScale;
-      });
+    const fetchZones = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          'https://rextro-prod-api.internalbuildtools.online/zones?page=1&limit=60&sortBy=createdAt&sortOrder=desc'
+        );
+        if (!response.ok) {
+          throw new Error('Failed to fetch zones');
+        }
+        const data = await response.json();
+        setZones(data.zones || []);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
     };
 
-    // Attach to the outer container to catch all events
-    container.addEventListener('wheel', onWheel, { passive: false });
-
-    return () => {
-      container.removeEventListener('wheel', onWheel);
-    };
-  }, [minScale, maxScale]);
-
-  // Handle Pan Start
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
-  };
-
-  // Handle Pan Move
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const newX = e.clientX - dragStart.x;
-    const newY = e.clientY - dragStart.y;
-    setPosition({ x: newX, y: newY });
-  };
-
-  // Handle Pan End
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  // Handle Zoom Buttons
-  const handleZoomIn = () => setScale(Math.min(scale + 0.2, maxScale));
-  const handleZoomOut = () => setScale(Math.max(scale - 0.2, minScale));
-  const handleReset = () => {
-    setScale(initialScale);
-    setPosition({ x: 0, y: 0 });
-  };
-
-  // Global Mouse Up to stop dragging even if cursor leaves container
-  useEffect(() => {
-    const handleGlobalMouseUp = () => setIsDragging(false);
-    window.addEventListener('mouseup', handleGlobalMouseUp);
-    return () => window.removeEventListener('mouseup', handleGlobalMouseUp);
+    fetchZones();
   }, []);
 
+  // Load Leaflet CSS on client side
+  useEffect(() => {
+    // Import Leaflet CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+    link.crossOrigin = '';
+    document.head.appendChild(link);
+
+    setMapReady(true);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  // Calculate map center from zones
+  const mapCenter = useMemo(() => {
+    if (zones.length === 0) {
+      return [6.0794, 80.1920] as [number, number]; // Default starting point
+    }
+
+    const avgLat = zones.reduce((sum, z) => sum + z.latitude, 0) / zones.length;
+    const avgLng = zones.reduce((sum, z) => sum + z.longitude, 0) / zones.length;
+    return [avgLat, avgLng] as [number, number];
+  }, [zones]);
+
+  // Calculate appropriate zoom level based on zone spread
+  const zoomLevel = useMemo(() => {
+    if (zones.length === 0) return 56;
+
+    const lats = zones.map(z => z.latitude);
+    const lngs = zones.map(z => z.longitude);
+    const latSpread = Math.max(...lats) - Math.min(...lats);
+    const lngSpread = Math.max(...lngs) - Math.min(...lngs);
+    const maxSpread = Math.max(latSpread, lngSpread);
+
+    if (maxSpread > 1) return 12;
+    if (maxSpread > 0.5) return 13;
+    if (maxSpread > 0.1) return 15;
+    if (maxSpread > 0.05) return 16;
+    return 17;
+  }, [zones]);
+
+  // Convert margin array to Leaflet polygon format [lat, lng]
+  const getPolygonPositions = (margin: number[][]): [number, number][] => {
+    return margin.map(point => [point[1], point[0]] as [number, number]);
+  };
+
   return (
-    <div 
-      className="relative w-full h-full overflow-hidden bg-zinc-900 rounded-2xl border border-white/10 shadow-2xl group"
-      ref={containerRef}
-    >
-      {/* Canvas Area */}
-      <div
-        ref={wrapperRef}
-        className={`w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing ${isDragging ? 'cursor-grabbing' : ''}`}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-      >
-        <div
-          style={{
-            transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-            transition: isDragging ? 'none' : 'transform 0.1s ease-out',
-          }}
-          className="relative w-full h-full flex items-center justify-center"
-        >
-          {/* Image Container - constrained to ensure it doesn't overflow uncontrollably */}
-          <div className="relative w-full h-full max-w-[1920px] max-h-[1080px] pointer-events-none select-none">
-             <Image
-              src={imageSrc}
-              alt={altText}
-              fill
-              className="object-contain"
-              draggable={false}
-              priority
-            />
+    <div className="relative w-full h-full overflow-hidden bg-zinc-900 rounded-2xl border border-white/10 shadow-2xl group">
+      {/* Loading State */}
+      {(loading || !mapReady) && (
+        <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 z-[1000]">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+            <p className="text-white text-sm">Loading map data...</p>
           </div>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 z-[1000]">
+          <div className="flex flex-col items-center gap-4 text-center px-4">
+            <svg className="w-12 h-12 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <p className="text-white text-sm">{error}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Leaflet Map */}
+      {mapReady && !error && (
+        <MapContainer
+          center={mapCenter}
+          zoom={zoomLevel}
+          className="w-full h-full z-0"
+          style={{ background: '#1a1a1a' }}
+          scrollWheelZoom={true}
+          zoomControl={true}
+        >
+          {/* Dark theme map tiles */}
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          />
+
+          {/* Render zone polygons */}
+          {zones.map(zone => (
+            zone.margin && zone.margin.length > 2 && (
+              <Polygon
+                key={`polygon-${zone.zone_id}`}
+                positions={getPolygonPositions(zone.margin)}
+                pathOptions={{
+                  color: zone.boundary_color,
+                  fillColor: zone.fill_color.replace('rgba', '').replace(')', '').split(',').slice(0, 3).join(',') + ')',
+                  fillOpacity: 0.4,
+                  weight: 2,
+                }}
+                eventHandlers={{
+                  click: () => setSelectedZone(zone),
+                }}
+              />
+            )
+          ))}
+
+          {/* Render zone markers */}
+          {zones.map(zone => (
+            <CircleMarker
+              key={`marker-${zone.zone_id}`}
+              center={[zone.latitude, zone.longitude]}
+              radius={10}
+              pathOptions={{
+                color: '#ffffff',
+                fillColor: zone.marker_color,
+                fillOpacity: 1,
+                weight: 2,
+              }}
+              eventHandlers={{
+                click: () => setSelectedZone(zone),
+              }}
+            >
+              <Popup>
+                <div className="min-w-[200px]">
+                  <h3 className="font-bold text-sm mb-1">{zone.zone_name}</h3>
+                  <p className="text-xs text-gray-600 mb-2">{zone.description}</p>
+                  <div className="flex flex-wrap gap-1 mb-2">
+                    {zone.tags_array.map((tag, idx) => (
+                      <span 
+                        key={idx}
+                        className="px-2 py-0.5 bg-gray-200 rounded-full text-xs"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-3 text-xs text-gray-500">
+                    <span>{zone._count.sessions} Sessions</span>
+                    <span>{zone._count.projects} Projects</span>
+                  </div>
+                </div>
+              </Popup>
+            </CircleMarker>
+          ))}
+        </MapContainer>
+      )}
+
+      {/* Selected Zone Info Panel */}
+      {selectedZone && (
+        <div className="absolute bottom-6 left-6 max-w-xs bg-black/80 backdrop-blur-md border border-white/20 rounded-xl p-4 z-[1000] animate-[fadeIn_0.2s_ease-out]">
+          <button
+            onClick={() => setSelectedZone(null)}
+            className="absolute top-2 right-2 text-white/60 hover:text-white"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="flex items-center gap-2 mb-2">
+            <div 
+              className="w-3 h-3 rounded-full" 
+              style={{ backgroundColor: selectedZone.marker_color }}
+            />
+            <h3 className="text-white font-semibold text-sm truncate pr-4">
+              {selectedZone.zone_name}
+            </h3>
+          </div>
+          <p className="text-zinc-400 text-xs mb-3 line-clamp-2">
+            {selectedZone.description}
+          </p>
+          <div className="flex flex-wrap gap-1 mb-3">
+            {selectedZone.tags_array.map((tag, idx) => (
+              <span 
+                key={idx}
+                className="px-2 py-0.5 bg-white/10 rounded-full text-xs text-white/80"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div className="flex gap-4 text-xs text-zinc-500">
+            <span>{selectedZone._count.sessions} Sessions</span>
+            <span>{selectedZone._count.projects} Projects</span>
+          </div>
+        </div>
+      )}
+
+      {/* Zone Legend */}
+      <div className="absolute top-6 right-6 bg-black/60 backdrop-blur-sm rounded-lg p-3 border border-white/10 z-[1000] hidden lg:block">
+        <h4 className="text-white text-xs font-semibold mb-2">Zones ({zones.length})</h4>
+        <div className="space-y-1">
+          {zones.slice(0, 10).map(zone => (
+            <button
+              key={zone.zone_id}
+              onClick={() => setSelectedZone(zone)}
+              className={`flex items-center gap-2 w-full text-left px-2 py-1 rounded transition-colors ${
+                selectedZone?.zone_id === zone.zone_id 
+                  ? 'bg-white/20' 
+                  : 'hover:bg-white/10'
+              }`}
+            >
+              <div 
+                className="w-2 h-2 rounded-full shrink-0" 
+                style={{ backgroundColor: zone.marker_color }}
+              />
+              <span className="text-white/80 text-xs truncate">
+                {zone.zone_name}
+              </span>
+            </button>
+          ))}
+          {zones.length > 10 && (
+            <p className="text-zinc-500 text-xs px-2">+{zones.length - 10} more</p>
+          )}
         </div>
       </div>
 
-      {/* Controls */}
-      <div className="absolute bottom-6 right-6 flex flex-col gap-2 z-10">
-        <button
-          onClick={handleZoomIn}
-          className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all active:scale-95"
-          title="Zoom In"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-          </svg>
-        </button>
-        <button
-          onClick={handleZoomOut}
-          className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all active:scale-95"
-          title="Zoom Out"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-          </svg>
-        </button>
-        <button
-          onClick={handleReset}
-          className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all active:scale-95"
-          title="Reset View"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Instructions Overlay (fades out) */}
-      <div className="absolute top-6 left-6 pointer-events-none opacity-70 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
+      {/* Instructions Overlay */}
+      <div className="absolute top-6 left-6 pointer-events-none opacity-70 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10 z-[1000]">
         <p className="text-xs text-white font-medium">
-          Scroll to Zoom • Drag to Pan
+          Scroll to Zoom • Drag to Pan • Click markers for details
         </p>
       </div>
     </div>
