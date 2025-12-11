@@ -52,12 +52,45 @@ const PostponeModal = () => {
             {/* Image */}
             <div className="relative w-full aspect-[4/5] sm:aspect-square">
               <Image
-                src="/postpone.jpg"
-                alt="Event Postponed"
+                src="/rextroMobileApp.png"
+                alt="Rextro Mobile App"
                 fill
                 className="object-cover"
                 priority
               />
+              
+              {/* Download Buttons Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex flex-col items-center gap-3">
+                <div className="text-white text-sm font-medium mb-1">Download Now</div>
+                <div className="flex gap-3">
+                  <a 
+                    href="https://apps.apple.com/lk/app/rextro/id6755657827"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative w-32 h-10 hover:scale-105 transition-transform"
+                  >
+                    <Image
+                      src="/livetype.svg"
+                      alt="Download on App Store"
+                      fill
+                      className="object-contain"
+                    />
+                  </a>
+                  <a 
+                    href="https://drive.google.com/file/d/1spcLz2L6FJdYIUPDv1M_GNgVPDZdejSU/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative w-32 h-10 hover:scale-105 transition-transform"
+                  >
+                    <Image
+                      src="/GetItOnGooglePlay_Badge_Web_color_English-01 1.svg"
+                      alt="Get it on Google Play"
+                      fill
+                      className="object-contain"
+                    />
+                  </a>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

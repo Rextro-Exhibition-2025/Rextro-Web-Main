@@ -73,12 +73,6 @@ const MobileApp = () => {
 
         {/* Content Section - Right Side */}
         <div className="w-full lg:w-[560px] inline-flex flex-col justify-center items-start gap-4 sm:gap-6 z-10">
-          {/* Coming Soon Badge */}
-          <div className="inline-flex items-center px-3 py-1.5 bg-blue-50 rounded-[4px] border border-blue-200">
-            <span className="text-blue-700 text-xs sm:text-sm font-semibold font-[var(--font-instrument)] uppercase tracking-wide">
-              Available Soon
-            </span>
-          </div>
 
           {/* Heading */}
           <div className="self-stretch flex flex-col justify-start items-start gap-2">
@@ -102,27 +96,37 @@ const MobileApp = () => {
             without missing a beat.
           </div>
 
-          {/* App Store Badges - Grayed Out */}
+          {/* App Store Badges */}
           <div className="inline-flex justify-start items-start gap-4 sm:gap-6">
             {/* App Store Badge */}
-            <div className="relative w-28 sm:w-32 lg:w-36 h-9 sm:h-10 lg:h-[44px] opacity-40 grayscale cursor-not-allowed">
+            <a 
+              href="https://apps.apple.com/lk/app/rextro/id6755657827"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-28 sm:w-32 lg:w-36 h-9 sm:h-10 lg:h-[44px] hover:opacity-80 transition-opacity"
+            >
               <Image
                 src="/livetype.svg"
-                alt="Download on App Store - Coming Soon"
+                alt="Download on App Store"
                 fill
                 className="object-contain"
               />
-            </div>
+            </a>
 
             {/* Google Play Badge */}
-            <div className="relative w-28 sm:w-32 lg:w-36 h-9 sm:h-10 lg:h-[48px] opacity-40 grayscale cursor-not-allowed">
+            <a 
+              href="https://drive.google.com/file/d/1spcLz2L6FJdYIUPDv1M_GNgVPDZdejSU/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-28 sm:w-32 lg:w-36 h-9 sm:h-10 lg:h-[48px] hover:opacity-80 transition-opacity"
+            >
               <Image
                 src="/GetItOnGooglePlay_Badge_Web_color_English-01 1.svg"
-                alt="Get it on Google Play - Coming Soon"
+                alt="Get it on Google Play"
                 fill
                 className="object-contain"
               />
-            </div>
+            </a>
           </div>
         </div>
       </div>
