@@ -2,7 +2,7 @@
 
 // The main event start date: ReXtro Silver Jubilee Opening Ceremony
 // Date: December 13, 2025 at 9:00 AM
-export const EVENT_START_DATE = '2025-12-11T09:00:00';
+export const EVENT_START_DATE = '2025-12-13T09:00:00';
 
 // Helper to check if event has started
 export const isEventStarted = (): boolean => {
