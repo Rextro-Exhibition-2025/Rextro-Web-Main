@@ -186,25 +186,38 @@ export default function EventsPage() {
           </div>
 
           <div className="flex justify-center mb-26">
-            <div className={`inline-flex items-center gap-2 px-6 py-3 rounded-full border shadow-md transition-all duration-500 ${
-                isEventStarted 
-                ? 'bg-red-50 border-red-200 shadow-red-500/10' 
-                : 'bg-cyan-50 border-cyan-100 shadow-cyan-500/10'
-            }`}>
-              <span className="relative flex h-3 w-3">
-                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                    isEventStarted ? 'bg-red-500' : 'bg-cyan-400'
-                }`}></span>
-                <span className={`relative inline-flex rounded-full h-3 w-3 ${
-                    isEventStarted ? 'bg-red-600' : 'bg-cyan-500'
-                }`}></span>
-              </span>
-              <span className={`text-base font-semibold tracking-wide ${
-                  isEventStarted ? 'text-red-700' : 'text-cyan-700'
-              }`}>
-                {isEventStarted ? "Live Stream Has Started" : "Live Exhibition Stream Will Be Starting Here Soon"}
-              </span>
-            </div>
+            {!isEventStarted ? (
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border shadow-md transition-all duration-500 bg-cyan-50 border-cyan-100 shadow-cyan-500/10">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-cyan-400"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+                </span>
+                <span className="text-base font-semibold tracking-wide text-cyan-700">
+                  Live Exhibition Stream Will Be Starting Here Soon
+                </span>
+              </div>
+            ) : (
+              <button 
+                onClick={() => document.getElementById('livestream')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-red-200 shadow-lg shadow-red-500/20 bg-white hover:bg-red-50 transition-all duration-300 hover:scale-105"
+              >
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-red-500"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600"></span>
+                </span>
+                <span className="text-base font-bold tracking-wide text-red-600">
+                  Watch the live stream
+                </span>
+                <svg 
+                  className="w-5 h-5 text-red-600 animate-bounce mt-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </button>
+            )}
           </div>
 
         </div>

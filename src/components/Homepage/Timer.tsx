@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { DotLottiePlayer } from '@dotlottie/react-player';
 
-import { EVENT_START_DATE } from '@/lib/constants';
+import { EVENT_START_DATE, isEventStarted as checkEventStarted } from '@/lib/constants';
 
 interface TimeLeft {
   days: number;
@@ -89,9 +90,35 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
     ? '' 
     : '[text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]';
 
+  const isLive = checkEventStarted();
+
   return (
-    <div className="self-stretch px-2 sm:px-1 pb-6 inline-flex justify-center sm:justify-end items-center gap-2 sm:gap-4 lg:gap-6 scale-90 sm:scale-100 lg:scale-100 origin-center sm:origin-right">
-      {/* Days */}
+    <div className="relative self-stretch px-2 sm:px-1 pb-6 inline-flex justify-center sm:justify-end items-center gap-2 sm:gap-4 lg:gap-6 scale-90 sm:scale-100 lg:scale-100 origin-center sm:origin-right">
+      
+      {/* Live Overlay */}
+      {isLive && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none">
+            <div className={`flex flex-col sm:flex-row items-center justify-center gap-2`}>
+                <span className={`text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-widest drop-shadow-lg ${
+                    theme === 'light' ? 'text-black drop-shadow-white' : 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]'
+                }`}>
+                    WE ARE
+                </span>
+                <div className="w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center rotate-20 transform">
+                    <DotLottiePlayer
+                        src="/lotties/Live Webinar Animation.lottie"
+                        autoplay
+                        loop
+                        style={{ width: '100%', height: '100%' }}
+                    />
+                </div>
+            </div>
+        </div>
+      )}
+
+      {/* Blurred Container if Live */}
+      <div className={`flex items-center justify-center gap-2 sm:gap-4 lg:gap-6 transition-all duration-500 ${isLive ? 'blur-[2px] opacity-25 pointer-events-none select-none' : ''}`}>
+        {/* Days */}
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
         <div className={`self-stretch text-center justify-center ${labelColor} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>DD</div>
         <div className="w-14 h-12 sm:w-16 sm:h-14 lg:w-20 lg:h-16 p-1 relative inline-flex justify-center items-center gap-2">
@@ -151,6 +178,7 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
             {formatNumber(timeLeft.seconds)}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
