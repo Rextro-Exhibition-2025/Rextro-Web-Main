@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import LiveBanner from "@/components/events/LiveBanner";
+import { isEventStarted as checkEventStarted } from "@/lib/constants";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
 
   // Logic for Live Banner (duplicated from events page for visual consistency in header)
-  const isEventStarted = new Date() >= new Date('2025-12-13T09:00:00'); 
+  const isEventStarted = checkEventStarted();
   const isEventsPage = pathname === '/events';
   const showLiveBanner = isEventsPage && isEventStarted;
 

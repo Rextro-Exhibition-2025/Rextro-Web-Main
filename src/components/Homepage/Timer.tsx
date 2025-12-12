@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import { EVENT_START_DATE } from '@/lib/constants';
+
 interface TimeLeft {
   days: number;
   hours: number;
@@ -53,7 +55,7 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
 
   useEffect(() => {
     // Set your target date here (e.g., event date)
-    const targetDate = new Date('2025-12-13T09:00:00').getTime();
+    const targetDate = new Date(EVENT_START_DATE).getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();

@@ -15,6 +15,7 @@ import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Ho
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 import AIExpoBanner from '@/components/events/AIExpoBanner';
 import YoutubeLivestream from '@/components/events/YoutubeLivestream';
+import { isEventStarted as checkEventStarted } from '@/lib/constants';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,16 +31,8 @@ export default function EventsPage() {
     setIsHeroVisible(true);
   }, []);
 
-  // Show livestream if current date is past opening ceremony start (Dec 13 2025, 09:00)
-  // For testing, we can toggle this.
-  const isEventStarted = new Date() >= new Date('2025-12-11T09:00:00'); 
-  // const isEventStarted = true; // FORCED TRUE FOR TESTING LIVE MODE
-  // TODO: Remove the force true for production if "isEventStarted" logic is strict, 
-  // or keep it if the user wants to see it now. 
-  // The user said "use this url... for testing". I will rely on the date logic but maybe add a manual override comment.
-  // Actually, for immediate verification, I will set it to:
-  // const showLivestream = true; // For testing
-  const showLivestream = true; // FORCE SHOW FOR TESTING as requested
+  // Show livestream if current date is past opening ceremony start
+  const isEventStarted = checkEventStarted();
 
   const availableEvents = getAvailableEvents();
   const filteredEvents = activeFilter === 'all'
