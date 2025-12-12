@@ -289,55 +289,81 @@ const InteractiveMapCanvas: React.FC<InteractiveMapCanvasProps> = () => {
               <CircleMarker
                 key={`marker-${zone.zone_id}`}
                 center={[zone.latitude, zone.longitude]}
-                radius={hasParking ? 12 : 10}
+                radius={hasParking ? 14 : 10}
                 pathOptions={{
                   color: hasParking ? getParkingColor(matchingParking!) : '#ffffff',
                   fillColor: zone.marker_color,
                   fillOpacity: 1,
-                  weight: hasParking ? 3 : 2,
+                  weight: hasParking ? 4 : 2,
                 }}
                 eventHandlers={{
                   click: () => {
                     setSelectedZone(zone);
                   },
+                  mouseover: (e) => {
+                    e.target.setStyle({ radius: hasParking ? 16 : 12 });
+                  },
+                  mouseout: (e) => {
+                    e.target.setStyle({ radius: hasParking ? 14 : 10 });
+                  },
                 }}
               >
-                <Popup>
-                  <div className="min-w-[220px]">
-                    <h3 className="font-bold text-sm mb-1">{zone.zone_name}</h3>
-                    <p className="text-xs text-gray-600 mb-2">{zone.description}</p>
+                <Popup maxWidth={280} className="custom-popup">
+                  <div className="min-w-[260px]">
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="font-bold text-base mb-0 pr-2">{zone.zone_name}</h3>
+                      {matchingParking && (
+                        <div className={`px-2 py-1 rounded-full text-[10px] font-semibold whitespace-nowrap ${matchingParking.isAvailable ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                          {matchingParking.isAvailable ? '🅿️ Open' : '🅿️ Full'}
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-600 mb-3">{zone.description}</p>
                     
                     {/* Parking Info if available */}
                     {matchingParking && (
-                      <div className="mb-3 p-2 bg-blue-50 rounded-lg border border-blue-200">
-                        <div className="flex items-center gap-1.5 mb-1.5">
-                          <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="mb-3 p-3 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border-2 border-blue-300 shadow-sm">
+                        <div className="flex items-center gap-2 mb-2">
+                          <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                           </svg>
-                          <span className="text-xs font-semibold text-blue-800">Parking Available</span>
+                          <span className="text-sm font-bold text-blue-900">{matchingParking.parkingName}</span>
                         </div>
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="text-xs text-gray-600">Slots:</span>
-                          <span className="text-xs font-bold">
-                            {matchingParking.availableSlots}/{matchingParking.totalSlots}
-                          </span>
+                        
+                        <div className="bg-white rounded-md p-2 mb-2">
+                          <div className="flex justify-between items-center mb-1.5">
+                            <span className="text-xs font-medium text-gray-700">Available Slots</span>
+                            <span className="text-lg font-bold text-blue-900">
+                              {matchingParking.availableSlots}
+                              <span className="text-sm text-gray-500 font-normal">/{matchingParking.totalSlots}</span>
+                            </span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                            <div 
+                              className="h-2.5 rounded-full transition-all duration-300 relative"
+                              style={{ 
+                                width: `${matchingParking.totalSlots > 0 ? (matchingParking.availableSlots / matchingParking.totalSlots) * 100 : 0}%`,
+                                backgroundColor: getParkingColor(matchingParking)
+                              }}
+                            >
+                              <div className="absolute inset-0 bg-white opacity-20 animate-pulse"></div>
+                            </div>
+                          </div>
+                          <div className="flex justify-between items-center mt-1.5">
+                            <span className="text-[11px] text-gray-600">
+                              {matchingParking.totalSlots - matchingParking.availableSlots} occupied
+                            </span>
+                            <span className="text-[11px] font-semibold" style={{ color: getParkingColor(matchingParking) }}>
+                              {matchingParking.totalSlots > 0 ? ((matchingParking.availableSlots / matchingParking.totalSlots) * 100).toFixed(0) : 0}% available
+                            </span>
+                          </div>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-1.5">
-                          <div 
-                            className="h-1.5 rounded-full transition-all"
-                            style={{ 
-                              width: `${matchingParking.totalSlots > 0 ? (matchingParking.availableSlots / matchingParking.totalSlots) * 100 : 0}%`,
-                              backgroundColor: getParkingColor(matchingParking)
-                            }}
-                          />
-                        </div>
-                        <div className="flex justify-between mt-1">
-                          <span className={`text-[10px] px-1.5 py-0.5 rounded ${matchingParking.isAvailable ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                            {matchingParking.isAvailable ? 'Open' : 'Full'}
-                          </span>
-                          <span className="text-[10px] text-gray-500">
-                            {matchingParking.totalSlots > 0 ? ((matchingParking.availableSlots / matchingParking.totalSlots) * 100).toFixed(0) : 0}% free
-                          </span>
+                        
+                        <div className="flex items-center justify-center gap-1 text-[10px] text-gray-500">
+                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span>Updates every 30 seconds</span>
                         </div>
                       </div>
                     )}
