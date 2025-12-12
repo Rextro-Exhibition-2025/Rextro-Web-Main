@@ -15,6 +15,7 @@ import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Ho
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 import AIExpoBanner from '@/components/events/AIExpoBanner';
 import YoutubeLivestream from '@/components/events/YoutubeLivestream';
+import ScrollTriggeredLottie from '@/components/common/ScrollTriggeredLottie';
 import { isEventStarted as checkEventStarted } from '@/lib/constants';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -96,6 +97,8 @@ export default function EventsPage() {
               />
               
             </div>
+
+
           </div>
 
           {/* Right Circuit Board (Mirrored) */}
@@ -127,6 +130,18 @@ export default function EventsPage() {
               />
             </div>
           </div>
+
+            {/* Live Confetti - Full Screen Overlay in Background */}
+            {isEventStarted && (
+              <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
+                 <div className="w-full h-full opacity-60">
+                    <ScrollTriggeredLottie 
+                      src="/lotties/Confetti.lottie"
+                      className="w-full h-full"
+                    />
+                 </div>
+              </div>
+            )}
         </div>
 
         {/* Content */}
