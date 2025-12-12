@@ -2,7 +2,6 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
-import Timer from "@/components/Homepage/Timer";
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from "@/components/Homepage/MeteorAnimation";
 import RegistrationsTitleSvg from "./RegistrationsTitleSvg";
 
@@ -100,10 +99,7 @@ const RegistrationsHero = () => {
           Register for interactive zone sessions and workshops throughout the exhibition
         </p>
 
-        {/* Timer */}
-        <div className="mb-12">
-          <Timer theme="light" />
-        </div>
+
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-24 relative z-50">

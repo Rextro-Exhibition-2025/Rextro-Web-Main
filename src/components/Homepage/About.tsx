@@ -2,6 +2,10 @@
 
 import Timer from "@/components/Homepage/Timer";
 import { useEffect, useRef, useState } from "react";
+import ScrollTriggeredLottie from "@/components/common/ScrollTriggeredLottie";
+import { isEventStarted as checkEventStarted } from '@/lib/constants';
+
+
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -86,6 +90,19 @@ const About = () => {
         </div>
       </div>
       <div className="relative w-full py-8 sm:py-10 lg:py-12 lg:pb-24 flex flex-col gap-6 sm:gap-8 lg:gap-10 overflow-hidden" style={{ backgroundColor: '#131316' }}>
+        
+        {/* Lottie Confetti Background */}
+        {checkEventStarted() && (
+            <div className="absolute inset-x-0 top-0 h-full pointer-events-none z-0 overflow-visible flex items-center justify-center">
+                <div className="w-full h-full max-w-none opacity-80">
+                <ScrollTriggeredLottie 
+                  src="/lotties/Confetti.lottie"
+                  className="w-full h-full"
+                />
+                </div>
+            </div>
+        )}
+
         {/* Fixed Grid Background */}
         <div
           className="absolute inset-0 pointer-events-none hidden lg:block"
@@ -134,7 +151,7 @@ const About = () => {
           </div>
 
           {/* Countdown Timer */}
-          <div className="flex-1 w-full lg:w-auto flex justify-center items-center">
+          <div className="flex-1 w-full lg:w-auto flex justify-center items-center relative">
             <Timer />
           </div>
         </div>

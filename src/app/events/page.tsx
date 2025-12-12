@@ -14,6 +14,9 @@ import EventsTitleSvg from '@/components/events/EventTitleSvg';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 import AIExpoBanner from '@/components/events/AIExpoBanner';
+import YoutubeLivestream from '@/components/events/YoutubeLivestream';
+import ScrollTriggeredLottie from '@/components/common/ScrollTriggeredLottie';
+import { isEventStarted as checkEventStarted } from '@/lib/constants';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,6 +32,9 @@ export default function EventsPage() {
     setIsHeroVisible(true);
   }, []);
 
+  // Show livestream if current date is past opening ceremony start
+  const isEventStarted = checkEventStarted();
+
   const availableEvents = getAvailableEvents();
   const filteredEvents = activeFilter === 'all'
     ? availableEvents
@@ -39,9 +45,18 @@ export default function EventsPage() {
       {/* Global Glow Effect - Adjusted for Light Theme */}
       <div
         ref={glowRef}
-        className="fixed inset-0 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] mix-blend-multiply opacity-30"
-        style={{ zIndex: 1 }}
+        className="fixed inset-0 pointer-events-none transition-all duration-1000 ease-[cubic-bezier(0.4,0.36,0,1)] mix-blend-multiply opacity-30"
+        style={{ 
+            zIndex: 1,
+            // Dynamic ambient glow: Red for Live, Blue/Purple for Default
+            background: isEventStarted 
+                ? 'radial-gradient(circle at 50% 30%, rgba(220, 38, 38, 0.25) 0%, transparent 60%), radial-gradient(circle at 80% 10%, rgba(239, 68, 68, 0.15) 0%, transparent 50%)' 
+                : 'radial-gradient(circle at 50% 30%, rgba(147, 51, 234, 0.15) 0%, transparent 60%)'
+        }}
       />
+      
+      
+      {/* Sticky Live Banner - REMOVED (Moved to Navbar) */}
 
       {/* Hero Section - Light Theme */}
       <section
@@ -82,6 +97,8 @@ export default function EventsPage() {
               />
               
             </div>
+
+
           </div>
 
           {/* Right Circuit Board (Mirrored) */}
@@ -113,6 +130,18 @@ export default function EventsPage() {
               />
             </div>
           </div>
+
+            {/* Live Confetti - Full Screen Overlay in Background */}
+            {isEventStarted && (
+              <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
+                 <div className="w-full h-full opacity-60">
+                    <ScrollTriggeredLottie 
+                      src="/lotties/Confetti.lottie"
+                      className="w-full h-full"
+                    />
+                 </div>
+              </div>
+            )}
         </div>
 
         {/* Content */}
@@ -126,6 +155,10 @@ export default function EventsPage() {
           <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto mb-12 leading-tight font-light">
             Three days of workshops, talks, and competitions shaping the future of engineering
           </p>
+          
+
+          
+
 
           {/* Timer */}
           <div className="mb-12">
@@ -152,6 +185,28 @@ export default function EventsPage() {
             </Link>
           </div>
 
+          <div className="flex justify-center mb-26">
+            <div className={`inline-flex items-center gap-2 px-6 py-3 rounded-full border shadow-md transition-all duration-500 ${
+                isEventStarted 
+                ? 'bg-red-50 border-red-200 shadow-red-500/10' 
+                : 'bg-cyan-50 border-cyan-100 shadow-cyan-500/10'
+            }`}>
+              <span className="relative flex h-3 w-3">
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                    isEventStarted ? 'bg-red-500' : 'bg-cyan-400'
+                }`}></span>
+                <span className={`relative inline-flex rounded-full h-3 w-3 ${
+                    isEventStarted ? 'bg-red-600' : 'bg-cyan-500'
+                }`}></span>
+              </span>
+              <span className={`text-base font-semibold tracking-wide ${
+                  isEventStarted ? 'text-red-700' : 'text-cyan-700'
+              }`}>
+                {isEventStarted ? "Live Stream Has Started" : "Live Exhibition Stream Will Be Starting Here Soon"}
+              </span>
+            </div>
+          </div>
+
         </div>
 
         {/* Separator to Dark Section */}
@@ -169,6 +224,14 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      {/* Livestream Section */}
+      {isEventStarted && (
+        <div className="bg-black relative z-30"> 
+             {/* Using a wrapper to ensure dark background matches the component style expectations */}
+            <YoutubeLivestream />
+        </div>
+      )}
 
       {/* Day Timeline Section - Dark Theme */}
       <section id="schedule" className="relative pt-24 px-6 sm:px-12 bg-black lg:px-20 overflow-hidden">
