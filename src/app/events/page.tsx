@@ -137,6 +137,10 @@ export default function EventsPage() {
           <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto mb-12 leading-tight font-light">
             Three days of workshops, talks, and competitions shaping the future of engineering
           </p>
+          
+
+          
+
 
           {/* Timer */}
           <div className="mb-12">
@@ -161,6 +165,18 @@ export default function EventsPage() {
             >
               <span className="relative z-10">Register Now</span>
             </Link>
+          </div>
+
+          <div className="flex justify-center mb-26">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 border border-cyan-100 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+              </span>
+              <span className="text-sm font-medium text-cyan-700 tracking-wide">
+                {isEventStarted ? "Live Stream Has started" : "Live Exhibition Stream Will Be Starting Here Soon"}
+              </span>
+            </div>
           </div>
 
         </div>
