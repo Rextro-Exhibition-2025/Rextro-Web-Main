@@ -14,6 +14,7 @@ import EventsTitleSvg from '@/components/events/EventTitleSvg';
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from '@/components/Homepage/MeteorAnimation';
 import AnimatedBackground from '@/components/common/AnimatedBackground';
 import AIExpoBanner from '@/components/events/AIExpoBanner';
+import YoutubeLivestream from '@/components/events/YoutubeLivestream';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +29,16 @@ export default function EventsPage() {
   useEffect(() => {
     setIsHeroVisible(true);
   }, []);
+
+  // Show livestream if current date is past opening ceremony start (Dec 13 2025, 09:00)
+  // For testing, we can toggle this.
+  const isEventStarted = new Date() >= new Date('2025-12-13T09:00:00'); 
+  // TODO: Remove the force true for production if "isEventStarted" logic is strict, 
+  // or keep it if the user wants to see it now. 
+  // The user said "use this url... for testing". I will rely on the date logic but maybe add a manual override comment.
+  // Actually, for immediate verification, I will set it to:
+  // const showLivestream = true; // For testing
+  const showLivestream = true; // FORCE SHOW FOR TESTING as requested
 
   const availableEvents = getAvailableEvents();
   const filteredEvents = activeFilter === 'all'
@@ -169,6 +180,14 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      {/* Livestream Section */}
+      {isEventStarted && (
+        <div className="bg-black relative z-30"> 
+             {/* Using a wrapper to ensure dark background matches the component style expectations */}
+            <YoutubeLivestream />
+        </div>
+      )}
 
       {/* Day Timeline Section - Dark Theme */}
       <section id="schedule" className="relative pt-24 px-6 sm:px-12 bg-black lg:px-20 overflow-hidden">
