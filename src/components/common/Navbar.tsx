@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
+import LiveBanner from "@/components/events/LiveBanner";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +13,11 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const { isAuthenticated, user, logout } = useAuth();
+
+  // Logic for Live Banner (duplicated from events page for visual consistency in header)
+  const isEventStarted = new Date() >= new Date('2025-12-13T09:00:00'); 
+  const isEventsPage = pathname === '/events';
+  const showLiveBanner = isEventsPage && isEventStarted;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = (menu: string) => {
@@ -62,6 +68,9 @@ const Navbar = () => {
       <nav className={`w-full flex flex-col fixed top-0 left-0 right-0 z-40 transition-opacity duration-300 ease-in-out ${
         isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}>
+        {/* Live Banner for Events Page */}
+        {showLiveBanner && <LiveBanner />}
+
         {/* Top announcement bar */}
         {pathname === "/" && (
           <div className="w-full h-auto min-h-10 px-4 sm:px-8 py-2 sm:py-1 bg-neutral-900 flex flex-wrap justify-center items-center gap-2 sm:gap-4">
@@ -286,9 +295,13 @@ const Navbar = () => {
       </nav>
 
       {/* Floating Navbar - Fades in as one unit */}
-      <nav className={`w-full fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 lg:px-20 py-2 sm:py-3 lg:py-4 flex justify-center transition-opacity duration-300 ease-in-out ${
+      <nav className={`w-full fixed top-0 left-0 right-0 z-50 flex flex-col items-center transition-opacity duration-300 ease-in-out ${
         isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}>
+        {/* Live Banner for Floating Scrolled Navbar */}
+         {showLiveBanner && <LiveBanner />}
+        
+        <div className="w-full px-2 sm:px-4 lg:px-20 py-2 sm:py-3 lg:py-4 flex justify-center">
         <div className="p-2 pl-3 sm:pl-0 sm:p-3 lg:p-4 bg-white/90 rounded-lg sm:rounded-xl lg:rounded-2xl shadow-[0px_4px_12px_0px_rgba(0,0,0,0.10)] border border-black/10 backdrop-blur-[6px] max-w-7xl w-full">
           <div className="w-full flex justify-between items-center">
             {/* Logo */}
@@ -463,6 +476,7 @@ const Navbar = () => {
               </Link>
             </div>
           )}
+        </div>
         </div>
       </nav>
     </>
