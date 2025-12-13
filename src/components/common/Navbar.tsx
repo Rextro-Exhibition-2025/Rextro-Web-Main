@@ -76,26 +76,26 @@ const Navbar = () => {
         {pathname === "/" && (
           <div className="w-full h-auto min-h-10 px-4 sm:px-8 py-2 sm:py-1 bg-neutral-900 flex flex-wrap justify-center items-center gap-2 sm:gap-4">
             <div className="py-1 flex justify-center items-center gap-2 text-center">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
               <p className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight sm:leading-none">
-                Our 25th Anniversary: A Journey of Innovation
+                <span className="text-red-400 font-bold mr-1">IMPORTANT NOTICE:</span>
+                For parking details and locations, please refer to the map page.
               </p>
             </div>
             <div className="hidden sm:block w-px h-4 bg-white/20" />
             <Link
-              href="https://silver-jubilee.eng.ruh.ac.lk/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/map"
               className="py-1 flex justify-center items-center gap-1.5 hover:opacity-80 transition-opacity"
             >
-              <span className="text-white text-xs font-medium font-[var(--font-instrument)] leading-none">
-                Learn more
+              <span className="text-white text-xs font-medium font-[var(--font-instrument)] leading-none underline decoration-white/30 underline-offset-4">
+                View Parking Map
               </span>
               <svg
                 width="10"
                 height="10"
                 viewBox="0 0 10 10"
                 fill="none"
-                className="opacity-60"
+                className="opacity-80"
               >
                 <path
                   d="M3.75 2.75L6.25 5.25L3.75 7.75"
