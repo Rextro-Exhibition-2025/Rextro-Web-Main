@@ -74,38 +74,32 @@ const Navbar = () => {
 
         {/* Top announcement bar */}
         {pathname === "/" && (
-          <div className="w-full h-auto min-h-10 px-4 sm:px-8 py-2 sm:py-1 bg-neutral-900 flex flex-wrap justify-center items-center gap-2 sm:gap-4">
-            <div className="py-1 flex justify-center items-center gap-2 text-center">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              <p className="text-white text-xs font-medium font-[var(--font-instrument)] leading-tight sm:leading-none">
-                <span className="text-red-400 font-bold mr-1">IMPORTANT NOTICE:</span>
-                For parking details and locations, please refer to the map page.
-              </p>
-            </div>
+          <div className="w-full bg-neutral-900 border-b border-white/5 relative z-[60]">
+            <div className="max-w-7xl mx-auto px-4 py-2 sm:py-2 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-6 text-center sm:text-left">
+              
+              <div className="flex items-center gap-2.5 text-xs text-zinc-300 font-medium tracking-wide">
+                <span className="relative flex h-2 w-2 flex-shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                </span>
+                <p>
+                  <span className="text-white font-bold tracking-wider mr-1.5 uppercase">Important:</span>
+                  <span className="sm:hidden">Check map for parking info.</span>
+                  <span className="hidden sm:inline">For parking details and locations, please refer to the map page.</span>
+                </p>
+              </div>
             <div className="hidden sm:block w-px h-4 bg-white/20" />
-            <Link
-              href="/map"
-              className="py-1 flex justify-center items-center gap-1.5 hover:opacity-80 transition-opacity"
-            >
-              <span className="text-white text-xs font-medium font-[var(--font-instrument)] leading-none underline decoration-white/30 underline-offset-4">
-                View Parking Map
-              </span>
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                className="opacity-80"
+              <Link 
+                href="/map" 
+                className="group flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-white/10 hover:bg-white/20 active:bg-white/15 px-3 py-1 rounded-full transition-all"
               >
-                <path
-                  d="M3.75 2.75L6.25 5.25L3.75 7.75"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
+                <span>View Parking Map</span>
+                <svg className="w-3 h-3 text-white/70 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+
+            </div>
           </div>
         )}
 
