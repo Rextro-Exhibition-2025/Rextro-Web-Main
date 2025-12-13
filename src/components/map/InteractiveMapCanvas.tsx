@@ -474,7 +474,7 @@ const InteractiveMapCanvas: React.FC<InteractiveMapCanvasProps> = () => {
       })()}
 
       {/* Instructions Overlay */}
-      <div className="absolute top-6 left-6 pointer-events-none opacity-70 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10 z-[1000]">
+      <div className="absolute top-6 left-6 pointer-events-none opacity-70 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10 z-[1000] hidden sm:block">
         <p className="text-xs text-white font-medium">
           Scroll to Zoom • Drag to Pan • Click markers for details
         </p>
