@@ -3,7 +3,7 @@
 import Timer from "@/components/Homepage/Timer";
 import { useEffect, useRef, useState } from "react";
 import ScrollTriggeredLottie from "@/components/common/ScrollTriggeredLottie";
-import { isEventStarted as checkEventStarted } from '@/lib/constants';
+import { isEventStarted as checkEventStarted, isEventEnded as checkEventEnded } from '@/lib/constants';
 
 
 
@@ -221,10 +221,10 @@ const About = () => {
               <h3 className={`w-full text-white text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-center lg:text-left transition-all duration-700 delay-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
-                {checkEventStarted() ? "Experience the Silver Jubilee Exhibition Live!" : "Mark Your Calendar for the Silver Jubilee Exhibition."}
+                {checkEventEnded() ? "The event successfully concluded with great participation and impact." : (checkEventStarted() ? "Experience the Silver Jubilee Exhibition Live!" : "Mark Your Calendar for the Silver Jubilee Exhibition.")}
               </h3>
               
-              {checkEventStarted() && (
+              {checkEventStarted() && !checkEventEnded() && (
                 <a 
                   href="/events" 
                   className={`mt-6 px-6 py-3 bg-white text-black text-sm sm:text-base font-semibold rounded-full hover:bg-zinc-200 transition-all duration-300 flex items-center gap-2 ${
