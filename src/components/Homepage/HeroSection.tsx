@@ -6,6 +6,8 @@ import { FlipWords } from "@/components/Homepage/FlipWords";
 import { useLoading } from "@/contexts/LoadingContext";
 import gsap from "gsap";
 import { X } from 'lucide-react';
+import { DotLottiePlayer } from '@dotlottie/react-player';
+import { isEventEnded } from "@/lib/constants";
 
 interface HeroSectionProps {
   className?: string;
@@ -22,6 +24,11 @@ const HeroSection = ({ className = '', subtitleWords, showExploreButton = true, 
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [eventEnded, setEventEnded] = useState(false);
+
+  useEffect(() => {
+    setEventEnded(isEventEnded());
+  }, []);
 
   useEffect(() => {
     // Signal that hero is ready (SVG is inline)
@@ -250,6 +257,18 @@ const HeroSection = ({ className = '', subtitleWords, showExploreButton = true, 
 
       {/* Gradient Overlay at Bottom */}
       <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-gray-50 via-gray-50/5" />
+
+      {/* Fireworks Animation - Only when event ended */}
+      {eventEnded && (
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-60 mix-blend-multiply">
+             <DotLottiePlayer
+              src="/lotties/Fireworks.lottie"
+              autoplay
+              loop
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+        </div>
+      )}
 
       {/* Content Container */}
       <div ref={contentRef} className="relative mx-auto w-full h-full px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">

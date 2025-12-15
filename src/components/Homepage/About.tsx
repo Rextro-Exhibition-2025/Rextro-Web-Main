@@ -218,11 +218,24 @@ const About = () => {
           {/* Right Text */}
           <div className="flex-1 lg:pl-12 xl:pl-24 py-12 flex flex-col justify-start items-center lg:items-end">
             <div className="flex flex-col items-center lg:items-start w-full max-w-[530px]">
-              <h3 className={`w-full text-white text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-center lg:text-left transition-all duration-700 delay-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}>
-                {checkEventEnded() ? "The event successfully concluded with great participation and impact." : (checkEventStarted() ? "Experience the Silver Jubilee Exhibition Live!" : "Mark Your Calendar for the Silver Jubilee Exhibition.")}
-              </h3>
+              {checkEventEnded() ? (
+                <div className={`relative w-full p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl overflow-hidden group transition-all duration-700 delay-500 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}>
+                  {/* Glassmorphism Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  
+                  <h3 className="relative z-10 w-full text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70 text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-center lg:text-left drop-shadow-sm">
+                    The event successfully concluded with great participation and impact.
+                  </h3>
+                </div>
+              ) : (
+                <h3 className={`w-full text-white text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-center lg:text-left transition-all duration-700 delay-500 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}>
+                  {checkEventStarted() ? "Experience the Silver Jubilee Exhibition Live!" : "Mark Your Calendar for the Silver Jubilee Exhibition."}
+                </h3>
+              )}
               
               {checkEventStarted() && !checkEventEnded() && (
                 <a 

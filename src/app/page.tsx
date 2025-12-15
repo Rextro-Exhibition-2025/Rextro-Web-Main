@@ -19,7 +19,8 @@ export default function Home() {
       <WhatToExpect />
       <ExploreZones />
       <Sponsors />
-      {isEventEnded() ? <SilverJubileeBanner /> : <MobileApp />}
+      {/* {isEventEnded() ? <SilverJubileeBanner /> : <MobileApp />} */}
+      <MobileApp />
       <Footer />
     </div>
   );

@@ -10,7 +10,7 @@ export const isEventStarted = (): boolean => {
 };
 
 // The event end date
-export const EVENT_END_DATE = '2025-12-15T13:00:00';
+export const EVENT_END_DATE = '2025-12-15T22:00:00';
 
 // Helper to check if event has ended
 export const isEventEnded = (): boolean => {
