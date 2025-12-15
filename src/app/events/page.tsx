@@ -16,7 +16,7 @@ import AnimatedBackground from '@/components/common/AnimatedBackground';
 import AIExpoBanner from '@/components/events/AIExpoBanner';
 import YoutubeLivestream from '@/components/events/YoutubeLivestream';
 import ScrollTriggeredLottie from '@/components/common/ScrollTriggeredLottie';
-import { isEventStarted as checkEventStarted } from '@/lib/constants';
+import { isEventStarted as checkEventStarted, isEventEnded } from '@/lib/constants';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -166,24 +166,26 @@ export default function EventsPage() {
           </div>
 
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-24 relative z-50">
-            <button
-              onClick={() => {
-                document.getElementById('schedule')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] rounded-md shadow-sm text-sm h-[2.5rem] px-6 ring-1 bg-black text-white ring-black hover:bg-gray-800"
-            >
-              <span className="relative z-10">View Schedule</span>
-            </button>
-            <Link
-              href="https://silver-jubilee.eng.ruh.ac.lk/events"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] rounded-md shadow-sm text-sm h-[2.5rem] px-6 ring-1 bg-white text-gray-900 ring-gray-200 hover:bg-gray-50"
-            >
-              <span className="relative z-10">Register Now</span>
-            </Link>
-          </div>
+          {!isEventEnded() && (
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-24 relative z-50">
+              <button
+                onClick={() => {
+                  document.getElementById('schedule')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] rounded-md shadow-sm text-sm h-[2.5rem] px-6 ring-1 bg-black text-white ring-black hover:bg-gray-800"
+              >
+                <span className="relative z-10">View Schedule</span>
+              </button>
+              <Link
+                href="https://silver-jubilee.eng.ruh.ac.lk/events"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative isolate inline-flex items-center justify-center overflow-hidden text-left font-medium transition duration-300 ease-[cubic-bezier(0.4,0.36,0,1)] rounded-md shadow-sm text-sm h-[2.5rem] px-6 ring-1 bg-white text-gray-900 ring-gray-200 hover:bg-gray-50"
+              >
+                <span className="relative z-10">Register Now</span>
+              </Link>
+            </div>
+          )}
 
           <div className="flex justify-center mb-26">
             {!isEventStarted ? (
@@ -196,7 +198,7 @@ export default function EventsPage() {
                   Live Exhibition Stream Will Be Starting Here Soon
                 </span>
               </div>
-            ) : (
+            ) : !isEventEnded() ? (
               <button 
                 onClick={() => document.getElementById('livestream')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-red-200 shadow-lg shadow-red-500/20 bg-white hover:bg-red-50 transition-all duration-300 hover:scale-105"
@@ -217,7 +219,7 @@ export default function EventsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
               </button>
-            )}
+            ) : null}
           </div>
 
         </div>
