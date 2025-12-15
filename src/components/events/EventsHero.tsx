@@ -7,8 +7,24 @@ import Timer from "@/components/Homepage/Timer";
 import { FlipWords } from "@/components/Homepage/FlipWords";
 import MeteorAnimation, { HERO_METEORS, HERO_METEORS_ALT } from "@/components/Homepage/MeteorAnimation";
 
+import { isEventEnded } from "@/lib/constants";
+import { useState } from "react";
+
 const EventsHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [eventEnded, setEventEnded] = useState(false);
+
+  useEffect(() => {
+    // Check initially
+    setEventEnded(isEventEnded());
+
+    // Check periodically to sync with Timer
+    const interval = setInterval(() => {
+      setEventEnded(isEventEnded());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
@@ -150,37 +166,41 @@ const EventsHero = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mb-12 w-full max-w-3xl"
+            className="mb-12 w-full max-w-3xl relative"
+            style={{ zIndex: 100 }}
         >
             <Timer theme="events" />
         </motion.div>
 
         {/* CTAs */}
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
-        >
-            <button
-              onClick={() => {
-                document.getElementById('schedule')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="group relative px-8 py-3 rounded-full bg-neutral-900 text-white font-semibold text-sm transition-all hover:scale-105 hover:shadow-lg overflow-hidden"
-            >
-              <span className="relative z-10">View Schedule</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </button>
-            
-            <Link
-              href="https://rextro.lk/registrations"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative px-8 py-3 rounded-full bg-white border border-gray-200 text-neutral-900 font-semibold text-sm transition-all hover:bg-gray-50 hover:border-gray-300 hover:scale-105 hover:shadow-md"
-            >
-              Register Now
-            </Link>
-        </motion.div>
+        {!eventEnded && (
+          <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto relative"
+              style={{ zIndex: 0 }}
+          >
+              <button
+                onClick={() => {
+                  document.getElementById('schedule')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group relative px-8 py-3 rounded-full bg-neutral-900 text-white font-semibold text-sm transition-all hover:scale-105 hover:shadow-lg overflow-hidden"
+              >
+                <span className="relative z-10">View Schedule</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
+              
+              <Link
+                href="https://rextro.lk/registrations"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative px-8 py-3 rounded-full bg-white border border-gray-200 text-neutral-900 font-semibold text-sm transition-all hover:bg-gray-50 hover:border-gray-300 hover:scale-105 hover:shadow-md"
+              >
+                Register Now
+              </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );

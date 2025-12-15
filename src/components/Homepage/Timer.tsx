@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { DotLottiePlayer } from '@dotlottie/react-player';
 
-import { EVENT_START_DATE, isEventStarted as checkEventStarted } from '@/lib/constants';
+import { EVENT_START_DATE, EVENT_END_DATE, isEventStarted as checkEventStarted, isEventEnded as checkEventEnded } from '@/lib/constants';
 
 interface TimeLeft {
   days: number;
@@ -56,11 +56,20 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
 
   useEffect(() => {
     // Set your target date here (e.g., event date)
-    const targetDate = new Date(EVENT_START_DATE).getTime();
+    const startDate = new Date(EVENT_START_DATE).getTime();
+    const endDate = new Date(EVENT_END_DATE).getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
-      const difference = targetDate - now;
+      let difference = 0;
+
+      if (checkEventEnded()) {
+          // Count up from end date
+          difference = now - endDate;
+      } else {
+          // Count down to start date
+          difference = startDate - now;
+      }
 
       if (difference > 0) {
         setTimeLeft({
@@ -91,33 +100,26 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
     : '[text-shadow:_0px_0px_14px_rgb(255_136_0_/_1.00),_0px_0px_48px_rgb(255_136_0_/_1.00),_0px_0px_97px_rgb(255_136_0_/_1.00),_0px_0px_166px_rgb(255_136_0_/_1.00),_0px_0px_290px_rgb(255_136_0_/_1.00)]';
 
   const isLive = checkEventStarted();
+  const isEnded = checkEventEnded();
+
+  const showOverlay = isLive && !isEnded;
 
   return (
-    <div className="relative self-stretch px-2 sm:px-1 pb-6 inline-flex justify-center sm:justify-end items-center gap-2 sm:gap-4 lg:gap-6 scale-90 sm:scale-100 lg:scale-100 origin-center sm:origin-right">
-      
-      {/* Live Overlay */}
-      {isLive && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none">
-            <div className={`flex flex-col sm:flex-row items-center justify-center gap-2`}>
-                <span className={`text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-widest drop-shadow-lg ${
-                    theme === 'light' ? 'text-black drop-shadow-white' : 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]'
-                }`}>
-                    WE ARE
-                </span>
-                <div className="w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center rotate-20 transform">
-                    <DotLottiePlayer
-                        src="/lotties/Live Webinar Animation.lottie"
-                        autoplay
-                        loop
-                        style={{ width: '100%', height: '100%' }}
-                    />
-                </div>
-            </div>
-        </div>
+    <div className="relative flex flex-col items-center">
+      {/* Post-Event Message */}
+      {isEnded && (
+          <div className="mb-4 text-center relative">
+              <span className={`text-sm sm:text-base font-medium font-[var(--font-instrument)] tracking-wide uppercase ${theme === 'light' ? 'text-neutral-900' : 'text-white/80'}`}>
+                  The clock moves on, the memories remain.
+              </span>
+              
+          </div>
       )}
 
-      {/* Blurred Container if Live */}
-      <div className={`flex items-center justify-center gap-2 sm:gap-4 lg:gap-6 transition-all duration-500 ${isLive ? 'blur-[2px] opacity-25 pointer-events-none select-none' : ''}`}>
+      <div className="relative self-stretch px-2 sm:px-1 pb-6 inline-flex justify-center items-center gap-2 sm:gap-4 lg:gap-6 scale-90 sm:scale-100 lg:scale-100 origin-center">
+      
+      {/* Blurred Container if Live (but NOT ended) */}
+      <div className={`flex items-center justify-center gap-2 sm:gap-4 lg:gap-6 transition-all duration-500 ${showOverlay ? 'blur-[2px] opacity-25 pointer-events-none select-none' : ''}`}>
         {/* Days */}
       <div className="inline-flex flex-col justify-start items-center gap-1 sm:gap-2">
         <div className={`self-stretch text-center justify-center ${labelColor} text-2xl sm:text-3xl lg:text-4xl font-normal font-[family-name:var(--font-instrument-sans)]`}>DD</div>
@@ -146,10 +148,22 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
         </div>
       </div>
 
-      {/* Separator */}
-      <div className="w-1.5 sm:w-2 h-20 sm:h-24 lg:h-28 py-2 sm:py-3 inline-flex flex-col justify-end items-center gap-3 sm:gap-4">
+      {/* Separator - Middle */}
+      <div className="w-1.5 sm:w-2 h-20 sm:h-24 lg:h-28 py-2 sm:py-3 inline-flex flex-col justify-end items-center gap-3 sm:gap-4 relative">
         <div className={`self-stretch h-1.5 sm:h-2 opacity-50 ${separatorColor} rounded-full`} />
         <div className={`self-stretch h-1.5 sm:h-2 opacity-50 ${separatorColor} rounded-full`} />
+        
+        {/* Closed Tag Lottie - Hanging from Middle Separator */}
+        {isEnded && (
+          <div className="absolute left-1/2 -translate-x-1/2 top-4 w-56 h-56 sm:w-72 sm:h-72 pointer-events-none z-50 opacity-90 origin-top">
+            <DotLottiePlayer
+              src="/lotties/Closed tag.lottie"
+              autoplay
+              loop
+              style={{ width: '100%', height: '100%' }}
+            />
+          </div>
+        )}
       </div>
 
       {/* Minutes */}
@@ -180,6 +194,7 @@ const Timer: React.FC<TimerProps> = ({ theme = 'dark' }) => {
         </div>
       </div>
       </div>
+    </div>
     </div>
   );
 };

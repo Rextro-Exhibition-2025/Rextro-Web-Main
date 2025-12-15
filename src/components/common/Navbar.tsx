@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LiveBanner from "@/components/events/LiveBanner";
-import { isEventStarted as checkEventStarted } from "@/lib/constants";
+import { isEventStarted as checkEventStarted, isEventEnded } from "@/lib/constants";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,8 +15,9 @@ const Navbar = () => {
 
   // Logic for Live Banner (duplicated from events page for visual consistency in header)
   const isEventStarted = checkEventStarted();
+  const eventEnded = isEventEnded();
   const isEventsPage = pathname === '/events';
-  const showLiveBanner = isEventsPage && isEventStarted;
+  const showLiveBanner = isEventsPage && isEventStarted && !eventEnded;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = (menu: string) => {
@@ -72,33 +73,59 @@ const Navbar = () => {
 
         {/* Top announcement bar */}
         {pathname === "/" && (
-          <div className="w-full bg-neutral-900 border-b border-white/5 relative z-[60]">
-            <div className="max-w-7xl mx-auto px-4 py-2 sm:py-2 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-6 text-center sm:text-left">
-              
-              <div className="flex items-center gap-2.5 text-xs text-zinc-300 font-medium tracking-wide">
-                <span className="relative flex h-2 w-2 flex-shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                </span>
-                <p>
-                  <span className="text-white font-bold tracking-wider mr-1.5 uppercase">Important:</span>
-                  <span className="sm:hidden">Check map for parking info.</span>
-                  <span className="hidden sm:inline">For parking details and locations, please refer to the map page.</span>
-                </p>
-              </div>
-            <div className="hidden sm:block w-px h-4 bg-white/20" />
-              <Link 
-                href="/map" 
-                className="group flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-white/10 hover:bg-white/20 active:bg-white/15 px-3 py-1 rounded-full transition-all"
-              >
-                <span>View Parking Map</span>
-                <svg className="w-3 h-3 text-white/70 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
+          eventEnded ? (
+            // <div className="w-full bg-[#001f3f] border-b border-white/5 relative z-[60]">
+            //   <div className="max-w-7xl mx-auto px-4 py-2 sm:py-2 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-6 text-center sm:text-left">
+            //     <div className="flex items-center gap-2.5 text-xs text-cyan-100 font-medium tracking-wide">
+            //       <p>
+            //         <span className="text-white font-bold tracking-wider mr-1.5 uppercase">Legacy:</span>
+            //         <span>Visit the original Silver Jubilee site for archives.</span>
+            //       </p>
+            //     </div>
+            //     <div className="hidden sm:block w-px h-4 bg-white/20" />
+            //     <Link 
+            //       href="https://silver-jubilee.eng.ruh.ac.lk/" 
+            //       target="_blank"
+            //       rel="noopener noreferrer"
+            //       className="group flex items-center justify-center gap-1.5 text-xs font-semibold text-[#001f3f] bg-white hover:bg-cyan-50 px-3 py-1 rounded-full transition-all"
+            //     >
+            //       <span>Visit Site</span>
+            //       <svg className="w-3 h-3 text-[#001f3f] group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            //         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            //       </svg>
+            //     </Link>
+            //   </div>
+            // </div>
+            <></>
+          ) : (
+            <div className="w-full bg-neutral-900 border-b border-white/5 relative z-[60]">
+              <div className="max-w-7xl mx-auto px-4 py-2 sm:py-2 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-6 text-center sm:text-left">
+                
+                <div className="flex items-center gap-2.5 text-xs text-zinc-300 font-medium tracking-wide">
+                  <span className="relative flex h-2 w-2 flex-shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                  </span>
+                  <p>
+                    <span className="text-white font-bold tracking-wider mr-1.5 uppercase">Important:</span>
+                    <span className="sm:hidden">Check map for parking info.</span>
+                    <span className="hidden sm:inline">For parking details and locations, please refer to the map page.</span>
+                  </p>
+                </div>
+              <div className="hidden sm:block w-px h-4 bg-white/20" />
+                <Link 
+                  href="/map" 
+                  className="group flex items-center justify-center gap-1.5 text-xs font-semibold text-white bg-white/10 hover:bg-white/20 active:bg-white/15 px-3 py-1 rounded-full transition-all"
+                >
+                  <span>View Parking Map</span>
+                  <svg className="w-3 h-3 text-white/70 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
 
+              </div>
             </div>
-          </div>
+          )
         )}
 
         {/* Main navbar - Static version */}

@@ -7,6 +7,8 @@ import Footer from "@/components/Homepage/Footer";
 import HeroSection from "@/components/Homepage/HeroSection";
 import PostponeModal from "@/components/Homepage/PostponeModal";
 import Image from "next/image";
+import SilverJubileeBanner from "@/components/Homepage/SilverJubileeBanner";
+import { isEventEnded } from "@/lib/constants";
 
 export default function Home() {
   return (
@@ -17,6 +19,7 @@ export default function Home() {
       <WhatToExpect />
       <ExploreZones />
       <Sponsors />
+      {/* {isEventEnded() ? <SilverJubileeBanner /> : <MobileApp />} */}
       <MobileApp />
       <Footer />
     </div>
