@@ -52,8 +52,6 @@ const sponsors: Company[] = [
   { name: "CESL", logo: "/sponsors/central engineering services cesl_logo_new.png", tier: "Partner" },
   { name: "Ceylon Steel Corporation", logo: "/sponsors/ceylon steel corporation.png", tier: "Partner" },
   { name: "DeMEP", logo: "/sponsors/demep-logo.png", tier: "Partner" },
-  { name: "Derana", logo: "/sponsors/derana.gif", tier: "Partner" },
-  { name: "Derana", logo: "/sponsors/derana.jpg", tier: "Partner" },
   { name: "Derana", logo: "/sponsors/derana.webp", tier: "Partner" },
   { name: "Insee", logo: "/sponsors/insee-corp.png", tier: "Partner" },
   { name: "Mastery Engineering", logo: "/sponsors/mastery engineering.jpg", tier: "Partner" },
@@ -68,6 +66,7 @@ const sponsors: Company[] = [
   { name: "Symsyn", logo: "/sponsors/symsyn.png", tier: "Partner" },
   { name: "Wijeya", logo: "/sponsors/wijeya_logo.png", tier: "Partner" },
   { name: "SLIC", logo: "/sponsors/slic.png", tier: "Partner" },
+  { name: "DreamX", logo: "/sponsors/DreamX.png", tier: "Partner" },
 ];
 
 export default function Sponsors() {
