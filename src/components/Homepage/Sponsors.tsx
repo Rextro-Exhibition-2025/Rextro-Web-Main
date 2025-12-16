@@ -36,7 +36,6 @@ const sponsors: Company[] = [
   { name: "Leco", logo: "/sponsors/Leco.png", tier: "Partner" },
   { name: "HL", logo: "/sponsors/Logo 1 HL New Logo [Final].jpg", tier: "Partner" },
   { name: "LTL", logo: "/sponsors/Logo 2 LTL.jpg", tier: "Partner" },
-  { name: "SLT Mobitel", logo: "/sponsors/Logo 2 SLTMobitel_Logo.png.webp", tier: "Partner" },
   { name: "Magic Ice Cream", logo: "/sponsors/MAGIC ICE CREAM.jpg", tier: "Partner" },
   { name: "NERDC", logo: "/sponsors/NERDC LOGO-1.png", tier: "Partner" },
   { name: "PWA", logo: "/sponsors/PWA2.jpg", tier: "Partner" },
@@ -52,7 +51,6 @@ const sponsors: Company[] = [
   { name: "CECB", logo: "/sponsors/cecb.png", tier: "Partner" },
   { name: "CESL", logo: "/sponsors/central engineering services cesl_logo_new.png", tier: "Partner" },
   { name: "Ceylon Steel Corporation", logo: "/sponsors/ceylon steel corporation.png", tier: "Partner" },
-  { name: "China Harbour", logo: "/sponsors/china harbour.jpeg", tier: "Partner" },
   { name: "DeMEP", logo: "/sponsors/demep-logo.png", tier: "Partner" },
   { name: "Derana", logo: "/sponsors/derana.gif", tier: "Partner" },
   { name: "Derana", logo: "/sponsors/derana.jpg", tier: "Partner" },
@@ -66,10 +64,10 @@ const sponsors: Company[] = [
   { name: "Ruhuna FM", logo: "/sponsors/ruhuna fm.jpg", tier: "Partner" },
   { name: "SLBC", logo: "/sponsors/slbc.png", tier: "Partner" },
   { name: "Smart Tech", logo: "/sponsors/smart tech.jpg", tier: "Partner" },
-  { name: "Statewide Geotechnicals", logo: "/sponsors/statewide geotechnicals.jpg", tier: "Partner" },
   { name: "Statewide Geotechnicals", logo: "/sponsors/statewide geotechnicals.svg", tier: "Partner" },
   { name: "Symsyn", logo: "/sponsors/symsyn.png", tier: "Partner" },
   { name: "Wijeya", logo: "/sponsors/wijeya_logo.png", tier: "Partner" },
+  { name: "SLIC", logo: "/sponsors/slic.png", tier: "Partner" },
 ];
 
 export default function Sponsors() {
