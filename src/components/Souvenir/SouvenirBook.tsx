@@ -198,6 +198,8 @@ const SouvenirBook = () => {
                             pageNumber={1} 
                             onLoadSuccess={onPageLoadSuccess}
                             className="invisible"
+                            renderTextLayer={false}
+                            renderAnnotationLayer={false}
                         />
                     </div>
                 )}
