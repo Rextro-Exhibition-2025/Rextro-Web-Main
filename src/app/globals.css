@@ -198,3 +198,16 @@ body {
     transform: translateX(0);
   }
 }
+
+/* Gold Shine Animation */
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.animate-gold-shine {
+  animation: shine 3s linear infinite;
+  background-size: 200% auto;
+  background-position: 0% center;
+}

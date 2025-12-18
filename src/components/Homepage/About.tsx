@@ -4,6 +4,7 @@ import Timer from "@/components/Homepage/Timer";
 import { useEffect, useRef, useState } from "react";
 import ScrollTriggeredLottie from "@/components/common/ScrollTriggeredLottie";
 import { isEventStarted as checkEventStarted, isEventEnded as checkEventEnded } from '@/lib/constants';
+import Link from 'next/link';
 
 
 
@@ -157,9 +158,9 @@ const About = () => {
         </div>
 
         {/* Event Details Section */}
-        <div ref={sectionRef} className="relative w-full px-4 sm:px-8 lg:px-20 py-6 sm:py-8 lg:py-10 flex flex-col lg:flex-row justify-start items-center lg:items-start gap-8 lg:gap-20">
+        <div ref={sectionRef} className="relative w-full px-4 sm:px-8 lg:px-20 py-6 sm:py-8 lg:py-10 flex flex-col lg:flex-row justify-start items-center lg:items-start gap-8 lg:gap-16">
           {/* Event Date Card */}
-          <div className="flex-1 min-w-0 lg:min-w-[460px] p-4 sm:p-6 bg-neutral-800 rounded-2xl border border-white/5 flex flex-col gap-4 overflow-hidden w-full">
+          <div className="flex-1 min-w-0 p-4 sm:p-6 bg-neutral-800 rounded-2xl border border-white/5 flex flex-col gap-4 overflow-hidden w-full h-full">
             <div className="w-full flex flex-col sm:flex-row justify-start items-center gap-4 sm:gap-6">
               <h3 className="text-white text-xl sm:text-2xl font-bold font-[var(--font-instrument)] uppercase tracking-tight">
                 December
@@ -216,10 +217,10 @@ const About = () => {
           </div>
 
           {/* Right Text */}
-          <div className="flex-1 lg:pl-12 xl:pl-24 py-12 flex flex-col justify-start items-center lg:items-end">
-            <div className="flex flex-col items-center lg:items-start w-full max-w-[530px]">
+          <div className="flex-1 flex flex-col justify-start items-center lg:items-center w-full">
+            <div className="flex flex-col items-center w-full max-w-[500px] h-full">
               {checkEventEnded() ? (
-                <div className={`relative w-full p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl overflow-hidden group transition-all duration-700 delay-500 ${
+                <div className={`relative w-full h-full p-4 sm:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl overflow-hidden group transition-all duration-700 delay-500 flex flex-col justify-center ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}>
                   {/* Glassmorphism Shine Effect */}
@@ -228,6 +229,25 @@ const About = () => {
                   <h3 className="relative z-10 w-full text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70 text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-center lg:text-left drop-shadow-sm">
                     The event successfully concluded with great participation and impact.
                   </h3>
+                  <p className="relative z-10 mt-4 text-white text-lg sm:text-xl font-medium font-[var(--font-instrument)] text-center lg:text-left">
+                    Discover the story behind our{" "}
+                    <Link 
+                      href="/souvenir" 
+                      className="group inline-flex items-baseline gap-1 hover:gap-2 transition-all"
+                    >
+                      <span 
+                        className="font-bold text-transparent bg-clip-text animate-gold-shine underline decoration-amber-500/50 underline-offset-4 group-hover:decoration-amber-400"
+                        style={{
+                          backgroundImage: 'linear-gradient(90deg, rgba(186,148,62,1) 0%, rgba(236,172,32,1) 20%, rgba(186,148,62,1) 39%, rgba(249,244,180,1) 50%, rgba(186,148,62,1) 60%, rgba(236,172,32,1) 80%, rgba(186,148,62,1) 100%)'
+                        }}
+                      >
+                        souvenir
+                      </span>
+                      <svg className="w-4 h-4 text-amber-400 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  </p>
                 </div>
               ) : (
                 <h3 className={`w-full text-white text-xl sm:text-2xl lg:text-3xl font-semibold font-[var(--font-instrument)] leading-tight text-center lg:text-left transition-all duration-700 delay-500 ${
