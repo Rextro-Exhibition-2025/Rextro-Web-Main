@@ -160,33 +160,19 @@ const SouvenirBook = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  if (!isMounted) return <div className="min-h-screen bg-[#111113] flex items-center justify-center"><Loader2 className="animate-spin text-white/20"/></div>;
+  if (!isMounted) return <div className="w-full h-full flex items-center justify-center"><Loader2 className="animate-spin text-white/20"/></div>;
 
   return (
-    <div className="flex flex-col h-screen bg-[#222] text-slate-300 overflow-hidden font-sans select-none">
-       
-       {/* Navbar */}
-       <nav className="h-14 border-b border-white/5 bg-black/40 flex items-center justify-between px-4 md:px-6 backdrop-blur-md z-[100] shrink-0">
-          <div className="flex items-center gap-4">
-             <span className="text-white font-bold tracking-tight">Souvenir</span>
-             {numPages > 0 && <span className="text-xs text-slate-500 bg-white/5 px-2 py-0.5 rounded">
-                Page {currentPageIndex + 1} of {numPages}
-             </span>}
-          </div>
-          <div className="flex items-center gap-3">
-             <a href={PDF_URL} download className="text-slate-400 hover:text-white transition-colors"><Download size={20}/></a>
-          </div>
-       </nav>
-
+    <div className="w-full h-full relative overflow-hidden font-sans select-none">
        {/* Book Area */}
-       <div className="flex-1 relative flex items-center justify-center bg-[#1a1a1e] overflow-hidden p-2 md:p-4" ref={containerRef}>
+       <div className="relative w-full h-full flex items-center justify-center" ref={containerRef}>
             <Document
                 file={PDF_URL}
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={
-                    <div className="flex flex-col items-center gap-4 text-indigo-500">
-                        <Loader2 className="animate-spin w-10 h-10" />
-                        <span className="text-sm tracking-widest uppercase">Loading Book...</span>
+                    <div className="flex flex-col items-center gap-4 text-white/50">
+                        <Loader2 className="animate-spin w-8 h-8" />
+                        <span className="text-xs tracking-widest uppercase">Loading Book...</span>
                     </div>
                 }
                 className="flex items-center justify-center w-full h-full"
@@ -206,63 +192,72 @@ const SouvenirBook = () => {
 
                 {/* 2. ACTUAL BOOK (Rendered only when we know the size) */}
                 {numPages > 0 && pdfSize && dimensions.width > 0 && (
-                    <HTMLFlipBook
-                        width={dimensions.width}
-                        height={dimensions.height}
-                        size="fixed"
-                        minWidth={100}
-                        maxWidth={2500}
-                        minHeight={100}
-                        maxHeight={2500}
-                        maxShadowOpacity={0.5}
-                        showCover={true}
-                        mobileScrollSupport={true}
-                        onFlip={(e) => setCurrentPageIndex(e.data)}
-                        // @ts-ignore
-                        ref={bookRef}
-                        className="shadow-2xl"
-                        style={{ margin: '0 auto' }}
-                        startPage={0}
-                        drawShadow={true}
-                        flippingTime={800}
-                        usePortrait={window.innerWidth < 1000} 
-                        startZIndex={0}
-                        autoSize={true}
-                        clickEventForward={true}
-                        useMouseEvents={true}
-                        swipeDistance={30}
-                        showPageCorners={false}
-                        disableFlipByClick={false}
-                    >
-                        {/* Generate Pages */}
-                        {Array.from(new Array(numPages), (_, index) => (
-                            <Page 
-                                key={index} 
-                                pageNumber={index + 1} 
-                                width={dimensions.width}
-                                height={dimensions.height}
-                                scale={scale}
-                            />
-                        ))}
-                    </HTMLFlipBook>
+                     <div className="relative z-10">
+                        <HTMLFlipBook
+                            width={dimensions.width}
+                            height={dimensions.height}
+                            size="fixed"
+                            minWidth={100}
+                            maxWidth={2500}
+                            minHeight={100}
+                            maxHeight={2500}
+                            maxShadowOpacity={0.5}
+                            showCover={true}
+                            mobileScrollSupport={true}
+                            onFlip={(e) => setCurrentPageIndex(e.data)}
+                            // @ts-ignore
+                            ref={bookRef}
+                            className="shadow-2xl"
+                            style={{ margin: '0 auto' }}
+                            startPage={0}
+                            drawShadow={true}
+                            flippingTime={800}
+                            usePortrait={window.innerWidth < 1000} 
+                            startZIndex={0}
+                            autoSize={true}
+                            clickEventForward={true}
+                            useMouseEvents={true}
+                            swipeDistance={30}
+                            showPageCorners={false}
+                            disableFlipByClick={false}
+                        >
+                            {/* Generate Pages */}
+                            {Array.from(new Array(numPages), (_, index) => (
+                                <Page 
+                                    key={index} 
+                                    pageNumber={index + 1} 
+                                    width={dimensions.width}
+                                    height={dimensions.height}
+                                    scale={scale}
+                                />
+                            ))}
+                        </HTMLFlipBook>
+                     </div>
                 )}
             </Document>
 
-            {/* Navigation Buttons (Absolute) */}
+            {/* Navigation Buttons (Subtle Overlay) */}
             <button 
-                className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 bg-black/10 hover:bg-black/50 text-white w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-sm transition-all z-50 shadow-none hover:shadow-xl"
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-[50]"
                 // @ts-ignore
                 onClick={() => bookRef.current?.pageFlip().flipPrev()}
             >
-                <ChevronLeft size={32} />
+                <ChevronLeft size={40} className="drop-shadow-lg" />
             </button>
             <button 
-                className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 bg-black/10 hover:bg-black/50 text-white w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-sm transition-all z-50 shadow-none hover:shadow-xl"
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors z-[50]"
                 // @ts-ignore
                 onClick={() => bookRef.current?.pageFlip().flipNext()}
             >
-                <ChevronRight size={32} />
+                <ChevronRight size={40} className="drop-shadow-lg" />
             </button>
+
+            {/* Bottom Page Indicator */}
+            {numPages > 0 && (
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] text-white/30 tracking-widest font-mono z-20">
+                    {currentPageIndex + 1} / {numPages}
+                </div>
+            )}
        </div>
     </div>
   );
