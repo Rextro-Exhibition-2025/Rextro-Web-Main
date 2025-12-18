@@ -77,9 +77,17 @@ const SouvenirHero = () => {
       {/* Content Container */}
       <div className="relative mx-auto w-full h-full px-6 flex flex-col justify-center items-center">
         <div className="text-center">
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-gray-900 via-gray-800 to-gray-500 mb-6 drop-shadow-sm">
-                SOUVENIR
-            </h1>
+            <div className="relative inline-block mb-6">
+                <h1 
+                    className="relative z-10 text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] animate-gold-shine"
+                    style={{
+                        backgroundImage: 'linear-gradient(90deg, rgba(186,148,62,1) 0%, rgba(236,172,32,1) 20%, rgba(186,148,62,1) 39%, rgba(249,244,180,1) 50%, rgba(186,148,62,1) 60%, rgba(236,172,32,1) 80%, rgba(186,148,62,1) 100%)'
+                    }}
+                >
+                    SOUVENIR
+                </h1>
+            </div>
+            
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-medium">
                 A journey through our memories and milestones.
             </p>
