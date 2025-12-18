@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { Loader2 } from 'lucide-react';
 
 const SouvenirBook = dynamic(
-  () => import('@/components/souvenir/SouvenirBook'),
+  () => import('@/components/Souvenir/SouvenirBook'),
   { 
     ssr: false,
     loading: () => (
