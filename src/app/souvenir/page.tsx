@@ -56,7 +56,7 @@ export default function SouvenirPage() {
             {/* Download/Action Overlay (Optional corner actions) */}
             <div className="absolute top-4 right-4 z-20">
                  <a 
-                    href="/PRINT EXPORT 1.pdf" 
+                    href="/PRINT EXPORT 1 new.pdf" 
                     download 
                     className="flex items-center gap-2 bg-black/40 hover:bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-xs text-white/70 hover:text-white transition-colors"
                  >
